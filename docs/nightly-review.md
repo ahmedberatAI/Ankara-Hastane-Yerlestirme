@@ -1,6 +1,61 @@
 # Bağımsız hakem döngüsü · 22–23 Ekim 2026
 
-Bu kayıt geliştirme çalışmasının denetim izidir. **v0.5 ulaşım paketi, dört coğrafi 91 deneyi ve kapasite/dayanıklılık denetimleri tamamlandı. Üç hakem bu kontrol noktasının iç tutarlılığını kabul etti; genel model başarısı ve gerçek Ankara kalibrasyonu kabul edilmedi.** Kullanıcının belirlediği çalışma sonu 23 Ekim 2026 08.00 TSİ'dir. Başlangıç sürümü `22179a1`; aşağıdaki açık sorunlar için çalışma sürüyor.
+**v0.6 kontrol noktası iç tutarlılık açısından doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Son çalışma saati 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Aşağıdaki v0.6 bölümü güncel karardır; v0.5 kayıtları tarihsel denetim izi olarak saklanmıştır.
+
+## v0.6: yeni kaynaklar ve ağ
+
+665 yön/varyantın 428'i, 543 sefer örüntüsüyle kullanılıyor. 516, 616, 560-8 ve 615 kullanılabilir kapsama eklendi. Üç uzak durağın mevcut yönlü yol kenarına bağlanması eski düğümler arasındaki yolları, araba ve yürüyüş ağlarını koruyor. 527/610 ailesinin geometrisi düzelmesine rağmen çözülmemiş özel sefer notları hâlâ kullanımını engelliyor; eksik modellenen hizmet, hizmet yokluğu değildir.
+
+24 özel kalkış kaydı, altı gerçek resmî HTTP arşivinin içerik kimlikleriyle bağlandı. 560-8 için tam yön bütçesi 75 dakika; 615'in yalnız dört hafta içi Ulus→Güdül kalkışında 2025 planındaki 95/120 dakika kullanılıyor. Tarihli planın bugün aynı kaldığı veya varışların ölçüldüğü iddia edilmiyor. [Kaynak ve yön varsayımları](service-evidence.md).
+
+Ulaşım hakemi 29 paket bileşenini, 298.222 yol/ray çizgi parçasını, 34.627 kesit oluşumunun fiziksel süre tabanını ve dört profilde 154.400 bağımsız başlangıç–hedef sonucunu kontrol etti. Önceki 537 örüntünün ofsetleri korundu. Bu, algoritma ve kaynak tutarlılığı kabulüdür; araç güzergâhı veya saha süre doğrulaması değildir.
+
+## v0.6: 91 ve kapasite deneyleri
+
+Dört coğrafi 91 deneyinin minimumları hafta içi 08.00/10.00, cumartesi/pazar 10.00 için **165 / 166 / 170 / 168**. Bağımsız budamasız, zaman sınırlı MILP koşularının alt sınırları da 91'in üstünde; aynı kesin minimumları bağımsız tekrar kanıtlamış gibi sunulmuyor. Bu sayılar gerçek Ankara için ihtiyaç sayısı değildir. Mevcut 91 hastane envanteri yerine sıfırdan en fazla 91 aday konum sınanıyor.
+
+Yeni hafta içi 10.00 kapasite planı **209 tesis, 24.950 yatak, 22.966 hekim**, %95 il talebi ve en düşük %80,0143 ilçe talebi sağlıyor. Ortalama 27,8667 dakika; yıllık eşdeğer maliyet 172,6697 milyar Aralık 2024 TL. Son maliyet açıklığı %2,7514 daraltılmış atama aramasına ait; süre açıklığı %80,7912. Küresel maliyet veya minimum tesis sayısı optimumu değildir. Araba planları değiştirilmeden yeniden denetlendi: 46 tesis, 18.550 yatak, 21.590 hekim.
+
+Aynı 209 konum/yatak/hekim ve 189,9507 milyar TL yıllık tavanla dört profil testi yalnız hafta içi 10.00'da hedefleri sağlıyor. Hafta içi 08.00 üst kapsamı %93,6553; hafta sonunda ortak ilçe koşulları olanaksız, ana yüzde bu nedenle boş bırakılıyor.
+
+Yeni ortak kaynak modelinde aynı konum ve yapı izleri korunup yatak/hekim kadrosu birlikte yeniden seçildi. Model bu yerleşimde dört profil hedeflerini sağlayamıyor. Maliyet ve bütçe kaldırılan ayrı fiziksel kapasite tavanı:
+
+| Profil | İlçe tabanları korunarak en yüksek kapsam |
+|---|---:|
+| Hafta içi 08.00 | %94,7221 |
+| Hafta içi 10.00 | %96,0370 |
+| Cumartesi 10.00 | %89,8003 |
+| Pazar 10.00 | %89,7204 |
+
+Kanıt hakemi özgün kişi birimlerinde bağımsız LP kurarak bu dört tavanı tekrar üretti. Optimizasyon hakemi ayrıca ilçe tabanlarını kaldırıp alan/kaynakları yukarı yuvarlayan farklı bir maksimum akış hesabıyla üç profilin yine %95 altında kaldığını doğruladı. Bu yalnız **aynı 209 yapı izinde** daha fazla kaynak satın almanın yetmediğini gösterir; başka yerleşim veya gerçek Ankara için olanaksızlık değildir.
+
+Sabit kaynakların hafta sonu ilçe kotası sorununda her ilçe tek başına yeterli kaynak bulabiliyor, birlikte kaynaklar paylaşılıyor. Bağımsız gevşetilmiş kota ağında cumartesi en az 21.042 kişi eşdeğeri açık, minimum kesitte Etimesgut–Sincan–Yenimahalle; pazar en az 17.600 açık, kesitte Etimesgut–Sincan bulunuyor. Bunlar tek tek ilçelerin mutlak yetersizlik tavanları değildir. [Bütün sonuçlar ve kapsam](validation.md).
+
+## v0.6: açık kritik sorunlar
+
+**P1 — karşı taşıt yoluna bağlanma:** en yakın yol düğümü bazı resmî durakları karşı yöne bağlayıp gereksiz U dönüşü oluşturuyor. Örneğin 615'te 50174→57208 modelde 2.204 m, aynı izinli tek yönlü kenar üzerinde yönü koruyan projeksiyonda 146 m; 560-8'de 50167→50390 için 1.750 m / 261 m. 516/616'da da benzer örnekler var. Bunlar son üç uzak-durak düzeltmesinin dışında kalan eski hata sınıfı. Paket içindeki yol parçalarının legal olması, durakların doğru taşıt yoluna bağlandığını kanıtlamıyor. Düzeltme ayrı prototipte araştırılıyor; v0.6 bu açık sorunla yayımlanıyor ve arayüzde açıklanıyor.
+
+**Kırsal hizmet kapsamı:** sekiz kırsal ilçede 45 dakikada toplu taşıma sayesinde ek aday kazanan tek yeni satır Ayaş/Başbereket, 164 kişi; hafta içi 10.00'da sekiz, pazar altı ek aday. Diğer yedi ilçe ve Ayaş'ın kalan satırları doğrudan yürüyüş adaylarıyla aynı. Bu gerçek hizmet yokluğu değildir. Ortak sekiz-ilçe coğrafi minimumu 135; yalnız ilçe tabanı kaldırılan il %95 tanısında minimum 31. Farklar toplanabilir nedensel katkı değildir.
+
+Gerçek ara durak saatleri, tarihli işletme istisnaları, klinik branş/vaka karışımı ve tam kamu işletme maliyeti doğrulanmadı. Tek gün/saat profili ve dört profil testi bütün gün/yıl garantisi sağlamıyor. Bu sınırlamalar giderilmeden başarılı tamamlandı hükmü verilmiyor.
+
+## v0.6 kabul ve uygulama kontrolü
+
+**253 Python testi ve üretim derlemesi geçti.** Alan sınırında tamsayı hekim kapasitesini yanlış aşağı yuvarlayan üst sınır düzeltildi; belirsiz/olanaksız durum etiketleri, alt sınır kapsamı ve 25 ilçe kaydı/nüfus paydası zorunlu denetleniyor. Diğer hakemlerin ters örnekleri ve bağımsız küçük problem kontrolleri geçti. Yeni üretim denetçisi CI zincirine eklendi.
+
+Kaynak/plan/model kimlikleri ve 44 işlenmiş çıktı manifestosu eşleşiyor. `verify_release.py`, `verify_transit.py`, `audit_robustness.py` ve `audit_shared_capacity.py` son dosyaları salt okunur doğruladı; dört kontrol de başarıyla tamamlandı.
+
+| Hakem | Kabul edilen kapsam | Açık kalan hüküm |
+|---|---|---|
+| Ulaşım | Kaynak arşivleri, yönlü geometri, ofsetler, fiziksel sınırlar, bağımsız yönlendirme | P1 taşıt yolu eşlemesi için revizyon gerekli; gerçek süre kabulü yok |
+| Kapasite / optimizasyon | Ham atama/alan/maliyet, model içi 91 sonucu, farklı maksimum akış ile sabit alan tavanları | Klinik ve mali tam kalibrasyon yok; konum planı çoklu profilde başarısız |
+| Kanıt / arayüz | Yeni rapor, kaynak kimlikleri, API/JSON/React çıktısı ve belgeler | Yalnız açıklanmış model kapsamı; gerçek ihtiyaç ve saha süresi kabulü yok |
+
+Yerel uygulama v0.6 olarak yeniden başlatıldı. Canlı arayüzde hafta içi 10.00/91 için 166, pazar 10.00/91 için 168 görüldü; seçim değişince eski hesap kendi etiketiyle kaldı ve bekleyen seçim ayrıca gösterildi. Yöntem penceresinde 24 sefer yorumu, tarihli süre varsayımları ve açık karşı yol hatası görüldü. Tarayıcı hata kaydı boştu. Yeni ortak kaynak bölümü 209 sabit konumu, dört ayrı tavanı ve başka konumlara genellenemeyeceğini gösteriyor. [Kapasite deneyi ekranı](screenshots/ego-ortak-kapasite-v06.png). GitHub CI sonucu ayrıca gözlenmedi; yerel test/denetim sonucu ile karıştırılmıyor.
+
+## v0.5 tarihsel denetim kaydı
+
+Aşağıdaki sayılar önceki c037950 kontrol noktasına aittir; güncel v0.6 sonuçları yukarıdadır.
 
 ## Değerlendirme yöntemi
 

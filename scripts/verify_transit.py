@@ -20,6 +20,8 @@ from backend.main import dataset, Scenario, travel_times, cached_solve, count_bo
 from backend.timetable import PROFILES, DEFAULT_PROFILE, load_network, route_one
 from backend.feasibility import geographic_bound
 from scripts.transit_provenance import check_package
+from scripts.audit_service_evidence import validate_reviewed_services, validate_evidence_archive
+from scripts.audit_bus_projection import validate_bus_projections
 from scripts.verify_release import (verify_certificate, verify_result_package,
                                     verify_report_records, same_values, summarize, TRANSIT_REPORT_KEYS)
 
@@ -141,6 +143,16 @@ def validate_network():
     official=json.loads((OUT/'ego-official.json').read_text(encoding='utf-8'))
     q=json.loads((OUT/'ego-quality.json').read_text(encoding='utf-8'))
     validate_physical_network(network,official,q)
+    evidence=json.loads((OUT/'ego-service-evidence.json').read_text(encoding='utf-8'))
+    validate_evidence_archive(evidence,ROOT)
+    validate_reviewed_services(network,official,q,evidence)
+    raw_path=ROOT/'data/raw/ankara-osm.json.gz'
+    if raw_path.exists():
+        with gzip.open(raw_path,'rt',encoding='utf-8') as stream:raw_osm=json.load(stream)
+    else:raw_osm=None
+    projection_audit=validate_bus_projections(network,q,raw_osm)
+    print('Bus edge projection audit:',json.dumps(projection_audit,ensure_ascii=True),flush=True)
+    del raw_osm
     assert len(official['routes'])==official['directoryCount']==q['officialRouteCount']
     assert not official['errors']
     assert q['routedRouteCount']+len(q['excludedRoutes'])==q['officialRouteCount']

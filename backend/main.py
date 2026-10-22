@@ -19,7 +19,7 @@ from backend.timetable import DEFAULT_PROFILE, PROFILES, journey, load_network
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.5.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.6.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -99,6 +99,12 @@ def benchmark_91():
 def robustness_report():
     path = DATA / 'robustness-results.json'
     if not path.exists(): raise HTTPException(404, 'Sabit planın zaman profili deneyi henüz kaydedilmedi.')
+    return FileResponse(path, media_type='application/json')
+
+@app.get('/api/shared-capacity')
+def shared_capacity_report():
+    path = DATA / 'shared-capacity-results.json'
+    if not path.exists(): raise HTTPException(404, 'Ortak kapasite deneyi henüz kaydedilmedi.')
     return FileResponse(path, media_type='application/json')
 
 @lru_cache(maxsize=24)
@@ -220,10 +226,17 @@ def route(request: RouteRequest):
                 pattern=network['patterns'][part['pattern']]
                 a,b=part['boardPosition'],part['alightPosition']
                 stop=network['stops'][pattern['stops'][a]]
+                evidence=pattern.get('serviceEvidence')
+                timing_warning=None
+                if evidence:
+                    timing_warning=('Bu yön için 2025 tarihli planın süre bütçesi kullanılır; güncel varış saati doğrulanmadı.'
+                        if 'dated_planned_terminal_interval_with_unverified_current_validity' in evidence['timingConfidence']
+                        else 'Yayımlı tek yön süresi duraklara dağıtılır; ara varışlar ölçülmüş değildir.')
                 boardings.append({'route':pattern['route'],'stop':stop['name'],'mode':pattern['mode'],
                     'departureTime':fmt(part['departureSeconds']),'arrivalTime':fmt(part['arrivalSeconds']),
                     'waitMinutes':(part['departureSeconds']-clock)/60,
-                    'timeBasis':'Terminal kalkışı resmi; ara durak zamanı tahmini'})
+                    'timeBasis':'Terminal kalkışı resmi; ara durak zamanı tahmini',
+                    'timingWarning':timing_warning,'timingSourceUrls':evidence['sourceUrls'] if evidence else []})
                 for key in pattern['segmentKeys'][a:b]:
                     legs.append({'kind':'ride','label':pattern['route']+' · duraklar arası OSM güzergâhı',
                                  'coordinates':network['segments'][key]['coordinates']})

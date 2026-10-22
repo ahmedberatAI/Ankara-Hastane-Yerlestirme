@@ -2442,6 +2442,16 @@ nav > button:hover {
 .robustness-table td {
   background: #fff;
 }
+.shared-capacity .robustness-table {
+  min-width: 0;
+  table-layout: fixed;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.shared-capacity .robustness-table th,
+.shared-capacity .robustness-table td {
+  padding: 10px 8px;
+}
 .robustness-details {
   border-top: 1px solid #d9e4e4;
   padding: 14px 0;

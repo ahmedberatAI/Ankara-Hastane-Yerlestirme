@@ -22,10 +22,13 @@ from scipy.sparse import csr_matrix, load_npz, save_npz
 from scipy.sparse.csgraph import dijkstra, connected_components
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from backend.geo import normalize, project, permissions, speed, PROJECT
+from backend.bus_projection import attach_far_bus_stops, PROJECTION_POLICY
+from backend.service_evidence import reviewed_events, event_key
+from scripts.audit_service_evidence import validate_evidence_archive
 from backend.timetable import PROFILES, DEFAULT_PROFILE, route_batch
 
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'data/processed';RAW=ROOT/'data/raw';WORK=ROOT/'work/ego-build'
-GEOMETRY_ENGINE='bus-psv-geometry-v3-quality-gates'
+GEOMETRY_ENGINE='bus-psv-geometry-v4-edge-projection'
 GEOMETRY_POLICY={
     'coordinateDistrictToleranceMeters':3000,
     'straightStopChainMaxPublishedDistanceRatio':1.5,
@@ -357,10 +360,54 @@ def reconstruct(pred,start,end):
     return []
 
 
+def project_bus_stops(graph,coords,registry,bus_stop_ids):
+    """Change only distant bus snaps; all walk/rail and shared indices stay put."""
+    distant={code:np.array(PROJECT.transform(registry[code]['lon'],registry[code]['lat']))
+             for code in sorted(bus_stop_ids) if code in registry and
+             registry[code]['driveSnapMeters']>PROJECTION_POLICY['maximumSnapMeters']}
+    result,xy,attached,excluded=attach_far_bus_stops(graph,project(coords),distant,
+        maximum_snap=PROJECTION_POLICY['maximumSnapMeters'],ambiguity_meters=PROJECTION_POLICY['ambiguityMeters'])
+    if len(xy)>len(coords):
+        extra=np.array([PROJECT.transform(float(x),float(y),direction='INVERSE') for x,y in xy[len(coords):]])
+        new_coords=np.vstack([coords,extra])
+    else:new_coords=coords.copy()
+    for code,record in attached.items():
+        if record['changed']:
+            a,b=record['edge']
+            record.update({'edgeCoordinates':coords[[a,b]].tolist(),
+                           'projectedCoordinates':new_coords[record['node']].tolist(),
+                           'forwardSeconds':float(graph[a,b]) if graph[a,b]>0 else None,
+                           'reverseSeconds':float(graph[b,a]) if graph[b,a]>0 else None})
+            registry[code].update({'driveNode':record['node'],'driveSnapMeters':record['snapMeters'],
+                                   'driveProjection':record})
+    return result,new_coords,{'policy':PROJECTION_POLICY,'attemptedStopCount':len(distant),
+        'projectedStopCount':sum(record['changed'] for record in attached.values()),
+        'addedVertexCount':len(xy)-len(coords),'attachments':attached,'unresolved':excluded}
+
+
+def bus_retry_vertices(tree,valid,stop):
+    """A projected stop cannot retry onto a different carriageway or bridge."""
+    if stop.get('driveProjection'):
+        return np.array([stop['driveNode']]),np.array([stop['driveSnapMeters']])
+    return nearby_bus_vertices(tree,valid,stop)
+
+
+def pattern_offsets(keys,segments,mode,full_offsets,a,b,direction_budget=None):
+    """A reviewed direction gets its OWN budget, never a slice of loop time."""
+    if direction_budget is None:
+        return full_offsets[a:b+1]-full_offsets[a], None
+    selected=keys[a:b]
+    return allocate_segment_times([timing_segment_meters(segments[k]) for k in selected],
+        [segments[k]['secondsWeight']+25 for k in selected],direction_budget,mode)
+
+
 def build():
     WORK.mkdir(parents=True,exist_ok=True)
     official=json.loads((OUT/'ego-official.json').read_text(encoding='utf-8'))
     assert not official['errors']
+    service_evidence=json.loads((OUT/'ego-service-evidence.json').read_text(encoding='utf-8'))
+    validate_evidence_archive(service_evidence,ROOT)
+    event_rules,invalidated_rules=reviewed_events(service_evidence,official)
     with gzip.open(RAW/'ankara-osm.json.gz','rt',encoding='utf-8') as f:osm=json.load(f)
     data=json.loads((OUT/'dataset.json').read_text(encoding='utf-8'));coords=np.load(OUT/'graph-coordinates.npy');xy=project(coords)
     walk=load_npz(OUT/'walk-graph.npz');drive,drive_coords=bus_graph(osm)
@@ -382,10 +429,14 @@ def build():
             dist,k=tree.query(project([[s['lon'],s['lat']]])[0])
             s[mode+'Node']=int(valid[k]);s[mode+'SnapMeters']=float(dist)
         if mode=='drive':drive_valid,drive_tree=valid,tree
+    bus_stop_ids={s['id'] for r in official['routes'] if r['mode']=='bus' for s in r['stops']}
+    drive,drive_coords,bus_projection=project_bus_stops(drive,drive_coords,registry,bus_stop_ids)
+    # Keep the original retry tree: existing stop snaps/candidates do not change.
+    # Projected stops are restricted to their chosen edge in the retry below.
     print('Coordinates',len(registry),'missing',len(missing),Counter(s['coordinateSource'] for s in registry.values()),flush=True)
     # A cache is keyed by the actual source hash, so refreshed inputs cannot reuse stale geometry.
     digest=hashlib.sha256(GEOMETRY_ENGINE.encode())
-    for code_path in (Path(__file__),ROOT/'backend/geo.py'):
+    for code_path in (Path(__file__),ROOT/'backend/geo.py',ROOT/'backend/bus_projection.py'):
         digest.update(hashlib.sha256(code_path.read_bytes()).digest())
     for path in (OUT/'ego-official.json',RAW/'ankara-osm.json.gz',RAW/'ego/community-ankara.zip',OUT/'graph-coordinates.npy',OUT/'districts.geojson'):
         digest.update(hashlib.sha256(path.read_bytes()).digest())
@@ -420,8 +471,8 @@ def build():
             if (not path or length>max(4000,euclid*8)) and mode=='drive':
                 # A point-to-nearest-vertex snap can pick the opposite carriageway.
                 # Retry nearby road vertices, still traversing directed OSM edges.
-                starts,_=nearby_bus_vertices(drive_tree,drive_valid,s)
-                ends,end_dist=nearby_bus_vertices(drive_tree,drive_valid,t)
+                starts,_=bus_retry_vertices(drive_tree,drive_valid,s)
+                ends,end_dist=bus_retry_vertices(drive_tree,drive_valid,t)
                 if not len(starts) or not len(ends):continue
                 alt,pr,sources=dijkstra(g,indices=starts,min_only=True,return_predecessors=True,limit=1800)
                 k=int(np.argmin(alt[ends]+end_dist/8));end=int(ends[k]);start=int(sources[end])
@@ -443,7 +494,7 @@ def build():
             with gzip.open(cachepath,'wt',encoding='utf-8') as f:json.dump(segments,f,ensure_ascii=False,separators=(',',':'))
     with gzip.open(cachepath,'wt',encoding='utf-8') as f:json.dump(segments,f,ensure_ascii=False,separators=(',',':'))
     stops=list(registry.values());index={s['id']:i for i,s in enumerate(stops)}
-    patterns=[];excluded=[];notes=[];accepted=[];duration_flags=[];geometry_checks=[];quarantined=[]
+    patterns=[];excluded=[];notes=[];accepted=[];duration_flags=[];geometry_checks=[];quarantined=[];applied_rules=[]
     for r in official['routes']:
         known=[(i,s) for i,s in enumerate(r['stops']) if s['id'] in registry]
         if len(known)<2 or known[0][0]!=0 or known[-1][0]!=len(r['stops'])-1:
@@ -466,32 +517,59 @@ def build():
             duration_flags.append({'route':r['id'],'publishedMinutes':r['durationMinutes'],'usedMinutes':float(offsets[-1]/60),
                                    'minimumMinutes':minimum/60,'reason':'Sum of per-segment speed/dwell minima exceeds published duration'})
         mapped={old:new for new,(old,_) in enumerate(known)};groups=defaultdict(lambda:{d:[] for d in ('weekday','saturday','sunday')})
+        group_rules=defaultdict(list)
         for day,entries in r['departures'].items():
             for entry in entries:
                 resolution=resolve_note_details(entry['note'],r['stops'],entry['seconds'])
-                span=resolution['span']
+                rule=event_rules.get(event_key(r['id'],day,entry['seconds'],entry['note']))
+                span=rule['span']['indicesZeroBasedInclusive'] if rule else resolution['span']
                 if span is None or span[0] not in mapped or span[1] not in mapped:
                     notes.append({'route':r['id'],'day':day,**entry,
                         'resolutionReason':resolution['reason'] or 'resolved_endpoint_coordinate_unavailable',
                         'columnSeconds':entry['seconds'],'noteClockSeconds':resolution['noteClockSeconds']});continue
                 a,b=map(mapped.get,span)
                 if a>=b:continue
-                groups[a,b][day].append(entry['seconds'])
-        for (a,b),deps in groups.items():
+                budget=rule['durationBudgetSeconds'] if rule else None
+                groups[a,b,budget][day].append(entry['seconds'])
+                if rule:group_rules[a,b,budget].append(rule)
+        for (a,b,budget),deps in groups.items():
             if not any(deps.values()):continue
+            timed,minimum=pattern_offsets(keys,segments,mode,offsets,a,b,budget)
+            rules=group_rules[a,b,budget]
+            evidence_record=None
+            if rules:
+                event_ids=[rule['id'] for rule in rules]
+                applied_rules.extend(event_ids)
+                evidence_record={'eventIds':event_ids,'durationBudgetSeconds':budget,
+                    'currentArrivalTimeConfirmed':False,'isMeasuredTravelTime':False,
+                    'assumptions':sorted({rule['assumption'] for rule in rules}),
+                    'timingConfidence':sorted({rule['timingConfidence'] for rule in rules}),
+                    'sourceUrls':sorted({service_evidence['sources'][sid]['url'] for rule in rules for sid in rule['evidenceSourceIds']})}
+                if timed[-1]>budget+1e-6:
+                    duration_flags.append({'route':r['id'],'reviewedEventIds':event_ids,
+                        'publishedMinutes':budget/60,'usedMinutes':float(timed[-1]/60),
+                        'minimumMinutes':minimum/60,'reason':'Direction physical minima exceed reviewed budget'})
             patterns.append({'id':len(patterns),'route':r['id'],'name':r['name'],'mode':r['mode'],
-                'stops':[index[s['id']] for _,s in known[a:b+1]],'offsets':(offsets[a:b+1]-offsets[a]).tolist(),
+                'stops':[index[s['id']] for _,s in known[a:b+1]],'offsets':timed.tolist(),
                 'departures':{d:sorted(set(v)) for d,v in deps.items()},'segmentKeys':keys[a:b],
-                'sourceUrl':r['url'],'intermediateTimes':'estimated; per-segment speed/dwell minima plus weighted residual of published route duration'})
+                'sourceUrl':r['url'],'serviceEvidence':evidence_record,
+                'intermediateTimes':('estimated; independently allocated reviewed direction budget with per-segment physical minima'
+                    if rules else 'estimated; per-segment speed/dwell minima plus weighted residual of published route duration')})
         if groups:accepted.append(r['id'])
         else:excluded.append({'route':r['id'],'reason':'No published departures' if not any(r['departures'].values()) else 'Only unresolved special-service notes'})
-    network={'version':'ego-scheduled-v2-quality-gates','stops':stops,'patterns':patterns,'segments':segments}
+    network={'version':'ego-scheduled-v3-reviewed-events','stops':stops,'patterns':patterns,'segments':segments}
     with gzip.open(OUT/'ego-network.json.gz','wt',encoding='utf-8') as f:json.dump(network,f,ensure_ascii=False,separators=(',',':'))
     report={'officialRouteCount':len(official['routes']),'officialStopCount':len({s['id'] for r in official['routes'] for s in r['stops']}),
             'routedRouteCount':len(accepted),'patternCount':len(patterns),'coordinateStopCount':len(stops),
             'coordinateSources':dict(Counter(s['coordinateSource'] for s in stops)),
             'missingCoordinates':missing,'coordinateDisagreements':conflicts,'excludedRoutes':excluded,
             'coordinateAddressAudit':address_quality,'geometryQualityPolicy':GEOMETRY_POLICY,
+            'busStopProjection':bus_projection,
+            'reviewedServiceEvents':{'definedCount':len(service_evidence['events']),
+                'sourceValidCount':len(event_rules),'appliedCount':len(applied_rules),
+                'appliedEventIds':applied_rules,'invalidated':invalidated_rules,
+                'notAppliedEventIds':sorted(set(rule['id'] for rule in event_rules.values())-set(applied_rules)),
+                'scope':service_evidence['scope'],'held':service_evidence['held']},
             'routeGeometryChecks':geometry_checks,'quarantinedRoutes':quarantined,'quarantinedRouteCount':len(quarantined),
             'quarantinedCoordinateCount':address_quality['quarantinedCoordinateCount'],
             'coordinateAddressConflictCount':len(address_quality['conflicts']),
@@ -565,7 +643,7 @@ def build():
         'transitAssumptions':{'scheduleAvailable':True,'intermediateStopTimesObserved':False,'maxAccessWalkMinutes':15,'maxTransferWalkMinutes':5,
             'maxDirectWalkMinutes':120,'boardingSlackSeconds':60,'maxTransfers':2,'serviceWindow':'Seçilen normal gün türü ve hareket saati; tatil istisnaları yok.'},
         'transitProfiles':PROFILES,'transitDataQuality':{k:report[k] for k in ('officialRouteCount','officialStopCount','routedRouteCount','coordinateStopCount',
-            'usedDepartures','officialDepartures','coordinateSources','quarantinedCoordinateCount','coordinateAddressConflictCount','quarantinedRouteCount')},
+            'usedDepartures','officialDepartures','coordinateSources','quarantinedCoordinateCount','coordinateAddressConflictCount','quarantinedRouteCount','reviewedServiceEvents')},
         'transitVersion':network['version']})
     write_json(OUT/'dataset.json',data)
 

@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
+  "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
   "sourcePlan": {
     "file": "data/processed/example-transit-result.json",
-    "sha256": "554866a7ca191c28a9c9006cf486520d72c1a82341e9394189fe22beafd9b19b",
-    "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
+    "sha256": "3cb914df1a55c705424484a18208555916f035fa73455b67aebaf24a30ba8063",
+    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
     "scenario": {
       "mode": "transit",
       "threshold": 45,
@@ -20,12 +20,12 @@
       "transitProfile": "weekday-1000"
     },
     "hospitalCount": 209,
-    "totalBeds": 25050,
+    "totalBeds": 24950,
     "totalDoctors": 22966,
     "healthPlanningSha256": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48",
-    "annualBudgetLimitTRY": 190176624955.2288
+    "annualBudgetLimitTRY": 189950685628.6586
   },
-  "builtAt": "2026-10-22T21:48:09.857225+00:00",
+  "builtAt": "2026-10-22T22:32:18.667407+00:00",
   "modelFiles": {
     "backend/robustness.py": "8553eae1c7b0eda76abd5e7e47c0402a112e75dafea0b17a5efd2423f9029271",
     "scripts/audit_robustness.py": "90636607653e2d711a3b1b887944d4865cc0d5a086c8a95753dc8d81e378c2aa",
@@ -42,15 +42,15 @@
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
       "fixedHospitalCount": 209,
-      "fixedBeds": 25050,
+      "fixedBeds": 24950,
       "fixedDoctors": 22966,
-      "allocationEdges": 3089,
+      "allocationEdges": 3093,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 190176624955.2288,
-        "fixedCostTRY": 139206458026.56076,
+        "limitTRY": 189950685628.6586,
+        "fixedCostTRY": 139001058638.76965,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -103,7 +103,7 @@
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 99.54368511426846
+          "maximumPercent": 96.28876541999627
         },
         {
           "id": "1924",
@@ -181,9 +181,9 @@
           "maximumPercent": 98.01311378166704
         }
       ],
-      "maximumCoveredPopulation": 5544206.377870018,
-      "maximumCoveragePercent": 93.80551946205988,
-      "populationShortfall": 70597.62212998234,
+      "maximumCoveredPopulation": 5535325.414609047,
+      "maximumCoveragePercent": 93.65525749213319,
+      "populationShortfall": 79478.58539095335,
       "districts": [
         {
           "id": "1872",
@@ -224,8 +224,8 @@
         {
           "id": "1231",
           "name": "ÇANKAYA",
-          "coveredPopulation": 904009.4873058621,
-          "coveragePercent": 94.93923399396577
+          "coveredPopulation": 939010.0,
+          "coveragePercent": 98.61499394033594
         },
         {
           "id": "1260",
@@ -242,8 +242,8 @@
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "coveredPopulation": 624813.872584457,
-          "coveragePercent": 98.79136204846125
+          "coveredPopulation": 608986.0,
+          "coveragePercent": 96.28876541999627
         },
         {
           "id": "1924",
@@ -284,8 +284,8 @@
         {
           "id": "1745",
           "name": "KEÇİÖREN",
-          "coveredPopulation": 926300.0,
-          "coveragePercent": 99.41806676240338
+          "coveredPopulation": 908268.872584457,
+          "coveragePercent": 97.48281918688805
         },
         {
           "id": "1473",
@@ -296,8 +296,8 @@
         {
           "id": "1746",
           "name": "MAMAK",
-          "coveredPopulation": 654865.1166088444,
-          "coveragePercent": 94.86275625228615
+          "coveredPopulation": 672645.8168389462,
+          "coveragePercent": 97.43844121266036
         },
         {
           "id": "1539",
@@ -320,8 +320,8 @@
         {
           "id": "1747",
           "name": "SİNCAN",
-          "coveredPopulation": 536331.2355067427,
-          "coveragePercent": 88.5961939565061
+          "coveredPopulation": 504675.4903378284,
+          "coveragePercent": 83.36700282768248
         },
         {
           "id": "1658",
@@ -332,13 +332,13 @@
         {
           "id": "1723",
           "name": "YENİMAHALLE",
-          "coveredPopulation": 675446.0212340001,
-          "coveragePercent": 93.61288998449132
+          "coveredPopulation": 679298.5902177035,
+          "coveragePercent": 94.14683363815325
         }
       ],
-      "annualContactsServed": 45512132.76376644,
-      "annualBedDaysServed": 5114105.681921539,
-      "annualEquivalentCostTRY": 172451738155.17548,
+      "annualContactsServed": 45439229.348659664,
+      "annualBedDaysServed": 5105913.673619836,
+      "annualEquivalentCostTRY": 172193084957.67746,
       "status": "province_target_not_met",
       "targetsMet": false,
       "districtTargetsFeasible": true
@@ -350,15 +350,15 @@
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
       "fixedHospitalCount": 209,
-      "fixedBeds": 25050,
+      "fixedBeds": 24950,
       "fixedDoctors": 22966,
-      "allocationEdges": 2604,
+      "allocationEdges": 2622,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 190176624955.2288,
-        "fixedCostTRY": 139206458026.56076,
+        "limitTRY": 189950685628.6586,
+        "fixedCostTRY": 139001058638.76965,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -376,7 +376,7 @@
         {
           "id": "1157",
           "name": "AYAŞ",
-          "maximumPercent": 81.34135200974421
+          "maximumPercent": 82.58982947624848
         },
         {
           "id": "1167",
@@ -411,7 +411,7 @@
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 98.36732241508527
+          "maximumPercent": 98.03986984115942
         },
         {
           "id": "1924",
@@ -476,7 +476,7 @@
         {
           "id": "1747",
           "name": "SİNCAN",
-          "maximumPercent": 96.58867528073925
+          "maximumPercent": 96.65541176742664
         },
         {
           "id": "1658",
@@ -489,8 +489,8 @@
           "maximumPercent": 98.01311378166704
         }
       ],
-      "maximumCoveredPopulation": 5614851.709912518,
-      "maximumCoveragePercent": 95.00080723061556,
+      "maximumCoveredPopulation": 5614941.433847433,
+      "maximumCoveragePercent": 95.0023253199054,
       "populationShortfall": 0.0,
       "districts": [
         {
@@ -502,14 +502,14 @@
         {
           "id": "1130",
           "name": "ALTINDAĞ",
-          "coveredPopulation": 405813.93381564587,
-          "coveragePercent": 97.06795332278791
+          "coveredPopulation": 411971.85728438996,
+          "coveragePercent": 98.54088704443014
         },
         {
           "id": "1157",
           "name": "AYAŞ",
-          "coveredPopulation": 10685.0,
-          "coveragePercent": 81.34135200974421
+          "coveredPopulation": 10849.0,
+          "coveragePercent": 82.58982947624848
         },
         {
           "id": "1167",
@@ -532,8 +532,8 @@
         {
           "id": "1231",
           "name": "ÇANKAYA",
-          "coveredPopulation": 923483.1411125457,
-          "coveragePercent": 96.98436051247174
+          "coveredPopulation": 913526.6295407172,
+          "coveragePercent": 95.93872593102665
         },
         {
           "id": "1260",
@@ -550,8 +550,8 @@
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "coveredPopulation": 606634.872584457,
-          "coveragePercent": 95.91702098549739
+          "coveredPopulation": 620061.0,
+          "coveragePercent": 98.03986984115942
         },
         {
           "id": "1924",
@@ -562,8 +562,8 @@
         {
           "id": "1744",
           "name": "GÖLBAŞI",
-          "coveredPopulation": 138248.0,
-          "coveragePercent": 80.0
+          "coveredPopulation": 141104.7656367978,
+          "coveragePercent": 81.65312518766147
         },
         {
           "id": "1365",
@@ -604,8 +604,8 @@
         {
           "id": "1746",
           "name": "MAMAK",
-          "coveredPopulation": 674705.872584457,
-          "coveragePercent": 97.73685772790323
+          "coveredPopulation": 675334.872584457,
+          "coveragePercent": 97.82797370303972
         },
         {
           "id": "1539",
@@ -616,8 +616,8 @@
         {
           "id": "1578",
           "name": "POLATLI",
-          "coveredPopulation": 110795.1080911998,
-          "coveragePercent": 84.00314501887864
+          "coveredPopulation": 110795.10809119977,
+          "coveragePercent": 84.00314501887863
         },
         {
           "id": "2034",
@@ -628,8 +628,8 @@
         {
           "id": "1747",
           "name": "SİNCAN",
-          "coveredPopulation": 573112.9227026275,
-          "coveragePercent": 94.67213598098134
+          "coveredPopulation": 575827.4903378284,
+          "coveragePercent": 95.12055357219079
         },
         {
           "id": "1658",
@@ -640,13 +640,13 @@
         {
           "id": "1723",
           "name": "YENİMAHALLE",
-          "coveredPopulation": 698899.8938184573,
-          "coveragePercent": 96.86346031126276
+          "coveredPopulation": 682997.7451689142,
+          "coveragePercent": 94.65951499920506
         }
       ],
-      "annualContactsServed": 46092057.01476336,
-      "annualBedDaysServed": 5179270.589101381,
-      "annualEquivalentCostTRY": 172875355837.0328,
+      "annualContactsServed": 46092793.554379605,
+      "annualBedDaysServed": 5179353.352558236,
+      "annualEquivalentCostTRY": 172670494469.8613,
       "status": "targets_met",
       "targetsMet": true,
       "districtTargetsFeasible": true
@@ -658,15 +658,15 @@
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
       "fixedHospitalCount": 209,
-      "fixedBeds": 25050,
+      "fixedBeds": 24950,
       "fixedDoctors": 22966,
-      "allocationEdges": 2384,
+      "allocationEdges": 2403,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 190176624955.2288,
-        "fixedCostTRY": 139206458026.56076,
+        "limitTRY": 189950685628.6586,
+        "fixedCostTRY": 139001058638.76965,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -719,7 +719,7 @@
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 98.36732241508527
+          "maximumPercent": 93.4144243570324
         },
         {
           "id": "1924",
@@ -802,9 +802,9 @@
       "maximumCoveragePercent": null,
       "districtTargetsFeasible": false,
       "withoutDistrictTargets": {
-        "maximumCoveredPopulation": 5116566.9366313815,
-        "maximumCoveragePercent": 86.57004928043459,
-        "populationShortfall": 498237.0633686185,
+        "maximumCoveredPopulation": 5116492.6605662955,
+        "maximumCoveragePercent": 86.56879256226897,
+        "populationShortfall": 498311.3394337045,
         "districts": [
           {
             "id": "1872",
@@ -845,8 +845,8 @@
           {
             "id": "1231",
             "name": "ÇANKAYA",
-            "coveredPopulation": 822459.872584457,
-            "coveragePercent": 86.37487923566917
+            "coveredPopulation": 883101.872584457,
+            "coveragePercent": 92.74351265014809
           },
           {
             "id": "1260",
@@ -863,8 +863,8 @@
           {
             "id": "1922",
             "name": "ETİMESGUT",
-            "coveredPopulation": 484030.52604077925,
-            "coveragePercent": 76.53164732532109
+            "coveredPopulation": 426177.0,
+            "coveragePercent": 67.384237372284
           },
           {
             "id": "1924",
@@ -941,8 +941,8 @@
           {
             "id": "1747",
             "name": "SİNCAN",
-            "coveredPopulation": 377999.0805555319,
-            "coveragePercent": 62.44141239440799
+            "coveredPopulation": 402401.60659631115,
+            "coveragePercent": 66.47244916237634
           },
           {
             "id": "1658",
@@ -953,13 +953,13 @@
           {
             "id": "1723",
             "name": "YENİMAHALLE",
-            "coveredPopulation": 637173.8938184573,
-            "coveragePercent": 88.30859572470999
+            "coveredPopulation": 609908.6177533714,
+            "coveragePercent": 84.5297870435742
           }
         ],
-        "annualContactsServed": 42001660.44398368,
-        "annualBedDaysServed": 4719641.055752181,
-        "annualEquivalentCostTRY": 169887440932.26355
+        "annualContactsServed": 42001050.715213686,
+        "annualBedDaysServed": 4719572.541771893,
+        "annualEquivalentCostTRY": 169681596155.4623
       },
       "reason": "Fixed sites/resources and any enforced annual budget cannot simultaneously meet the district floors. The optional diagnostic removes only those floors."
     },
@@ -970,15 +970,15 @@
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
       "fixedHospitalCount": 209,
-      "fixedBeds": 25050,
+      "fixedBeds": 24950,
       "fixedDoctors": 22966,
-      "allocationEdges": 2248,
+      "allocationEdges": 2261,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 190176624955.2288,
-        "fixedCostTRY": 139206458026.56076,
+        "limitTRY": 189950685628.6586,
+        "fixedCostTRY": 139001058638.76965,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -996,7 +996,7 @@
         {
           "id": "1157",
           "name": "AYAŞ",
-          "maximumPercent": 81.34135200974421
+          "maximumPercent": 82.58982947624848
         },
         {
           "id": "1167",
@@ -1031,7 +1031,7 @@
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 98.36732241508527
+          "maximumPercent": 98.03986984115942
         },
         {
           "id": "1924",
@@ -1114,9 +1114,9 @@
       "maximumCoveragePercent": null,
       "districtTargetsFeasible": false,
       "withoutDistrictTargets": {
-        "maximumCoveredPopulation": 5118144.062217668,
-        "maximumCoveragePercent": 86.59673354772106,
-        "populationShortfall": 496659.9377823323,
+        "maximumCoveredPopulation": 5118233.786152581,
+        "maximumCoveragePercent": 86.59825163701088,
+        "populationShortfall": 496570.21384741925,
         "districts": [
           {
             "id": "1872",
@@ -1133,8 +1133,8 @@
           {
             "id": "1157",
             "name": "AYAŞ",
-            "coveredPopulation": 10685.0,
-            "coveragePercent": 81.34135200974421
+            "coveredPopulation": 10849.0,
+            "coveragePercent": 82.58982947624848
           },
           {
             "id": "1167",
@@ -1157,8 +1157,8 @@
           {
             "id": "1231",
             "name": "ÇANKAYA",
-            "coveredPopulation": 802471.712572892,
-            "coveragePercent": 84.27571918580925
+            "coveredPopulation": 818341.5839275776,
+            "coveragePercent": 85.94237584279504
           },
           {
             "id": "1260",
@@ -1175,8 +1175,8 @@
           {
             "id": "1922",
             "name": "ETİMESGUT",
-            "coveredPopulation": 482488.0960547297,
-            "coveragePercent": 76.28776868262078
+            "coveredPopulation": 430006.559866573,
+            "coveragePercent": 67.9897415902041
           },
           {
             "id": "1924",
@@ -1187,8 +1187,8 @@
           {
             "id": "1744",
             "name": "GÖLBAŞI",
-            "coveredPopulation": 138868.61775337133,
-            "coveragePercent": 80.3591330093
+            "coveredPopulation": 136614.86990285222,
+            "coveragePercent": 79.05495625418219
           },
           {
             "id": "1365",
@@ -1241,8 +1241,8 @@
           {
             "id": "1578",
             "name": "POLATLI",
-            "coveredPopulation": 110795.10809119979,
-            "coveragePercent": 84.00314501887863
+            "coveredPopulation": 110795.1080911998,
+            "coveragePercent": 84.00314501887864
           },
           {
             "id": "2034",
@@ -1253,8 +1253,8 @@
           {
             "id": "1747",
             "name": "SİNCAN",
-            "coveredPopulation": 366780.30494925624,
-            "coveragePercent": 60.588190441692504
+            "coveredPopulation": 425497.4903378284,
+            "coveragePercent": 70.28764257289448
           },
           {
             "id": "1658",
@@ -1265,26 +1265,26 @@
           {
             "id": "1723",
             "name": "YENİMAHALLE",
-            "coveredPopulation": 652426.6389873715,
-            "coveragePercent": 90.42253749144132
+            "coveredPopulation": 632500.5902177035,
+            "coveragePercent": 87.66090302671728
           }
         ],
-        "annualContactsServed": 42014606.99470277,
-        "annualBedDaysServed": 4721095.833293314,
-        "annualEquivalentCostTRY": 169896898008.41486
+        "annualContactsServed": 42015343.534319,
+        "annualBedDaysServed": 4721178.596750168,
+        "annualEquivalentCostTRY": 169692036641.24332
       },
       "reason": "Fixed sites/resources and any enforced annual budget cannot simultaneously meet the district floors. The optional diagnostic removes only those floors."
     }
   ],
   "utilization": {
-    "count50BedSites": 171,
+    "count50BedSites": 172,
     "countAssignedBelow1000Residents": 125,
     "countAssignedBelow5000Residents": 143,
     "medianSitePhysicalOccupancyPercent": 2.6333292599871916,
     "sitePhysicalOccupancyQuartilesPercent": [
       1.6123455545794898,
       2.6333292599871916,
-      64.56386122022175
+      65.95622128597478
     ],
     "scope": "Original saved allocation; site-level percentiles, not a bed-weighted provincial occupancy statistic."
   },
@@ -1339,8 +1339,8 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 77.99999999999994,
-          "feasibleGeographicCount": 78,
+          "minimumCountLowerBound": 77.0,
+          "feasibleGeographicCount": 77,
           "fullCandidateCount": 4701,
           "undominatedCandidateCount": 822,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
@@ -1351,6 +1351,108 @@
       },
       {
         "profile": "weekday-0800",
+        "thresholdMinutes": 45,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 165.0,
+          "feasibleGeographicCount": 165,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 822,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 45,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "weekday-0800",
+        "thresholdMinutes": 60,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 54.9999999999999,
+          "feasibleGeographicCount": 55,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 681,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 60,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "weekday-0800",
+        "thresholdMinutes": 60,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 121.0,
+          "feasibleGeographicCount": 121,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 681,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 60,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "weekday-0800",
+        "thresholdMinutes": 90,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 41.0,
+          "feasibleGeographicCount": 41,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 594,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 90,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "weekday-0800",
+        "thresholdMinutes": 90,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "bounded",
+          "minimumCountLowerBound": 79.0,
+          "feasibleGeographicCount": 81,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 594,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 90,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 45,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 78.0,
+          "feasibleGeographicCount": 78,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 851,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 45,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
         "thresholdMinutes": 45,
         "districtFloorPercent": 80,
         "coverageTargetPercent": 95.0,
@@ -1359,7 +1461,7 @@
           "minimumCountLowerBound": 166.0,
           "feasibleGeographicCount": 166,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 822,
+          "undominatedCandidateCount": 851,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1367,16 +1469,16 @@
         }
       },
       {
-        "profile": "weekday-0800",
+        "profile": "weekday-1000",
         "thresholdMinutes": 60,
         "districtFloorPercent": 60,
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 57.0,
-          "feasibleGeographicCount": 57,
+          "minimumCountLowerBound": 57.999999999998316,
+          "feasibleGeographicCount": 58,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 679,
+          "undominatedCandidateCount": 689,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1384,7 +1486,7 @@
         }
       },
       {
-        "profile": "weekday-0800",
+        "profile": "weekday-1000",
         "thresholdMinutes": 60,
         "districtFloorPercent": 80,
         "coverageTargetPercent": 95.0,
@@ -1393,7 +1495,7 @@
           "minimumCountLowerBound": 122.0,
           "feasibleGeographicCount": 122,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 679,
+          "undominatedCandidateCount": 689,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1401,16 +1503,16 @@
         }
       },
       {
-        "profile": "weekday-0800",
+        "profile": "weekday-1000",
         "thresholdMinutes": 90,
         "districtFloorPercent": 60,
         "coverageTargetPercent": 95.0,
         "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 42.0,
+          "status": "bounded",
+          "minimumCountLowerBound": 41.0,
           "feasibleGeographicCount": 42,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 596,
+          "undominatedCandidateCount": 601,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1418,118 +1520,16 @@
         }
       },
       {
-        "profile": "weekday-0800",
+        "profile": "weekday-1000",
         "thresholdMinutes": 90,
         "districtFloorPercent": 80,
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "bounded",
-          "minimumCountLowerBound": 81.0,
-          "feasibleGeographicCount": 82,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 596,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 90,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 45,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 80.0,
+          "minimumCountLowerBound": 79.0,
           "feasibleGeographicCount": 80,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 852,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 45,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 45,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 168.0,
-          "feasibleGeographicCount": 168,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 852,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 45,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 60,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 59.99999999999999,
-          "feasibleGeographicCount": 60,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 691,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 60,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 60,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 124.0,
-          "feasibleGeographicCount": 124,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 691,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 60,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 90,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 42.0,
-          "feasibleGeographicCount": 43,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 598,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 90,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 90,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 81.0,
-          "feasibleGeographicCount": 82,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 598,
+          "undominatedCandidateCount": 601,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1560,7 +1560,7 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 170.0,
+          "minimumCountLowerBound": 169.99999999999986,
           "feasibleGeographicCount": 170,
           "fullCandidateCount": 4701,
           "undominatedCandidateCount": 837,
@@ -1577,10 +1577,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 61.999999999999986,
+          "minimumCountLowerBound": 61.9999999999025,
           "feasibleGeographicCount": 62,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 704,
+          "undominatedCandidateCount": 705,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1594,10 +1594,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 126.0,
+          "minimumCountLowerBound": 125.99999999999999,
           "feasibleGeographicCount": 126,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 704,
+          "undominatedCandidateCount": 705,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1606,117 +1606,117 @@
       },
       {
         "profile": "saturday-1000",
-        "thresholdMinutes": 90,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 42.0,
-          "feasibleGeographicCount": 43,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 592,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 90,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "saturday-1000",
-        "thresholdMinutes": 90,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 81.0,
-          "feasibleGeographicCount": 82,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 592,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 90,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "sunday-1000",
-        "thresholdMinutes": 45,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 81.0,
-          "feasibleGeographicCount": 81,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 838,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 45,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "sunday-1000",
-        "thresholdMinutes": 45,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 169.0,
-          "feasibleGeographicCount": 169,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 838,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 45,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "sunday-1000",
-        "thresholdMinutes": 60,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 61.99999999999988,
-          "feasibleGeographicCount": 62,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 709,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 60,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "sunday-1000",
-        "thresholdMinutes": 60,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 126.0,
-          "feasibleGeographicCount": 127,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 709,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 60,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "sunday-1000",
         "thresholdMinutes": 90,
         "districtFloorPercent": 60,
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "bounded",
           "minimumCountLowerBound": 41.0,
-          "feasibleGeographicCount": 43,
+          "feasibleGeographicCount": 42,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 594,
+          "undominatedCandidateCount": 598,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 90,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "saturday-1000",
+        "thresholdMinutes": 90,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "bounded",
+          "minimumCountLowerBound": 79.0,
+          "feasibleGeographicCount": 81,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 598,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 90,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "sunday-1000",
+        "thresholdMinutes": 45,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 79.99999999999999,
+          "feasibleGeographicCount": 80,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 837,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 45,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "sunday-1000",
+        "thresholdMinutes": 45,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 168.0,
+          "feasibleGeographicCount": 168,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 837,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 45,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "sunday-1000",
+        "thresholdMinutes": 60,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 59.99999999999627,
+          "feasibleGeographicCount": 60,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 708,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 60,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "sunday-1000",
+        "thresholdMinutes": 60,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "bounded",
+          "minimumCountLowerBound": 125.0,
+          "feasibleGeographicCount": 126,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 708,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 60,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "sunday-1000",
+        "thresholdMinutes": 90,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "bounded",
+          "minimumCountLowerBound": 40.0,
+          "feasibleGeographicCount": 42,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 597,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1730,10 +1730,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "bounded",
-          "minimumCountLowerBound": 81.0,
-          "feasibleGeographicCount": 82,
+          "minimumCountLowerBound": 79.0,
+          "feasibleGeographicCount": 81,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 594,
+          "undominatedCandidateCount": 597,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1744,10 +1744,10 @@
     "ruralPopulationSharePercent": 2.4323894476102814,
     "ruralCertificate": {
       "status": "optimal",
-      "minimumCountLowerBound": 136.0,
-      "feasibleGeographicCount": 136,
+      "minimumCountLowerBound": 135.0,
+      "feasibleGeographicCount": 135,
       "fullCandidateCount": 4701,
-      "undominatedCandidateCount": 852,
+      "undominatedCandidateCount": 851,
       "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
       "thresholdMinutes": 45,
       "coverageTargetPercent": 0,

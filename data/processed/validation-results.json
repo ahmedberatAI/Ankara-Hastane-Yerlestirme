@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
+  "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
   "cases": [
     {
       "mode": "car",
@@ -25,16 +25,16 @@
       "status": "feasible",
       "transitProfile": "weekday-1000",
       "hospitalCount": 209,
-      "totalBeds": 25050,
+      "totalBeds": 24950,
       "totalDoctors": 22966,
-      "coveragePercent": 95.00000000000006,
+      "coveragePercent": 95.0,
       "minimumDistrictCoveragePercent": 80.01432664756447,
-      "meanMinutes": 27.784355922891738,
-      "annualEquivalentCostTRY": 172875069749.30487,
-      "annualOperatingCostTRY": 161323127145.33115,
-      "constructionCostTRY": 201155682684.16113,
-      "costStageGap": 0.02819735582363134,
-      "travelStageGap": 0.8147436016634301
+      "meanMinutes": 27.866655746828865,
+      "annualEquivalentCostTRY": 172669670361.51373,
+      "annualOperatingCostTRY": 161145391780.25177,
+      "constructionCostTRY": 200673964970.94653,
+      "costStageGap": 0.027586256976887553,
+      "travelStageGap": 0.8079121327877733
     },
     {
       "mode": "car",
@@ -60,8 +60,8 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 166.0,
-        "feasibleGeographicCount": 166,
+        "minimumCountLowerBound": 165.0,
+        "feasibleGeographicCount": 165,
         "fullCandidateCount": 4701,
         "undominatedCandidateCount": 822,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
@@ -77,10 +77,10 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 168.0,
-        "feasibleGeographicCount": 168,
+        "minimumCountLowerBound": 166.0,
+        "feasibleGeographicCount": 166,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 852,
+        "undominatedCandidateCount": 851,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -94,7 +94,7 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 170.0,
+        "minimumCountLowerBound": 169.99999999999986,
         "feasibleGeographicCount": 170,
         "fullCandidateCount": 4701,
         "undominatedCandidateCount": 837,
@@ -111,10 +111,10 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 169.0,
-        "feasibleGeographicCount": 169,
+        "minimumCountLowerBound": 168.0,
+        "feasibleGeographicCount": 168,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 838,
+        "undominatedCandidateCount": 837,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,

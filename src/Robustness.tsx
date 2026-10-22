@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { transitProfileLabels } from "./types";
 import type { Scenario, TransitProfile } from "./types";
+import SharedCapacity from "./SharedCapacity";
 
 type Certificate = {
   status: "optimal" | "bounded" | "infeasible";
@@ -347,6 +348,7 @@ export function RobustnessContent({
           </p>
         </details>
       )}
+      <SharedCapacity packageId={packageId} planSha={plan.sha256} />
       <small>
         Kayıtlı plan testi; yukarıdaki canlı ayarlar bu tabloyu değiştirmez.
         Eksik hizmet/konum ve tahmini ara durak zamanları sonucu etkiler. Kayıt:{" "}

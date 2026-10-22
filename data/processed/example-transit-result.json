@@ -23,8 +23,9 @@
     46,
     48,
     76,
+    82,
     85,
-    94,
+    89,
     98,
     116,
     117,
@@ -47,7 +48,6 @@
     327,
     333,
     358,
-    370,
     380,
     388,
     401,
@@ -212,16 +212,16 @@
     1833
   ],
   "hospitalCount": 209,
-  "gap": 0.02819735582363134,
-  "lowerBound": 168012860901.84445,
+  "gap": 0.027586256976887553,
+  "lowerBound": 167918779274.51852,
   "secondaryOptimal": false,
   "metrics": {
-    "coveredPopulation": 5614804.000000003,
-    "coveragePercent": 95.00000000000006,
-    "reachablePopulation": 5614804.000000003,
-    "unreachableOrUnlocatedPopulation": 295515.9999999972,
-    "meanPopulationDenominator": 5614804.000000003,
-    "meanMinutes": 27.784355922891756,
+    "coveredPopulation": 5614804.0,
+    "coveragePercent": 95.0,
+    "reachablePopulation": 5614804.0,
+    "unreachableOrUnlocatedPopulation": 295516.0,
+    "meanPopulationDenominator": 5614804.0,
+    "meanMinutes": 27.866655746828876,
     "p90Minutes": 44.89978790283203
   },
   "districts": [
@@ -250,7 +250,7 @@
       "reachablePopulation": 415588.0,
       "unreachableOrUnlocatedPopulation": 2484.0,
       "meanPopulationDenominator": 415588.0,
-      "meanMinutes": 23.681720574489773,
+      "meanMinutes": 23.79753285233555,
       "p90Minutes": 37.404911041259766
     },
     {
@@ -259,12 +259,12 @@
       "population": 13136,
       "listedPopulation": 13136,
       "unlistedPopulation": 0,
-      "coveredPopulation": 10685.0,
-      "coveragePercent": 81.34135200974421,
-      "reachablePopulation": 10685.0,
-      "unreachableOrUnlocatedPopulation": 2451.0,
-      "meanPopulationDenominator": 10685.0,
-      "meanMinutes": 8.73334249256368,
+      "coveredPopulation": 10849.0,
+      "coveragePercent": 82.58982947624848,
+      "reachablePopulation": 10849.0,
+      "unreachableOrUnlocatedPopulation": 2287.0,
+      "meanPopulationDenominator": 10849.0,
+      "meanMinutes": 9.217747626584602,
       "p90Minutes": null
     },
     {
@@ -320,7 +320,7 @@
       "reachablePopulation": 924891.6726944343,
       "unreachableOrUnlocatedPopulation": 27306.327305565705,
       "meanPopulationDenominator": 924891.6726944343,
-      "meanMinutes": 29.724734101417514,
+      "meanMinutes": 29.724217942926465,
       "p90Minutes": 44.42646408081055
     },
     {
@@ -357,12 +357,12 @@
       "population": 632458,
       "listedPopulation": 632458,
       "unlistedPopulation": 0,
-      "coveredPopulation": 617373.872584457,
-      "coveragePercent": 97.61499934927807,
-      "reachablePopulation": 617373.872584457,
-      "unreachableOrUnlocatedPopulation": 15084.127415542956,
-      "meanPopulationDenominator": 617373.872584457,
-      "meanMinutes": 35.59271446579669,
+      "coveredPopulation": 620061.0,
+      "coveragePercent": 98.03986984115942,
+      "reachablePopulation": 620061.0,
+      "unreachableOrUnlocatedPopulation": 12397.0,
+      "meanPopulationDenominator": 620061.0,
+      "meanMinutes": 36.59676420261487,
       "p90Minutes": 44.89978790283203
     },
     {
@@ -488,7 +488,7 @@
       "reachablePopulation": 648631.3629222855,
       "unreachableOrUnlocatedPopulation": 41697.63707771455,
       "meanPopulationDenominator": 648631.3629222855,
-      "meanMinutes": 26.985807013075206,
+      "meanMinutes": 26.91160432156715,
       "p90Minutes": 44.42646408081055
     },
     {
@@ -539,12 +539,12 @@
       "population": 605366,
       "listedPopulation": 604508,
       "unlistedPopulation": 858,
-      "coveredPopulation": 575343.826080912,
-      "coveragePercent": 95.04065740079753,
-      "reachablePopulation": 575343.826080912,
-      "unreachableOrUnlocatedPopulation": 30022.173919087974,
-      "meanPopulationDenominator": 575343.826080912,
-      "meanMinutes": 29.302894864865756,
+      "coveredPopulation": 575757.1775337134,
+      "coveragePercent": 95.10893864764678,
+      "reachablePopulation": 575757.1775337134,
+      "unreachableOrUnlocatedPopulation": 29608.822466286598,
+      "meanPopulationDenominator": 575757.1775337134,
+      "meanMinutes": 29.22055702486423,
       "p90Minutes": 44.89978790283203
     },
     {
@@ -567,12 +567,12 @@
       "population": 721531,
       "listedPopulation": 719111,
       "unlistedPopulation": 2420,
-      "coveredPopulation": 696206.1924235866,
-      "coveragePercent": 96.49012896515696,
-      "reachablePopulation": 696206.1924235866,
-      "unreachableOrUnlocatedPopulation": 25324.807576413383,
-      "meanPopulationDenominator": 696206.1924235866,
-      "meanMinutes": 28.53769286244532,
+      "coveredPopulation": 692941.7135552396,
+      "coveragePercent": 96.03769118100811,
+      "reachablePopulation": 692941.7135552396,
+      "unreachableOrUnlocatedPopulation": 28589.286444760393,
+      "meanPopulationDenominator": 692941.7135552396,
+      "meanMinutes": 28.34449891162286,
       "p90Minutes": 43.079376220703125
     }
   ],
@@ -1090,20 +1090,20 @@
     {
       "candidateIndex": 1664,
       "minutes": 19.35257339477539,
-      "servedFraction": 1.0,
+      "servedFraction": 0.9999999999999999,
       "covered": true,
       "allocations": [
         {
           "candidateIndex": 1664,
-          "population": 2204.235506742666,
-          "fraction": 0.6639263574526103,
+          "population": 2204.2355067426643,
+          "fraction": 0.6639263574526097,
           "minutes": 19.35257339477539,
           "candidateId": "H-1506-R80"
         },
         {
           "candidateIndex": 1833,
-          "population": 1115.7644932573337,
-          "fraction": 0.3360736425473897,
+          "population": 1115.7644932573353,
+          "fraction": 0.33607364254739014,
           "minutes": 32.03514862060547,
           "candidateId": "H-1469-R210"
         }
@@ -1238,28 +1238,21 @@
       "candidateId": null
     },
     {
-      "candidateIndex": 1682,
-      "minutes": 21.222347259521484,
-      "servedFraction": 0.9999999999999998,
+      "candidateIndex": 1435,
+      "minutes": 30.670562744140625,
+      "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1682,
-          "population": 5094.104066923769,
-          "fraction": 0.9839876505551032,
-          "minutes": 21.222347259521484,
-          "candidateId": "H-1548-R80"
-        },
-        {
           "candidateIndex": 1435,
-          "population": 82.89593307623022,
-          "fraction": 0.0160123494448967,
+          "population": 5177.0,
+          "fraction": 1.0,
           "minutes": 30.670562744140625,
           "candidateId": "H-1453-R80"
         }
       ],
       "demandId": "1492",
-      "candidateId": "H-1548-R80"
+      "candidateId": "H-1453-R80"
     },
     {
       "candidateIndex": 1435,
@@ -1314,13 +1307,21 @@
       "candidateId": null
     },
     {
-      "candidateIndex": null,
-      "minutes": null,
-      "servedFraction": 0.0,
-      "covered": false,
-      "allocations": [],
+      "candidateIndex": 445,
+      "minutes": 40.777923583984375,
+      "servedFraction": 1.0,
+      "covered": true,
+      "allocations": [
+        {
+          "candidateIndex": 445,
+          "population": 164.0,
+          "fraction": 1.0,
+          "minutes": 40.777923583984375,
+          "candidateId": "H-1952"
+        }
+      ],
       "demandId": "1946",
-      "candidateId": null
+      "candidateId": "H-1952"
     },
     {
       "candidateIndex": null,
@@ -4250,28 +4251,21 @@
       "candidateId": "H-1506-R80"
     },
     {
-      "candidateIndex": 1833,
-      "minutes": 33.65836715698242,
+      "candidateIndex": 1562,
+      "minutes": 17.524517059326172,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1833,
-          "population": 8060.59834279724,
-          "fraction": 0.5140032102281112,
-          "minutes": 33.65836715698242,
-          "candidateId": "H-1469-R210"
-        },
-        {
           "candidateIndex": 1562,
-          "population": 7621.40165720276,
-          "fraction": 0.4859967897718888,
+          "population": 15682.0,
+          "fraction": 1.0,
           "minutes": 17.524517059326172,
           "candidateId": "H-1523-R80"
         }
       ],
       "demandId": "1522",
-      "candidateId": "H-1469-R210"
+      "candidateId": "H-1523-R80"
     },
     {
       "candidateIndex": 1562,
@@ -4613,10 +4607,17 @@
       "allocations": [
         {
           "candidateIndex": 1562,
-          "population": 7928.0,
-          "fraction": 1.0,
+          "population": 6070.401657202766,
+          "fraction": 0.7656914300205305,
           "minutes": 17.524517059326172,
           "candidateId": "H-1523-R80"
+        },
+        {
+          "candidateIndex": 1833,
+          "population": 1857.5983427972344,
+          "fraction": 0.23430856997946953,
+          "minutes": 33.65836715698242,
+          "candidateId": "H-1469-R210"
         }
       ],
       "demandId": "1539",
@@ -5116,21 +5117,21 @@
       "candidateId": null
     },
     {
-      "candidateIndex": 1562,
-      "minutes": 17.524517059326172,
+      "candidateIndex": 1833,
+      "minutes": 33.65836715698242,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1562,
+          "candidateIndex": 1833,
           "population": 6203.0,
           "fraction": 1.0,
-          "minutes": 17.524517059326172,
-          "candidateId": "H-1523-R80"
+          "minutes": 33.65836715698242,
+          "candidateId": "H-1469-R210"
         }
       ],
       "demandId": "1565",
-      "candidateId": "H-1523-R80"
+      "candidateId": "H-1469-R210"
     },
     {
       "candidateIndex": 1833,
@@ -5218,21 +5219,21 @@
       "candidateId": "H-1513-R80"
     },
     {
-      "candidateIndex": 1573,
-      "minutes": 28.337705612182617,
+      "candidateIndex": 1833,
+      "minutes": 33.65836715698242,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1573,
+          "candidateIndex": 1833,
           "population": 670.0,
           "fraction": 1.0,
-          "minutes": 28.337705612182617,
-          "candidateId": "H-1866-R120"
+          "minutes": 33.65836715698242,
+          "candidateId": "H-1469-R210"
         }
       ],
       "demandId": "1571",
-      "candidateId": "H-1866-R120"
+      "candidateId": "H-1469-R210"
     },
     {
       "candidateIndex": 1521,
@@ -5353,15 +5354,15 @@
       "allocations": [
         {
           "candidateIndex": 1833,
-          "population": 8769.601688497296,
-          "fraction": 0.9757011224407316,
+          "population": 8009.877753580355,
+          "fraction": 0.8911746499310585,
           "minutes": 33.65836715698242,
           "candidateId": "H-1469-R210"
         },
         {
           "candidateIndex": 1573,
-          "population": 218.39831150270328,
-          "fraction": 0.024298877559268277,
+          "population": 978.1222464196446,
+          "fraction": 0.10882535006894133,
           "minutes": 28.337705612182617,
           "candidateId": "H-1866-R120"
         }
@@ -5525,7 +5526,7 @@
     {
       "candidateIndex": 1534,
       "minutes": 36.808692932128906,
-      "servedFraction": 0.9999999999999998,
+      "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
@@ -5537,8 +5538,8 @@
         },
         {
           "candidateIndex": 1538,
-          "population": 1050.6177533713324,
-          "fraction": 0.059109809461648045,
+          "population": 1050.6177533713333,
+          "fraction": 0.059109809461648094,
           "minutes": 34.01789474487305,
           "candidateId": "H-1590-R80"
         }
@@ -7405,21 +7406,21 @@
       "candidateId": "H-1634-R210"
     },
     {
-      "candidateIndex": 94,
-      "minutes": 1.7653332948684692,
-      "servedFraction": 0.8548675443941188,
-      "covered": false,
+      "candidateIndex": 82,
+      "minutes": 40.36019515991211,
+      "servedFraction": 1.0,
+      "covered": true,
       "allocations": [
         {
-          "candidateIndex": 94,
-          "population": 15827.87258445711,
-          "fraction": 0.8548675443941188,
-          "minutes": 1.7653332948684692,
-          "candidateId": "H-183238"
+          "candidateIndex": 82,
+          "population": 18515.0,
+          "fraction": 1.0,
+          "minutes": 40.36019515991211,
+          "candidateId": "H-1824"
         }
       ],
       "demandId": "183238",
-      "candidateId": "H-183238"
+      "candidateId": "H-1824"
     },
     {
       "candidateIndex": 1463,
@@ -7736,10 +7737,17 @@
       "allocations": [
         {
           "candidateIndex": 1561,
-          "population": 24687.0,
-          "fraction": 1.0,
+          "population": 21586.521131655834,
+          "fraction": 0.874408438921531,
           "minutes": 36.43844985961914,
           "candidateId": "H-1634-R210"
+        },
+        {
+          "candidateIndex": 1573,
+          "population": 3100.478868344165,
+          "fraction": 0.12559156107846906,
+          "minutes": 36.079376220703125,
+          "candidateId": "H-1866-R120"
         }
       ],
       "demandId": "1633",
@@ -13568,21 +13576,28 @@
       "candidateId": "H-1788"
     },
     {
-      "candidateIndex": 1435,
-      "minutes": 30.670562744140625,
+      "candidateIndex": 1682,
+      "minutes": 21.222347259521484,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
+          "candidateIndex": 1682,
+          "population": 5094.104066923758,
+          "fraction": 0.7042864740666056,
+          "minutes": 21.222347259521484,
+          "candidateId": "H-1548-R80"
+        },
+        {
           "candidateIndex": 1435,
-          "population": 7233.0,
-          "fraction": 1.0,
+          "population": 2138.895933076242,
+          "fraction": 0.2957135259333944,
           "minutes": 30.670562744140625,
           "candidateId": "H-1453-R80"
         }
       ],
       "demandId": "1795",
-      "candidateId": "H-1453-R80"
+      "candidateId": "H-1548-R80"
     },
     {
       "candidateIndex": 1682,
@@ -13805,15 +13820,15 @@
       "allocations": [
         {
           "candidateIndex": 1682,
-          "population": 2404.548310857777,
-          "fraction": 0.5280079733987213,
+          "population": 2404.5483108578105,
+          "fraction": 0.5280079733987287,
           "minutes": 21.00200843811035,
           "candidateId": "H-1548-R80"
         },
         {
           "candidateIndex": 1422,
-          "population": 2149.451689142223,
-          "fraction": 0.4719920266012787,
+          "population": 2149.4516891421895,
+          "fraction": 0.4719920266012713,
           "minutes": 39.881187438964844,
           "candidateId": "H-1788-R120"
         }
@@ -13974,15 +13989,15 @@
       "allocations": [
         {
           "candidateIndex": 1833,
-          "population": 6360.563610924882,
-          "fraction": 0.6738599015705987,
+          "population": 6360.5636109249035,
+          "fraction": 0.673859901570601,
           "minutes": 44.42646408081055,
           "candidateId": "H-1469-R210"
         },
         {
           "candidateIndex": 1682,
-          "population": 3078.4363890751188,
-          "fraction": 0.3261400984294013,
+          "population": 3078.4363890750965,
+          "fraction": 0.32614009842939895,
           "minutes": 21.222347259521484,
           "candidateId": "H-1548-R80"
         }
@@ -16685,42 +16700,42 @@
       "candidateId": null
     },
     {
-      "candidateIndex": 370,
-      "minutes": 13.57238483428955,
-      "servedFraction": 1.0,
-      "covered": true,
-      "allocations": [
-        {
-          "candidateIndex": 370,
-          "population": 25122.0,
-          "fraction": 1.0,
-          "minutes": 13.57238483428955,
-          "candidateId": "H-1842"
-        }
-      ],
-      "demandId": "1847",
-      "candidateId": "H-1842"
-    },
-    {
-      "candidateIndex": 370,
-      "minutes": 44.84994125366211,
-      "servedFraction": 0.5030400424729319,
+      "candidateIndex": 48,
+      "minutes": 18.784589767456055,
+      "servedFraction": 0.8592714653837805,
       "covered": false,
       "allocations": [
         {
-          "candidateIndex": 370,
-          "population": 9485.826080912077,
-          "fraction": 0.5030400424729319,
-          "minutes": 44.84994125366211,
-          "candidateId": "H-1842"
+          "candidateIndex": 48,
+          "population": 21586.617753371334,
+          "fraction": 0.8592714653837805,
+          "minutes": 18.784589767456055,
+          "candidateId": "H-1840"
+        }
+      ],
+      "demandId": "1847",
+      "candidateId": "H-1840"
+    },
+    {
+      "candidateIndex": 89,
+      "minutes": 2.3546667098999023,
+      "servedFraction": 0.8393632382911975,
+      "covered": false,
+      "allocations": [
+        {
+          "candidateIndex": 89,
+          "population": 15827.87258445711,
+          "fraction": 0.8393632382911975,
+          "minutes": 2.3546667098999023,
+          "candidateId": "H-98559"
         }
       ],
       "demandId": "98559",
-      "candidateId": "H-1842"
+      "candidateId": "H-98559"
     },
     {
       "candidateIndex": 1463,
-      "minutes": 31.31911277770996,
+      "minutes": 30.785118103027344,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
@@ -16728,7 +16743,7 @@
           "candidateIndex": 1463,
           "population": 11328.0,
           "fraction": 1.0,
-          "minutes": 31.31911277770996,
+          "minutes": 30.785118103027344,
           "candidateId": "H-1824-R120"
         }
       ],
@@ -16789,21 +16804,21 @@
       "candidateId": null
     },
     {
-      "candidateIndex": 1463,
-      "minutes": 19.176782608032227,
+      "candidateIndex": 82,
+      "minutes": 14.510115623474121,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1463,
+          "candidateIndex": 82,
           "population": 19686.0,
           "fraction": 1.0,
-          "minutes": 19.176782608032227,
-          "candidateId": "H-1824-R120"
+          "minutes": 14.510115623474121,
+          "candidateId": "H-1824"
         }
       ],
       "demandId": "1822",
-      "candidateId": "H-1824-R120"
+      "candidateId": "H-1824"
     },
     {
       "candidateIndex": 24,
@@ -16822,7 +16837,7 @@
           "candidateIndex": 1463,
           "population": 5244.382246628664,
           "fraction": 0.24007243060785827,
-          "minutes": 31.31911277770996,
+          "minutes": 30.785118103027344,
           "candidateId": "H-1824-R120"
         }
       ],
@@ -16857,30 +16872,30 @@
       "candidateId": null
     },
     {
+      "candidateIndex": 82,
+      "minutes": 40.36019515991211,
+      "servedFraction": 0.5150841095510974,
+      "covered": false,
+      "allocations": [
+        {
+          "candidateIndex": 82,
+          "population": 74.68719588490913,
+          "fraction": 0.5150841095510974,
+          "minutes": 40.36019515991211,
+          "candidateId": "H-1824"
+        }
+      ],
+      "demandId": "1827",
+      "candidateId": "H-1824"
+    },
+    {
       "candidateIndex": null,
       "minutes": null,
       "servedFraction": 0.0,
       "covered": false,
       "allocations": [],
-      "demandId": "1827",
-      "candidateId": null
-    },
-    {
-      "candidateIndex": 370,
-      "minutes": 1.1493333578109741,
-      "servedFraction": 1.0,
-      "covered": true,
-      "allocations": [
-        {
-          "candidateIndex": 370,
-          "population": 2727.0,
-          "fraction": 1.0,
-          "minutes": 1.1493333578109741,
-          "candidateId": "H-1842"
-        }
-      ],
       "demandId": "1842",
-      "candidateId": "H-1842"
+      "candidateId": null
     },
     {
       "candidateIndex": null,
@@ -16901,21 +16916,28 @@
       "candidateId": null
     },
     {
-      "candidateIndex": 1463,
-      "minutes": 23.694171905517578,
+      "candidateIndex": 82,
+      "minutes": 19.02750587463379,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
+          "candidateIndex": 82,
+          "population": 8948.930557486425,
+          "fraction": 0.5754199175338494,
+          "minutes": 19.02750587463379,
+          "candidateId": "H-1824"
+        },
+        {
           "candidateIndex": 1463,
-          "population": 15552.0,
-          "fraction": 1.0,
+          "population": 6603.069442513575,
+          "fraction": 0.4245800824661507,
           "minutes": 23.694171905517578,
           "candidateId": "H-1824-R120"
         }
       ],
       "demandId": "1821",
-      "candidateId": "H-1824-R120"
+      "candidateId": "H-1824"
     },
     {
       "candidateIndex": null,
@@ -16944,28 +16966,21 @@
       "candidateId": "H-1634-R210"
     },
     {
-      "candidateIndex": 48,
-      "minutes": 31.770740509033203,
+      "candidateIndex": 1463,
+      "minutes": 44.843624114990234,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 48,
-          "population": 21586.617753371334,
-          "fraction": 0.8409606043621229,
-          "minutes": 31.770740509033203,
-          "candidateId": "H-1840"
-        },
-        {
-          "candidateIndex": 370,
-          "population": 4082.382246628665,
-          "fraction": 0.15903939563787703,
-          "minutes": 34.65468978881836,
-          "candidateId": "H-1842"
+          "candidateIndex": 1463,
+          "population": 25669.0,
+          "fraction": 1.0,
+          "minutes": 44.843624114990234,
+          "candidateId": "H-1824-R120"
         }
       ],
       "demandId": "1839",
-      "candidateId": "H-1840"
+      "candidateId": "H-1824-R120"
     },
     {
       "candidateIndex": null,
@@ -17057,7 +17072,7 @@
     },
     {
       "candidateIndex": 1463,
-      "minutes": 31.31911277770996,
+      "minutes": 30.785118103027344,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
@@ -17065,7 +17080,7 @@
           "candidateIndex": 1463,
           "population": 12714.0,
           "fraction": 1.0,
-          "minutes": 31.31911277770996,
+          "minutes": 30.785118103027344,
           "candidateId": "H-1824-R120"
         }
       ],
@@ -17119,22 +17134,15 @@
     {
       "candidateIndex": 1561,
       "minutes": 44.89978790283203,
-      "servedFraction": 0.9999999999999998,
+      "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
           "candidateIndex": 1561,
-          "population": 30498.521131655783,
-          "fraction": 0.9077210968081129,
+          "population": 33599.0,
+          "fraction": 1.0,
           "minutes": 44.89978790283203,
           "candidateId": "H-1634-R210"
-        },
-        {
-          "candidateIndex": 1463,
-          "population": 3100.4788683442116,
-          "fraction": 0.09227890319188702,
-          "minutes": 25.91973114013672,
-          "candidateId": "H-1824-R120"
         }
       ],
       "demandId": "1811",
@@ -17182,17 +17190,10 @@
       "allocations": [
         {
           "candidateIndex": 1463,
-          "population": 39012.59057416941,
-          "fraction": 0.8654271517595645,
+          "population": 45079.0,
+          "fraction": 1.0,
           "minutes": 44.843624114990234,
           "candidateId": "H-1824-R120"
-        },
-        {
-          "candidateIndex": 370,
-          "population": 6066.409425830592,
-          "fraction": 0.1345728482404355,
-          "minutes": 37.48537826538086,
-          "candidateId": "H-1842"
         }
       ],
       "demandId": "1838",
@@ -17424,13 +17425,21 @@
       "candidateId": null
     },
     {
-      "candidateIndex": null,
-      "minutes": null,
-      "servedFraction": 0.0,
-      "covered": false,
-      "allocations": [],
+      "candidateIndex": 82,
+      "minutes": 40.36019515991211,
+      "servedFraction": 1.0,
+      "covered": true,
+      "allocations": [
+        {
+          "candidateIndex": 82,
+          "population": 259.0,
+          "fraction": 1.0,
+          "minutes": 40.36019515991211,
+          "candidateId": "H-1824"
+        }
+      ],
       "demandId": "1834",
-      "candidateId": null
+      "candidateId": "H-1824"
     },
     {
       "candidateIndex": 1561,
@@ -18334,15 +18343,15 @@
       "allocations": [
         {
           "candidateIndex": 1573,
-          "population": 10697.400513662315,
-          "fraction": 0.9011372684409329,
+          "population": 10697.400513662289,
+          "fraction": 0.9011372684409308,
           "minutes": 42.33770751953125,
           "candidateId": "H-1866-R120"
         },
         {
           "candidateIndex": 1534,
-          "population": 1173.599486337686,
-          "fraction": 0.09886273155906714,
+          "population": 1173.599486337711,
+          "fraction": 0.09886273155906923,
           "minutes": 29.52505874633789,
           "candidateId": "H-1513-R80"
         }
@@ -18370,13 +18379,13 @@
     {
       "candidateIndex": 16,
       "minutes": 31.93543815612793,
-      "servedFraction": 0.9080354348523676,
+      "servedFraction": 0.9048148622865292,
       "covered": false,
       "allocations": [
         {
           "candidateIndex": 16,
-          "population": 15902.14864954304,
-          "fraction": 0.6895091119777583,
+          "population": 15827.87258445711,
+          "fraction": 0.68628853941192,
           "minutes": 31.93543815612793,
           "candidateId": "H-99782"
         },
@@ -18394,13 +18403,13 @@
     {
       "candidateIndex": 8,
       "minutes": 35.48540115356445,
-      "servedFraction": 0.9009340813184277,
+      "servedFraction": 0.7836083925515183,
       "covered": false,
       "allocations": [
         {
           "candidateIndex": 8,
-          "population": 24497.298605129366,
-          "fraction": 0.9009340813184277,
+          "population": 21307.095801868334,
+          "fraction": 0.7836083925515183,
           "minutes": 35.48540115356445,
           "candidateId": "H-1875"
         }
@@ -18671,10 +18680,17 @@
       "allocations": [
         {
           "candidateIndex": 1425,
-          "population": 18096.0,
-          "fraction": 1.0,
+          "population": 12525.34359794243,
+          "fraction": 0.6921608973221944,
           "minutes": 26.1861629486084,
           "candidateId": "H-1859-R80"
+        },
+        {
+          "candidateIndex": 1573,
+          "population": 5570.656402057569,
+          "fraction": 0.3078391026778055,
+          "minutes": 29.079376220703125,
+          "candidateId": "H-1866-R120"
         }
       ],
       "demandId": "1871",
@@ -18748,15 +18764,15 @@
       "allocations": [
         {
           "candidateIndex": 8,
-          "population": 18383.54644365983,
-          "fraction": 0.5038520650019139,
+          "population": 21573.749246920863,
+          "fraction": 0.5912884187611923,
           "minutes": 1.1426666975021362,
           "candidateId": "H-1875"
         },
         {
           "candidateIndex": 1573,
-          "population": 18102.453556340166,
-          "fraction": 0.496147934998086,
+          "population": 14912.250753079135,
+          "fraction": 0.40871158123880763,
           "minutes": 36.079376220703125,
           "candidateId": "H-1866-R120"
         }
@@ -18850,21 +18866,21 @@
       "candidateId": "H-1866-R120"
     },
     {
-      "candidateIndex": 1425,
-      "minutes": 33.186161041259766,
+      "candidateIndex": 1573,
+      "minutes": 36.079376220703125,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1425,
+          "candidateIndex": 1573,
           "population": 19218.0,
           "fraction": 1.0,
-          "minutes": 33.186161041259766,
-          "candidateId": "H-1859-R80"
+          "minutes": 36.079376220703125,
+          "candidateId": "H-1866-R120"
         }
       ],
       "demandId": "1882",
-      "candidateId": "H-1859-R80"
+      "candidateId": "H-1866-R120"
     },
     {
       "candidateIndex": null,
@@ -18876,21 +18892,21 @@
       "candidateId": null
     },
     {
-      "candidateIndex": 1573,
-      "minutes": 43.079376220703125,
+      "candidateIndex": 1425,
+      "minutes": 40.186161041259766,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1573,
+          "candidateIndex": 1425,
           "population": 3630.0,
           "fraction": 1.0,
-          "minutes": 43.079376220703125,
-          "candidateId": "H-1866-R120"
+          "minutes": 40.186161041259766,
+          "candidateId": "H-1859-R80"
         }
       ],
       "demandId": "140404",
-      "candidateId": "H-1866-R120"
+      "candidateId": "H-1859-R80"
     },
     {
       "candidateIndex": 1573,
@@ -18951,17 +18967,10 @@
       "allocations": [
         {
           "candidateIndex": 1573,
-          "population": 17109.528986514688,
-          "fraction": 0.6999766389769949,
+          "population": 24443.0,
+          "fraction": 1.0,
           "minutes": 43.079376220703125,
           "candidateId": "H-1866-R120"
-        },
-        {
-          "candidateIndex": 1425,
-          "population": 7333.471013485312,
-          "fraction": 0.30002336102300503,
-          "minutes": 40.186161041259766,
-          "candidateId": "H-1859-R80"
         }
       ],
       "demandId": "1883",
@@ -19077,21 +19086,21 @@
       "candidateId": "H-1909"
     },
     {
-      "candidateIndex": 1573,
-      "minutes": 36.079376220703125,
+      "candidateIndex": 1425,
+      "minutes": 33.186161041259766,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1573,
+          "candidateIndex": 1425,
           "population": 17184.0,
           "fraction": 1.0,
-          "minutes": 36.079376220703125,
-          "candidateId": "H-1866-R120"
+          "minutes": 33.186161041259766,
+          "candidateId": "H-1859-R80"
         }
       ],
       "demandId": "1892",
-      "candidateId": "H-1866-R120"
+      "candidateId": "H-1859-R80"
     },
     {
       "candidateIndex": 1573,
@@ -19111,17 +19120,17 @@
       "candidateId": "H-1866-R120"
     },
     {
-      "candidateIndex": 1573,
-      "minutes": 29.079376220703125,
+      "candidateIndex": 1425,
+      "minutes": 26.1861629486084,
       "servedFraction": 1.0,
       "covered": true,
       "allocations": [
         {
-          "candidateIndex": 1573,
+          "candidateIndex": 1425,
           "population": 11308.127415542887,
           "fraction": 0.6817463926896297,
-          "minutes": 29.079376220703125,
-          "candidateId": "H-1866-R120"
+          "minutes": 26.1861629486084,
+          "candidateId": "H-1859-R80"
         },
         {
           "candidateIndex": 116,
@@ -19132,7 +19141,7 @@
         }
       ],
       "demandId": "1895",
-      "candidateId": "H-1866-R120"
+      "candidateId": "H-1859-R80"
     },
     {
       "candidateIndex": 1425,
@@ -19179,27 +19188,27 @@
     }
   ],
   "capacity": {
-    "totalBeds": 25050,
+    "totalBeds": 24950,
     "totalDoctors": 22966,
-    "constructionCostTRY": 201155682684.16122,
-    "annualOperatingCostTRY": 161323127145.33105,
-    "annualEquivalentCostTRY": 172875069749.30478,
-    "lifecyclePresentCostTRY": 3010299121684.6343,
+    "constructionCostTRY": 200673964970.9466,
+    "annualOperatingCostTRY": 161145391780.25168,
+    "annualEquivalentCostTRY": 172669670361.51364,
+    "lifecyclePresentCostTRY": 3006722471809.329,
     "priceBase": "Aralık 2024 TL (yaklaşık sabit fiyat)",
     "horizonYears": 25,
     "realDiscountRate": 0.03,
-    "referenceCostTRY": 172887840868.3898,
-    "budgetLimitTRY": 190176624955.2288,
+    "referenceCostTRY": 172682441480.5987,
+    "budgetLimitTRY": 189950685628.6586,
     "referenceStage": {
       "hospitalCount": 209,
-      "totalBeds": 25050,
+      "totalBeds": 24950,
       "totalDoctors": 22970,
-      "coveredPopulation": 5614804.0,
-      "coveragePercent": 95.0,
-      "annualEquivalentCostTRY": 172887840868.3898,
-      "meanMinutes": 29.782093669749486,
-      "gap": 0.02819735582363134,
-      "lowerBoundTRY": 168012860901.84445,
+      "coveredPopulation": 5614804.000000001,
+      "coveragePercent": 95.00000000000001,
+      "annualEquivalentCostTRY": 172682441480.5987,
+      "meanMinutes": 29.81633095747654,
+      "gap": 0.027586256976887553,
+      "lowerBoundTRY": 167918779274.51852,
       "boundScope": "restricted_allocation_edges",
       "scope": "Original cost-stage incumbent before travel refinement; this gap is not the final plan cost gap or a minimum hospital-count guarantee."
     },
@@ -19213,40 +19222,31 @@
       "removedHospitalCount": 0,
       "removedBeds": 0,
       "removedDoctors": 4,
-      "annualCostReductionTRY": 12771119.085016381,
+      "annualCostReductionTRY": 12771119.085073223,
       "allocationsPreserved": true,
       "travelPreserved": true
     },
-    "solutionSource": "fixed_plan_flow_lp_numerical_fallback",
-    "numericalFallback": {
-      "reason": "positive_flow_at_closed_site_within_solver_tolerance",
-      "rejectedSource": "travel_milp",
-      "selectedSource": "fixed_plan_flow_lp",
-      "rejectedClosedSiteFlowResidents": 7.667477763817487e-13,
-      "allocationAbsoluteDifferenceResidents": 19720.55950132664,
-      "meanMinutesChange": 0.005849847833602092,
-      "selectedIncumbentValidated": true,
-      "scope": "A different earlier feasible allocation was selected explicitly; resource cleanup preserves this accepted allocation, not the rejected numerical incumbent."
-    },
-    "finalPlanCostGap": 0.028125564053343675,
+    "solutionSource": "travel_milp",
+    "numericalFallback": null,
+    "finalPlanCostGap": 0.027514334608089018,
     "costBoundNumericalToleranceTRY": 100.0,
     "optimalityScope": "restricted_allocation_edges",
-    "referenceMeanMinutes": 29.782093669749486,
-    "travelImprovementPercent": 6.707848578445944,
+    "referenceMeanMinutes": 29.81633095747654,
+    "travelImprovementPercent": 6.538950796555934,
     "annualVisitsDemand": 47445297.04366386,
-    "annualVisitsServed": 45073032.19148069,
+    "annualVisitsServed": 45073032.19148067,
     "annualContactsDemand": 48517542.4908489,
-    "annualContactsServed": 46091665.36630648,
+    "annualContactsServed": 46091665.366306454,
     "annualAdmissionsDemand": 1072245.4471850423,
     "annualBedDaysDemand": 5451817.453012415,
-    "annualBedDaysServed": 5179226.5803617975,
-    "doctorUtilizationPercent": 93.78281540592407,
-    "bedUtilizationPercent": 70.80669592816828,
-    "costStageGap": 0.02819735582363134,
+    "annualBedDaysServed": 5179226.580361795,
+    "doctorUtilizationPercent": 93.78281540592403,
+    "bedUtilizationPercent": 71.09049030062585,
+    "costStageGap": 0.027586256976887553,
     "costStageProvenOptimal": false,
-    "travelStageGap": 0.8147436016634301,
-    "travelStageSolverGap": 0.8147045887036423,
-    "travelStageLowerBoundMeanMinutes": 5.147229708376273,
+    "travelStageGap": 0.8079121327877733,
+    "travelStageSolverGap": 0.8079121327877732,
+    "travelStageLowerBoundMeanMinutes": 5.3528464687457,
     "travelStageImproved": true,
     "planningVersion": "independent-capacity-2026-10-v2"
   },
@@ -19259,7 +19259,7 @@
       210.0
     ],
     "candidateCount": 4701,
-    "allocationEdges": 18723,
+    "allocationEdges": 18807,
     "fullCandidateCount": 4701,
     "allAllocationEdges": false
   },
@@ -19314,7 +19314,7 @@
         210
       ]
     },
-    "transitRoutes": 424,
+    "transitRoutes": 428,
     "transitStops": 10811,
     "transitAssumptions": {
       "scheduleAvailable": true,
@@ -19355,12 +19355,12 @@
     "transitDataQuality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 424,
+      "routedRouteCount": 428,
       "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10397,
-        "saturday": 8116,
-        "sunday": 7109
+        "weekday": 10437,
+        "saturday": 8143,
+        "sunday": 7136
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -19373,15 +19373,60 @@
       },
       "quarantinedCoordinateCount": 0,
       "coordinateAddressConflictCount": 98,
-      "quarantinedRouteCount": 3
+      "quarantinedRouteCount": 3,
+      "reviewedServiceEvents": {
+        "definedCount": 24,
+        "sourceValidCount": 24,
+        "appliedCount": 24,
+        "appliedEventIds": [
+          "5608-weekday-0740",
+          "5608-weekday-0800",
+          "5608-weekday-1100",
+          "5608-weekday-1415",
+          "5608-weekday-1515",
+          "5608-weekday-1610",
+          "5608-weekday-2100",
+          "5608-weekday-2215",
+          "5608-saturday-1000",
+          "5608-saturday-1145",
+          "5608-saturday-1430",
+          "5608-saturday-1500",
+          "5608-saturday-1600",
+          "5608-saturday-1900",
+          "5608-sunday-0930",
+          "5608-sunday-1130",
+          "5608-sunday-1400",
+          "5608-sunday-1645",
+          "5608-sunday-1900",
+          "5608-sunday-2215",
+          "615-weekday-0630-ulus-gudul",
+          "615-weekday-0900-ulus-gudul",
+          "615-weekday-1500-ulus-gudul",
+          "615-weekday-2000-ulus-gudul"
+        ],
+        "invalidated": [],
+        "notAppliedEventIds": [],
+        "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+        "held": {
+          "615ReturnEvents": 5,
+          "5604DurationCandidates": 21,
+          "otherRoutes": [
+            "158",
+            "178",
+            "490",
+            "677"
+          ],
+          "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+        }
+      }
     },
-    "transitVersion": "ego-scheduled-v2-quality-gates",
-    "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43"
+    "transitVersion": "ego-scheduled-v3-reviewed-events",
+    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d"
   },
   "modelLabel": "EGO resmi kalkışlar · Hafta içi · 10.00 · ara durak süreleri tahmini",
   "transitEvidence": {
-    "version": "ego-scheduled-v2-quality-gates",
-    "packageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
+    "version": "ego-scheduled-v3-reviewed-events",
+    "packageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
     "profile": {
       "day": "weekday",
       "seconds": 36000,
@@ -19390,12 +19435,12 @@
     "quality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 424,
+      "routedRouteCount": 428,
       "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10397,
-        "saturday": 8116,
-        "sunday": 7109
+        "weekday": 10437,
+        "saturday": 8143,
+        "sunday": 7136
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -19408,7 +19453,52 @@
       },
       "quarantinedCoordinateCount": 0,
       "coordinateAddressConflictCount": 98,
-      "quarantinedRouteCount": 3
+      "quarantinedRouteCount": 3,
+      "reviewedServiceEvents": {
+        "definedCount": 24,
+        "sourceValidCount": 24,
+        "appliedCount": 24,
+        "appliedEventIds": [
+          "5608-weekday-0740",
+          "5608-weekday-0800",
+          "5608-weekday-1100",
+          "5608-weekday-1415",
+          "5608-weekday-1515",
+          "5608-weekday-1610",
+          "5608-weekday-2100",
+          "5608-weekday-2215",
+          "5608-saturday-1000",
+          "5608-saturday-1145",
+          "5608-saturday-1430",
+          "5608-saturday-1500",
+          "5608-saturday-1600",
+          "5608-saturday-1900",
+          "5608-sunday-0930",
+          "5608-sunday-1130",
+          "5608-sunday-1400",
+          "5608-sunday-1645",
+          "5608-sunday-1900",
+          "5608-sunday-2215",
+          "615-weekday-0630-ulus-gudul",
+          "615-weekday-0900-ulus-gudul",
+          "615-weekday-1500-ulus-gudul",
+          "615-weekday-2000-ulus-gudul"
+        ],
+        "invalidated": [],
+        "notAppliedEventIds": [],
+        "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+        "held": {
+          "615ReturnEvents": 5,
+          "5604DurationCandidates": 21,
+          "otherRoutes": [
+            "158",
+            "178",
+            "490",
+            "677"
+          ],
+          "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+        }
+      }
     },
     "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
   },
@@ -19827,31 +19917,31 @@
       "footprintRadiusMeters": 45,
       "costUnits": 1,
       "candidateIndex": 16,
-      "templateId": "b150",
-      "templateLabel": "150 yatak",
-      "beds": 150,
+      "templateId": "b50",
+      "templateLabel": "50 yatak",
+      "beds": 50,
       "doctors": 61,
-      "grossAreaM2": 32880,
-      "constructionCostTRY": 989929900.6560451,
-      "annualOperatingCostTRY": 610400762.3531377,
-      "annualEquivalentCostTRY": 667250329.0257896,
+      "grossAreaM2": 16880,
+      "constructionCostTRY": 508212187.4414246,
+      "annualOperatingCostTRY": 432220008.263636,
+      "annualEquivalentCostTRY": 461405552.22453517,
       "operatingBreakdown": {
         "fixedSiteTRY": 62120028.571428575,
         "physiciansTRY": 186322039.1198044,
-        "bedSupportTRY": 266603047.61904764,
-        "materialsTRY": 95355647.04285713
+        "bedSupportTRY": 88867682.53968254,
+        "materialsTRY": 94910258.03272045
       },
-      "assignedPopulation": 15902.14864954304,
-      "annualVisits": 127655.04512616366,
-      "annualContacts": 130539.99999999997,
-      "annualAdmissions": 2884.9548738363223,
-      "annualBedDays": 14668.513980288133,
+      "assignedPopulation": 15827.87258445711,
+      "annualVisits": 127058.79145948631,
+      "annualContacts": 129930.27123000789,
+      "annualAdmissions": 2871.4797705215765,
+      "annualBedDays": 14600.0,
       "contactCapacity": 130540,
-      "bedDayCapacity": 43800.0,
-      "doctorUtilizationPercent": 99.99999999999997,
-      "bedUtilizationPercent": 33.48975794586332,
-      "physicalOccupancyPercent": 26.791806356690657,
-      "areaUtilizationPercent": 57.426771235791705
+      "bedDayCapacity": 14600.0,
+      "doctorUtilizationPercent": 99.53291805577439,
+      "bedUtilizationPercent": 100.0,
+      "physicalOccupancyPercent": 80.0,
+      "areaUtilizationPercent": 29.48187039112421
     },
     {
       "id": "H-1694",
@@ -20294,6 +20384,46 @@
       "areaUtilizationPercent": 74.47316075103888
     },
     {
+      "id": "H-1824",
+      "name": "OSMANLI",
+      "district": "SİNCAN",
+      "districtId": "1747",
+      "lon": 32.58342054254331,
+      "lat": 39.94848088683078,
+      "node": 128499,
+      "entryLon": 32.5817266,
+      "entryLat": 39.948125,
+      "accessMeters": 150.0,
+      "footprintRadiusMeters": 45,
+      "costUnits": 1,
+      "candidateIndex": 82,
+      "templateId": "b150",
+      "templateLabel": "150 yatak",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640,
+      "constructionCostTRY": 1283777705.7169635,
+      "annualOperatingCostTRY": 1172419967.6480508,
+      "annualEquivalentCostTRY": 1246144588.174872,
+      "operatingBreakdown": {
+        "fixedSiteTRY": 62120028.571428575,
+        "physiciansTRY": 558966117.3594133,
+        "bedSupportTRY": 266603047.61904764,
+        "materialsTRY": 284730774.09816134
+      },
+      "assignedPopulation": 47483.617753371334,
+      "annualVisits": 381176.37437845895,
+      "annualContacts": 389790.8136900237,
+      "annualAdmissions": 8614.43931156473,
+      "annualBedDays": 43800.0,
+      "contactCapacity": 391620,
+      "bedDayCapacity": 43800.0,
+      "doctorUtilizationPercent": 99.53291805577439,
+      "bedUtilizationPercent": 100.0,
+      "physicalOccupancyPercent": 80.0,
+      "areaUtilizationPercent": 74.47316075103888
+    },
+    {
       "id": "H-2047",
       "name": "CUMHURİYET",
       "district": "ÇUBUK",
@@ -20334,19 +20464,19 @@
       "areaUtilizationPercent": 29.48187039112421
     },
     {
-      "id": "H-183238",
-      "name": "ATAYURT",
-      "district": "ETİMESGUT",
-      "districtId": "1922",
-      "lon": 32.538467819229055,
-      "lat": 39.841933296905964,
-      "node": 560604,
-      "entryLon": 32.5399288,
-      "entryLat": 39.8419391,
-      "accessMeters": 125.0,
+      "id": "H-98559",
+      "name": "ADALET",
+      "district": "SİNCAN",
+      "districtId": "1747",
+      "lon": 32.566030532204636,
+      "lat": 40.027782841492574,
+      "node": 1180764,
+      "entryLon": 32.5651261,
+      "entryLat": 40.0275929,
+      "accessMeters": 80.0,
       "footprintRadiusMeters": 45,
       "costUnits": 1,
-      "candidateIndex": 94,
+      "candidateIndex": 89,
       "templateId": "b50",
       "templateLabel": "50 yatak",
       "beds": 50,
@@ -21254,46 +21384,6 @@
       "areaUtilizationPercent": 24.172339230637384
     },
     {
-      "id": "H-1842",
-      "name": "ÇOĞLU",
-      "district": "SİNCAN",
-      "districtId": "1747",
-      "lon": 32.54190225031222,
-      "lat": 40.016079155467374,
-      "node": 292721,
-      "entryLon": 32.5409735,
-      "entryLat": 40.0159814,
-      "accessMeters": 80.0,
-      "footprintRadiusMeters": 45,
-      "costUnits": 1,
-      "candidateIndex": 370,
-      "templateId": "b150",
-      "templateLabel": "150 yatak",
-      "beds": 150,
-      "doctors": 183,
-      "grossAreaM2": 42640,
-      "constructionCostTRY": 1283777705.7169635,
-      "annualOperatingCostTRY": 1172419967.6480508,
-      "annualEquivalentCostTRY": 1246144588.174872,
-      "operatingBreakdown": {
-        "fixedSiteTRY": 62120028.571428575,
-        "physiciansTRY": 558966117.3594133,
-        "bedSupportTRY": 266603047.61904764,
-        "materialsTRY": 284730774.09816134
-      },
-      "assignedPopulation": 47483.617753371334,
-      "annualVisits": 381176.37437845895,
-      "annualContacts": 389790.8136900237,
-      "annualAdmissions": 8614.43931156473,
-      "annualBedDays": 43800.0,
-      "contactCapacity": 391620,
-      "bedDayCapacity": 43800.0,
-      "doctorUtilizationPercent": 99.53291805577439,
-      "bedUtilizationPercent": 100.0,
-      "physicalOccupancyPercent": 80.0,
-      "areaUtilizationPercent": 74.47316075103888
-    },
-    {
       "id": "H-2211",
       "name": "100.YIL",
       "district": "NALLIHAN",
@@ -21553,24 +21643,24 @@
       "doctors": 12,
       "grossAreaM2": 12960,
       "constructionCostTRY": 390191347.7038426,
-      "annualOperatingCostTRY": 203483716.2821404,
-      "annualEquivalentCostTRY": 225891574.67866015,
+      "annualOperatingCostTRY": 204467125.91184968,
+      "annualEquivalentCostTRY": 226874984.3083694,
       "operatingBreakdown": {
         "fixedSiteTRY": 62120028.571428575,
         "physiciansTRY": 36653515.89242054,
         "bedSupportTRY": 88867682.53968254,
-        "materialsTRY": 15842489.278608767
+        "materialsTRY": 16825898.908318017
       },
-      "assignedPopulation": 2642.0,
-      "annualVisits": 21208.74585290812,
-      "annualContacts": 21688.0553440123,
-      "annualAdmissions": 479.30949110418413,
-      "annualBedDays": 2437.0426154351712,
+      "assignedPopulation": 2806.0,
+      "annualVisits": 22525.261492528454,
+      "annualContacts": 23034.32373024168,
+      "annualAdmissions": 509.0622377132251,
+      "annualBedDays": 2588.3200525780057,
       "contactCapacity": 25680,
       "bedDayCapacity": 14600.0,
-      "doctorUtilizationPercent": 84.45504417450273,
-      "bedUtilizationPercent": 16.692072708460078,
-      "physicalOccupancyPercent": 13.353658166768062,
+      "doctorUtilizationPercent": 89.69752231402522,
+      "bedUtilizationPercent": 17.72821953820552,
+      "physicalOccupancyPercent": 14.182575630564415,
       "areaUtilizationPercent": 22.63536968418067
     },
     {
@@ -27205,16 +27295,16 @@
         "bedSupportTRY": 1066412190.4761906,
         "materialsTRY": 1138923096.3926454
       },
-      "assignedPopulation": 189934.4710134853,
-      "annualVisits": 1524705.4975138356,
-      "annualContacts": 1559163.2547600945,
-      "annualAdmissions": 34457.757246258916,
-      "annualBedDays": 175199.99999999997,
+      "assignedPopulation": 189934.47101348534,
+      "annualVisits": 1524705.4975138358,
+      "annualContacts": 1559163.2547600947,
+      "annualAdmissions": 34457.75724625892,
+      "annualBedDays": 175200.0,
       "contactCapacity": 1560060,
       "bedDayCapacity": 175200.0,
-      "doctorUtilizationPercent": 99.9425185416006,
-      "bedUtilizationPercent": 99.99999999999999,
-      "physicalOccupancyPercent": 79.99999999999999,
+      "doctorUtilizationPercent": 99.94251854160062,
+      "bedUtilizationPercent": 100.0,
+      "physicalOccupancyPercent": 80.0,
       "areaUtilizationPercent": 87.49100899412802
     },
     {
@@ -27238,24 +27328,24 @@
       "doctors": 729,
       "grossAreaM2": 158320,
       "constructionCostTRY": 4766596772.25867,
-      "annualOperatingCostTRY": 4494156405.904812,
-      "annualEquivalentCostTRY": 4767891910.637606,
+      "annualOperatingCostTRY": 4494156405.904813,
+      "annualEquivalentCostTRY": 4767891910.637607,
       "operatingBreakdown": {
         "fixedSiteTRY": 62120028.571428575,
         "physiciansTRY": 2226701090.4645476,
         "bedSupportTRY": 1066412190.4761906,
-        "materialsTRY": 1138923096.3926454
+        "materialsTRY": 1138923096.3926456
       },
-      "assignedPopulation": 189934.47101348534,
-      "annualVisits": 1524705.4975138358,
-      "annualContacts": 1559163.2547600947,
+      "assignedPopulation": 189934.47101348537,
+      "annualVisits": 1524705.497513836,
+      "annualContacts": 1559163.254760095,
       "annualAdmissions": 34457.75724625892,
-      "annualBedDays": 175200.0,
+      "annualBedDays": 175200.00000000003,
       "contactCapacity": 1560060,
       "bedDayCapacity": 175200.0,
-      "doctorUtilizationPercent": 99.94251854160062,
-      "bedUtilizationPercent": 100.0,
-      "physicalOccupancyPercent": 80.0,
+      "doctorUtilizationPercent": 99.94251854160063,
+      "bedUtilizationPercent": 100.00000000000003,
+      "physicalOccupancyPercent": 80.00000000000001,
       "areaUtilizationPercent": 87.49100899412802
     },
     {
@@ -27451,16 +27541,16 @@
         "bedSupportTRY": 1066412190.4761906,
         "materialsTRY": 1138923096.3926454
       },
-      "assignedPopulation": 189934.4710134853,
-      "annualVisits": 1524705.4975138356,
-      "annualContacts": 1559163.2547600945,
-      "annualAdmissions": 34457.757246258916,
-      "annualBedDays": 175199.99999999997,
+      "assignedPopulation": 189934.47101348534,
+      "annualVisits": 1524705.4975138358,
+      "annualContacts": 1559163.2547600947,
+      "annualAdmissions": 34457.75724625892,
+      "annualBedDays": 175200.0,
       "contactCapacity": 1560060,
       "bedDayCapacity": 175200.0,
-      "doctorUtilizationPercent": 99.9425185416006,
-      "bedUtilizationPercent": 99.99999999999999,
-      "physicalOccupancyPercent": 79.99999999999999,
+      "doctorUtilizationPercent": 99.94251854160062,
+      "bedUtilizationPercent": 100.0,
+      "physicalOccupancyPercent": 80.0,
       "areaUtilizationPercent": 87.49100899412802
     },
     {
@@ -27531,18 +27621,18 @@
         "fixedSiteTRY": 62120028.571428575,
         "physiciansTRY": 7419282508.557458,
         "bedSupportTRY": 3554707301.5873017,
-        "materialsTRY": 3796410321.3088183
+        "materialsTRY": 3796410321.308819
       },
-      "assignedPopulation": 633114.9033782844,
-      "annualVisits": 5082351.658379452,
-      "annualContacts": 5197210.849200316,
-      "annualAdmissions": 114859.19082086306,
-      "annualBedDays": 584000.0,
+      "assignedPopulation": 633114.9033782845,
+      "annualVisits": 5082351.658379453,
+      "annualContacts": 5197210.849200317,
+      "annualAdmissions": 114859.19082086308,
+      "annualBedDays": 584000.0000000001,
       "contactCapacity": 5198060,
       "bedDayCapacity": 584000.0,
-      "doctorUtilizationPercent": 99.98366408237527,
-      "bedUtilizationPercent": 100.0,
-      "physicalOccupancyPercent": 80.0,
+      "doctorUtilizationPercent": 99.98366408237528,
+      "bedUtilizationPercent": 100.00000000000003,
+      "physicalOccupancyPercent": 80.00000000000001,
       "areaUtilizationPercent": 41.56875288656649
     },
     {
@@ -27572,18 +27662,18 @@
         "fixedSiteTRY": 62120028.571428575,
         "physiciansTRY": 1114877775.0611248,
         "bedSupportTRY": 533206095.2380953,
-        "materialsTRY": 569461548.1963227
+        "materialsTRY": 569461548.1963228
       },
-      "assignedPopulation": 94967.23550674267,
-      "annualVisits": 762352.7487569179,
-      "annualContacts": 779581.6273800473,
+      "assignedPopulation": 94967.23550674268,
+      "annualVisits": 762352.748756918,
+      "annualContacts": 779581.6273800475,
       "annualAdmissions": 17228.87862312946,
-      "annualBedDays": 87600.0,
+      "annualBedDays": 87600.00000000001,
       "contactCapacity": 781100,
       "bedDayCapacity": 87600.0,
       "doctorUtilizationPercent": 99.8056109819546,
-      "bedUtilizationPercent": 100.0,
-      "physicalOccupancyPercent": 80.0,
+      "bedUtilizationPercent": 100.00000000000003,
+      "physicalOccupancyPercent": 80.00000000000001,
       "areaUtilizationPercent": 44.872852010631604
     },
     {
@@ -27738,16 +27828,16 @@
         "bedSupportTRY": 1066412190.4761906,
         "materialsTRY": 1138923096.3926454
       },
-      "assignedPopulation": 189934.47101348534,
-      "annualVisits": 1524705.4975138358,
-      "annualContacts": 1559163.2547600947,
-      "annualAdmissions": 34457.75724625892,
-      "annualBedDays": 175200.0,
+      "assignedPopulation": 189934.4710134853,
+      "annualVisits": 1524705.4975138356,
+      "annualContacts": 1559163.2547600945,
+      "annualAdmissions": 34457.757246258916,
+      "annualBedDays": 175199.99999999997,
       "contactCapacity": 1560060,
       "bedDayCapacity": 175200.0,
-      "doctorUtilizationPercent": 99.94251854160062,
-      "bedUtilizationPercent": 100.0,
-      "physicalOccupancyPercent": 80.0,
+      "doctorUtilizationPercent": 99.9425185416006,
+      "bedUtilizationPercent": 99.99999999999999,
+      "physicalOccupancyPercent": 79.99999999999999,
       "areaUtilizationPercent": 87.49100899412802
     },
     {
@@ -27771,24 +27861,24 @@
       "doctors": 2425,
       "grossAreaM2": 518000,
       "constructionCostTRY": 15595610965.323338,
-      "annualOperatingCostTRY": 14814383684.14305,
-      "annualEquivalentCostTRY": 15710006419.436045,
+      "annualOperatingCostTRY": 14813845663.523458,
+      "annualEquivalentCostTRY": 15709468398.816454,
       "operatingBreakdown": {
         "fixedSiteTRY": 62120028.571428575,
         "physiciansTRY": 7407064669.926651,
         "bedSupportTRY": 3554707301.5873017,
-        "materialsTRY": 3790491684.057668
+        "materialsTRY": 3789953663.438078
       },
-      "assignedPopulation": 632127.8716471882,
-      "annualVisits": 5074428.2272161,
-      "annualContacts": 5189108.35154312,
-      "annualAdmissions": 114680.12432701922,
-      "annualBedDays": 583089.5388374458,
+      "assignedPopulation": 632038.1477122712,
+      "annualVisits": 5073707.965243134,
+      "annualContacts": 5188371.8119268585,
+      "annualAdmissions": 114663.8466837244,
+      "annualBedDays": 583006.7753805884,
       "contactCapacity": 5189500,
       "bedDayCapacity": 584000.0,
-      "doctorUtilizationPercent": 99.99245305989247,
-      "bedUtilizationPercent": 99.84409911600099,
-      "physicalOccupancyPercent": 79.8752792928008,
+      "doctorUtilizationPercent": 99.9782601777986,
+      "bedUtilizationPercent": 99.82992729119664,
+      "physicalOccupancyPercent": 79.86394183295731,
       "areaUtilizationPercent": 41.54308920211731
     }
   ],
@@ -27797,10 +27887,10 @@
     "inventory": "OSM; tür ve kapasite eşdeğerliği doğrulanmadı",
     "coveredPopulation": 5352010,
     "coveragePercent": 90.55364176558967,
-    "reachablePopulation": 5554932,
-    "unreachableOrUnlocatedPopulation": 355388,
-    "meanMinutes": 19.507083999448877,
+    "reachablePopulation": 5558505,
+    "unreachableOrUnlocatedPopulation": 351815,
+    "meanMinutes": 19.443783572231926,
     "p90Minutes": 43.69194793701172,
-    "meanPopulationDenominator": 5554932
+    "meanPopulationDenominator": 5558505
   }
 }

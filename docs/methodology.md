@@ -1,4 +1,4 @@
-# Bağımsız yatak/hekim seçimi ve ulaşım modeli · v0.5
+# Bağımsız yatak/hekim seçimi ve ulaşım modeli · v0.6
 
 ## Veri ve hedef
 
@@ -66,6 +66,14 @@ Orijinal planın yıllık bütçesi de sabittir: `F + v × atanmış kişi eşde
 
 45/60/90 dakika ve %60/%80 ilçe tabanı coğrafi duyarlılıkları ayrıca hesaplanır. Bu tanılarda kapasite, maliyet ve yapı çakışması kaldırılır ve konumlar yeniden seçilebilir. Kırsal ilçeler birlikte sınanır; tekil ilçe minimumları toplanarak genel alt sınır yapılmaz. Tesis doluluğu medyanı ise ilk kayıtlı atamaya ait tesis bazlı bir göstergedir, yatakla ağırlıklandırılmış il doluluğu değildir.
 
+## Aynı yapı izlerinde ortak kapasite tasarımı
+
+İkinci, ayrı deney kayıtlı konumları ve yapı izlerini zorunlu açık tutar; yatak tipini ve hekim sayısını dört profil için **birlikte** yeniden seçer. Her profilde ayrı talep akışı bulunur, kaynaklar ortaktır. Profillerin süre matrislerini eleman eleman en büyük değerle birleştirmek kullanılmaz: bir mahalle farklı saatlerde farklı hastanelere atanabilir.
+
+Her profilde hizmet tam `%95 × resmî il nüfusu` ve her ilçede en az %80'dir; 45 dakika sınırı değişmez. Aynı homojen yıllık talebin dört ulaşım kesiti sınanır. Malzeme gideri dört kez eklenmez. Ortak kaynak maliyeti azaltılır, geçerli çözüm ve alt sınır orijinal yıllık tavanla karşılaştırılır. Bir çözümün bütçeyi aşması tek başına bütçe altında çözüm bulunamayacağını kanıtlamaz. Zaman sınırında çözüm bulunamaması da olanaksızlık değildir.
+
+Ayrı iyimser tanıda her yapı izindeki bütün uygun yatak tipleri taranır. Her tip için alana sığan en çok hekim bulunur; yatak ve hekim kaynaklarının düşük olanı o tipin kişi eşdeğeri kapasitesidir. Tipler arasından en yüksek kapasite seçilir. Maliyet ve bütçe kaldırılıp bu üst kapasitelerle her profilin azami kapsamı hesaplanır. İlçe tabanları korunur. Bu iyimser üst sınır dahi %95 altında kalıyorsa, **yalnız bu kayıtlı konum ve yapı izlerinde**, sadece yatak/hekim artırmak yeterli değildir. Başka konumlar, daha geniş yapı izleri veya farklı ulaşım verileri için sonuç çıkarılmaz. Fiziksel alan ve klinik oranlar hâlâ model varsayımlarıdır.
+
 ## Göstergeler ve harita
 
 - **Karşılanan talep:** `sum z_ij / resmi P`. Homojen oranlar nedeniyle başvuru, yatış günü ve nüfus eşdeğeri payı aynıdır. En yakın hastanenin yakın olması tek başına kapsanma değildir.
@@ -128,3 +136,11 @@ Her araç kesitinde ayrı fiziksel süre alt sınırı kullanılır: yol/ray uzu
 - Bilinen durak koduyla başlangıç/bitiş ve kesin eşleşen istasyon adı işlenir. Çözülemeyen yön, özel uğrama ve ara durak notları tam-hat seferine dönüştürülmez. Hizmet/konum açıkları sonuçla birlikte yayımlanır.
 
 Adaylar ve talepler değişmedi. [Yeni 91 deneyi](transit-validation.md) aynı %95/%80 hedeflerini korur. Bütün adaylarla coğrafi alt sınır hesaplanması, eksik gerçek hizmeti tamamlamaz; bu sınır yalnız sürümlenmiş model kapsamındadır.
+
+### Dar kapsamlı yön ve kaynak düzeltmeleri
+
+Mevcut yol düğümünden 300 metreden uzak kalan otobüs durakları, aynı sınır içinde uygun bir mevcut yönlü yol kenarına izdüşürülebilir. Kenar sanal düğümle bölünür; eski yön ve ağırlık korunur. Farklı yollar, köprüler veya karşı şeritler birleştirilmez. Eşit yakınlıktaki farklı kenarlar belirsiz bırakılır. Bu işlem yalnız otobüs geometrisindedir; yaya erişimi veya gerçek peron girişi kanıtlamaz. Ham OSM varsa özgün kenar ve izinli yön ayrıca denetlenir; kaynak yokken denetlenmiş gibi sunulmaz.
+
+560-8'in 20 tam yön kaydında yayımlı 75 dakikalık alan korunur. 615'in yalnız dört hafta içi Ulus→Güdül kalkışı için 2025 tarihli planın 95/120 dakikalık bütçeleri kullanılır. Bu tarihli sürelerin güncel varış ölçümü olduğu iddia edilmez. Seçilen yönün süresi yeniden dağıtılır; birleşik tur sürelerinden oransal dilim alınarak yolculuk kısaltılmaz. Ters yön, cuma ilavesi ve desteklenmeyen günler türetilmez.
+
+Her kayıt kaynak HTML hashine, gün/saat/tam nota, sıralı durak kimliklerine ve seçilen durak tekrarına bağlıdır. Altı kaynak arşivi ve bu yorumlar ulaşım paketinin kimliğine girer. Girdi değişirse yorum yeniden inceleme gerektirir. Planın doğru yönü ve sağdaki “planlanan” tablo satırı bağımsız denetlenir. [Sefer kaynakları ve kalan açıklıklar](service-evidence.md).

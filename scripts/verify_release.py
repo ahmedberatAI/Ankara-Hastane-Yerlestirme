@@ -101,8 +101,26 @@ def verify_benchmark(report, results, transit_report, package_id, quality, sensi
         same_values(report['transitAudit'][field], value, 'benchmark.transitAudit.' + field)
 
 
+def verify_population_identity(result, data):
+    """Missing districts or changed denominators must not bypass service floors."""
+    assert [a['demandId'] for a in result['assignments']] == [d['id'] for d in data['demands']], 'Demand records are incomplete or differ'
+    expected = {d['id']: d['population'] for d in data['districts']}
+    actual = result['districts']
+    assert len(actual) == len(expected) == len(data['districts']), 'District records are incomplete or duplicated'
+    assert {d['id'] for d in actual} == set(expected), 'District identities differ'
+    for district in actual:
+        population = district['population']
+        assert not isinstance(population, bool) and population == expected[district['id']], 'District population denominator differs'
+    indices = result['selectedIndices']
+    assert len(indices) == len(set(indices)) == result['hospitalCount'], 'Selected indices are incomplete or duplicated'
+    assert all(isinstance(i, int) and not isinstance(i, bool) and 0 <= i < len(data['candidates']) for i in indices), 'Invalid selected index'
+    site_indices = [site['candidateIndex'] for site in result['selected']]
+    assert len(site_indices) == len(indices) and set(site_indices) == set(indices), 'Selected site records differ'
+
+
 def audit(result):
-    data=dataset(); p=health_planning(); s=Scenario(**result['scenario'])
+    data=dataset(); verify_population_identity(result, data)
+    p=health_planning(); s=Scenario(**result['scenario'])
     assert result['capacity']['planningVersion']==p['version']
     n=len(data['demands']); pop=np.array([d['population'] for d in data['demands']])
     times=travel_times(s); indices=result['selectedIndices']; selected=set(indices)

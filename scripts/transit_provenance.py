@@ -13,9 +13,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROFILES = ('weekday-0800', 'weekday-1000', 'saturday-1000', 'sunday-1000')
-MODEL_FILES = ('backend/timetable.py', 'backend/geo.py', 'scripts/build_timetable.py')
+MODEL_FILES = ('backend/timetable.py', 'backend/geo.py', 'backend/bus_projection.py',
+               'backend/service_evidence.py', 'scripts/build_timetable.py', 'scripts/audit_service_evidence.py')
+EVIDENCE_FILES = tuple(f'data/evidence/ego/{name}.html.gz' for name in (
+    'ego-5608-accessible-7686', 'ego-615-accessible-7621', 'ego-615-announcement-7621',
+    'ego-route-560-8', 'ego-route-615', 'ego-route-615-1'))
 ARTIFACT_FILES = (
-    'ego-official.json', 'ego-stop-coordinates.json', 'ego-quality.json', 'ego-network.json.gz',
+    'ego-official.json', 'ego-stop-coordinates.json', 'ego-service-evidence.json', 'ego-quality.json', 'ego-network.json.gz',
     'graph-coordinates.npy', 'walk-graph.npz',
     'ego-access.npz', 'ego-egress.npz', 'ego-transfers.npz', 'ego-direct.npz',
     'transit-lines.geojson', 'transit-matrix.npz',
@@ -51,6 +55,7 @@ def write_package(root=ROOT):
     data = json.loads((out/'dataset.json').read_text(encoding='utf-8'))
     records = [{'file': name, 'kind': 'model', 'sha256': sha(root/name, True)} for name in MODEL_FILES]
     records += [{'file': 'data/processed/'+name, 'kind': 'artifact', 'sha256': sha(out/name)} for name in ARTIFACT_FILES]
+    records += [{'file': name, 'kind': 'evidence', 'sha256': sha(root/name)} for name in EVIDENCE_FILES]
     index_sha = index_identity(data)
     identity = content_identity(records, index_sha)
     package = {'format': 1, 'transitPackageId': identity,
@@ -68,13 +73,13 @@ def check_package(root=ROOT):
     root = Path(root); out = root/'data/processed'
     package = json.loads((out/'transit-package.json').read_text(encoding='utf-8'))
     data = json.loads((out/'dataset.json').read_text(encoding='utf-8'))
-    expected_names = set(MODEL_FILES) | {'data/processed/'+name for name in ARTIFACT_FILES}
+    expected_names = set(MODEL_FILES) | set(EVIDENCE_FILES) | {'data/processed/'+name for name in ARTIFACT_FILES}
     assert {r['file'] for r in package['files']} == expected_names, 'Transit package file set mismatch'
     assert len(package['files']) == len(expected_names), 'Duplicate transit package identity'
     for record in package['files']:
         name = record['file']
         is_model = name in MODEL_FILES
-        assert record['kind'] == ('model' if is_model else 'artifact')
+        assert record['kind'] == ('model' if is_model else ('evidence' if name in EVIDENCE_FILES else 'artifact'))
         assert sha(root/name, is_model) == record['sha256'], f'Transit package mismatch: {name}'
     assert index_identity(data) == package['indexSha256'], 'Transit row/column index mismatch'
     identity = content_identity(package['files'], package['indexSha256'])

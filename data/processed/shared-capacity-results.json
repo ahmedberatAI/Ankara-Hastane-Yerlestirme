@@ -1,0 +1,153 @@
+{
+  "format": 1,
+  "builtAt": "2026-10-22T22:41:32.924421+00:00",
+  "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+  "scope": "Static saved-plan diagnosis: preserve every current selected location and footprint, share bed modules/physicians across four profiles with separate assignments. Not a new location plan, minimum hospital count, real-city infeasibility proof or clinical staffing standard. Recompute after any package/plan/calibration change.",
+  "sourcePlan": {
+    "file": "data/processed/example-transit-result.json",
+    "sha256": "3cb914df1a55c705424484a18208555916f035fa73455b67aebaf24a30ba8063",
+    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+    "hospitalCount": 209,
+    "scenario": {
+      "mode": "transit",
+      "threshold": 45,
+      "coverageTarget": 95.0,
+      "districtFloor": 80.0,
+      "trafficFactor": 1.0,
+      "demandMultiplier": 1.0,
+      "bedOccupancy": 80.0,
+      "contactsPerDoctor": 2140,
+      "costTolerance": 10.0,
+      "hospitalLimit": null,
+      "operatingCostMultiplier": 1.0,
+      "transitProfile": "weekday-1000"
+    },
+    "originalAnnualBudgetTRY": 189950685628.6586,
+    "totalBeds": 24950,
+    "totalDoctors": 22966,
+    "healthPlanningSha256": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
+  },
+  "sourceFiles": {
+    "data/processed/example-transit-result.json": "3cb914df1a55c705424484a18208555916f035fa73455b67aebaf24a30ba8063",
+    "data/processed/dataset.json": "8a064de1c9716b304246275fa8842327c325fdb88b3a9d5fa49fc85b250c576b",
+    "data/processed/health-planning.json": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48",
+    "data/processed/transit-package.json": "0635671bd94d4a957aa9cd54f02f9143395847923c3fa3a94cea90ec01f911d5",
+    "data/processed/transit-weekday-0800-matrix.npz": "18319d754faa9a17ee764377e9bb00e0768f0d93da7f16a401a7662c457b3b5c",
+    "data/processed/transit-weekday-1000-matrix.npz": "1c06e942fd4fe50057b0322b569e84a502b3dde2509aead735c1b3ac52acd789",
+    "data/processed/transit-saturday-1000-matrix.npz": "ef8900fb931dc82c1907b80585e210977629bc2c79de402eb8e758dfd220d185",
+    "data/processed/transit-sunday-1000-matrix.npz": "9a7491903ba10748b696a13363d09be86a0246141b9a5074078178b09a667b48"
+  },
+  "modelFiles": {
+    "backend/shared_capacity.py": "60f4839385f844a58dc5b4aa52545735f3b92f81544776af823f3c17a440709a",
+    "backend/capacity.py": "976dfd7e9b2d7a007b6dbdd0e5e185b4faada06f4df4e85a7be94ecf2c56f073",
+    "backend/optimizer.py": "1c7743e7e51184ef0a21f38cf0792ae77177d9884c90bdff5599c1020ac87511",
+    "backend/main.py": "f89cb024e29d4dad7510cb3ec566f5467120e1b285db033fb1ca023d7dff47a6",
+    "backend/timetable.py": "ca4dee6c579a8e8be0372200be0e7c4d5221400383de325e8c239c70259b9c35",
+    "scripts/verify_release.py": "0fdf91201bd28fd90155fd58706e7beb2b70b92184884fe4d58aff82b3966057",
+    "scripts/audit_shared_capacity.py": "168c7a74a7b70dc4fae809795e4e28123d75a04f80f898834d6dcb189cd0ca45",
+    "scripts/transit_provenance.py": "7a3a645504896f9076d553d8d5462eb9b0a1b7cd41bd2c07914de21e27522841"
+  },
+  "result": {
+    "scope": "Fixed mandatory sites; shared bed modules and integer physicians; all threshold-feasible edges and separate flows in every profile. Partial clinical/cost calibration; not a location/count optimum, clinical staffing standard or continuous-time service guarantee.",
+    "hospitalCount": 209,
+    "allSitesMandatoryOpen": true,
+    "allSelectedSiteEdges": true,
+    "profileNames": [
+      "weekday-0800",
+      "weekday-1000",
+      "saturday-1000",
+      "sunday-1000"
+    ],
+    "servedPopulationPerProfile": 5614804.0,
+    "coverageTargetPercent": 95.0,
+    "districtFloorPercent": 80.0,
+    "thresholdMinutes": 45.0,
+    "planningVersion": "independent-capacity-2026-10-v2",
+    "timeLimitSeconds": 60.0,
+    "originalAnnualBudgetTRY": 189950685628.6586,
+    "budgetIsOptimizationConstraint": false,
+    "annualDemandCountedOnce": true,
+    "boundScope": "shared_resources_at_fixed_mandatory_sites_all_allocation_edges",
+    "allocationEdgesByProfile": {
+      "weekday-0800": 3093,
+      "weekday-1000": 2622,
+      "saturday-1000": 2403,
+      "sunday-1000": 2261
+    },
+    "solverStatus": 2,
+    "solverReportedGap": null,
+    "minimumAnnualCostLowerBoundTRY": null,
+    "status": "infeasible",
+    "reason": "The shared-resource MILP proved these fixed sites cannot meet all targets.",
+    "selected": [],
+    "profiles": [],
+    "provenOptimal": false,
+    "incumbentValidated": false,
+    "timeLimitedFeasible": false,
+    "budgetStatus": "targets_infeasible",
+    "meetsOriginalBudget": false,
+    "totalBeds": null,
+    "totalDoctors": null,
+    "annualEquivalentCostTRY": null,
+    "costGap": null
+  },
+  "independentResourceCeiling": {
+    "scope": "Independent physical capacity upper bound at the same mandatory plots; costs and budget removed, district floors retained. Includes 0.001 m2 optimistic area tolerance before integer rounding. Homogeneous clinical rates only; not all candidate sites or real Ankara.",
+    "impossibleMandatorySiteIndices": [],
+    "profiles": [
+      {
+        "profile": "weekday-0800",
+        "status": "optimal",
+        "maximumCoveredPopulation": 5598379.235506743,
+        "maximumCoveragePercent": 94.72210025018516,
+        "certifiedPopulationUpperBound": 5598379.235506743,
+        "provinceTargetShortfallResidents": 16424.764493256807,
+        "linearProgrammingDualCertified": true,
+        "districtTargetsFeasible": true,
+        "provinceTargetPossible": false,
+        "solverStatus": 0,
+        "reason": null
+      },
+      {
+        "profile": "weekday-1000",
+        "status": "optimal",
+        "maximumCoveredPopulation": 5676095.235506745,
+        "maximumCoveragePercent": 96.03702059290774,
+        "certifiedPopulationUpperBound": 5676095.235506745,
+        "provinceTargetShortfallResidents": 0.0,
+        "linearProgrammingDualCertified": true,
+        "districtTargetsFeasible": true,
+        "provinceTargetPossible": true,
+        "solverStatus": 0,
+        "reason": null
+      },
+      {
+        "profile": "saturday-1000",
+        "status": "optimal",
+        "maximumCoveredPopulation": 5307483.717989714,
+        "maximumCoveragePercent": 89.80027676995009,
+        "certifiedPopulationUpperBound": 5307483.717989714,
+        "provinceTargetShortfallResidents": 307320.2820102861,
+        "linearProgrammingDualCertified": true,
+        "districtTargetsFeasible": true,
+        "provinceTargetPossible": false,
+        "solverStatus": 0,
+        "reason": null
+      },
+      {
+        "profile": "sunday-1000",
+        "status": "optimal",
+        "maximumCoveredPopulation": 5302760.717989709,
+        "maximumCoveragePercent": 89.72036569914505,
+        "certifiedPopulationUpperBound": 5302760.717989712,
+        "provinceTargetShortfallResidents": 312043.282010288,
+        "linearProgrammingDualCertified": true,
+        "districtTargetsFeasible": true,
+        "provinceTargetPossible": false,
+        "solverStatus": 0,
+        "reason": null
+      }
+    ],
+    "anyProfileProvesTargetsImpossible": true
+  }
+}

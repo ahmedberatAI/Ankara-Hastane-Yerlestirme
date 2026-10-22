@@ -1,4 +1,4 @@
-# EGO tarifesi araştırması ve zaman bağımlı model · v0.5
+# EGO tarifesi araştırması ve zaman bağımlı model
 
 Araştırma güncellemesi: 23 Ekim 2026 TSİ. HTTP gözlem zamanı aşağıda ayrıca belirtilir; belge tarihi bütün kaynakların yeni indirildiği anlamına gelmez. İncelenen EGO deneyi il %95, her ilçe %80, 45 dakika ve en fazla 91 hastane hedeflerini kullanır. 291 tarihsel modelin sonucudur; ulaşım verisi ve varsayımları bağımsız denetimlerle yeniden sınanır.
 
@@ -35,20 +35,20 @@ Daha önce `ankarakart.ego.gov.tr` adresindeki denemede boş HTTP 200 yanıtı a
 
 Eksik koordinatlar, kaynaklar arası 300 m üzeri farklar, kullanılamayan hatlar, çözülemeyen özel sefer notları ve süre tutarsızlıkları [ego-quality.json](../data/processed/ego-quality.json) içinde tek tek tutulur. Kullanılan/yayımlanan sefer sayıları ayrı verilir. Eksikler hizmet yokluğunun kanıtı değildir.
 
-23 Ekim’de tamamlanan ağın kaynak kapsamı:
+23 Ekim’de tamamlanan yeni ağın kaynak kapsamı (ulaşım paketi `ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d`):
 
 | Gösterge | Yeni ağ kaydı |
 |---|---:|
-| Kullanılan hat/yön/varyant | 424 / 665 |
-| Sefer örüntüsü | 537 |
+| Kullanılan hat/yön/varyant | 428 / 665 |
+| Sefer örüntüsü | 543 |
 | Koordinatı olan katalog kimliği | 10.811 / 10.811 |
 | Resmî sorgu / OSM istasyon eşleşmesi | 10.743 / 68 |
 | Tarihsel topluluk kaynağından kullanılan koordinat | 0 |
-| Hafta içi kullanılan / yayımlanan kalkış | 10.397 / 14.414 (%72,13) |
-| Cumartesi kullanılan / yayımlanan kalkış | 8.116 / 10.805 (%75,11) |
-| Pazar kullanılan / yayımlanan kalkış | 7.109 / 9.479 (%75,00) |
+| Hafta içi kullanılan / yayımlanan kalkış | 10.437 / 14.414 (%72,41) |
+| Cumartesi kullanılan / yayımlanan kalkış | 8.143 / 10.805 (%75,36) |
+| Pazar kullanılan / yayımlanan kalkış | 7.136 / 9.479 (%75,28) |
 
-Bu sefer oranları nüfus kapsamı veya bütün gerçek hizmetin tamlığı değildir. 241 dışlanan varyantın 194’ünde yalnız çözülemeyen özel notlar, 24’ünde eksik yol/ray segmenti veya süre, 20’sinde yayımlanmış kalkış yoktur; `117-2`, `479`, `501-2` mesafe tutarsızlığıyla karantinadadır. Ayrıca 7.954 sefer notu çözümlenemedi, 59 varyantın süresi segment alt sınırları nedeniyle yükseltildi. Adres/ilçe kontrolünde 98 uyarı ve kaynak çiftleri arasında 397 mesafe farkı kaydı vardır; bunlar yanlış koordinatı kanıtlayan saha bulguları değildir. Bu kesitte tarihsel ek koordinat kullanılmadığından onun adres çelişkisine bağlı karantina sayısı sıfırdır. Tam koordinat kapsamına rağmen eksik sefer anlamı ve geometri, sonuçları sınırlamaya devam eder.
+Bu sefer oranları nüfus kapsamı veya bütün gerçek hizmetin tamlığı değildir. 237 dışlanan varyantın 196’sında yalnız çözülemeyen özel notlar, 18’inde eksik yol/ray segmenti veya süre, 20’sinde yayımlanmış kalkış yoktur; `117-2`, `479`, `501-2` mesafe tutarsızlığıyla karantinadadır. Ayrıca 8.160 sefer notu çözümlenemedi, 62 varyantın süresi segment alt sınırları nedeniyle yükseltildi. Adres/ilçe kontrolünde 98 uyarı ve kaynak çiftleri arasında 397 mesafe farkı kaydı vardır; bunlar yanlış koordinatı kanıtlayan saha bulguları değildir. Bu kesitte tarihsel ek koordinat kullanılmadığından onun adres çelişkisine bağlı karantina sayısı sıfırdır. Tam koordinat kapsamına rağmen eksik sefer anlamı ve geometri, sonuçları sınırlamaya devam eder. Dar kanıt kümesindeki 24 kaydın tamamı üç örüntüye uygulanmıştır; 3 durak özgün yol kenarına bağlanmış, 2 durak 300 m sınırının dışında kalmıştır. Yeni kullanılabilen varyantlar 516, 560-8, 615 ve 616’dır. 527-1/2/3 ve 610 için yol geometrisi bulunabilse de özel başlangıç notları çözülmediğinden hizmet hâlâ modele eklenmez.
 
 Kaynak tutarlılığı için ayrıca şu kontroller uygulanır:
 
@@ -62,21 +62,27 @@ Not çözümü Türkçenin bütün gramerini yorumlayan bir sistem değildir; de
 
 Örneğin 275 hattındaki `06:35 METRODAN BAŞLAR–07:02 21256 NUMARALI DURAK` notu 21256’da 06.35 kalkışı üretemez. 256’daki servis dışı dönüş ve 312’deki ayrı bitiş cümlesi de ana güzergâhın tamamında yolcu taşıma varsayımına dönüştürülmez. Dışlanan kayıtta `resolutionReason`, `columnSeconds` ve `noteClockSeconds` tutulur. Yeni kaynak ifadeleri ayrıca incelenmelidir; çözülemeyen hizmetin erişimi düşürme etkisi sonuç kapsamının bir parçasıdır.
 
+Genel not çözümünün dışında, **24 tam saat/gün/not kaydı için dar bir kanıt kümesi** hazırlanmıştır. [560-8’in resmî sayfasındaki](https://www.ego.gov.tr/hareketsaatleri?hat_no=560-8) tam 1–55 yönü ve 75 dakika alanı, 8 hafta içi + 6 cumartesi + 6 pazar Sincan kalkışına bağlıdır. [615’in tarihli hareket–kapanış planı](https://www.ego.gov.tr/tr/duyuru/7621/615-gudululus-ve-6151-gudulceltikci-hattinin-servis-saatleri-duzenlenmistir) ise yalnız dört hafta içi Ulus → Güdül kalkışına 95/120 dakika tahmini bütçe verir. **2025 planının Ekim 2026 kapanış geçerliliği doğrulanmamıştır.** Dört kalkışın gözlenen tarifeyle eşleşmesi, eski kapanışları güncel ölçüm yapmaz. 615 dönüşü, hafta sonu, cuma ilavesi ve diğer belirsiz kırsal kayıtlar bu yorumla eklenmez.
+
+Bu kurallar bütün terminal adlarını çözme iddiası taşımaz. Altı gerçek HTML arşivi, gözlem zamanları, gün/saat/yön ayrımları ve açık kalan 560-4, 158, 178, 490, 677 hizmetleri [dar sefer kanıtı belgesinde](service-evidence.md) açıklanır. Kaynak baytı, sıralı durak kimliği veya tam sefer kaydı değişirse ilgili yorum yeniden incelemeye kadar uygulanmaz.
+
 ## Süre nasıl hesaplanıyor?
 
 1. Yolculuk bir normal gün türünde 08.00 veya 10.00’da mahalle temsil noktasından başlar. Her profil ayrı matristir; farklı saatlerin en iyi parçaları birleştirilmez.
 2. Durak erişimi OSM yürüme ağından hesaplanır. Durağa varışa 60 saniye biniş hazırlığı eklenir; bundan önce geçmiş sefer kullanılamaz. Sabit 8/4 dakika bekleme kaldırılmıştır.
-3. Otobüs için yönlü OSM yolları, `bus`/`psv` izinleri ve otobüse özel tek yön etiketleri kullanılır. Durağın en yakın düğümü karşı şeritteyse, en çok 200 m içindeki yakın yol düğümlerinde bağlantı yeniden aranır. Dönüş yasakları ve anlık trafik hâlâ yoktur. Duraklar arasındaki yol, resmî bir araç GPS izi değil, modellenmiş OSM güzergâhıdır.
+3. Otobüs için yönlü OSM yolları, `bus`/`psv` izinleri ve otobüse özel tek yön etiketleri kullanılır. Eski çıkış düğümüne 300 m’den uzak, mevcut yol kenarına 300 m içinde olan durak o kenara izdüşürülebilir; kenarın yönü ve toplam maliyeti korunur. Ayrı şeritler/kenarlar birleştirilmez, eşit yakınlıktaki belirsiz kenarlar dışarıda kalır. Yeni ağda üç durak bu biçimde bağlanmıştır. Bu yeni noktaya bağlanan durak başka şeride yeniden denenmez; diğer duraklarda bağlantı yoksa en çok 200 m içindeki eski yol düğümleri denenebilir. Bu işlem yürüme veya araba ağına yeni bağlantı eklemez. Dönüş yasakları ve anlık trafik hâlâ yoktur. Duraklar arasındaki yol, resmî bir araç GPS izi değil, modellenmiş OSM güzergâhıdır.
 4. Metro için A, M1–M2–M3 ve M4 ray ağları ayrı tutulur. Aynı hattın paralel raylarından bağlı bir bileşen kullanılır; hizmet yönü resmî durak sırasıdır. Koru–Törekent tek araçta devam edebilir; farklı hatlara geçiş yürüyüş ve yeniden biniştir.
 5. Her segmentin süre alt sınırı `max(yol/ray uzunluğu, duraklar arası düz mesafe) / azami hız + 10 saniye` olur; hız otobüste 90, raylı sistemde 80 km/saattir. Duraklar aynı yol düğümüne bağlansa bile farklı koordinatların fiziksel alt sınırı korunur. EGO süre alanının bu minimumlar toplamından kalan negatif olmayan kısmı ağ süresi + 25 saniye ağırlıklarıyla dağıtılır. Minimumlar toplamı daha uzunsa süre yükseltilip raporlanır. Bütün hat süresini tek katsayıyla ölçekleyip bazı segmentlerde alt sınırı kaybetme hatası giderilmiştir. Bu hız ve duruş değerleri ölçüm değil, model varsayımıdır; düz mesafe araç güzergâhı yerine kullanılmaz.
 6. İlk/son yürüyüş en çok 15, her aktarma yürüyüşü en çok 5 dakika; en fazla üç biniş/iki aktarma. Aktarma yürüyüşleri art arda zincirlenerek sınırsız yürüme üretemez. Doğrudan yürüyüş seçilen toplam süre eşiğine kadar mümkündür. Eski modeldeki doğrudan yürüyüş için 15 dakika kesmesi hatalıydı.
 7. Aynı yönlendirme kuralları matris üretimini ve arayüzdeki rota açıklamasını besler. Tek-yolculuk/toplu hesap eşleşmesi, kaçırılan sefer, aktarma sınırı ve kesin biniş zamanı sınanır. Üretilmiş veride her segmentin fiziksel alt sınırı süre dağıtım fonksiyonu çağrılmadan yeniden denetlenir. Bunlar iç tutarlılık kontrolleridir; ölçülmüş saha yolculuğuyla karşılaştırma yerine geçmez. Rotada hat, biniş saati ve bekleme gösterilir; ara durak saati tahmindir.
 
-**Süre alanının yön/çevrim kapsamı her hatta doğrulanamadı.** Bazı durak listeleri gidiş ve dönüş yönlerini içerir; HTML alanı yalnız `Süresi` der. Model bu alanı bilinen durak zincirine dağıtır. Bütün hatların tek yön veya tam çevrim süresi olduğu varsayılmaz ve otomatik 2× düzeltme yapılmaz. Fiziksel hız sınırları terminal beklemesini veya aynı araçla dönüş yönüne devam iznini kanıtlamaz. Kurumsal `stop_times` veya hat bazında doğrulanmış yön süreleri gerekir.
+**Süre alanının yön/çevrim kapsamı her hatta doğrulanamadı.** Bazı durak listeleri gidiş ve dönüş yönlerini içerir; HTML alanı yalnız `Süresi` der. Genel model bu alanı bilinen durak zincirine dağıtır. Yukarıdaki 24 dar kayıt, kendi yön bütçesini kendi durak aralığında yeniden dağıtır; özellikle 615’in 1–86 gidiş süresi tam gidiş–dönüş zamanlarından kesilmez. Bütün hatların tek yön veya tam çevrim süresi olduğu varsayılmaz ve otomatik 2× düzeltme yapılmaz. Fiziksel hız sınırları terminal beklemesini veya aynı araçla dönüş yönüne devam iznini kanıtlamaz. Kurumsal `stop_times` veya hat bazında doğrulanmış yön süreleri gerekir.
+
+Yol kenarı izdüşümleri ayrıca üreticinin bölme fonksiyonundan bağımsız denetlenir. Stop/rapor kimliği, özgün uçlar, kenar oranı, 300 m sınırları ve eklenen noktaya komşu geometri parçalarının yönü sınanır. Altı ondalıklı geometride 0,20 m, tam hassasiyetli kayıtta 0,01 m tolerans kullanılır. Ham OSM varsa gerçek ardışık kenar ve izinli yön de karşılaştırılır; yoksa kaynak denetimi yapılmış sayılmaz. Bu kontrol bütün yol ağı veya gerçek biniş yerinin saha doğrulaması değildir.
 
 ## Kaynak kesitinden sonuç paketine
 
-`transit-package.json`, kaynaklar, ağ/geometri, dört yürüme CSR dosyası, dört profil matrisi, ulaşım kodu ve sıralı talep/aday/hastane/ilçe kimliklerini birlikte bağlar. Paket ancak bütün matrisler tamamlanınca yazılır. Dosyanın kendi `builtAt` zamanı dışında bağlı artifact baytları kimliğe dahildir; kaynakları yeniden işlemek bile paket kimliğini değiştirebilir. Kod satır sonları platformlar arasında normalleştirilir. Önbellek girdi anahtarının yanında gerçek çıktı dosyalarının SHA’sı da kontrol edilir; eski bir işaret dosyası başka sürümün çıktısını geçerli kılamaz.
+`transit-package.json`, kaynaklar, dar sefer kuralları ve altı gerçek kanıt arşivi, ağ/geometri, dört yürüme CSR dosyası, dört profil matrisi, ulaşım kodu ve sıralı talep/aday/hastane/ilçe kimliklerini birlikte bağlar. Paket ancak bütün matrisler tamamlanınca yazılır. Dosyanın kendi `builtAt` zamanı dışında bağlı artifact baytları kimliğe dahildir; kaynakları yeniden işlemek bile paket kimliğini değiştirebilir. Kod satır sonları platformlar arasında normalleştirilir. Önbellek girdi anahtarının yanında gerçek çıktı dosyalarının SHA’sı da kontrol edilir; eski bir işaret dosyası başka sürümün çıktısını geçerli kılamaz.
 
 Yeni ulaşım paketinden sonra bütün kayıtlı çözüm örnekleri yeniden hesaplanır; raporu yazmak tek başına yeterli değildir. Ardından sabit plan testi ve en son manifesto üretilir. Paket uyuşmazlığı arayüzde eski sayıları gizler. Adımlar ve salt okunur denetimler [veri yeniden üretim belgesindedir](../data/README.md).
 

@@ -1018,6 +1018,10 @@ export default function App() {
                     yön/varyantın{" "}
                     {data.metadata.transitDataQuality.routedRouteCount} adedi
                     kullanılabiliyor.
+                    {!!data.metadata.transitDataQuality.reviewedServiceEvents?.appliedCount && (
+                      <> {data.metadata.transitDataQuality.reviewedServiceEvents.appliedCount} özel sefer kaydı,
+                        kaynakla eşleştirilmiş yön ve açık süre varsayımlarıyla eklendi.</>
+                    )}
                   </small>
                 )}
               </span>
@@ -1140,6 +1144,9 @@ export default function App() {
                         ? "Bekleme seçilen saate göre hesaplanır; ara durak geçişleri tahminidir."
                         : "Canlı trafik kullanılmaz."}
                     </small>
+                    {[...new Set(route.boardings.map((b) => b.timingWarning).filter(Boolean))].map((warning) => (
+                      <small className="route-footnote" key={warning}>{warning}</small>
+                    ))}
                   </>
                 ) : (
                   <p className="route-footnote">

@@ -281,6 +281,24 @@ export default function HealthMethod({ data }: { data: Dataset }) {
         ayrıca doğrulanmalıdır.
       </p>
       <p>
+        Açık yol eşleştirme sorunu: bazı duraklar en yakın yol düğümüyle
+        eşleştirilirken karşı taşıt yoluna bağlanabiliyor. 615, 560-8 ve
+        516/616 örneklerinde gereksiz U dönüşleri saptandı; yol sürelerini
+        uzatabilen bu hata henüz tüm ağda giderilmedi. Bu nedenle mevcut
+        EGO hastane sayıları gerçek ihtiyaç tahmini olarak kullanılamaz.
+      </p>
+      {!!data.metadata.transitDataQuality?.reviewedServiceEvents?.appliedCount && (
+        <p>
+          Özel notlu seferlerden {fmt(data.metadata.transitDataQuality.reviewedServiceEvents.appliedCount)} kayıt
+          kaynak, gün, saat, yön ve durak sırası birlikte eşleştirilerek eklendi.
+          560-8'de yayımlı tam yön süresi 75 dakikadır. 615'in yalnız dört hafta içi
+          Ulus→Güdül kalkışında 2025 tarihli planın 95/120 dakikalık süreleri
+          kullanılır; bunların güncel varış ölçümü olduğu doğrulanmadı. Seçilen
+          yönün süre bütçesi yeniden dağıtılır, birleşik tur süresinin bir parçası
+          alınarak yolculuk kısaltılmaz. Ters yön veya desteklenmeyen günler üretilmez.
+        </p>
+      )}
+      <p>
         Durak erişimi ve hastaneye son yürüyüş en çok 15 dakika, aktarma
         yürüyüşü en çok 5 dakika, binişe hazırlık 1 dakika; en fazla 2 aktarma.
         Bunlar model varsayımlarıdır. Doğrudan yürüyüş ise seçilen toplam

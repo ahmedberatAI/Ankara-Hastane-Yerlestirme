@@ -240,6 +240,7 @@ export interface Dataset {
       coordinateStopCount: number;
       usedDepartures: Record<string, number>;
       officialDepartures: Record<string, number>;
+      reviewedServiceEvents?: { appliedCount: number; definedCount: number };
     };
   };
 }
@@ -302,5 +303,7 @@ export interface Route {
     departureTime?: string;
     arrivalTime?: string;
     waitMinutes?: number;
+    timingWarning?: string | null;
+    timingSourceUrls?: string[];
   }[];
 }

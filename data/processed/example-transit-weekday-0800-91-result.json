@@ -3,8 +3,8 @@
   "reason": "Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle 91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.",
   "geographicCertificate": {
     "status": "optimal",
-    "minimumCountLowerBound": 166.0,
-    "feasibleGeographicCount": 166,
+    "minimumCountLowerBound": 165.0,
+    "feasibleGeographicCount": 165,
     "fullCandidateCount": 4701,
     "undominatedCandidateCount": 822,
     "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
@@ -64,7 +64,7 @@
         210
       ]
     },
-    "transitRoutes": 424,
+    "transitRoutes": 428,
     "transitStops": 10811,
     "transitAssumptions": {
       "scheduleAvailable": true,
@@ -105,12 +105,12 @@
     "transitDataQuality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 424,
+      "routedRouteCount": 428,
       "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10397,
-        "saturday": 8116,
-        "sunday": 7109
+        "weekday": 10437,
+        "saturday": 8143,
+        "sunday": 7136
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -123,15 +123,60 @@
       },
       "quarantinedCoordinateCount": 0,
       "coordinateAddressConflictCount": 98,
-      "quarantinedRouteCount": 3
+      "quarantinedRouteCount": 3,
+      "reviewedServiceEvents": {
+        "definedCount": 24,
+        "sourceValidCount": 24,
+        "appliedCount": 24,
+        "appliedEventIds": [
+          "5608-weekday-0740",
+          "5608-weekday-0800",
+          "5608-weekday-1100",
+          "5608-weekday-1415",
+          "5608-weekday-1515",
+          "5608-weekday-1610",
+          "5608-weekday-2100",
+          "5608-weekday-2215",
+          "5608-saturday-1000",
+          "5608-saturday-1145",
+          "5608-saturday-1430",
+          "5608-saturday-1500",
+          "5608-saturday-1600",
+          "5608-saturday-1900",
+          "5608-sunday-0930",
+          "5608-sunday-1130",
+          "5608-sunday-1400",
+          "5608-sunday-1645",
+          "5608-sunday-1900",
+          "5608-sunday-2215",
+          "615-weekday-0630-ulus-gudul",
+          "615-weekday-0900-ulus-gudul",
+          "615-weekday-1500-ulus-gudul",
+          "615-weekday-2000-ulus-gudul"
+        ],
+        "invalidated": [],
+        "notAppliedEventIds": [],
+        "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+        "held": {
+          "615ReturnEvents": 5,
+          "5604DurationCandidates": 21,
+          "otherRoutes": [
+            "158",
+            "178",
+            "490",
+            "677"
+          ],
+          "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+        }
+      }
     },
-    "transitVersion": "ego-scheduled-v2-quality-gates",
-    "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43"
+    "transitVersion": "ego-scheduled-v3-reviewed-events",
+    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d"
   },
   "modelLabel": "EGO resmi kalkışlar · Hafta içi · 08.00 · ara durak süreleri tahmini",
   "transitEvidence": {
-    "version": "ego-scheduled-v2-quality-gates",
-    "packageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
+    "version": "ego-scheduled-v3-reviewed-events",
+    "packageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
     "profile": {
       "day": "weekday",
       "seconds": 28800,
@@ -140,12 +185,12 @@
     "quality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 424,
+      "routedRouteCount": 428,
       "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10397,
-        "saturday": 8116,
-        "sunday": 7109
+        "weekday": 10437,
+        "saturday": 8143,
+        "sunday": 7136
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -158,7 +203,52 @@
       },
       "quarantinedCoordinateCount": 0,
       "coordinateAddressConflictCount": 98,
-      "quarantinedRouteCount": 3
+      "quarantinedRouteCount": 3,
+      "reviewedServiceEvents": {
+        "definedCount": 24,
+        "sourceValidCount": 24,
+        "appliedCount": 24,
+        "appliedEventIds": [
+          "5608-weekday-0740",
+          "5608-weekday-0800",
+          "5608-weekday-1100",
+          "5608-weekday-1415",
+          "5608-weekday-1515",
+          "5608-weekday-1610",
+          "5608-weekday-2100",
+          "5608-weekday-2215",
+          "5608-saturday-1000",
+          "5608-saturday-1145",
+          "5608-saturday-1430",
+          "5608-saturday-1500",
+          "5608-saturday-1600",
+          "5608-saturday-1900",
+          "5608-sunday-0930",
+          "5608-sunday-1130",
+          "5608-sunday-1400",
+          "5608-sunday-1645",
+          "5608-sunday-1900",
+          "5608-sunday-2215",
+          "615-weekday-0630-ulus-gudul",
+          "615-weekday-0900-ulus-gudul",
+          "615-weekday-1500-ulus-gudul",
+          "615-weekday-2000-ulus-gudul"
+        ],
+        "invalidated": [],
+        "notAppliedEventIds": [],
+        "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+        "held": {
+          "615ReturnEvents": 5,
+          "5604DurationCandidates": 21,
+          "otherRoutes": [
+            "158",
+            "178",
+            "490",
+            "677"
+          ],
+          "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+        }
+      }
     },
     "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
   }

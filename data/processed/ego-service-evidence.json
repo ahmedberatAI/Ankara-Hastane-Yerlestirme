@@ -1,0 +1,1546 @@
+{
+  "format": "reviewed-ego-events-v1",
+  "reviewedAt": "2026-10-22T22:09:59.976384+00:00",
+  "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+  "sources": {
+    "ego-5608-accessible-7686": {
+      "id": "ego-5608-accessible-7686",
+      "url": "https://www.ego.gov.tr/engelli/duyurudetay/7686",
+      "finalUrl": "https://www.ego.gov.tr/engelli/duyurudetay/7686",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:06:19.596475+00:00",
+      "sha256": "05f7355b8e9abe3d8da7d5befe48059b8fecd85fe169be70261036b647ad083a",
+      "bytes": 3034,
+      "contentType": "text/html; charset=utf-8",
+      "scope": "Research snapshot only; publication and service validity dates are separate from HTTP observation.",
+      "archiveFile": "data/evidence/ego/ego-5608-accessible-7686.html.gz",
+      "kind": "dated_notice",
+      "routeIds": [
+        "560-8"
+      ]
+    },
+    "ego-615-accessible-7621": {
+      "id": "ego-615-accessible-7621",
+      "url": "https://www.ego.gov.tr/engelli/duyurudetay/7621",
+      "finalUrl": "https://www.ego.gov.tr/engelli/duyurudetay/7621",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:06:18.393478+00:00",
+      "sha256": "66b9d2e31234c5a85141a759958468b659ef74b8e859aeb3cc6d32295b167070",
+      "bytes": 8294,
+      "contentType": "text/html; charset=utf-8",
+      "scope": "Research snapshot only; publication and service validity dates are separate from HTTP observation.",
+      "publicationDate": "2025-08-27",
+      "announcedEffectiveFrom": "2025-08-29",
+      "appendedTimetableValidityDate": null,
+      "warning": "Historical announcement text and appended currently observed timetable must not be assumed to share a validity date.",
+      "archiveFile": "data/evidence/ego/ego-615-accessible-7621.html.gz",
+      "kind": "dated_notice",
+      "routeIds": [
+        "615",
+        "615-1"
+      ]
+    },
+    "ego-615-announcement-7621": {
+      "id": "ego-615-announcement-7621",
+      "url": "https://www.ego.gov.tr/tr/duyuru/7621/615-gudululus-ve-6151-gudulceltikci-hattinin-servis-saatleri-duzenlenmistir",
+      "finalUrl": "https://www.ego.gov.tr/tr/duyuru/7621/615-gudululus-ve-6151-gudulceltikci-hattinin-servis-saatleri-duzenlenmistir",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:06:17.817843+00:00",
+      "sha256": "9fdc1d355bf3d5242a79eef9e74e4275f4b258de652dc8c27d804519af6ef4b2",
+      "bytes": 61605,
+      "contentType": "text/html; charset=utf-8",
+      "scope": "Research snapshot only; publication and service validity dates are separate from HTTP observation.",
+      "publicationDate": "2025-08-27",
+      "announcedEffectiveFrom": "2025-08-29",
+      "announcedEffectiveUntil": null,
+      "serviceValidityAtObservationConfirmed": false,
+      "dateScope": "Dated weekday planned timetable; no end date found, no proof of unchanged closing times in October 2026.",
+      "archiveFile": "data/evidence/ego/ego-615-announcement-7621.html.gz",
+      "kind": "dated_notice",
+      "routeIds": [
+        "615",
+        "615-1"
+      ]
+    },
+    "ego-route-560-8": {
+      "id": "ego-route-560-8",
+      "url": "https://www.ego.gov.tr/hareketsaatleri?hat_no=560-8",
+      "finalUrl": "https://www.ego.gov.tr/hareketsaatleri?hat_no=560-8",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:06:56.804903+00:00",
+      "sha256": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6",
+      "bytes": 115522,
+      "contentType": "text/html; charset=utf-8",
+      "scope": "Research observation; timetable validity and original publication dates are separate.",
+      "packagedRawFile": "data/raw/ego/560-8.html",
+      "packagedRawSha256": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6",
+      "sameBytesAsPackagedRaw": true,
+      "archiveFile": "data/evidence/ego/ego-route-560-8.html.gz",
+      "kind": "timetable",
+      "routeIds": [
+        "560-8"
+      ]
+    },
+    "ego-route-615": {
+      "id": "ego-route-615",
+      "url": "https://www.ego.gov.tr/hareketsaatleri?hat_no=615",
+      "finalUrl": "https://www.ego.gov.tr/hareketsaatleri?hat_no=615",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:06:54.365110+00:00",
+      "sha256": "e11edc1b07ada0c85ea3574ee2ec3d2338c110f27934eced68f390871d6a6c3e",
+      "bytes": 149757,
+      "contentType": "text/html; charset=utf-8",
+      "scope": "Research observation; timetable validity and original publication dates are separate.",
+      "packagedRawFile": "data/raw/ego/615.html",
+      "packagedRawSha256": "e11edc1b07ada0c85ea3574ee2ec3d2338c110f27934eced68f390871d6a6c3e",
+      "sameBytesAsPackagedRaw": true,
+      "archiveFile": "data/evidence/ego/ego-route-615.html.gz",
+      "kind": "timetable",
+      "routeIds": [
+        "615"
+      ]
+    },
+    "ego-route-615-1": {
+      "id": "ego-route-615-1",
+      "url": "https://www.ego.gov.tr/hareketsaatleri?hat_no=615-1",
+      "finalUrl": "https://www.ego.gov.tr/hareketsaatleri?hat_no=615-1",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:06:55.202088+00:00",
+      "sha256": "a2b9bc0b153731947574750378467794ae0492a2d741db667d16dd9bc0843c0c",
+      "bytes": 101231,
+      "contentType": "text/html; charset=utf-8",
+      "scope": "Research observation; timetable validity and original publication dates are separate.",
+      "packagedRawFile": "data/raw/ego/615-1.html",
+      "packagedRawSha256": "a2b9bc0b153731947574750378467794ae0492a2d741db667d16dd9bc0843c0c",
+      "sameBytesAsPackagedRaw": true,
+      "archiveFile": "data/evidence/ego/ego-route-615-1.html.gz",
+      "kind": "timetable",
+      "routeIds": [
+        "615-1"
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "5608-weekday-0740",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 27600,
+      "exactNote": "07:40 SİNCAN",
+      "recordSha256": "955859711d7799b5bc3444736c0a606a5260b08fe1dc737f90b53a48b99721dc",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-0800",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 28800,
+      "exactNote": "08:00 SİNCAN",
+      "recordSha256": "4b77cbd463a98e3331ac757fde2608f1bc21d69ad0f03e1ecfaf7dd766f256ae",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-1100",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 39600,
+      "exactNote": "11:00 SİNCAN",
+      "recordSha256": "a2b9c57eba58d3ff2df2747187d4cf2a2de523e99ec9e9447055166d66c9cc16",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-1415",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 51300,
+      "exactNote": "14:15 SİNCAN",
+      "recordSha256": "fee2a6382a909f690862b9c79a0032b8f2a8086e336e9bbb325cb766e849c1e6",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-1515",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 54900,
+      "exactNote": "15:15 SİNCAN",
+      "recordSha256": "ff8e46f73903270833acaf86ae91f83bd144751cff273ed2c4f24b9564c4bc8c",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-1610",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 58200,
+      "exactNote": "16:10 SİNCAN",
+      "recordSha256": "e7eecd6ecfdb5a7a34c87c7c0c1c410a319b0d921fb24368d841e8367d7fb559",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-2100",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 75600,
+      "exactNote": "21:00 SİNCAN",
+      "recordSha256": "2b293693ee0027f7cb21ab19528bb7afc64cfccd8af2a154d1658d56a1c61cfb",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-weekday-2215",
+      "routeId": "560-8",
+      "calendar": "weekday",
+      "departureSeconds": 80100,
+      "exactNote": "22:15 SİNCAN",
+      "recordSha256": "1281f5dee930a29bcc5a126dc948b81a2e35fba9a7a2c791bc09efea183e88d8",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-saturday-1000",
+      "routeId": "560-8",
+      "calendar": "saturday",
+      "departureSeconds": 36000,
+      "exactNote": "SİNCAN",
+      "recordSha256": "13c5c588d6d7670513383f8724d18baf6baaa019ebda518b7df2e0b334746118",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-saturday-1145",
+      "routeId": "560-8",
+      "calendar": "saturday",
+      "departureSeconds": 42300,
+      "exactNote": "SİNCAN",
+      "recordSha256": "a51df6f8e7545d575e6f5ced6673053992439148b1d936172d9c2b3fde75cc6d",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-saturday-1430",
+      "routeId": "560-8",
+      "calendar": "saturday",
+      "departureSeconds": 52200,
+      "exactNote": "SİNCAN",
+      "recordSha256": "f7f21ff224a966d72ac1e73c6f37449f9e0b9109705a0b02836816e463ce3651",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-saturday-1500",
+      "routeId": "560-8",
+      "calendar": "saturday",
+      "departureSeconds": 54000,
+      "exactNote": "SİNCAN",
+      "recordSha256": "4812216fe500674ab3f8f83afd0eb7ae9e651536c6ab648762f8ce1119210d93",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-saturday-1600",
+      "routeId": "560-8",
+      "calendar": "saturday",
+      "departureSeconds": 57600,
+      "exactNote": "SİNCAN",
+      "recordSha256": "cb516d1730f56ca4e3e756da9eadac21cf8c6618b6fbaf6a333f17239879c624",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-saturday-1900",
+      "routeId": "560-8",
+      "calendar": "saturday",
+      "departureSeconds": 68400,
+      "exactNote": "SİNCAN",
+      "recordSha256": "db511fec9f4cd4cd5f17cb150e64d17fc53d726063f13da0f0258b9d1d0a5327",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-sunday-0930",
+      "routeId": "560-8",
+      "calendar": "sunday",
+      "departureSeconds": 34200,
+      "exactNote": "09:30 SİNCAN",
+      "recordSha256": "10aadb4d7dce52c67b8068cf89dc1676d5f195e553f2ecc9bbe95dfad32a044a",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-sunday-1130",
+      "routeId": "560-8",
+      "calendar": "sunday",
+      "departureSeconds": 41400,
+      "exactNote": "11:30 SİNCAN",
+      "recordSha256": "900d56ffb664b7466a42842abca09fc0afd0a636088b2ae20b24ea74f57c4ee2",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-sunday-1400",
+      "routeId": "560-8",
+      "calendar": "sunday",
+      "departureSeconds": 50400,
+      "exactNote": "14:00 SİNCAN",
+      "recordSha256": "99deb5985950cb28d7aab01e75049dc034f8085b5285817df9a6a7bf98ffb3be",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-sunday-1645",
+      "routeId": "560-8",
+      "calendar": "sunday",
+      "departureSeconds": 60300,
+      "exactNote": "16:45 SİNCAN",
+      "recordSha256": "ba3f9956f9164c29ed3cc8638d6c2ca2f252fb82d49475bd957caad7dc872a37",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-sunday-1900",
+      "routeId": "560-8",
+      "calendar": "sunday",
+      "departureSeconds": 68400,
+      "exactNote": "19:00 SİNCAN",
+      "recordSha256": "2e0fe1c5e80aecdddafaf01d93a73671a6e92f9da0f17bcd4bbfbcdc0644d1b6",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "5608-sunday-2215",
+      "routeId": "560-8",
+      "calendar": "sunday",
+      "departureSeconds": 80100,
+      "exactNote": "SİNCAN",
+      "recordSha256": "ce8274bb634ddca3996ff9551abd2fafec0d3960e6151235b6c5ac8ead99d690",
+      "stopSequenceSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+      "direction": "Sincan → Ayaş",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-560-8",
+        "sourceField": "Süresi",
+        "publishedMinutes": 75,
+        "scope": "Complete single-direction published chain1..55; route origin and destination addresses agree. No slicing or halving.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "start": {
+          "stopId": "50328",
+          "sequenceOneBased": 1,
+          "name": "SİNCAN LALE MEYDANI",
+          "address": "Atatürk Mh.Ankara Cd.Sincan",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "50002",
+          "sequenceOneBased": 55,
+          "name": "SÜLÜKLÜ SK.",
+          "address": "Ferahfaki Mh.Emine Tevfika Ayaşlı Cd.Ayaş",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          54
+        ],
+        "stopIdsSha256": "4333360bdc2cf6580eb2fcf295f8fecc699fe6910dd1d5a7bbef33bd8cc84056",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 4500,
+      "dependentRouteRawHashes": {
+        "560-8": "51f04d6f0dc7b063341cf950445230c178abac87f8b9bbfed9baeff8dd4520b6"
+      },
+      "evidenceSourceIds": [
+        "ego-5608-accessible-7686",
+        "ego-route-560-8"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "Published full one-way route duration allocated over the full stop chain; no measured per-trip arrival time."
+    },
+    {
+      "id": "615-weekday-0630-ulus-gudul",
+      "routeId": "615",
+      "calendar": "weekday",
+      "departureSeconds": 23400,
+      "exactNote": "ULUS TAN",
+      "recordSha256": "ca881dca30873a1243943549ce357b3b44d020197f8b0a319dabe1361c74aa79",
+      "stopSequenceSha256": "fd68ca5dc50f110c42b1534b69316088900e9c69cc69a56b676329a29d529927",
+      "direction": "Ulus → Güdül",
+      "durationEvidence": {
+        "sourceId": "ego-615-announcement-7621",
+        "sourceTableIndexZeroBased": 0,
+        "plannedRowNumber": 1,
+        "plannedCells": [
+          "1",
+          "06:30",
+          "08:05",
+          "ULUS'TAN",
+          "MEVCUT"
+        ],
+        "plannedRowSha256": "b7eb9628863a0ab4555d6bd8cc1c0079f3cd374926b4df6aad8749a6e8442c84",
+        "departureClock": "06:30",
+        "closingClock": "08:05",
+        "elapsedMinutes": 95.0,
+        "directionLabel": "ULUS'TAN",
+        "changeLabel": "MEVCUT",
+        "type": "dated_planned_departure_to_closing_interval",
+        "announcedCalendar": "weekday",
+        "publicationDate": "2025-08-27",
+        "announcedEffectiveFrom": "2025-08-29",
+        "announcedEffectiveUntil": null,
+        "currentClosingTimeConfirmed": false,
+        "sourceBudgetSeconds": 5700,
+        "applyAsTotalOfThisDirection": true,
+        "allowProportionalSliceOfExistingLoopOffsets": false,
+        "notes": "Clock subtraction is factual; propagation of historical planned closing times to the current route/calendar is an explicit unvalidated assumption.",
+        "closingStopMapping": "Cross-source terminal inference"
+      },
+      "timingConfidence": "dated_planned_terminal_interval_with_unverified_current_validity",
+      "span": {
+        "start": {
+          "stopId": "11554",
+          "sequenceOneBased": 1,
+          "name": "ÇEVİKKUVVET",
+          "address": "Zübeyde Hanım Mh.İstanbul Cd.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "57033",
+          "sequenceOneBased": 86,
+          "name": "GÜDÜL OTOBÜS YAZIHANESİ",
+          "address": "Yeni Mh.İnkılap Cd.Güdül",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          85
+        ],
+        "stopIdsSha256": "dcd728c396ce7d63347d26fbfab1f0c55b47b8edbd6beeb544b7a03ba488253c",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 5700,
+      "dependentRouteRawHashes": {
+        "615": "e11edc1b07ada0c85ea3574ee2ec3d2338c110f27934eced68f390871d6a6c3e",
+        "615-1": "a2b9bc0b153731947574750378467794ae0492a2d741db667d16dd9bc0843c0c"
+      },
+      "evidenceSourceIds": [
+        "ego-615-accessible-7621",
+        "ego-615-announcement-7621",
+        "ego-route-615",
+        "ego-route-615-1"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "2025 planned weekday terminal interval applied to the matching published outbound event; current validity and terminal identification are not a measured stop-time guarantee."
+    },
+    {
+      "id": "615-weekday-0900-ulus-gudul",
+      "routeId": "615",
+      "calendar": "weekday",
+      "departureSeconds": 32400,
+      "exactNote": "ULUS TAN",
+      "recordSha256": "46356c77e64b3b336c8232822f139ac2685b242cf3663301601ad9c0e028572b",
+      "stopSequenceSha256": "fd68ca5dc50f110c42b1534b69316088900e9c69cc69a56b676329a29d529927",
+      "direction": "Ulus → Güdül",
+      "durationEvidence": {
+        "sourceId": "ego-615-announcement-7621",
+        "sourceTableIndexZeroBased": 0,
+        "plannedRowNumber": 4,
+        "plannedCells": [
+          "4",
+          "09:00",
+          "11:00",
+          "ULUS'TAN",
+          "MEVCUT"
+        ],
+        "plannedRowSha256": "fd4702058e3e170a4c1de44fc8b9859be9b81c5a02d58241b92d8b21504adf13",
+        "departureClock": "09:00",
+        "closingClock": "11:00",
+        "elapsedMinutes": 120.0,
+        "directionLabel": "ULUS'TAN",
+        "changeLabel": "MEVCUT",
+        "type": "dated_planned_departure_to_closing_interval",
+        "announcedCalendar": "weekday",
+        "publicationDate": "2025-08-27",
+        "announcedEffectiveFrom": "2025-08-29",
+        "announcedEffectiveUntil": null,
+        "currentClosingTimeConfirmed": false,
+        "sourceBudgetSeconds": 7200,
+        "applyAsTotalOfThisDirection": true,
+        "allowProportionalSliceOfExistingLoopOffsets": false,
+        "notes": "Clock subtraction is factual; propagation of historical planned closing times to the current route/calendar is an explicit unvalidated assumption.",
+        "closingStopMapping": "Cross-source terminal inference"
+      },
+      "timingConfidence": "dated_planned_terminal_interval_with_unverified_current_validity",
+      "span": {
+        "start": {
+          "stopId": "11554",
+          "sequenceOneBased": 1,
+          "name": "ÇEVİKKUVVET",
+          "address": "Zübeyde Hanım Mh.İstanbul Cd.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "57033",
+          "sequenceOneBased": 86,
+          "name": "GÜDÜL OTOBÜS YAZIHANESİ",
+          "address": "Yeni Mh.İnkılap Cd.Güdül",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          85
+        ],
+        "stopIdsSha256": "dcd728c396ce7d63347d26fbfab1f0c55b47b8edbd6beeb544b7a03ba488253c",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 7200,
+      "dependentRouteRawHashes": {
+        "615": "e11edc1b07ada0c85ea3574ee2ec3d2338c110f27934eced68f390871d6a6c3e",
+        "615-1": "a2b9bc0b153731947574750378467794ae0492a2d741db667d16dd9bc0843c0c"
+      },
+      "evidenceSourceIds": [
+        "ego-615-accessible-7621",
+        "ego-615-announcement-7621",
+        "ego-route-615",
+        "ego-route-615-1"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "2025 planned weekday terminal interval applied to the matching published outbound event; current validity and terminal identification are not a measured stop-time guarantee."
+    },
+    {
+      "id": "615-weekday-1500-ulus-gudul",
+      "routeId": "615",
+      "calendar": "weekday",
+      "departureSeconds": 54000,
+      "exactNote": "ULUS TAN",
+      "recordSha256": "df3ded5ae61434aaeac357e03a1876cdb1ce7a2658c696ebaab409961a3a9eee",
+      "stopSequenceSha256": "fd68ca5dc50f110c42b1534b69316088900e9c69cc69a56b676329a29d529927",
+      "direction": "Ulus → Güdül",
+      "durationEvidence": {
+        "sourceId": "ego-615-announcement-7621",
+        "sourceTableIndexZeroBased": 0,
+        "plannedRowNumber": 6,
+        "plannedCells": [
+          "6",
+          "15:00",
+          "17:00",
+          "ULUS'TAN",
+          "SAAT DEĞİŞTİ"
+        ],
+        "plannedRowSha256": "4aa47ad378a3df252b9b280d03b797067b2a31ac23aba308fa2b4a3382f8dcca",
+        "departureClock": "15:00",
+        "closingClock": "17:00",
+        "elapsedMinutes": 120.0,
+        "directionLabel": "ULUS'TAN",
+        "changeLabel": "SAAT DEĞİŞTİ",
+        "type": "dated_planned_departure_to_closing_interval",
+        "announcedCalendar": "weekday",
+        "publicationDate": "2025-08-27",
+        "announcedEffectiveFrom": "2025-08-29",
+        "announcedEffectiveUntil": null,
+        "currentClosingTimeConfirmed": false,
+        "sourceBudgetSeconds": 7200,
+        "applyAsTotalOfThisDirection": true,
+        "allowProportionalSliceOfExistingLoopOffsets": false,
+        "notes": "Clock subtraction is factual; propagation of historical planned closing times to the current route/calendar is an explicit unvalidated assumption.",
+        "closingStopMapping": "Cross-source terminal inference"
+      },
+      "timingConfidence": "dated_planned_terminal_interval_with_unverified_current_validity",
+      "span": {
+        "start": {
+          "stopId": "11554",
+          "sequenceOneBased": 1,
+          "name": "ÇEVİKKUVVET",
+          "address": "Zübeyde Hanım Mh.İstanbul Cd.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "57033",
+          "sequenceOneBased": 86,
+          "name": "GÜDÜL OTOBÜS YAZIHANESİ",
+          "address": "Yeni Mh.İnkılap Cd.Güdül",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          85
+        ],
+        "stopIdsSha256": "dcd728c396ce7d63347d26fbfab1f0c55b47b8edbd6beeb544b7a03ba488253c",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 7200,
+      "dependentRouteRawHashes": {
+        "615": "e11edc1b07ada0c85ea3574ee2ec3d2338c110f27934eced68f390871d6a6c3e",
+        "615-1": "a2b9bc0b153731947574750378467794ae0492a2d741db667d16dd9bc0843c0c"
+      },
+      "evidenceSourceIds": [
+        "ego-615-accessible-7621",
+        "ego-615-announcement-7621",
+        "ego-route-615",
+        "ego-route-615-1"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "2025 planned weekday terminal interval applied to the matching published outbound event; current validity and terminal identification are not a measured stop-time guarantee."
+    },
+    {
+      "id": "615-weekday-2000-ulus-gudul",
+      "routeId": "615",
+      "calendar": "weekday",
+      "departureSeconds": 72000,
+      "exactNote": "ULUS TAN",
+      "recordSha256": "92834e700028ae8b02f1c4e720629ee8a551dd6be17accec443036e614ca9b48",
+      "stopSequenceSha256": "fd68ca5dc50f110c42b1534b69316088900e9c69cc69a56b676329a29d529927",
+      "direction": "Ulus → Güdül",
+      "durationEvidence": {
+        "sourceId": "ego-615-announcement-7621",
+        "sourceTableIndexZeroBased": 0,
+        "plannedRowNumber": 8,
+        "plannedCells": [
+          "8",
+          "20:00",
+          "22:00",
+          "ULUS'TAN",
+          "EKLENEN"
+        ],
+        "plannedRowSha256": "19856bc4b5375354c259810260012e4fe25317e2f74ce7f21e853f16867f4e5b",
+        "departureClock": "20:00",
+        "closingClock": "22:00",
+        "elapsedMinutes": 120.0,
+        "directionLabel": "ULUS'TAN",
+        "changeLabel": "EKLENEN",
+        "type": "dated_planned_departure_to_closing_interval",
+        "announcedCalendar": "weekday",
+        "publicationDate": "2025-08-27",
+        "announcedEffectiveFrom": "2025-08-29",
+        "announcedEffectiveUntil": null,
+        "currentClosingTimeConfirmed": false,
+        "sourceBudgetSeconds": 7200,
+        "applyAsTotalOfThisDirection": true,
+        "allowProportionalSliceOfExistingLoopOffsets": false,
+        "notes": "Clock subtraction is factual; propagation of historical planned closing times to the current route/calendar is an explicit unvalidated assumption.",
+        "closingStopMapping": "Cross-source terminal inference"
+      },
+      "timingConfidence": "dated_planned_terminal_interval_with_unverified_current_validity",
+      "span": {
+        "start": {
+          "stopId": "11554",
+          "sequenceOneBased": 1,
+          "name": "ÇEVİKKUVVET",
+          "address": "Zübeyde Hanım Mh.İstanbul Cd.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "57033",
+          "sequenceOneBased": 86,
+          "name": "GÜDÜL OTOBÜS YAZIHANESİ",
+          "address": "Yeni Mh.İnkılap Cd.Güdül",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "indicesZeroBasedInclusive": [
+          0,
+          85
+        ],
+        "stopIdsSha256": "dcd728c396ce7d63347d26fbfab1f0c55b47b8edbd6beeb544b7a03ba488253c",
+        "traversal": "forward in the published stop order; no reversal, wrap, synthetic connector or through-terminal continuation"
+      },
+      "durationBudgetSeconds": 7200,
+      "dependentRouteRawHashes": {
+        "615": "e11edc1b07ada0c85ea3574ee2ec3d2338c110f27934eced68f390871d6a6c3e",
+        "615-1": "a2b9bc0b153731947574750378467794ae0492a2d741db667d16dd9bc0843c0c"
+      },
+      "evidenceSourceIds": [
+        "ego-615-accessible-7621",
+        "ego-615-announcement-7621",
+        "ego-route-615",
+        "ego-route-615-1"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "2025 planned weekday terminal interval applied to the matching published outbound event; current validity and terminal identification are not a measured stop-time guarantee."
+    }
+  ],
+  "held": {
+    "615ReturnEvents": 5,
+    "5604DurationCandidates": 21,
+    "otherRoutes": [
+      "158",
+      "178",
+      "490",
+      "677"
+    ],
+    "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+  }
+}
