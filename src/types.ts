@@ -1,4 +1,15 @@
 export type Mode = "car" | "transit";
+export type TransitProfile =
+  | "weekday-0800"
+  | "weekday-1000"
+  | "saturday-1000"
+  | "sunday-1000";
+export const transitProfileLabels: Record<TransitProfile, string> = {
+  "weekday-0800": "Hafta içi · 08.00",
+  "weekday-1000": "Hafta içi · 10.00",
+  "saturday-1000": "Cumartesi · 10.00",
+  "sunday-1000": "Pazar · 10.00",
+};
 export interface Scenario {
   mode: Mode;
   threshold: number;
@@ -11,6 +22,7 @@ export interface Scenario {
   costTolerance: number;
   hospitalLimit: number | null;
   operatingCostMultiplier: number;
+  transitProfile: TransitProfile;
 }
 export interface Place {
   id: string;
@@ -177,6 +189,14 @@ export interface Dataset {
     transitRoutes?: number;
     transitStops?: number;
     existingHospitalCount: number;
+    transitDataQuality?: {
+      officialRouteCount: number;
+      officialStopCount: number;
+      routedRouteCount: number;
+      coordinateStopCount: number;
+      usedDepartures: Record<string, number>;
+      officialDepartures: Record<string, number>;
+    };
   };
 }
 export interface Assignment {
@@ -208,6 +228,7 @@ export interface Result {
   scenario: Scenario;
   metadata: Dataset["metadata"];
   modelLabel: string;
+  transitEvidence?: { scope: string };
   existingComparison?: Metrics & { hospitalCount: number };
   maximumCoveragePercent?: number;
   limitingDistricts?: { name: string; maximumPercent: number }[];
@@ -230,5 +251,12 @@ export interface Route {
   candidate: string;
   note: string;
   legs: { kind: string; label: string; coordinates: [number, number][] }[];
-  boardings: { route: string; stop: string; mode: string }[];
+  boardings: {
+    route: string;
+    stop: string;
+    mode: string;
+    departureTime?: string;
+    arrivalTime?: string;
+    waitMinutes?: number;
+  }[];
 }

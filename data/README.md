@@ -12,12 +12,10 @@
 | `unmatched-neighborhoods.json`          | Konumu eşleşmeyen yayımlanmış mahalleler ve nedenleri; il–mahalle toplam farkı ayrıca metaveride                         |
 | `province.geojson`, `districts.geojson` | Görselleştirme için sadeleştirilmiş OSM sınırları, WGS84                                                                 |
 | `roads.geojson`                         | Görsel ana yol katmanı; yönlendirme grafiğinin tamamı değildir                                                           |
-| `transit-lines.geojson`                 | OSM ilişki geometrileri; model filtresinden daha geniş görsel katman, aktif hizmet garantisi yok                         |
+| `transit-lines.geojson`                 | Kullanılabilen resmî hatlar arasında OSM üzerinde modellenmiş geometri; görsel sadeleştirme uygulanır                         |
 | `graph-coordinates.npy`                 | Yol grafiği düğümleri: `[boylam,enlem]`, WGS84                                                                           |
 | `drive-graph.npz`, `walk-graph.npz`     | SciPy CSR ağları, kenar maliyeti **saniye**                                                                              |
 | `car-matrix.npz`, `transit-matrix.npz`  | `minutes` dizisi: satırlar talepler; sütunlar önce adaylar, ardından mevcut hastaneler; **dakika**, bağlantı yoksa `inf` |
-| `transit-graph.npz`                     | Durak, araç içi, talep ve varış durum grafiği; saniye                                                                    |
-| `transit-details.json.gz`               | Durum düğümleri, biniş/yürüme/araç kenar tipleri, gerçek üye yol geometrileri                                            |
 | `quality-report.json`                   | Aday–yol/ray kesişim kontrolü, nüfus ve matris boyutları                                                                 |
 | `example-*-result.json`                 | Sürüm hazırlanırken hesaplanan, gerçek çözüm çıktıları; uygulama yerine sabit sonuç göstermez                            |
 | `manifest.json`                         | Kaynak/çıktı bütünlük değerleri                                                                                          |
@@ -25,6 +23,18 @@
 `id` ve `districtId` TÜİK yerleşim kodlarıdır, metin olarak tutulur. `node` ilgili yol grafiğinde sıfır tabanlı satır indeksidir; OSM kimliği değildir. Talep `osmRef` alanı gerçek OSM nesnesini gösterir. Aday kimliğinin `H-` devamı, üretildiği mahallenin kodudur; koordinatı mahalle merkezinin kendisi değildir. `snapMeters` / `accessMeters` varsayılan son erişim bağlantılarıdır. OSM mevcut hastanelerinin kapasite bilgisi doğrulanmamıştır. Yeni tesislerin kapasitesi çözüm çıktısında bulunur.
 
 Nüfus CSV’si ilk çalışma kitabının ilgili alanlarını aktarır. OSM ile coğrafi eşleştirme yalnız `dataset.json` içinde yapılır. Kaynaklarını değiştirmek isteyenler, aynı mahalle/ad sırasını varsaymak yerine kimliklerle birleştirmelidir.
+
+## EGO v0.4 dosyaları
+
+- `ego-official.json`: 665 resmî yön/varyant, üç gün türünün kalkışları/notları, durak sırası; 666 ham HTML kimliği.
+- `ego-network.json.gz`: kullanılan duraklar, koordinat kökeni, sefer örüntüleri, tahmini ara durak zamanları ve ağ güzergâhları. Ara durak zamanları ölçülmüş veri değildir.
+- `ego-access.npz`, `ego-egress.npz`, `ego-transfers.npz`, `ego-direct.npz`: seyrek yürüme bağlantıları; saniye. CSR'de **olmayan giriş sıfır süre değil, bağlantı yok** anlamındadır.
+- `transit-{weekday-0800,weekday-1000,saturday-1000,sunday-1000}-matrix.npz`: gün/başlangıç saati başına dakika matrisi. 120 dakika üzeri `inf`. `transit-matrix.npz` varsayılan hafta içi 10.00 kopyasıdır.
+- `ego-quality.json`: eksik duraklar, kullanılamayan hatlar, özel sefer notları, fiziksel süre alt sınırı düzeltmeleri ve kaynak farkları.
+- `transit-validation.json`: 291 tekrar üretimi, yalnız yürüyüş düzeltmesi, dört 91 testi, ilçe tabanı duyarlılığı ve bağımsız rota kontrolleri.
+- `example-transit-*-91-result.json`: dört zaman profiline ait tam 91 deneyi çıktıları.
+
+Eski `transit-graph.npz` ve `transit-details.json.gz` çalışma zamanı verileri kaldırıldı. Önceki sürüm Git geçmişindeki `d2c5e22` commit'inde korunur. `build_transit.py` yalnız eski modeli/temel aday büyütme ara adımını üretir; güncel EGO modelini üretmek için aşağıdaki `build_timetable.py` adımı zorunludur.
 
 ## Veriyi yeniden oluşturma
 
@@ -38,6 +48,9 @@ Repo kökünde, Python bağımlılıkları kurulduktan sonra:
 .venv\Scripts\python.exe scripts/build_transit.py
 .venv\Scripts\python.exe scripts/expand_sites.py
 .venv\Scripts\python.exe scripts/calibrate_health.py
+.venv\Scripts\python.exe scripts/fetch_ego.py
+.venv\Scripts\python.exe scripts/build_timetable.py
+.venv\Scripts\python.exe scripts/verify_transit.py --write
 .venv\Scripts\python.exe scripts/audit_data.py
 .venv\Scripts\python.exe scripts/verify_release.py --write-examples
 .venv\Scripts\python.exe scripts/manifest.py
@@ -68,3 +81,5 @@ Harita altlığı yalnız görseldir. Sonuçlar canlı harita karolarından hesa
 `expand_sites.py`, orijinal 1.397 adaya 3.304 büyük yapı izi ekler. Aynı yol girişini ve daha uzun/eşit bağlantıyı kullanır. Transit varış düğümleri çıkışsızdır; eski yürüyüş girişlerinin sürelerine bağlantı farkı eklenir, 15 dakika sınırı tekrar uygulanır, yeni hedeflere Dijkstra çalışır. Daha uzun bağlantı yeni erişim kenarı yaratamayacağı için bu güncelleme aynı ağ varsayımları altında tamdır. Yeniden çalıştırma idempotenttir; yeni kaynak üretiminde önce temel iki ağ betiği çalıştırılmalıdır.
 
 API v0.3 alanı `contactsPerDoctor`, eski `visitsPerDoctor` yerine temas (başvuru + yatış) kapasitesidir. Bilinmeyen girdi alanları sessizce yok sayılmaz; 422 ile reddedilir.
+
+Yalnız tarife güncellemesi için `fetch_ego.py --refresh`, `build_timetable.py`, `verify_transit.py --write`, `verify_release.py --write-report` ve `manifest.py` kullanılır. Ham kaynakların tamamı değiştiyse kapasite örnekleri de `verify_release.py --write-examples` ile yeniden çözülmelidir. Tarife doğrulaması `verify_transit.py` ile çevrimdışı çalışır. API v0.4 `transitProfile` alanı dört izinli profilden birini seçer; varsayılan `weekday-1000`.

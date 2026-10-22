@@ -16,7 +16,7 @@ def record(path):
 
 def run():
     data = json.loads((OUT/'dataset.json').read_text(encoding='utf-8'))
-    source_names = ['2025ADNKS_FavoriTablolar.xlsx','turkey-latest.osm.pbf','ankara-osm.json.gz','health/siy2024.pdf','health/costs2024.pdf','health/ankara-university-2024.pdf','health/mlp-2024.pdf']
+    source_names = ['2025ADNKS_FavoriTablolar.xlsx','turkey-latest.osm.pbf','ankara-osm.json.gz','health/siy2024.pdf','health/costs2024.pdf','health/ankara-university-2024.pdf','health/mlp-2024.pdf','ego/community-ankara.zip','ego/directory.html']
     output = {'createdAt':datetime.now(timezone.utc).isoformat(),
               'populationReferenceDate':data['metadata']['referenceDate'], 'osmSnapshotDate':data['metadata']['osmDate'],
               'sources':[record(RAW/name) for name in source_names if (RAW/name).exists()],

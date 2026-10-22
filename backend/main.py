@@ -1,4 +1,3 @@
-import gzip
 import json
 from functools import lru_cache
 from pathlib import Path
@@ -16,10 +15,11 @@ from pydantic import BaseModel, Field
 from backend.optimizer import metrics
 from backend.capacity import solve_capacity
 from backend.feasibility import geographic_bound
+from backend.timetable import DEFAULT_PROFILE, PROFILES, journey, load_network
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.3.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.4.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -39,9 +39,9 @@ def site_conflicts():
 def dataset():
     return json.loads((DATA / 'dataset.json').read_text(encoding='utf-8'))
 
-@lru_cache(maxsize=2)
-def matrix(mode):
-    path = DATA / f'{mode}-matrix.npz'
+@lru_cache(maxsize=5)
+def matrix(mode,profile=DEFAULT_PROFILE):
+    path = DATA / (f'transit-{profile}-matrix.npz' if mode=='transit' else 'car-matrix.npz')
     if not path.exists():
         raise HTTPException(409, 'Bu ulaşım modu için ağ matrisi henüz hazırlanmadı.')
     return np.load(path)['minutes']
@@ -53,11 +53,6 @@ def graph(name):
 @lru_cache(maxsize=1)
 def coordinates():
     return np.load(DATA / 'graph-coordinates.npy')
-
-@lru_cache(maxsize=1)
-def transit_details():
-    with gzip.open(DATA / 'transit-details.json.gz', 'rt', encoding='utf-8') as f:
-        return json.load(f)
 
 class Scenario(BaseModel):
     model_config = {'extra': 'forbid'}
@@ -72,9 +67,10 @@ class Scenario(BaseModel):
     costTolerance: float = Field(default=10, ge=0, le=30)
     hospitalLimit: int | None = Field(default=None, ge=1, le=1000)
     operatingCostMultiplier: float = Field(default=1, ge=.5, le=2)
+    transitProfile: Literal['weekday-0800','weekday-1000','saturday-1000','sunday-1000'] = DEFAULT_PROFILE
 
 def travel_times(s):
-    times = matrix(s.mode).astype(float)
+    times = matrix(s.mode,s.transitProfile).astype(float)
     if s.mode == 'car' and s.trafficFactor != 1:
         data = dataset()
         origins = np.array([x['snapMeters'] / 75 for x in data['demands']])
@@ -100,9 +96,9 @@ def benchmark_91():
     return FileResponse(path, media_type='application/json')
 
 @lru_cache(maxsize=24)
-def count_bound(mode,threshold,coverage,district_floor,traffic):
+def count_bound(mode,threshold,coverage,district_floor,traffic,profile=DEFAULT_PROFILE):
     data=dataset()
-    return geographic_bound(travel_times(Scenario(mode=mode,threshold=threshold,trafficFactor=traffic))[:,:len(data['candidates'])],
+    return geographic_bound(travel_times(Scenario(mode=mode,threshold=threshold,trafficFactor=traffic,transitProfile=profile))[:,:len(data['candidates'])],
         np.array([d['population'] for d in data['demands']]),np.array([d['districtId'] for d in data['demands']]),
         data['districts'],data['metadata']['provincePopulation'],threshold,coverage/100,district_floor/100)
 
@@ -124,7 +120,7 @@ def cached_solve(serialized):
     district_ids = np.array([d['districtId'] for d in data['demands']])
     certificate = None
     if s.hospitalLimit is not None:
-        certificate = count_bound(s.mode,s.threshold,s.coverageTarget,s.districtFloor,s.trafficFactor)
+        certificate = count_bound(s.mode,s.threshold,s.coverageTarget,s.districtFloor,s.trafficFactor,s.transitProfile)
     if certificate and (certificate['status']=='infeasible' or
                        certificate['minimumCountLowerBound'] is not None and certificate['minimumCountLowerBound']>s.hospitalLimit+1e-6):
         result={'status':'infeasible','reason':f'{s.hospitalLimit} tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.',
@@ -139,7 +135,11 @@ def cached_solve(serialized):
         if certificate: result['geographicCertificate']=certificate
     result['scenario'] = s.model_dump()
     result['metadata'] = data['metadata']
-    result['modelLabel'] = 'Tarifesiz toplu taşıma ağ senaryosu' if s.mode == 'transit' else 'OSM yol ağı · tahmini sürüş süresi'
+    result['modelLabel'] = ('EGO resmi kalkışlar · '+PROFILES[s.transitProfile]['label']+' · ara durak süreleri tahmini') if s.mode == 'transit' else 'OSM yol ağı · tahmini sürüş süresi'
+    if s.mode=='transit':
+        result['transitEvidence']={'version':data['metadata']['transitVersion'],'profile':PROFILES[s.transitProfile],
+            'quality':data['metadata']['transitDataQuality'],
+            'scope':'Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir.'}
     if 'selectedIndices' in result:
         capacities = {c['candidateIndex']: c for c in result.pop('capacitySites')}
         result['selected'] = [{**data['candidates'][i], **capacities[i]} for i in result['selectedIndices']]
@@ -202,23 +202,35 @@ def route(request: RouteRequest):
         legs.append({'kind': 'connector', 'label': 'Hastane giriş bağlantısı',
                      'coordinates': [coordinates()[candidate['node']].tolist(), [candidate['lon'], candidate['lat']]]})
     else:
-        details = transit_details()
-        start, end = details['originBase']+di, details['destinationBase']+ci
-        distances, predecessors = dijkstra(graph('transit'), indices=start, return_predecessors=True)
-        path = reconstruct(predecessors, start, end)
-        for a, b in zip(path[:-1], path[1:]):
-            kind = details['edgeTypes'].get(f'{a}:{b}')
-            n1, n2 = details['nodes'][a], details['nodes'][b]
-            if kind == 'board':
-                boardings.append({'route': n2.get('route'), 'stop': n1['name'], 'mode': n2.get('mode')})
-            if kind == 'ride':
-                legs.append({'kind': 'ride', 'label': n1.get('route', 'Toplu taşıma'), 'coordinates': details['geometries'].get(f'{a}:{b}', [])})
-            if kind == 'walk':
-                geom = street_path('walk', n1['streetNode'], n2['streetNode'])
-                legs.append({'kind': 'walk', 'label': 'Yürüyüş ağı', 'coordinates': geom})
-                for node in (n1, n2):
-                    legs.append({'kind': 'connector', 'label': 'Temsil / durak giriş bağlantısı', 'coordinates':
-                                 [[node['lon'], node['lat']], coordinates()[node['streetNode']].tolist()]})
+        network=load_network()[0]
+        exact,path=journey(di,ci,request.transitProfile)
+        if not path or abs(exact-minutes)>.001:
+            raise HTTPException(409,'Tarifeli rota ile kayıtlı matris eşleşmiyor; veri paketini yeniden oluşturun.')
+        clock=PROFILES[request.transitProfile]['seconds']
+        fmt=lambda s:f'{int(s//3600):02d}:{int(s%3600//60):02d}'
+        for part in path:
+            if part['kind']=='ride':
+                pattern=network['patterns'][part['pattern']]
+                a,b=part['boardPosition'],part['alightPosition']
+                stop=network['stops'][pattern['stops'][a]]
+                boardings.append({'route':pattern['route'],'stop':stop['name'],'mode':pattern['mode'],
+                    'departureTime':fmt(part['departureSeconds']),'arrivalTime':fmt(part['arrivalSeconds']),
+                    'waitMinutes':(part['departureSeconds']-clock)/60,
+                    'timeBasis':'Terminal kalkışı resmi; ara durak zamanı tahmini'})
+                for key in pattern['segmentKeys'][a:b]:
+                    legs.append({'kind':'ride','label':pattern['route']+' · duraklar arası OSM güzergâhı',
+                                 'coordinates':network['segments'][key]['coordinates']})
+                clock=part['arrivalSeconds']
+            else:
+                kind=part['kind']
+                n1=demand if kind in ('access','direct') else network['stops'][part['from']]
+                n2=candidate if kind in ('egress','direct') else network['stops'][part['to']]
+                start=n1.get('walkNode',n1.get('node'));end=n2.get('walkNode',n2.get('node'))
+                legs.append({'kind':'walk','label':'Yürüyüş ağı','coordinates':street_path('walk',start,end)})
+                for node,k in ((n1,start),(n2,end)):
+                    legs.append({'kind':'connector','label':'Temsil / durak giriş bağlantısı',
+                        'coordinates':[[node['lon'],node['lat']],coordinates()[k].tolist()]})
+                clock+=part['seconds']
     return {'minutes': float(minutes), 'legs': legs, 'boardings': boardings,
             'demand': demand['name'], 'candidate': candidate['name'], 'scenario': request.model_dump(),
             'note': 'Kesikli çizgiler varsayılan kısa erişim bağlantılarıdır; gerçek yol geometrisi değildir.'}

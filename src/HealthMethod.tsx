@@ -252,12 +252,40 @@ export default function HealthMethod({ data }: { data: Dataset }) {
       <h3>Ulaşım ve veri sınırları</h3>
       <p>
         <b>Araba:</b> yönlü OSM yolları ve sınıf bazlı hız, 3 dakika giriş/park;
-        canlı trafik ve dönüş yasakları yok. <b>EGO:</b> OSM güzergâhları,
-        yürüyüş ve aktarma ağı; otobüste 8, raylı sistemde 4 dakika varsayılan
-        bekleme. Güncel GTFS bulunmadığı için tarifeli EGO yolculuğu ölçülmez.
-        Büyük izlerde giriş bağlantısı süreye eklenir ve 15 dakikalık erişim
-        yürüyüşü sınırı yeniden kontrol edilir.
+        canlı trafik ve dönüş yasakları yok. <b>EGO:</b> Resmî web sitesindeki
+        hat kimliği, sıralı duraklar, hafta içi/cumartesi/pazar kalkış listeleri
+        ve hat toplam süreleri kullanılır. Bekleme, durağa erişimden sonra
+        yetişilebilen sefere göre hesaplanır; kaçırılan araca binilemez. Ara
+        durak zamanları, OSM yol/ray ağı üzerindeki süre ağırlıklarının hat
+        toplam süresine dağıtılmasıyla tahmin edilir; resmî durak varış tarifesi
+        değildir.
       </p>
+      <p>
+        Durak erişimi ve hastaneye son yürüyüş en çok 15 dakika, aktarma
+        yürüyüşü en çok 5 dakika, binişe hazırlık 1 dakika; en fazla 2 aktarma.
+        Bunlar model varsayımlarıdır. Doğrudan yürüyüş ise seçilen toplam
+        yolculuk eşiği içinde değerlendirilebilir; eski 15 dakika kesmesi
+        kaldırıldı.
+      </p>
+      <p>
+        Hat yönleri ve ara duraktan başlama notları korunur. Çözümlenemeyen özel
+        seferler ana hattın tamamında çalışıyormuş gibi eklenmez. Durak
+        koordinatları öncelikle OSM’den, eksik otobüs duraklarında tarihsel
+        topluluk verisinden gelir. Bu kaynak güncel bir resmî konum envanteri
+        değildir. İstisna takvimi, canlı gecikme, dolmuş ve Başkentray kapsamı
+        yoktur.
+      </p>
+      {data.metadata.transitDataQuality && (
+        <p>
+          Resmî katalog:{" "}
+          {fmt(data.metadata.transitDataQuality.officialRouteCount)}{" "}
+          yön/varyant, {fmt(data.metadata.transitDataQuality.officialStopCount)}{" "}
+          durak kimliği. Modele bağlanan:{" "}
+          {fmt(data.metadata.transitDataQuality.routedRouteCount)} yön/varyant.
+          Eksikler yüzünden coğrafi alt sınır, gerçek Ankara için kesin ihtiyaç
+          sayısı olarak yorumlanamaz.
+        </p>
+      )}
       <ul className="assumption-list">
         {p.assumptions.map((a) => (
           <li key={a}>{a}</li>

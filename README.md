@@ -4,13 +4,13 @@ Ankara’nın **25 ilçesinde**, **yatak, hekim, yıllık hasta talebi, bina yat
 
 Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanılır. Mevcut binalar aday konumları engellemez; örnek yapı alanları karayolu ve yüzey demiryolu koridorlarının dışında seçilir. Mevcut hastaneler yeni yerleşimi kısıtlamaz; yalnızca ayrı bir erişim karşılaştırması sağlar.
 
-> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu OSM güzergâhları, duraklar ve yürüyüş ağı üzerinde **tarifesiz bir senaryodur**. Güncel resmî GTFS doğrulanamadığından gerçek sefer saatleri, beklemeler ve hizmet takvimi kullanılıyor gibi gösterilmez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
+> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu **resmî kalkış listelerini ve durak sırasını** kullanır; ara durak süreleri OSM ağıyla tahmin edilir. Hafta içi 08.00/10.00, cumartesi/pazar 10.00 ayrı değerlendirilir. Konum/özel sefer eksikleri nedeniyle kapsam kısmidir; gerçek kent için kesin ihtiyaç sayısı vermez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
 
 ![ERİŞİM uygulamasının harita görünümü](docs/screenshots/overview.png)
 
 ## Kullanım
 
-1. **Araba / EGO** modunu seçin.
+1. **Araba / EGO** modunu seçin. EGO için normal gün türünü ve yolculuğa başlama saatini seçin.
 2. En fazla yolculuk süresini, Ankara genelinde karşılanacak talep payını ve her ilçenin talep tabanını ayarlayın.
 3. **Hastane sayısı sınırı** ile en fazla 91 tesis deneyini seçin. **Kapasite ve bütçe varsayımları** bölümünde talep çarpanı, doluluk, hekim iş yükü ve daha kısa yol için ek bütçeyi seçin. **Yerleşimi hesapla** düğmesine basın. İlk açılışta araba senaryosu otomatik hesaplanır.
 4. Bir mahalleyi arayıp seçerek talebin hangi tesislere ne kadar payla atandığını ve her payın ağ güzergâhını görün.
@@ -45,7 +45,7 @@ Tek komutla hazırlanmış yerel sürümü başlatmak için: `npm start` (önced
 | Nüfus              | [TÜİK ADNKS 2025](https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx), 31.12.2025 | 5.910.320 kişi; yayımlanan 1.427 mahalle                               |
 | Mahalle konumu     | OSM adları + ilçe poligonları                                                                            | 1.413 mahalle, 5.889.804 kişi konumlandırıldı                          |
 | Karayolu / yürüyüş | [Geofabrik Türkiye OSM kesiti](https://download.geofabrik.de/europe/turkey.html), 20.10.2026             | 1.303.779 düğüm, 1.864.240 yönlü sürüş kenarı                          |
-| Toplu taşıma       | OSM hat ilişkileri ve sıralı duraklar                                                                    | 337 yönlü hat kaydı, 5.984 durak; tarife kullanılmadı                  |
+| Toplu taşıma | EGO resmî kalkış/durak listeleri + OSM yolları/rayları + konum eki | 665 yön/varyant araştırıldı; 427 ağa bağlandı; ara durak süreleri tahmini |
 | Mevcut hastaneler  | OSM `hospital` kayıtları                                                                                 | 124 kayıt; resmî ve eksiksiz hastane listesi değildir                  |
 | Talep / kapasite   | Sağlık Bakanlığı 2024 yıllığı                                                                            | Ankara başvuru/yatış/yatak/hekim tabloları; mahalleye orantılı dağıtım |
 | Kalibrasyon / gider | Ankara Üniversitesi ve MLP 2024 faaliyet raporları, Etlik resmî tanıtımı, 2024 yapı tebliği | Gerçek ölçek ve hizmet örnekleri; bağımsız kadro, açık işletme proxy tutarları |
@@ -67,12 +67,17 @@ Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı *
 | Senaryo | Aynı %95 il / %80 ilçe hedefi | Sonuç |
 |---|---|---|
 | Araba, 30 dk, en fazla 91 | Sağlandı | 46 tesis · 18.550 yatak · 21.613 hekim · 17,32 dk ortalama |
-| EGO ağ senaryosu, 45 dk, en fazla 91 | Sağlanamıyor | Kapasite sınırsızken bile coğrafi alt sınır 291 tesis |
+| EGO, 45 dk, hafta içi 08.00 | Bu veriyle 91 sınırı aşılır | Coğrafi alt sınır 166 |
+| EGO, 45 dk, hafta içi 10.00 / cumartesi 10.00 | Bu veriyle 91 sınırı aşılır | Coğrafi alt sınır 171 |
+| EGO, 45 dk, pazar 10.00 | Bu veriyle 91 sınırı aşılır | Coğrafi alt sınır 170 |
 
-Bu sayılar **kaydedilmiş, geçerliliği denetlenmiş çözümlerdir**. Araba çözümünün maliyet açığı yaklaşık %1,82; minimum tesis sayısı kanıtlanmış değildir. EGO sonucu tarifesiz OSM ağına aittir, gerçek EGO hizmetinin yetersiz olduğu iddiası değildir. Resmî 2024 envanteri 85 hastane; 91 kullanıcı karşılaştırma eşiğidir. [Deney ayrıntıları ve duyarlılık](docs/validation.md).
+Bu sayılar **kaydedilmiş, geçerliliği denetlenmiş çözümlerdir**. Araba çözümünün maliyet açığı yaklaşık %1,82; minimum tesis sayısı kanıtlanmış değildir. Eski 291 sınırı yalnız doğrudan yürüyüşün 15 dakikada kesilmesi düzeltilince 169’a iner. Güncel kalkışlarla dört profil 166–171 aralığındadır. Eksik sefer/konumlar ve tahmini ara durak süreleri varken bunlar gerçek EGO hizmetinin yetersizliği veya kesin hastane ihtiyacı sayısı değildir. [Kontrollü ulaşım deneyi](docs/transit-validation.md). Resmî 2024 envanteri 85 hastane; 91 kullanıcı karşılaştırma eşiğidir. [Deney ayrıntıları ve duyarlılık](docs/validation.md).
 
 ## Araştırma ve teknik belgeler
 
+- [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
+- [EGO 291/91 karşılaştırması](docs/transit-validation.md)
+- [Gün/saat seçimi ve biniş saatli rota ekranı](docs/screenshots/ego-tarife.png)
 - [Veri kaynakları araştırması ve eksik veri planı](docs/research.md)
 - [Yatak, hekim, talep ve maliyet araştırması](docs/capacity-research.md)
 - [Matematiksel model, ulaşım varsayımları ve sınırlar](docs/methodology.md)
@@ -88,9 +93,10 @@ Bu sayılar **kaydedilmiş, geçerliliği denetlenmiş çözümlerdir**. Araba �
 .venv\Scripts\python.exe -m pytest -q
 npm run build
 .venv\Scripts\python.exe scripts/verify_release.py
+.venv\Scripts\python.exe scripts/verify_transit.py
 ```
 
-Testler bağımsız yer/kadro seçimini küçük örneklerde tam sayım ve akış LP’siyle karşılaştırır; yatak ve hekim darboğazlarını, bölünmüş talebi, bütçe/süre tercihini, ilçe tabanlarını ve bilinmeyen nüfusu denetler. `verify_release.py`, kaydedilmiş dört senaryodaki bütün atamaları, alanı, iki kaynağı ve yıllık maliyeti bağımsız hesaplar; 91 için tam coğrafi alt sınırı ve büyük alanların ağ rotalarını doğrular. `--write-examples` yeni çözümler üretir. Ham OSM varsa `scripts/audit_data.py` yol/ray koridorlarını ayrıca denetler.
+Testler bağımsız yer/kadro seçimini küçük örneklerde tam sayım ve akış LP’siyle karşılaştırır; yatak ve hekim darboğazlarını, bölünmüş talebi, bütçe/süre tercihini, ilçe tabanlarını ve bilinmeyen nüfusu denetler. `verify_release.py`, kaydedilmiş araba ve dört EGO profili senaryolarındaki bütün atamaları, alanı, iki kaynağı ve yıllık maliyeti bağımsız hesaplar; 91 için tam coğrafi alt sınırı ve büyük alanların ağ rotalarını doğrular. `--write-examples` yeni çözümler üretir. `scripts/verify_transit.py` dört profilin kalkış, aktarma ve matris tutarlılığını kontrol eder. Ham OSM varsa `scripts/audit_data.py` yol/ray koridorlarını ayrıca denetler.
 
 Yeni senaryo yaklaşık 1–3 dakika sürebilir. Kapasite/maliyet için geçerli başlangıç oluşturulur, ardından her iki MILP aşaması 35'er saniye çalışır. Aynı süreçte aynı parametreler bellekte önbelleğe alınır. Arayüz, çözümün maliyet aşamasındaki optimalite açığını ve mevcut bütçe/süre değişimini gösterir. [Doğrulama sonuçları](docs/validation.md).
 

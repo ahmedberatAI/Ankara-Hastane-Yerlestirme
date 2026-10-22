@@ -1,0 +1,302 @@
+{
+  "date": "2026-10-22",
+  "networkVersion": "ego-scheduled-v1",
+  "legacy": {
+    "status": "optimal",
+    "minimumCountLowerBound": 291.0,
+    "feasibleGeographicCount": 291,
+    "fullCandidateCount": 4701,
+    "undominatedCandidateCount": 1085,
+    "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+    "thresholdMinutes": 45,
+    "coverageTargetPercent": 95.0,
+    "districtFloorPercent": 80.0
+  },
+  "walkingCorrectionOnly": {
+    "status": "optimal",
+    "minimumCountLowerBound": 168.99999999999986,
+    "feasibleGeographicCount": 169,
+    "fullCandidateCount": 4701,
+    "undominatedCandidateCount": 896,
+    "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+    "thresholdMinutes": 45,
+    "coverageTargetPercent": 95.0,
+    "districtFloorPercent": 80.0
+  },
+  "profiles": [
+    {
+      "scenario": {
+        "mode": "transit",
+        "threshold": 45,
+        "coverageTarget": 95.0,
+        "districtFloor": 80.0,
+        "trafficFactor": 1.0,
+        "demandMultiplier": 1.0,
+        "bedOccupancy": 80.0,
+        "contactsPerDoctor": 2140,
+        "costTolerance": 10.0,
+        "hospitalLimit": 91,
+        "operatingCostMultiplier": 1.0,
+        "transitProfile": "weekday-0800"
+      },
+      "status": "infeasible",
+      "reason": "91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 165.99999999999977,
+        "feasibleGeographicCount": 166,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 837,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      },
+      "transitEvidence": {
+        "version": "ego-scheduled-v1",
+        "profile": {
+          "day": "weekday",
+          "seconds": 28800,
+          "label": "Hafta içi · 08.00"
+        },
+        "quality": {
+          "officialRouteCount": 665,
+          "officialStopCount": 10811,
+          "routedRouteCount": 427,
+          "coordinateStopCount": 10335,
+          "usedDepartures": {
+            "weekday": 10361,
+            "saturday": 8022,
+            "sunday": 7100
+          },
+          "officialDepartures": {
+            "weekday": 14414,
+            "saturday": 10805,
+            "sunday": 9479
+          },
+          "coordinateSources": {
+            "OSM stop ref": 6450,
+            "Historical community GTFS coordinate; official stop ID": 3817,
+            "OSM station name / official stop identity": 68
+          }
+        },
+        "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
+      }
+    },
+    {
+      "scenario": {
+        "mode": "transit",
+        "threshold": 45,
+        "coverageTarget": 95.0,
+        "districtFloor": 80.0,
+        "trafficFactor": 1.0,
+        "demandMultiplier": 1.0,
+        "bedOccupancy": 80.0,
+        "contactsPerDoctor": 2140,
+        "costTolerance": 10.0,
+        "hospitalLimit": 91,
+        "operatingCostMultiplier": 1.0,
+        "transitProfile": "weekday-1000"
+      },
+      "status": "infeasible",
+      "reason": "91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 170.99999999999991,
+        "feasibleGeographicCount": 171,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 846,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      },
+      "transitEvidence": {
+        "version": "ego-scheduled-v1",
+        "profile": {
+          "day": "weekday",
+          "seconds": 36000,
+          "label": "Hafta içi · 10.00"
+        },
+        "quality": {
+          "officialRouteCount": 665,
+          "officialStopCount": 10811,
+          "routedRouteCount": 427,
+          "coordinateStopCount": 10335,
+          "usedDepartures": {
+            "weekday": 10361,
+            "saturday": 8022,
+            "sunday": 7100
+          },
+          "officialDepartures": {
+            "weekday": 14414,
+            "saturday": 10805,
+            "sunday": 9479
+          },
+          "coordinateSources": {
+            "OSM stop ref": 6450,
+            "Historical community GTFS coordinate; official stop ID": 3817,
+            "OSM station name / official stop identity": 68
+          }
+        },
+        "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
+      }
+    },
+    {
+      "scenario": {
+        "mode": "transit",
+        "threshold": 45,
+        "coverageTarget": 95.0,
+        "districtFloor": 80.0,
+        "trafficFactor": 1.0,
+        "demandMultiplier": 1.0,
+        "bedOccupancy": 80.0,
+        "contactsPerDoctor": 2140,
+        "costTolerance": 10.0,
+        "hospitalLimit": 91,
+        "operatingCostMultiplier": 1.0,
+        "transitProfile": "saturday-1000"
+      },
+      "status": "infeasible",
+      "reason": "91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 170.9999999999998,
+        "feasibleGeographicCount": 171,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 843,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      },
+      "transitEvidence": {
+        "version": "ego-scheduled-v1",
+        "profile": {
+          "day": "saturday",
+          "seconds": 36000,
+          "label": "Cumartesi · 10.00"
+        },
+        "quality": {
+          "officialRouteCount": 665,
+          "officialStopCount": 10811,
+          "routedRouteCount": 427,
+          "coordinateStopCount": 10335,
+          "usedDepartures": {
+            "weekday": 10361,
+            "saturday": 8022,
+            "sunday": 7100
+          },
+          "officialDepartures": {
+            "weekday": 14414,
+            "saturday": 10805,
+            "sunday": 9479
+          },
+          "coordinateSources": {
+            "OSM stop ref": 6450,
+            "Historical community GTFS coordinate; official stop ID": 3817,
+            "OSM station name / official stop identity": 68
+          }
+        },
+        "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
+      }
+    },
+    {
+      "scenario": {
+        "mode": "transit",
+        "threshold": 45,
+        "coverageTarget": 95.0,
+        "districtFloor": 80.0,
+        "trafficFactor": 1.0,
+        "demandMultiplier": 1.0,
+        "bedOccupancy": 80.0,
+        "contactsPerDoctor": 2140,
+        "costTolerance": 10.0,
+        "hospitalLimit": 91,
+        "operatingCostMultiplier": 1.0,
+        "transitProfile": "sunday-1000"
+      },
+      "status": "infeasible",
+      "reason": "91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 169.99999999999994,
+        "feasibleGeographicCount": 170,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 850,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      },
+      "transitEvidence": {
+        "version": "ego-scheduled-v1",
+        "profile": {
+          "day": "sunday",
+          "seconds": 36000,
+          "label": "Pazar · 10.00"
+        },
+        "quality": {
+          "officialRouteCount": 665,
+          "officialStopCount": 10811,
+          "routedRouteCount": 427,
+          "coordinateStopCount": 10335,
+          "usedDepartures": {
+            "weekday": 10361,
+            "saturday": 8022,
+            "sunday": 7100
+          },
+          "officialDepartures": {
+            "weekday": 14414,
+            "saturday": 10805,
+            "sunday": 9479
+          },
+          "coordinateSources": {
+            "OSM stop ref": 6450,
+            "Historical community GTFS coordinate; official stop ID": 3817,
+            "OSM station name / official stop identity": 68
+          }
+        },
+        "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
+      }
+    }
+  ],
+  "scope": "Bu test model kapsamı içindir; eksik hizmet ve tahmini zamanlar gerçek Ankara için kesin ihtiyaç sayısı çıkarılmasını engeller.",
+  "withoutDistrictFloor": {
+    "status": "optimal",
+    "minimumCountLowerBound": 35.0,
+    "feasibleGeographicCount": 35,
+    "fullCandidateCount": 4701,
+    "undominatedCandidateCount": 846,
+    "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+    "thresholdMinutes": 45,
+    "coverageTargetPercent": 95.0,
+    "districtFloorPercent": 0.0
+  },
+  "routingChecks": [
+    {
+      "profile": "weekday-0800",
+      "origins": 7,
+      "destinationsPerOrigin": 4825,
+      "traceAudit": "passed"
+    },
+    {
+      "profile": "weekday-1000",
+      "origins": 7,
+      "destinationsPerOrigin": 4825,
+      "traceAudit": "passed"
+    },
+    {
+      "profile": "saturday-1000",
+      "origins": 7,
+      "destinationsPerOrigin": 4825,
+      "traceAudit": "passed"
+    },
+    {
+      "profile": "sunday-1000",
+      "origins": 7,
+      "destinationsPerOrigin": 4825,
+      "traceAudit": "passed"
+    }
+  ]
+}

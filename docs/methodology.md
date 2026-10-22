@@ -97,17 +97,16 @@ Hastane sahası yol üzerinde değildir. Sahadan yol girişine bağlantı, 80–
 
 Trafik çarpanı yalnız sürüş bölümünü büyütür; yürüyüş ve 3 dakikalık payı değiştirmez. Canlı trafik, dönüş yasakları, koşullu erişim saatleri ve trafik ışığı gecikmeleri yoktur. Acil ambulans sürüş profili değildir.
 
-## EGO ağ senaryosu
+## EGO zaman bağımlı ulaşım modeli
 
-Bu mod **resmî EGO tarifesiyle çalışan bir yolculuk planlayıcı değildir**. İlk uygulamada kullanılabilir gerçek yol/ray geometrilerini göstermek ve iki ulaşım modelinin farkını araştırmak içindir.
+Resmî EGO web kataloğunun kalkış saatleri, durak sırası ve toplam hat süresi kullanılır. [Tam kaynak ve yöntem açıklaması](transit-research.md).
 
-- OSM otobüs ilişkilerinde sayısal hat referansı, ayrıca subway/light_rail kullanılır. Tren hatları bu senaryoya eklenmez; dolayısıyla Başkentray dahil tüm toplu ulaşım ağı iddiası yoktur.
-- Otobüste varsa platform düğümleri, aksi halde durak düğümleri; raylı sistemde durak düğümleri sıralarıyla işlenir. Durak geometrisine en fazla 200 m bağlantı kabul edilir.
-- Her hat ilişkisinin kendi üye yol/ray parçalarında duraklar arası yol bulunur. Eksik bağlantıda duraklar arasına hayalî uzun düz çizgi çekilmez. Geometri alt grafiği çift yönlüdür; hizmet yönünü durak sırası belirler. Döngü/aynı yolun birden çok kullanımı bulunan ilişkiler için tam sefer geometrisi garantisi yoktur.
-- Araç içi durum düğümleri sayesinde aynı araçta kalırken her durakta yeniden bekleme eklenmez. Her yeni binişte otobüs 8, raylı sistem 4 dakika varsayımsal bekleme vardır; `entry_only/exit_only` rollerine uyulur.
-- Otobüs hızı yol hız varsayımıyla sınırlı, en fazla 28 km/sa; raylı sistem 40 km/sa. Durak geçişi başına 25 saniye eklenir.
-- Yürüme OSM yaya ağından, 4,5 km/sa; merdivenlerde 3 km/sa hesaplanır. İlk/son yürüyüş bağlantısı en fazla 15 dakika; duraklar arası her aktarım yürüyüşü en fazla 5 dakikadır. Toplam aktarma sayısı veya toplam yürüyüş için ek tavan yoktur; ardışık yürüme bağlantıları mümkündür.
-- 15 dakikaya kadar yalnız yürüyerek erişim de bir seçenektir. Dolayısıyla her EGO sonucu mutlaka otobüse/metroya binildiği anlamına gelmez.
-- Hatların hepsinin o anda çalıştığı varsayılır. Hareket saati, gün, gerçek bekleme, son sefer, kesinti, kapasite ve engelli erişimi hesaba katılmaz.
+- Normal hafta içi 08.00/10.00, cumartesi 10.00, pazar 10.00 için ayrı süre matrisleri vardır. Seferler arasında keyfî zaman atlama veya farklı hareket saatlerini birleştirme yoktur.
+- İlk durağa erişimden sonra 60 saniyelik biniş hazırlığını sağlayan ilk sefer seçilir. Aynı araçta ilerlerken tekrar bekleme eklenmez. Ara durak saatleri tahmini olduğundan bu işlem gerçek zamanlı EGO yolculuk tahmini değildir.
+- `backend/timetable.py`, en çok üç binişli FIFO tarife taraması kullanır. Aynı turun araç varışlarından yalnız bir yaya aktarma adımı uygulanır. Toplu matris hesabı ile bağımsız tek-yolculuk izi karşılaştırılır.
+- Otobüs geometrisi yönlü OSM yol ağından gelir; `bus/psv` ve otobüse özel tek yön etiketleri işlenir. Metro/ANKARAY geometrisi ilgili hatların OSM ray ağından gelir. Koru–Törekent seferi Kızılay'da yapay aktarma yapmaz. Araç içi uzun kuş uçuşu bağlantı yoktur.
+- Ara durak süreleri yol/ray ağı ağırlıklarıyla yayımlanan toplam süreye dağıtılır. Fiziksel alt sınır kontrolüyle artırılan süreler kayıtlıdır. Bu tahminler kesin durak varışları veya canlı trafik değildir.
+- İlk/son yürüyüş 15, aktarma yürüyüşü 5 dakika; biniş hazırlığı 1 dakika. En çok iki aktarma. Yalnız yürüyüş seçeneği toplam yolculuk eşiğine kadar mümkündür; 15 dakikada kesilmez.
+- Bilinen durak koduyla başlangıç/bitiş ve kesin eşleşen istasyon adı işlenir. Çözülemeyen yön, özel uğrama ve ara durak notları tam-hat seferine dönüştürülmez. Hizmet/konum açıkları sonuçla birlikte yayımlanır.
 
-Bu nedenle süreler iyimser veya kötümser olabilir. Erişilemeyen hedef; gerçek hizmet yokluğu, OSM kapsam açığı, tek nokta temsili, aday örneklemesi veya yürüme sınırından kaynaklanabilir. Uygulama gerçek EGO hizmet yetersizliği teşhisi koymaz.
+Adaylar ve talepler değişmedi. [Yeni 91 deneyi](transit-validation.md) aynı %95/%80 hedeflerini korur. Bütün adaylarla coğrafi alt sınır hesaplanması, eksik gerçek hizmeti tamamlamaz; bu sınır yalnız sürümlenmiş model kapsamındadır.

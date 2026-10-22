@@ -25,6 +25,8 @@ import {
 import AnkaraMap from "./Map";
 import HealthMethod from "./HealthMethod";
 import Benchmark from "./Benchmark";
+import { transitProfileLabels } from "./types";
+import type { TransitProfile } from "./types";
 import type {
   Dataset,
   Scenario,
@@ -47,6 +49,7 @@ const initial: Scenario = {
   hospitalLimit: null,
   operatingCostMultiplier: 1,
   costTolerance: 10,
+  transitProfile: "weekday-1000",
 };
 const number = (n: number) =>
   n.toLocaleString("tr-TR", { maximumFractionDigits: 0 });
@@ -411,8 +414,33 @@ export default function App() {
             >
               {scenario.mode === "car"
                 ? "Gerçek yol ağı · tahmini sürüş süreleri"
-                : "Tarifesiz ağ senaryosu · bekleme ve hızlar varsayım"}
+                : "Resmî kalkış saatleri · ara durak süreleri tahmini"}
             </p>
+            {scenario.mode === "transit" && (
+              <label className="transit-profile">
+                Yolculuğa başlama zamanı
+                <select
+                  aria-label="EGO gün ve hareket saati"
+                  value={scenario.transitProfile}
+                  disabled={busy}
+                  onChange={(e) =>
+                    setScenario((s) => ({
+                      ...s,
+                      transitProfile: e.target.value as TransitProfile,
+                    }))
+                  }
+                >
+                  {Object.entries(transitProfileLabels).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+                <small>
+                  Normal hizmet günü · tatil ve canlı gecikme verisi yok
+                </small>
+              </label>
+            )}
           </div>
           <div className="control-section settings">
             <div className="label-row">
@@ -886,7 +914,7 @@ export default function App() {
             <span className="map-data-tag">
               <span />
               {scenario.mode === "transit"
-                ? "EGO · varsayımsal süreler"
+                ? "EGO · kalkış tarifesi + tahmini geçiş"
                 : "OSM · yol ağı"}
             </span>
           </div>
@@ -931,6 +959,9 @@ export default function App() {
                       : ""}
                   </p>
                 )}
+                {result.transitEvidence && (
+                  <p>{result.transitEvidence.scope}</p>
+                )}
               </div>
             </div>
           )}
@@ -938,8 +969,18 @@ export default function App() {
             <div className="transit-banner">
               <Info size={16} />
               <span>
-                <b>EGO ağ senaryosu.</b> Sefer tarifesi yok. Yürüyüş ve güzergâh
-                ağdan; bekleme ve hızlar varsayımdan gelir.
+                <b>{transitProfileLabels[scenario.transitProfile]}.</b> Resmî
+                kalkışlar kullanılır; ara durak zamanları tahmin edilir. Eksik
+                sefer/konum verisi, hizmet yokluğu sayılmaz.
+                {data?.metadata.transitDataQuality && (
+                  <small className="transit-coverage">
+                    Katalogdaki{" "}
+                    {data.metadata.transitDataQuality.officialRouteCount}{" "}
+                    yön/varyantın{" "}
+                    {data.metadata.transitDataQuality.routedRouteCount} adedi
+                    kullanılabiliyor.
+                  </small>
+                )}
               </span>
               <button onClick={() => setModal("method")}>Ayrıntılar</button>
             </div>
@@ -1038,7 +1079,13 @@ export default function App() {
                     {route.boardings.length > 0 && (
                       <div className="route-lines">
                         {route.boardings.map((b, i) => (
-                          <span key={i}>{b.route}</span>
+                          <span
+                            key={i}
+                            title={`${b.stop} · bekleme ${decimal(b.waitMinutes)} dk`}
+                          >
+                            {b.route}
+                            {b.departureTime ? ` · ${b.departureTime}` : ""}
+                          </span>
                         ))}
                         <small>
                           {Math.max(0, route.boardings.length - 1)} aktarma
@@ -1049,7 +1096,7 @@ export default function App() {
                       Kesikli çizgiler yürüyüş veya varsayılan giriş
                       bağlantısıdır.{" "}
                       {result?.scenario.mode === "transit"
-                        ? "Beklemeler senaryo varsayımıdır."
+                        ? "Bekleme seçilen saate göre hesaplanır; ara durak geçişleri tahminidir."
                         : "Canlı trafik kullanılmaz."}
                     </small>
                   </>

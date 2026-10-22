@@ -14,7 +14,8 @@ import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from fastapi.testclient import TestClient
 from scipy.sparse.csgraph import dijkstra
-from backend.main import app, dataset, health_planning, travel_times, Scenario, site_conflicts, cached_solve, count_bound, graph, transit_details
+from backend.main import app, dataset, health_planning, travel_times, Scenario, site_conflicts, cached_solve, count_bound, graph
+from backend.timetable import PROFILES, DEFAULT_PROFILE, journey
 
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'data/processed'
 
@@ -86,6 +87,7 @@ def audit(result):
             assert (not np.isfinite(minutes) and result['metrics']['p90Minutes'] is None) or abs(result['metrics']['p90Minutes']-minutes)<1e-5
             break
     return {'mode':s.mode,'hospitalLimit':s.hospitalLimit,'status':result['status'],
+        'transitProfile':s.transitProfile if s.mode=='transit' else None,
         'hospitalCount':len(selected),'totalBeds':beds,'totalDoctors':doctors,
         'coveragePercent':float(covered/total*100),'minimumDistrictCoveragePercent':min(d['coveragePercent'] for d in result['districts']),
         'meanMinutes':float(travel/covered),'annualEquivalentCostTRY':annual,'annualOperatingCostTRY':opex,
@@ -95,19 +97,23 @@ def audit(result):
 def run(write_examples=False,write_report=False):
     data=dataset();client=TestClient(app);report=[];benchmark=[]
     assert client.get('/api/data').status_code==200
-    for mode,threshold,limit,label in [('car',30,None,'car'),('transit',45,None,'transit'),('car',30,91,'car-91'),('transit',45,91,'transit-91')]:
-        s=Scenario(mode=mode,threshold=threshold,hospitalLimit=limit)
+    cases=[('car',30,None,'car',DEFAULT_PROFILE),('transit',45,None,'transit',DEFAULT_PROFILE),('car',30,91,'car-91',DEFAULT_PROFILE)]
+    cases += [('transit',45,91,f'transit-{profile}-91',profile) for profile in PROFILES]
+    for mode,threshold,limit,label,profile in cases:
+        s=Scenario(mode=mode,threshold=threshold,hospitalLimit=limit,transitProfile=profile)
         path=OUT/f'example-{label}-result.json'
         if write_examples:
             result=cached_solve(s.model_dump_json())
             path.write_text(json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8',newline='\n')
+            if mode=='transit' and limit==91 and profile==DEFAULT_PROFILE:
+                (OUT/'example-transit-91-result.json').write_bytes(path.read_bytes())
         result=json.loads(path.read_text(encoding='utf-8'))
         assert result['scenario']==s.model_dump()
         if result['status']=='infeasible':
-            certificate=count_bound(mode,threshold,95,80,1)
+            certificate=count_bound(mode,threshold,95,80,1,profile)
             assert limit is not None and certificate['minimumCountLowerBound']>limit
             assert certificate['fullCandidateCount']==len(data['candidates'])
-            report.append({'mode':mode,'hospitalLimit':limit,'status':'infeasible','geographicCertificate':certificate})
+            report.append({'mode':mode,'hospitalLimit':limit,'transitProfile':profile,'status':'infeasible','geographicCertificate':certificate})
         else:
             assert result['status']=='feasible',result.get('reason')
             assert result['capacity']['planningVersion']==health_planning()['version']
@@ -128,8 +134,7 @@ def run(write_examples=False,write_report=False):
                         minutes=dijkstra(graph('drive'),indices=demand['node'])[candidate['node']]/60
                         minutes=minutes*s.trafficFactor+(demand['snapMeters']+candidate['accessMeters'])/75+3
                     else:
-                        details=transit_details()
-                        minutes=dijkstra(graph('transit'),indices=details['originBase']+di)[details['destinationBase']+ci]/60
+                        minutes,_=journey(di,ci,profile)
                     assert abs(minutes-x['minutes'])<.001,'Matrix does not match graph shortest path'
                     found=True;break
             assert found,'No large-plot vehicle route verified'
@@ -146,10 +151,17 @@ def run(write_examples=False,write_report=False):
         assert sr['scenario']['contactsPerDoctor']==835 and sr['scenario']['hospitalLimit']==91
         sensitivity={'scenario':sr['scenario'],'summary':audit(sr)}
     if write_examples or write_report:
+        transit_report=json.loads((OUT/'transit-validation.json').read_text(encoding='utf-8'))
+        quality=data['metadata']['transitDataQuality']
         (OUT/'sensitivity-results.json').write_text(json.dumps(sensitivity,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
         (OUT/'benchmark-91.json').write_text(json.dumps({'date':date.today().isoformat(),'planningVersion':health_planning()['version'],
-            'note':'91 kullanıcı karşılaştırma sınırıdır; resmî 2024 envanteri 85. EGO sonucu tarifesiz OSM ağ senaryosuna aittir.',
-            'cases':benchmark,'sensitivity':sensitivity},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+            'note':'91 kullanıcı karşılaştırma sınırıdır; resmî 2024 envanteri 85. EGO: resmi kalkışlar, tahmini ara durak süreleri ve kısmi hizmet kapsamı; gerçek kent için kesin ihtiyaç sayısı değildir.',
+            'cases':benchmark,'sensitivity':sensitivity,'transitAudit':{
+                'legacyLowerBound':transit_report['legacy']['minimumCountLowerBound'],
+                'walkingCorrectionLowerBound':transit_report['walkingCorrectionOnly']['minimumCountLowerBound'],
+                'withoutDistrictFloorLowerBound':transit_report['withoutDistrictFloor']['minimumCountLowerBound'],
+                'officialRoutes':quality['officialRouteCount'],'modeledRoutes':quality['routedRouteCount'],
+                'note':f"{quality['routedRouteCount']}/{quality['officialRouteCount']} yön/varyant modele bağlandı; eksik seferler erişimi olduğundan düşük gösterebilir."}},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
         (OUT/'validation-results.json').write_text(json.dumps({'date':date.today().isoformat(),'cases':report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     else:
         from scripts.manifest import check

@@ -1,0 +1,159 @@
+{
+  "status": "infeasible",
+  "reason": "91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.",
+  "geographicCertificate": {
+    "status": "optimal",
+    "minimumCountLowerBound": 170.99999999999991,
+    "feasibleGeographicCount": 171,
+    "fullCandidateCount": 4701,
+    "undominatedCandidateCount": 846,
+    "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+    "thresholdMinutes": 45,
+    "coverageTargetPercent": 95.0,
+    "districtFloorPercent": 80.0
+  },
+  "infeasibilityScope": "all_candidates_geography",
+  "scenario": {
+    "mode": "transit",
+    "threshold": 45,
+    "coverageTarget": 95.0,
+    "districtFloor": 80.0,
+    "trafficFactor": 1.0,
+    "demandMultiplier": 1.0,
+    "bedOccupancy": 80.0,
+    "contactsPerDoctor": 2140,
+    "costTolerance": 10.0,
+    "hospitalLimit": 91,
+    "operatingCostMultiplier": 1.0,
+    "transitProfile": "weekday-1000"
+  },
+  "metadata": {
+    "source": "https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx",
+    "sourceName": "TÜİK ADNKS 2025",
+    "referenceDate": "2025-12-31",
+    "retrievedDate": "2026-10-22",
+    "sha256": "72e36cf8f1eeb2e8c12480e14148b42448c6aad05d19932d94add37f360980c1",
+    "provincePopulation": 5910320,
+    "listedPopulation": 5907026,
+    "unlistedPopulation": 3294,
+    "neighborhoodCount": 1427,
+    "districtCount": 25,
+    "note": "Mahalle tablosu nüfusu 10 ve altında olan mahalleleri ve OSB'leri dışarıda bırakır. Fark, konumu bilinmeyen nüfus olarak korunur.",
+    "matchedNeighborhoodCount": 1413,
+    "matchedPopulation": 5889804,
+    "unlocatedPopulation": 20516,
+    "candidateCount": 4701,
+    "osmDate": "2026-10-20T20:23:47Z",
+    "graphNodes": 1303779,
+    "graphEdges": 1864240,
+    "existingHospitalCount": 124,
+    "transitStatus": "official_departures_estimated_stop_times",
+    "osmTransitRelationCount": 383,
+    "driveModel": "Yönlü OSM yol ağı; yol sınıfına göre varsayılan hız; canlı trafik ve dönüş kısıtları yok.",
+    "demandModel": "Her eşleşen mahalle bir temsil noktasıdır; hane düzeyinde erişim değildir.",
+    "siteModel": "45/80/120/210 m yarıçaplı yol-dışı yapı izleri. Mevcut binalar engel değildir. Alan kapasitesi 9 kat tasarım varsayımıyla sınırlandırılır.",
+    "candidateSearch": {
+      "footprintRadiusMeters": 45,
+      "maxEntryDistanceMeters": 650,
+      "angles": 48,
+      "surfaceRailHalfWidthMeters": 5,
+      "footprintRadiiMeters": [
+        45,
+        80,
+        120,
+        210
+      ]
+    },
+    "transitRoutes": 427,
+    "transitStops": 10335,
+    "transitAssumptions": {
+      "scheduleAvailable": true,
+      "intermediateStopTimesObserved": false,
+      "maxAccessWalkMinutes": 15,
+      "maxTransferWalkMinutes": 5,
+      "maxDirectWalkMinutes": 120,
+      "boardingSlackSeconds": 60,
+      "maxTransfers": 2,
+      "serviceWindow": "Seçilen normal gün türü ve hareket saati; tatil istisnaları yok."
+    },
+    "transitModel": "Resmi EGO kalkış saatleri ve durak sırası; ara durak süreleri tahmini; eksik sefer/konumlar kalite raporunda.",
+    "osmSha256": "233c721c6dd50ab92d66c20509700b6f32a11d2b00057a7d7b217f2ec5238744",
+    "largePlotVersion": 1,
+    "baseCandidateCount": 1397,
+    "transitProfiles": {
+      "weekday-0800": {
+        "day": "weekday",
+        "seconds": 28800,
+        "label": "Hafta içi · 08.00"
+      },
+      "weekday-1000": {
+        "day": "weekday",
+        "seconds": 36000,
+        "label": "Hafta içi · 10.00"
+      },
+      "saturday-1000": {
+        "day": "saturday",
+        "seconds": 36000,
+        "label": "Cumartesi · 10.00"
+      },
+      "sunday-1000": {
+        "day": "sunday",
+        "seconds": 36000,
+        "label": "Pazar · 10.00"
+      }
+    },
+    "transitDataQuality": {
+      "officialRouteCount": 665,
+      "officialStopCount": 10811,
+      "routedRouteCount": 427,
+      "coordinateStopCount": 10335,
+      "usedDepartures": {
+        "weekday": 10361,
+        "saturday": 8022,
+        "sunday": 7100
+      },
+      "officialDepartures": {
+        "weekday": 14414,
+        "saturday": 10805,
+        "sunday": 9479
+      },
+      "coordinateSources": {
+        "OSM stop ref": 6450,
+        "Historical community GTFS coordinate; official stop ID": 3817,
+        "OSM station name / official stop identity": 68
+      }
+    },
+    "transitVersion": "ego-scheduled-v1"
+  },
+  "modelLabel": "EGO resmi kalkışlar · Hafta içi · 10.00 · ara durak süreleri tahmini",
+  "transitEvidence": {
+    "version": "ego-scheduled-v1",
+    "profile": {
+      "day": "weekday",
+      "seconds": 36000,
+      "label": "Hafta içi · 10.00"
+    },
+    "quality": {
+      "officialRouteCount": 665,
+      "officialStopCount": 10811,
+      "routedRouteCount": 427,
+      "coordinateStopCount": 10335,
+      "usedDepartures": {
+        "weekday": 10361,
+        "saturday": 8022,
+        "sunday": 7100
+      },
+      "officialDepartures": {
+        "weekday": 14414,
+        "saturday": 10805,
+        "sunday": 9479
+      },
+      "coordinateSources": {
+        "OSM stop ref": 6450,
+        "Historical community GTFS coordinate; official stop ID": 3817,
+        "OSM station name / official stop identity": 68
+      }
+    },
+    "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
+  }
+}

@@ -44,20 +44,20 @@
     "title": "EGO hareket saatleri ve durak sıraları",
     "publisher": "EGO Genel Müdürlüğü",
     "url": "https://www.ego.gov.tr/hareketsaatleri",
-    "status": "Kaynak incelendi · modele aktarılmadı",
+    "status": "665 resmi hat/yön/varyant indirildi; kısmi tarife entegrasyonu",
     "date": "22.10.2026",
-    "usedFor": "Resmî hat, sefer ve durak sırası doğrulaması",
-    "note": "Hat 110 örneği incelendi. Sayfa, durak bazlı tüm varış saatlerini ve kullanılabilir GTFS paketini sağlamıyor. Arayüzdeki EGO ağ senaryosu bu tarifeden üretilmedi."
+    "usedFor": "Durak sırası, gün türüne göre kalkış ve toplam hat süresi",
+    "note": "427 yön/varyant modele bağlandı. Ara durak varış saatleri tahminidir; çözülemeyen özel sefer notları dışarıda tutulur. Kaynak kimlikleri ve eksikler ego-official.json / ego-quality.json içinde."
   },
   {
     "id": "ego-rail",
     "title": "EGO raylı sistem hizmetleri",
     "publisher": "EGO Genel Müdürlüğü",
     "url": "https://www.ego.gov.tr/sayfa/1075/rayli-sistem",
-    "status": "Kaynak incelendi",
+    "status": "Metro ve ANKARAY kalkış listeleri entegre",
     "date": "22.10.2026",
     "usedFor": "İşletilen hatlar ile proje aşamasındaki hatların ayrımı",
-    "note": "Proje uzatmaları mevcut hizmet kabul edilmez. Tarife entegrasyonu ayrıca gereklidir."
+    "note": "M1-D/G, M4-D/G, A1-D/G yönleri resmi saatlerle çalışır; ara durak süreleri OSM ray ağıyla tahmin edilir. Koru–Törekent tek araçta devam eder."
   },
   {
     "id": "ego-app",
@@ -268,5 +268,15 @@
     "status": "Kullanılıyor · gözlem / aktarılan proxy",
     "usedFor": "Bağımsız yatak/hekim kapasitesi ve yıllık maliyet kalibrasyonu",
     "note": "2024 Aralık yıllık %44,38 ve Ocak aylık %6,70; yaklaşık Ocak–Aralık katsayısı 1,4438 / 1,067."
+  },
+  {
+    "id": "ego-community-coordinates",
+    "title": "Transitous Ankara topluluk GTFS koordinat eki",
+    "publisher": "Transitous kaynak kataloğu / topluluk arşivi",
+    "url": "https://raw.githubusercontent.com/public-transport/transitous/main/feeds/tr.json",
+    "status": "Yalnız eksik otobüs durak koordinatları kullanıldı",
+    "date": "22.10.2026 erişimi; tarihsel paket",
+    "usedFor": "Resmi katalogda bulunan, OSM ref eşleşmesi olmayan 3.817 otobüs durak kimliğinin konumu",
+    "note": "Güncel resmi GTFS değildir. Paketin seferleri, takvimi, ara durak saatleri ve şekilleri kullanılmaz. Ham ZIP yeniden dağıtılmaz; OSM ile farklar ve eksik konumlar kalite raporundadır."
   }
 ]

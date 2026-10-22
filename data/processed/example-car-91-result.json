@@ -20043,7 +20043,8 @@
     "contactsPerDoctor": 2140,
     "costTolerance": 10.0,
     "hospitalLimit": 91,
-    "operatingCostMultiplier": 1.0
+    "operatingCostMultiplier": 1.0,
+    "transitProfile": "weekday-1000"
   },
   "metadata": {
     "source": "https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx",
@@ -20065,7 +20066,7 @@
     "graphNodes": 1303779,
     "graphEdges": 1864240,
     "existingHospitalCount": 124,
-    "transitStatus": "network_scenario",
+    "transitStatus": "official_departures_estimated_stop_times",
     "osmTransitRelationCount": 383,
     "driveModel": "Yönlü OSM yol ağı; yol sınıfına göre varsayılan hız; canlı trafik ve dönüş kısıtları yok.",
     "demandModel": "Her eşleşen mahalle bir temsil noktasıdır; hane düzeyinde erişim değildir.",
@@ -20082,24 +20083,66 @@
         210
       ]
     },
-    "transitRoutes": 337,
-    "transitStops": 5984,
+    "transitRoutes": 427,
+    "transitStops": 10335,
     "transitAssumptions": {
-      "busWaitMinutes": 8,
-      "railWaitMinutes": 4,
-      "busSpeedCapKmh": 28,
-      "railSpeedKmh": 40,
+      "scheduleAvailable": true,
+      "intermediateStopTimesObserved": false,
       "maxAccessWalkMinutes": 15,
       "maxTransferWalkMinutes": 5,
-      "stopDwellSeconds": 25,
-      "scheduleAvailable": false,
-      "maxTransfers": null,
-      "serviceWindow": "Tüm hatların çalıştığı varsayımı"
+      "maxDirectWalkMinutes": 120,
+      "boardingSlackSeconds": 60,
+      "maxTransfers": 2,
+      "serviceWindow": "Seçilen normal gün türü ve hareket saati; tatil istisnaları yok."
     },
-    "transitModel": "OSM güzergâhları + ağ üzerinden yürüyüş. Tarife yok; bekleme ve hızlar senaryo varsayımı. Gerçek EGO erişim ölçümü değildir.",
+    "transitModel": "Resmi EGO kalkış saatleri ve durak sırası; ara durak süreleri tahmini; eksik sefer/konumlar kalite raporunda.",
     "osmSha256": "233c721c6dd50ab92d66c20509700b6f32a11d2b00057a7d7b217f2ec5238744",
     "largePlotVersion": 1,
-    "baseCandidateCount": 1397
+    "baseCandidateCount": 1397,
+    "transitProfiles": {
+      "weekday-0800": {
+        "day": "weekday",
+        "seconds": 28800,
+        "label": "Hafta içi · 08.00"
+      },
+      "weekday-1000": {
+        "day": "weekday",
+        "seconds": 36000,
+        "label": "Hafta içi · 10.00"
+      },
+      "saturday-1000": {
+        "day": "saturday",
+        "seconds": 36000,
+        "label": "Cumartesi · 10.00"
+      },
+      "sunday-1000": {
+        "day": "sunday",
+        "seconds": 36000,
+        "label": "Pazar · 10.00"
+      }
+    },
+    "transitDataQuality": {
+      "officialRouteCount": 665,
+      "officialStopCount": 10811,
+      "routedRouteCount": 427,
+      "coordinateStopCount": 10335,
+      "usedDepartures": {
+        "weekday": 10361,
+        "saturday": 8022,
+        "sunday": 7100
+      },
+      "officialDepartures": {
+        "weekday": 14414,
+        "saturday": 10805,
+        "sunday": 9479
+      },
+      "coordinateSources": {
+        "OSM stop ref": 6450,
+        "Historical community GTFS coordinate; official stop ID": 3817,
+        "OSM station name / official stop identity": 68
+      }
+    },
+    "transitVersion": "ego-scheduled-v1"
   },
   "modelLabel": "OSM yol ağı · tahmini sürüş süresi",
   "selected": [

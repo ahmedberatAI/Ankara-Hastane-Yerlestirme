@@ -10,7 +10,8 @@
     "contactsPerDoctor": 835,
     "costTolerance": 10.0,
     "hospitalLimit": 91,
-    "operatingCostMultiplier": 1.0
+    "operatingCostMultiplier": 1.0,
+    "transitProfile": "weekday-1000"
   },
   "summary": {
     "mode": "car",

@@ -2426,3 +2426,30 @@ nav > button:hover {
     grid-template-columns: 1fr;
   }
 }
+.transit-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.transit-profile select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d9e3e6;
+  border-radius: 9px;
+  background: #fff;
+  color: #183f47;
+  font: inherit;
+  font-weight: 600;
+}
+.transit-profile small {
+  font-size: 10px;
+  line-height: 1.5;
+}
+.transit-coverage {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+}

@@ -41,17 +41,13 @@ Karayolu çizgileri ortak OSM düğüm kimlikleriyle bağlandı. Böylece farkl�
 
 İlk sürümün süreleri ölçülmüş trafik süreleri değildir. Dönüş yasakları, koşullu erişim, trafik ışıkları, yokuş, hava ve saatlik yoğunluk yoktur. Arayüzdeki trafik çarpanı yalnız duyarlılık senaryosudur. Sonraki aşamada OSM dönüş ilişkilerini işleyen özel [OSRM](https://project-osrm.org/docs/v26.6.1/http) veya Valhalla hizmeti ve doğrulanmış hız profilleri kullanılmalıdır. Büyük matrisler ücretsiz demo sunucularına gönderilmez.
 
-## 4. EGO ve raylı sistem: doğrulanan ile eksik olan
+## 4. EGO ve raylı sistem: resmî kalkışlar, kısmi konum eşleşmesi
 
-[EGO hareket saatleri](https://www.ego.gov.tr/hareketsaatleri) sayfası incelendi. Hat 110 için yapılan örnek sorgu gerçek durak sıralarını, durak numaralarını ve çıkış saatlerini veriyor; bu örnek bütün durakların varış saatleri, koordinatları ve hizmet takvimleriyle bir GTFS paketi sağlamıyor. [EGO raylı sistem](https://www.ego.gov.tr/sayfa/1075/rayli-sistem) ve [EGO Cep’te](https://www.ankara.bel.tr/mobil-uygulamalar/ego-cepte) resmî kapsam doğrulama kaynakları olarak kaydedildi.
+22 Ekim 2026 tarihli yeni araştırmada [EGO hareket saatleri](https://www.ego.gov.tr/hareketsaatleri) kataloğundaki **665 yön/varyant ve 10.811 durak kimliği** indirildi. Hafta içi, cumartesi ve pazar kalkışları ile toplam hat süreleri işlendi; **427 yön/varyant** zaman bağımlı ağa bağlandı. Ara durak varışları resmî tarifede bulunmadığından ağ mesafeleriyle tahmin edilir. Çözülemeyen özel sefer notları varsayılan tam-hat seferi yapılmaz.
 
-Bu araştırmada **güncel Ankara GTFS indirme adresi, feed geçerlilik dönemi ve yeniden kullanım koşulları doğrulanamadı**. Bu, kurumda veri bulunmadığı anlamına gelmez. Resmî web sayfalarındaki sefer bilgilerinin bu uygulamaya entegre edildiği iddia edilmiyor.
+OSM durak referansları önceliklidir. Tarihsel topluluk GTFS arşivi yalnız eksik otobüs koordinatlarını tamamlar; onun takvimi ve sefer saatleri güvenilir güncel resmî tarife kabul edilmedi. 476 durak konumu hâlâ eksik. Gün türüne göre yayımlanmış kalkışların yaklaşık %72–75'i modele bağlanır; sonuçlar bütün gerçek hizmeti kapsadığı iddiası taşımaz.
 
-Çalışan ilk EGO modu için OSM’deki sayısal otobüs hatları, metro ve hafif raylı sistem ilişkileri kullanıldı. Sıralı duraklar, gerçek üye yol/ray geometrileri ve ağ üzerinden yürüme bağlantılarıyla **337 yönlü hat kaydı / 5.984 durak** işlendi. Hat kaydı sayısı benzersiz resmî EGO hattı sayısı değildir; gidiş/dönüş ve varyantlar ayrı olabilir. Tüm hatların çalıştığı, otobüs için 8, raylı sistem için 4 dakika bekleme olduğu varsayılır. Hat işletmecisi ve güncel çalışma durumu resmî envanterle topluca doğrulanmış değildir.
-
-Gerekli veri paketi: [GTFS Schedule](https://gtfs.org/documentation/schedule/reference/) standardında `agency`, `stops`, `routes`, `trips`, `stop_times`, `calendar` veya `calendar_dates`, gerektiğinde `frequencies`, `transfers`, `shapes`. Gerekli açıklamalar: saat dilimi, geçerlilik tarihleri, EGO/ÖHO/ÖTA kapsamı, metro/ANKARAY kapsamı, yürüme bağlantıları, aktarma kuralları, durak erişilebilirliği ve lisans. GTFS-RT, canlı tahminler için sonraki ek katmandır; statik tarifenin yerine geçmez.
-
-GTFS elde edilince [OpenTripPlanner](https://www.opentripplanner.org/) ile hafta içi/hafta sonu, sabah yoğun/sakin saat gibi çoklu hareket zamanlarında süre matrisleri üretilmeli. Örnek hareket saatlerinin ortalaması yanında kötü durum yüzdelikleri de karşılaştırılmalıdır.
+[EGO araştırması, kaynak örnekleri ve kalite sınırları](transit-research.md), [kontrollü 291/91 deneyleri](transit-validation.md). Tam güncel `stop_times`, tarihli istisnalar ve kurumsal koordinat paketi sonraki doğrulama için gereklidir.
 
 ## 5. Sağlık hizmeti, kapasite ve maliyet
 
@@ -65,7 +61,7 @@ Kapasiteli yer seçimi kullanılır: il/ilçe talep hedefleri altında düşük 
 
 ## 8. Öncelikli sonraki veri işleri
 
-1. Resmî GTFS ve yeniden kullanım izni: tarifeli EGO hesaplaması için kritik eksik.
+1. Geçerlilik tarihli resmî GTFS: ara durak varışlarını, özel seferleri, koordinatları ve hizmet istisnalarını doğrulamak için kritik eksik.
 2. Resmî mahalle poligonları ve yerleşim kodları: yanlış ad/merkez eşleşmesini azaltır.
 3. Mahalle içi nüfus ızgarası ve yaş/ihtiyaç ağırlığı: mahalleyi tek nokta sayma yanlılığını azaltır.
 4. Branş bazında kadro/zaman etüdü, yerel hasta akışı, gerçek tip proje alanı ve işletme maliyeti: şablon kapasite varsayımlarını kalibre eder.
