@@ -1,0 +1,62 @@
+[
+  {
+    "mode": "car",
+    "scenario": {
+      "mode": "car",
+      "threshold": 30,
+      "coverageTarget": 95,
+      "districtFloor": 80,
+      "trafficFactor": 1
+    },
+    "status": "feasible",
+    "hospitalCount": 24,
+    "metrics": {
+      "coveredPopulation": 5803762,
+      "coveragePercent": 98.19708577538948,
+      "reachablePopulation": 5889804,
+      "unreachableOrUnlocatedPopulation": 20516,
+      "meanMinutes": 21.078173326853083,
+      "p90Minutes": 28.073617935180664,
+      "meanPopulationDenominator": 5889804
+    },
+    "verifiedRoute": {
+      "from": "AHMETADİL",
+      "to": "ÇİFTLİKKÖY",
+      "minutes": 21.719655990600586,
+      "boardings": []
+    }
+  },
+  {
+    "mode": "transit",
+    "scenario": {
+      "mode": "transit",
+      "threshold": 45,
+      "coverageTarget": 95,
+      "districtFloor": 80,
+      "trafficFactor": 1
+    },
+    "status": "optimal",
+    "hospitalCount": 291,
+    "metrics": {
+      "coveredPopulation": 5618712,
+      "coveragePercent": 95.06612163131607,
+      "reachablePopulation": 5647331,
+      "unreachableOrUnlocatedPopulation": 262989,
+      "meanMinutes": 21.09081258539855,
+      "p90Minutes": 38.90073013305664,
+      "meanPopulationDenominator": 5647331
+    },
+    "verifiedRoute": {
+      "from": "ATIFBEY",
+      "to": "KAVACIK SUBAYEVLERİ",
+      "minutes": 34.28799819946289,
+      "boardings": [
+        {
+          "route": "M4",
+          "stop": "Dışkapı",
+          "mode": "subway"
+        }
+      ]
+    }
+  }
+]

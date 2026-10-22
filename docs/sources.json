@@ -1,0 +1,192 @@
+[
+  {
+    "id": "tuik",
+    "title": "2025 ADNKS Favori Tablolar",
+    "publisher": "TÜİK",
+    "url": "https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx",
+    "status": "İndirildi ve doğrulandı",
+    "date": "31.12.2025",
+    "usedFor": "Mahalle ve ilçe nüfusları; resmî yerleşim kodları",
+    "note": "1.427 mahalle kaydı. İl toplamı ile mahalle toplamı arasındaki 3.294 kişi korunur; coğrafi konum atanmamıştır."
+  },
+  {
+    "id": "tuik-terms",
+    "title": "TÜİK yeniden kullanım koşulları",
+    "publisher": "TÜİK",
+    "url": "https://www.tuik.gov.tr/Kurumsal/Yasal_Uyari",
+    "status": "Kontrol edildi",
+    "date": "22.10.2026",
+    "usedFor": "Veri atfı ve yeniden kullanım",
+    "note": "Kaynak gösterilerek yeniden kullanım; veri ve araştırma kapsamını birlikte açıklama."
+  },
+  {
+    "id": "osm",
+    "title": "Türkiye OpenStreetMap veri kesiti",
+    "publisher": "Geofabrik / OpenStreetMap",
+    "url": "https://download.geofabrik.de/europe/turkey.html",
+    "status": "İndirildi ve işlendi",
+    "date": "20.10.2026",
+    "usedFor": "Yol ve yürüyüş ağı, ilçe sınırları, mahalle noktaları, toplu taşıma güzergâhları, hastane envanteri",
+    "note": "OSM topluluk verisidir. Mahalle eşleştirmeleri ilçe sınırı ve ad üzerinden yapılır; adres veya nüfus ağırlıklı merkez doğrulaması değildir."
+  },
+  {
+    "id": "osm-license",
+    "title": "OpenStreetMap telif ve lisans",
+    "publisher": "OpenStreetMap Foundation",
+    "url": "https://www.openstreetmap.org/copyright",
+    "status": "Kontrol edildi",
+    "date": "22.10.2026",
+    "usedFor": "ODbL 1.0 atfı",
+    "note": "OSM kaynaklı türetilmiş veri dosyaları ODbL koşullarına tabidir; uygulama kodundan ayrı değerlendirilir."
+  },
+  {
+    "id": "ego-hours",
+    "title": "EGO hareket saatleri ve durak sıraları",
+    "publisher": "EGO Genel Müdürlüğü",
+    "url": "https://www.ego.gov.tr/hareketsaatleri",
+    "status": "Kaynak incelendi · modele aktarılmadı",
+    "date": "22.10.2026",
+    "usedFor": "Resmî hat, sefer ve durak sırası doğrulaması",
+    "note": "Hat 110 örneği incelendi. Sayfa, durak bazlı tüm varış saatlerini ve kullanılabilir GTFS paketini sağlamıyor. Arayüzdeki EGO ağ senaryosu bu tarifeden üretilmedi."
+  },
+  {
+    "id": "ego-rail",
+    "title": "EGO raylı sistem hizmetleri",
+    "publisher": "EGO Genel Müdürlüğü",
+    "url": "https://www.ego.gov.tr/sayfa/1075/rayli-sistem",
+    "status": "Kaynak incelendi",
+    "date": "22.10.2026",
+    "usedFor": "İşletilen hatlar ile proje aşamasındaki hatların ayrımı",
+    "note": "Proje uzatmaları mevcut hizmet kabul edilmez. Tarife entegrasyonu ayrıca gereklidir."
+  },
+  {
+    "id": "ego-app",
+    "title": "EGO Cep’te",
+    "publisher": "Ankara Büyükşehir Belediyesi",
+    "url": "https://www.ankara.bel.tr/mobil-uygulamalar/ego-cepte",
+    "status": "Resmî kaynak bulundu",
+    "date": "22.10.2026",
+    "usedFor": "EGO, ÖHO ve ÖTA ağ kapsamını doğrulama",
+    "note": "Uygulamada bilgi bulunması, indirilebilir ve yeniden kullanılabilir toplu GTFS verisinin bulunduğu anlamına gelmez."
+  },
+  {
+    "id": "abb-catalog",
+    "title": "CBS Başkent açık veri kataloğu",
+    "publisher": "Ankara Büyükşehir Belediyesi",
+    "url": "https://cbsbaskent.ankara.bel.tr/acik-veri/ankara-kent-rehberi-hizmeti",
+    "status": "Ham veri erişimi gerekli",
+    "date": "22.10.2026",
+    "usedFor": "Resmî mahalle sınırları ve adres katmanları için öncelikli kaynak",
+    "note": "İncelenen kayıt, indirilebilir ham veri taahhüdü olmadığını açıklıyor. Güncel mahalle poligonları ve UAVT kodlarının eşleşmesi kurumdan talep edilmeli."
+  },
+  {
+    "id": "abb-demography",
+    "title": "Demografi Ankara",
+    "publisher": "Ankara Büyükşehir Belediyesi",
+    "url": "https://demografi.ankara.bel.tr/",
+    "status": "Doğrulama kaynağı bulundu",
+    "date": "22.10.2026",
+    "usedFor": "İlçe nüfusu ve demografik göstergelerin kontrolü",
+    "note": "Panel erişimi, mahalle düzeyinde ham yaş / sağlık ihtiyacı verisi erişimi olarak yorumlanmadı."
+  },
+  {
+    "id": "health",
+    "title": "Ankara sağlık tesisleri",
+    "publisher": "Ankara İl Sağlık Müdürlüğü",
+    "url": "https://ankaraism.saglik.gov.tr/TR%2C80707/saglik-tesislerimiz.html",
+    "status": "Envanter doğrulaması gerekli",
+    "date": "22.10.2026",
+    "usedFor": "Mevcut hastanelerin tür, kapasite ve hizmet kapsamının doğrulanması",
+    "note": "İlk sürümün harita karşılaştırması OSM envanteridir. Resmî listeyle tam eşleştirme, kapasite ve hastane türü normalizasyonu henüz yapılmadı."
+  },
+  {
+    "id": "who",
+    "title": "AccessMod: geographic access to health care",
+    "publisher": "Dünya Sağlık Örgütü",
+    "url": "https://www.who.int/tools/accessmod-geographic-access-to-health-care",
+    "status": "Yöntem araştırması",
+    "date": "22.10.2026",
+    "usedFor": "Belirli seyahat süresinde hizmete erişebilen nüfus oranı",
+    "note": "Bu kaynaktan Ankara için 30 dakika veya %95 gibi evrensel bir klinik standart çıkarılmadı. Eşikler senaryo tercihidir."
+  },
+  {
+    "id": "covering",
+    "title": "The Maximal Covering Location Problem (1974)",
+    "publisher": "Richard Church ve Charles ReVelle",
+    "url": "https://doi.org/10.1111/j.1435-5597.1974.tb00902.x",
+    "status": "Yöntem araştırması",
+    "date": "1974",
+    "usedFor": "Nüfus ağırlıklı erişim ve tesis sayısı dengesi",
+    "note": "Projede kısmi küme kapsama kullanılır: erişim hedefini sağlayan en az eşdeğer tesis. İlçe tabanı ve sabit sayıda kapsama iyileştirmesi eklenmiştir."
+  },
+  {
+    "id": "gtfs",
+    "title": "GTFS Schedule Reference",
+    "publisher": "GTFS.org",
+    "url": "https://gtfs.org/documentation/schedule/reference/",
+    "status": "Gerekli veri standardı",
+    "date": "22.10.2026",
+    "usedFor": "Duraklar, hatlar, seferler, durak saatleri, hizmet takvimi ve istisnalar",
+    "note": "Güncel Ankara feed URL’si ve tekrar kullanım koşulları bu araştırmada doğrulanamadı. Bu, verinin hiçbir yerde bulunmadığı iddiası değildir."
+  },
+  {
+    "id": "otp",
+    "title": "OpenTripPlanner",
+    "publisher": "OpenTripPlanner",
+    "url": "https://www.opentripplanner.org/",
+    "status": "Sonraki aşama bileşeni",
+    "date": "22.10.2026",
+    "usedFor": "GTFS + OSM ile saate bağlı toplu taşıma yönlendirmesi",
+    "note": "İlk sürüm kendi seyrek ağ modelini kullanır. Resmî GTFS elde edilince tarifeli matris OTP üzerinden yenilenmeli."
+  },
+  {
+    "id": "osrm",
+    "title": "OSRM HTTP API",
+    "publisher": "Project OSRM",
+    "url": "https://project-osrm.org/docs/v26.6.1/http",
+    "status": "Üretim ölçeği için alternatif",
+    "date": "22.10.2026",
+    "usedFor": "Özel sunucuda sürüş süre matrisi ve yönlendirme",
+    "note": "İlk sürüm genel kullanıma açık demo sunucusuna büyük matris sorguları göndermiyor. Dönüş kısıtları için OSRM/Valhalla gibi tam motorlara geçiş önerilir."
+  },
+  {
+    "id": "scipy",
+    "title": "SciPy mixed integer linear programming",
+    "publisher": "SciPy",
+    "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.milp.html",
+    "status": "Kullanılıyor",
+    "date": "22.10.2026",
+    "usedFor": "HiGHS ile tamsayılı optimizasyon ve optimalite açığı",
+    "note": "Minimum sayı için kanıt / alt sınır raporlanır. Seyahat süresi iyileştirmesi yerel aramadır ve global optimum iddiası taşımaz."
+  },
+  {
+    "id": "worldpop",
+    "title": "WorldPop nüfus ızgaraları",
+    "publisher": "WorldPop / University of Southampton",
+    "url": "https://api.worldpop.org/v2/",
+    "status": "Alternatif · kullanılmadı",
+    "date": "22.10.2026",
+    "usedFor": "Mahalle içi nüfus dağılımının sonraki sürümde iyileştirilmesi",
+    "note": "Model tahmini raster, ADNKS yerine resmî sayım gibi kullanılamaz. Mahalle toplamlarına yeniden ölçekleme ve sürüm / lisans kontrolü gerekir."
+  },
+  {
+    "id": "health-yearbook",
+    "title": "Sağlık İstatistikleri Yıllığı 2024",
+    "publisher": "T.C. Sağlık Bakanlığı",
+    "url": "https://www.saglik.gov.tr/TR-114952/saglik-istatistikleri-yilligi-2024.html",
+    "status": "Kaynak bulundu · modele aktarılmadı",
+    "date": "2024",
+    "usedFor": "İl bazında tesis, yatak ve personel verileri için sonraki aşama",
+    "note": "Kapasite tabloları bu ilk modele aktarılmadı. OSM hastane sayısının resmî sayı olduğu iddia edilmez."
+  },
+  {
+    "id": "construction-cost",
+    "title": "Yapı yaklaşık birim maliyetleri tebliğ kataloğu",
+    "publisher": "ÇŞİDB Yüksek Fen Kurulu",
+    "url": "https://yfk.csb.gov.tr/tebligler-iscilikler-329",
+    "status": "Kaynak bulundu · tutar doğrulanmadı",
+    "date": "22.10.2026",
+    "usedFor": "Tesis tipi ve yapı alanı belirlenince yatırım maliyeti çalışması",
+    "note": "2026 tam metni birincil sunucudan bu oturumda alınamadı; TL/m² tutarı kullanılmadı. İlk model eşdeğer hastane başına 1 maliyet birimi kullanır."
+  }
+]

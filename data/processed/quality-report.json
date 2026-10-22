@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-22",
+  "roadFootprintViolations": [],
+  "surfaceRailConflicts": [],
+  "matrixDimensions": {
+    "car": [
+      1413,
+      1521
+    ],
+    "transit": [
+      1413,
+      1521
+    ]
+  },
+  "matchedPopulation": 5889804,
+  "missingPopulation": 20516,
+  "candidateCount": 1397,
+  "scope": "Geographic access prototype, not a capacity or clinical model",
+  "sourceSha256": "72e36cf8f1eeb2e8c12480e14148b42448c6aad05d19932d94add37f360980c1"
+}

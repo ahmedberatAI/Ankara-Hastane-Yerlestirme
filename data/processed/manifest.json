@@ -1,0 +1,119 @@
+{
+  "createdAt": "2026-10-22T15:37:10.832656+00:00",
+  "populationReferenceDate": "2025-12-31",
+  "osmSnapshotDate": "2026-10-20T20:23:47Z",
+  "sources": [
+    {
+      "file": "data/raw/2025ADNKS_FavoriTablolar.xlsx",
+      "bytes": 6796932,
+      "sha256": "72e36cf8f1eeb2e8c12480e14148b42448c6aad05d19932d94add37f360980c1"
+    },
+    {
+      "file": "data/raw/turkey-latest.osm.pbf",
+      "bytes": 651173145,
+      "sha256": "233c721c6dd50ab92d66c20509700b6f32a11d2b00057a7d7b217f2ec5238744"
+    },
+    {
+      "file": "data/raw/ankara-osm.json.gz",
+      "bytes": 21740916,
+      "sha256": "8851267f13f4faa8f6d4b2c5f9179e510ce3823b6277ce883b8a36632c402ce5"
+    }
+  ],
+  "files": [
+    {
+      "file": "data/processed/car-matrix.npz",
+      "bytes": 7607604,
+      "sha256": "e86bed9026787bc73d954ee79ce672b69131c99417d135ba25366ad87bc9d968"
+    },
+    {
+      "file": "data/processed/dataset.json",
+      "bytes": 692436,
+      "sha256": "60fd6d10824dc6758d9af1f3d6e530519de1da4ac9044c934fc5eae1fbe21a76"
+    },
+    {
+      "file": "data/processed/districts.geojson",
+      "bytes": 184827,
+      "sha256": "ed63e1385ff022464791158662b77aed6d564c7750a1b1265a6c113f22bfbf90"
+    },
+    {
+      "file": "data/processed/drive-graph.npz",
+      "bytes": 12825866,
+      "sha256": "f3817e7cf6ce331cefb00f30432a2ff18aad20f58238641fbebb25c0124ea538"
+    },
+    {
+      "file": "data/processed/example-car-result.json",
+      "bytes": 248593,
+      "sha256": "8a3c80f5d49811e7b973c4d0479fdaef96fe145c70beeab0b1cacbaa42b5596f"
+    },
+    {
+      "file": "data/processed/example-transit-result.json",
+      "bytes": 334151,
+      "sha256": "3e42c9280aa3d6a7f3a7794baacaa2e238452713f8a48247a313f89c44196c52"
+    },
+    {
+      "file": "data/processed/graph-coordinates.npy",
+      "bytes": 20860592,
+      "sha256": "b86629c977a931479edc08dc42a7d0c770f7b94b03b685077ac65cd162d0593b"
+    },
+    {
+      "file": "data/processed/neighborhood-population-2025.csv",
+      "bytes": 57952,
+      "sha256": "2d8a4b91f19f7e4d47a69767902665ade936a16b543505e36d3ac16e45a22d71"
+    },
+    {
+      "file": "data/processed/population.json",
+      "bytes": 239275,
+      "sha256": "196cb032944190c3b6e21e4cb6aa08893425141bf39e02ce56daef9f164cf5ee"
+    },
+    {
+      "file": "data/processed/province.geojson",
+      "bytes": 47177,
+      "sha256": "d58d4291668f8e4d66ffbeaa66d565d1e645a90ac635e3a75c180e37bc39b21f"
+    },
+    {
+      "file": "data/processed/quality-report.json",
+      "bytes": 457,
+      "sha256": "4dee17c832501ccff8f3d452f77319a23552b0b0e2fb3efc1e32d1cc84f06f61"
+    },
+    {
+      "file": "data/processed/roads.geojson",
+      "bytes": 3736256,
+      "sha256": "68f0c082b9f8031d06c93c1691e3df60432fa9a06323f14e196d47a1fb845987"
+    },
+    {
+      "file": "data/processed/transit-details.json.gz",
+      "bytes": 3569937,
+      "sha256": "62daaf882a143f71a3cc72f53655e9a071ea5aad87013eb81906c321cda67858"
+    },
+    {
+      "file": "data/processed/transit-graph.npz",
+      "bytes": 598330,
+      "sha256": "f0854b1a6039eeb914efa969bb00ada133887676972250ec1d7dcdab406ba9f9"
+    },
+    {
+      "file": "data/processed/transit-lines.geojson",
+      "bytes": 8165822,
+      "sha256": "20f182ae93948165150996effd6eaf3ab24cf34f7fa2014350aa16a7dc667051"
+    },
+    {
+      "file": "data/processed/transit-matrix.npz",
+      "bytes": 961314,
+      "sha256": "8a6b6c0bb46161413c1db68d340a264ef9846dd1a33dd4262c2ad11169ee06ca"
+    },
+    {
+      "file": "data/processed/unmatched-neighborhoods.json",
+      "bytes": 2322,
+      "sha256": "f0a1320924c03d2a62d5df142201579620188bf2e0807021b0722872ec432553"
+    },
+    {
+      "file": "data/processed/validation-results.json",
+      "bytes": 1500,
+      "sha256": "f9c42f947e6b0d3281cf7beb580e18922ef11da16f32b20e337010fd67c61ce2"
+    },
+    {
+      "file": "data/processed/walk-graph.npz",
+      "bytes": 17204362,
+      "sha256": "f5703c609ef4f985e34c8ab016a795eeb995f3a48a667424f087d41fc800555a"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# Preserve the exact packaged bytes covered by data/processed/manifest.json.
+data/processed/** -text
+*.npz binary
+*.npy binary
+*.gz binary
+*.png binary
