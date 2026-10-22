@@ -1,12 +1,12 @@
 {
   "status": "infeasible",
-  "reason": "91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.",
+  "reason": "Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle 91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.",
   "geographicCertificate": {
     "status": "optimal",
-    "minimumCountLowerBound": 165.99999999999977,
+    "minimumCountLowerBound": 166.0,
     "feasibleGeographicCount": 166,
     "fullCandidateCount": 4701,
-    "undominatedCandidateCount": 837,
+    "undominatedCandidateCount": 822,
     "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
     "thresholdMinutes": 45,
     "coverageTargetPercent": 95.0,
@@ -64,8 +64,8 @@
         210
       ]
     },
-    "transitRoutes": 427,
-    "transitStops": 10335,
+    "transitRoutes": 424,
+    "transitStops": 10811,
     "transitAssumptions": {
       "scheduleAvailable": true,
       "intermediateStopTimesObserved": false,
@@ -105,12 +105,12 @@
     "transitDataQuality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 427,
-      "coordinateStopCount": 10335,
+      "routedRouteCount": 424,
+      "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10361,
-        "saturday": 8022,
-        "sunday": 7100
+        "weekday": 10397,
+        "saturday": 8116,
+        "sunday": 7109
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -118,16 +118,20 @@
         "sunday": 9479
       },
       "coordinateSources": {
-        "OSM stop ref": 6450,
-        "Historical community GTFS coordinate; official stop ID": 3817,
+        "EGO Başkentkart public stop query": 10743,
         "OSM station name / official stop identity": 68
-      }
+      },
+      "quarantinedCoordinateCount": 0,
+      "coordinateAddressConflictCount": 98,
+      "quarantinedRouteCount": 3
     },
-    "transitVersion": "ego-scheduled-v1"
+    "transitVersion": "ego-scheduled-v2-quality-gates",
+    "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43"
   },
   "modelLabel": "EGO resmi kalkışlar · Hafta içi · 08.00 · ara durak süreleri tahmini",
   "transitEvidence": {
-    "version": "ego-scheduled-v1",
+    "version": "ego-scheduled-v2-quality-gates",
+    "packageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
     "profile": {
       "day": "weekday",
       "seconds": 28800,
@@ -136,12 +140,12 @@
     "quality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 427,
-      "coordinateStopCount": 10335,
+      "routedRouteCount": 424,
+      "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10361,
-        "saturday": 8022,
-        "sunday": 7100
+        "weekday": 10397,
+        "saturday": 8116,
+        "sunday": 7109
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -149,10 +153,12 @@
         "sunday": 9479
       },
       "coordinateSources": {
-        "OSM stop ref": 6450,
-        "Historical community GTFS coordinate; official stop ID": 3817,
+        "EGO Başkentkart public stop query": 10743,
         "OSM station name / official stop identity": 68
-      }
+      },
+      "quarantinedCoordinateCount": 0,
+      "coordinateAddressConflictCount": 98,
+      "quarantinedRouteCount": 3
     },
     "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
   }

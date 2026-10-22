@@ -1,0 +1,104 @@
+{
+  "format": 1,
+  "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
+  "builtAt": "2026-10-22T21:36:21.161160+00:00",
+  "indexSha256": "2210106d370374201a76e679ac35bdb90e9b45051bf3894617cf24e1ec4121b2",
+  "files": [
+    {
+      "file": "backend/timetable.py",
+      "kind": "model",
+      "sha256": "ca4dee6c579a8e8be0372200be0e7c4d5221400383de325e8c239c70259b9c35"
+    },
+    {
+      "file": "backend/geo.py",
+      "kind": "model",
+      "sha256": "15671fefd65b779cbee0966490d6fd664596e185bff7b544a95ecd447499d29c"
+    },
+    {
+      "file": "scripts/build_timetable.py",
+      "kind": "model",
+      "sha256": "a67fa072d33ead2a2dc50fcaa8bf24bb50e739eb3e426ed9a192f6fd5037b812"
+    },
+    {
+      "file": "data/processed/ego-official.json",
+      "kind": "artifact",
+      "sha256": "532387df33f9d8e239dec221449c39a44c3882ff210a8513fbe5d05018bde443"
+    },
+    {
+      "file": "data/processed/ego-stop-coordinates.json",
+      "kind": "artifact",
+      "sha256": "8dfffd1f9ab573666a81d28ffc99121f80b4cb134e1854eb29e25d04389bd1b6"
+    },
+    {
+      "file": "data/processed/ego-quality.json",
+      "kind": "artifact",
+      "sha256": "aabf594f6623dc72db5f2e4f5ff438b2cff126982f4d02d8f753eb0dbead9ca1"
+    },
+    {
+      "file": "data/processed/ego-network.json.gz",
+      "kind": "artifact",
+      "sha256": "9832b57bf27d2f176af89a3c5b0ff998a1abd4415cc4ab771e8d226830222fd4"
+    },
+    {
+      "file": "data/processed/graph-coordinates.npy",
+      "kind": "artifact",
+      "sha256": "b86629c977a931479edc08dc42a7d0c770f7b94b03b685077ac65cd162d0593b"
+    },
+    {
+      "file": "data/processed/walk-graph.npz",
+      "kind": "artifact",
+      "sha256": "f5703c609ef4f985e34c8ab016a795eeb995f3a48a667424f087d41fc800555a"
+    },
+    {
+      "file": "data/processed/ego-access.npz",
+      "kind": "artifact",
+      "sha256": "14edd1753bca55b19f773b03bb5654a09ff3764083044cc6d9db551998ef635f"
+    },
+    {
+      "file": "data/processed/ego-egress.npz",
+      "kind": "artifact",
+      "sha256": "08344dfb7d4a7002f5a62923a74df7cf41e3f492a1c1355b4e54bbf52e0c116d"
+    },
+    {
+      "file": "data/processed/ego-transfers.npz",
+      "kind": "artifact",
+      "sha256": "d06491a04b2619384feadd9cf5ebe3e80d5b2048f481e2d11e27ed8d384d04b9"
+    },
+    {
+      "file": "data/processed/ego-direct.npz",
+      "kind": "artifact",
+      "sha256": "e6be283be74866508cfdf96db76ed5ad8b95a09e204033ca6386c954f05755bf"
+    },
+    {
+      "file": "data/processed/transit-lines.geojson",
+      "kind": "artifact",
+      "sha256": "eef1c25e8cb7c1bf2e0990b5b72f26c83f3f7d3e6ad4494a4f8cc9ab431e56dd"
+    },
+    {
+      "file": "data/processed/transit-matrix.npz",
+      "kind": "artifact",
+      "sha256": "0711e155ee6d6bde43543dc3652e2c8a6f346683c111235f43a0f9fc84c1073e"
+    },
+    {
+      "file": "data/processed/transit-weekday-0800-matrix.npz",
+      "kind": "artifact",
+      "sha256": "f04761eef9a7aa5feb11920536de1a63912fc6a3f9f15ca20748f70118c595fe"
+    },
+    {
+      "file": "data/processed/transit-weekday-1000-matrix.npz",
+      "kind": "artifact",
+      "sha256": "0711e155ee6d6bde43543dc3652e2c8a6f346683c111235f43a0f9fc84c1073e"
+    },
+    {
+      "file": "data/processed/transit-saturday-1000-matrix.npz",
+      "kind": "artifact",
+      "sha256": "f9dbb8db0f7c5a5da7da21a65d7f86524103464cb7012ddd1010a340a2ff48e2"
+    },
+    {
+      "file": "data/processed/transit-sunday-1000-matrix.npz",
+      "kind": "artifact",
+      "sha256": "938e1c7ac15e8d4cb27e19d6dc5f88237d30bcef53f0673e99fd8977a458f44a"
+    }
+  ],
+  "scope": "Identity and reproducibility; not proof of real-world transport accuracy."
+}

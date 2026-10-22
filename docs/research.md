@@ -41,11 +41,11 @@ Karayolu çizgileri ortak OSM düğüm kimlikleriyle bağlandı. Böylece farkl�
 
 İlk sürümün süreleri ölçülmüş trafik süreleri değildir. Dönüş yasakları, koşullu erişim, trafik ışıkları, yokuş, hava ve saatlik yoğunluk yoktur. Arayüzdeki trafik çarpanı yalnız duyarlılık senaryosudur. Sonraki aşamada OSM dönüş ilişkilerini işleyen özel [OSRM](https://project-osrm.org/docs/v26.6.1/http) veya Valhalla hizmeti ve doğrulanmış hız profilleri kullanılmalıdır. Büyük matrisler ücretsiz demo sunucularına gönderilmez.
 
-## 4. EGO ve raylı sistem: resmî kalkışlar, kısmi konum eşleşmesi
+## 4. EGO ve raylı sistem: resmî kalkışlar ve koordinatlar, kısmi hizmet kapsamı
 
-22 Ekim 2026 tarihli yeni araştırmada [EGO hareket saatleri](https://www.ego.gov.tr/hareketsaatleri) kataloğundaki **665 yön/varyant ve 10.811 durak kimliği** indirildi. Hafta içi, cumartesi ve pazar kalkışları ile toplam hat süreleri işlendi; **427 yön/varyant** zaman bağımlı ağa bağlandı. Ara durak varışları resmî tarifede bulunmadığından ağ mesafeleriyle tahmin edilir. Çözülemeyen özel sefer notları varsayılan tam-hat seferi yapılmaz.
+22–23 Ekim 2026 araştırmasında [EGO hareket saatleri](https://www.ego.gov.tr/hareketsaatleri) kataloğundaki **665 yön/varyant ve 10.811 durak kimliği** işlendi. Hafta içi, cumartesi ve pazar kalkışları ile hat süreleri kullanıldı; **424 yön/varyant** zaman bağımlı ağa bağlandı. Ara durak varışları resmî tarifede bulunmadığından ağ mesafeleriyle tahmin edilir. Çözülemeyen özel sefer notları varsayılan tam-hat seferi yapılmaz. “Süresi” alanının her hatta tek yön mü bütün durak zinciri mi olduğu doğrulanmadı; zincire dağıtılması model varsayımıdır.
 
-OSM durak referansları önceliklidir. Tarihsel topluluk GTFS arşivi yalnız eksik otobüs koordinatlarını tamamlar; onun takvimi ve sefer saatleri güvenilir güncel resmî tarife kabul edilmedi. 476 durak konumu hâlâ eksik. Gün türüne göre yayımlanmış kalkışların yaklaşık %72–75'i modele bağlanır; sonuçlar bütün gerçek hizmeti kapsadığı iddiası taşımaz.
+[Resmî Başkentkart](https://baskentkart.ego.gov.tr/) durak sorgusu artık 10.743 otobüs durağının tamamına güncel kaynak koordinatı sağlıyor; 68 ray istasyonu OSM ile eşleştiriliyor. Yeni kesitte eksik durak koordinatı ve kullanılan tarihsel ek koordinat yok. Gerçek HTTP gözlem zamanı bilinen 10.740 kayıt ile zamanı bilinmeyen üç eski yanıt ayrılıyor. Tarife HTML önbelleğinin bilinmeyen gözlem zamanı işleme tarihiyle doldurulmadı. Gün türüne göre yayımlanmış kalkışların yaklaşık %72–75'i modele bağlanır; bu nüfus kapsamı değildir. Adla başlangıç notları ve yol kesiti eşleştirmeleri bazı kırsal hizmetleri dışarıda bırakıyor. Eksik veri gerçek hizmet yokluğu sayılmaz.
 
 [EGO araştırması, kaynak örnekleri ve kalite sınırları](transit-research.md), [kontrollü 291/91 deneyleri](transit-validation.md). Tam güncel `stop_times`, tarihli istisnalar ve kurumsal koordinat paketi sonraki doğrulama için gereklidir.
 

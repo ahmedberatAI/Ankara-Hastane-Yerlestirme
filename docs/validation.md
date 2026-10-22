@@ -1,60 +1,75 @@
-# Doğrulama ve 91 hastane deneyi · v0.4
+# Doğrulama ve 91 hastane deneyi · v0.5
 
-22 Ekim 2026. İl genelinde %95, her ilçede %80 talep; talep çarpanı 1, %80 yatak doluluğu, 2.140 temas/hekim/yıl, %10 ek yıllık maliyet. Tutarlar yaklaşık Aralık 2024 TL; kısmi gider kalibrasyonu, saha ölçümü değildir.
+23 Ekim 2026 TSİ. İl genelinde %95, her ilçede %80 talep; talep çarpanı 1, %80 yatak doluluğu, 2.140 temas/hekim/yıl ve %10 ek yıllık maliyet. Tutarlar yaklaşık Aralık 2024 TL; kısmi gider kalibrasyonu, saha ölçümü değildir. Örnekler yeni ulaşım paketi ve kaynak temizliği koduyla yeniden çözüldü.
 
-## Sonuçlar
+## Kaydedilmiş kapasite çözümleri
 
-| Senaryo | Tesis | Yatak | Hekim | Ortalama süre | Yıllık maliyet göstergesi |
+| Senaryo | Tesis | Yatak | Hekim | Ortalama süre | Yıllık eşdeğer maliyet |
 |---|---:|---:|---:|---:|---:|
-| Araba · 30 dk · sayı serbest | 46 | 18.550 | 21.613 | 17,32 dk | 143,95 mr TL/yıl |
-| EGO · hafta içi 10.00 · 45 dk · sayı serbest | 211 | 24.950 | 22.971 | 26,94 dk | 172,82 mr TL/yıl |
-| Araba · 30 dk · en fazla 91 | 46 | 18.550 | 21.613 | 17,32 dk | 143,95 mr TL/yıl |
-| EGO · hafta içi 08.00 · 45 dk · en fazla 91 | **Bu veriyle uygun değil** | — | — | — | Coğrafi alt sınır **166** |
-| EGO · hafta içi 10.00 · 45 dk · en fazla 91 | **Bu veriyle uygun değil** | — | — | — | Coğrafi alt sınır **171** |
-| EGO · cumartesi 10.00 · 45 dk · en fazla 91 | **Bu veriyle uygun değil** | — | — | — | Coğrafi alt sınır **171** |
-| EGO · pazar 10.00 · 45 dk · en fazla 91 | **Bu veriyle uygun değil** | — | — | — | Coğrafi alt sınır **170** |
+| Araba · 30 dk · sayı serbest | 46 | 18.550 | 21.590 | 17,32 dk | 143,88 mr TL/yıl |
+| EGO · hafta içi 10.00 · 45 dk · sayı serbest | 209 | 25.050 | 22.966 | 27,78 dk | 172,88 mr TL/yıl |
+| Araba · 30 dk · en fazla 91 | 46 | 18.550 | 21.590 | 17,32 dk | 143,88 mr TL/yıl |
+| Araba · en fazla 91 · 835 temas/hekim duyarlılığı | 50 | 18.650 | 55.220 | 16,70 dk | 251,73 mr TL/yıl |
 
-Araba için 91 sınırı altında **46 tesisle geçerli bir plan** bulundu. 31×50, 5×150, 3×300, 2×600, 2×1.000 ve 3×4.050 yatak seçildi. Aynı 50 yatak tipinde hekim sayısı 12–61; 150 yatakta 174–183 değişiyor. Yatak ve hekim artık sabit oranla bağlanmıyor.
+Araba/91 planı **46 tesisle** hedefleri sağlar: 31×50, 5×150, 3×300, 2×600, 2×1.000, 3×4.050 yatak tipleri seçildi. 5.614.804 kişi eşdeğerinin talebi karşılanır; ilçe paydaları konumu bilinmeyen nüfusu da içerir. Hekim sayısı her tesiste ayrı tam sayı olarak seçilir; sabit hekim/yatak oranı yoktur. Üniversite iş yükü duyarlılığında 55.220 hekim gerekir; bu, gözlenen 26.798 bütün-sektör hekim toplamıyla aynı kapsamda bir kadro mevcudiyeti garantisi değildir.
 
-Bu plan 5.614.804 kişi eşdeğerinin talebini karşılıyor: il %95, bütün ilçeler en az %80. Bina yatırımı 146,96 milyar; işletme gideri 135,51 milyar/yıl; yıllıklaştırılmış toplam 143,95 milyar/yıl. 25 yıl/%3 sabit fiyat varsayımı kullanılır. Bu özel grup proxy tutarlarına dayalı eksik kapsamlı maliyet göstergesidir; Ankara kamu hastanelerinin gerçek gider toplamı değildir.
+## İlk maliyet planı ve son plan
 
-**46 minimum hastane sayısı değildir.** Maliyet aşaması açığı yaklaşık %1,82; 91 sınırlı koşunun süre aşaması açığı yaklaşık %59,79. Son plan ilk maliyet planının 18,29 dakikalık ortalamasını 17,32’ye düşürdü, fakat en kısa yol yerleşimi ispatlanmadı. Zaman sınırlı tekrar koşularında yerleşim ve açıklık değişebilir. Yeni EGO serbest sayı çözümü 211’dir; bu da minimum sayı değildir. Maliyet açığı %2,61, süre aşaması açığı %80,12’dir. Önceki araba çözümleri değiştirilmeden yeni sürümde tekrar denetlenmiştir.
+| Senaryo | Tesis: ilk → son | Yıllık maliyet: ilk → son (mr TL) | İlk maliyet açıklığı | Son maliyet açıklığı | Süre aşaması açıklığı |
+|---|---:|---:|---:|---:|---:|
+| Araba · sayı serbest | 46 → 46 | 143,95 → 143,88 | %1,89 | %1,84 | %67,02 |
+| Araba · en fazla 91 | 46 → 46 | 143,95 → 143,88 | %1,82 | %1,77 | %60,98 |
+| EGO · hafta içi 10.00 | 209 → 209 | 172,89 → 172,88 | %2,82 | %2,81 | %81,47 |
 
-## 91 için EGO kanıtının kapsamı
+Maliyet alt sınırı her yapı izi sınıfından en yakın 12 aday bağlantısının tutulduğu **daraltılmış kaynak problemine** aittir. Tam aday bağlantıları için küresel maliyet sınırı değildir. İlk aşamanın açıklığı son planın açıklığı yerine kullanılamaz. Süre aşaması ayrı bir amaçtır; büyük açıklık daha iyi yerleşim olasılığını açık bırakır. Hiçbir kapasite planı minimum hastane sayısı kanıtı değildir. Süre sınırlı tekrar koşularında yerleşim ve kaynak sayıları değişebilir.
 
-`backend/feasibility.py`, 4.701 adayın ve süre içindeki tüm ağ bağlantılarının tamamını kullanır. Kaynak kapasitesi, yapı-izi çakışmaları ve maliyetler kaldırıldığında bile asgari coğrafi konum sayısı dört profilde **166–171** bulundu (alt sınır = geçerli sayı, açıklık 0). Bu yüzden kapasite eklemek aynı ağ/eşik/hedefler altında 91’i mümkün yapamaz.
+Kaynak temizliği aynı kabul edilen hasta akışını korur; boş tesisleri kapatır ve bu akış için en ucuz uygun yatak tipini/gerekli hekim sayısını kullanır. Sayısal olarak desteklenmeyen akış bulunursa doğrulanmış önceki çözüme dönüş açıkça kaydedilir. [Tam yöntem](methodology.md).
 
-Eski 291 sınırını yükselten bir hata giderildi: doğrudan yürüyüş de 15 dakikada kesiliyordu. Yalnız bu düzeltmeyle alt sınır 169 olur. Yeni profiller resmî EGO kalkış listelerini kullanır; **665 yön/varyantın 427’si** ağa bağlanmıştır. Ara durak süreleri tahminidir; eksik hizmetler erişimi düşük gösterebilir. Bu nedenle sonuç gerçek EGO hizmetinin yetersizliğini veya kesin hastane ihtiyacını kanıtlamaz. İlçe tabanı kaldırılan ayrı coğrafi kontrolde alt sınır 35’tir; kapasite içermeyen bu kontrol 91’in yeterliliğini göstermez. [Kontrollü deney ve kapsam](transit-validation.md).
+## 91 için EGO deneyi
 
-Aday örneklemesi, mahalle temsil noktaları ve 15 dakika ilk/son durak yürüyüşü de sonucu etkiler. Mevcut 91 hastanenin yerlerini/kapasitelerini test etmez: sıfırdan en fazla 91 konum test edilir. Resmî 2024 envanteri 85’tir.
+| Profil | En fazla 91 | Gerekli coğrafi koşul |
+|---|---|---|
+| Hafta içi 08.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **166** |
+| Hafta içi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **168** |
+| Cumartesi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **170** |
+| Pazar 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **169** |
 
-## Hekim varsayımının duyarlılığı
+4.701 aday ve süre içindeki bütün bağlantılar kullanılır. Yatak, hekim, maliyet ve yapı çakışması kaldırıldığında bile alt sınır 91'i aşıyor; aynı paketlenmiş modelde kaynak kısıtları bunu iyileştiremez. **Bu, gerçek Ankara için imkânsızlık veya kesin ihtiyaç sayısı değildir.** Eksik seferler, tahmini ara durak süreleri, aday örneklemesi ve mahalle temsil noktaları erişimi etkiler. Mevcut 91 hastanenin yer/kapasite envanteri test edilmiyor; sıfırdan en fazla 91 aday test ediliyor. Resmî 2024 envanteri 85'tir. [Kontrollü karşılaştırma](transit-validation.md).
 
-Aynı araba/91 koşulunda Ankara Üniversitesi örneklerinin **835 temas/hekim/yıl** oranıyla **50 tesis, 18.650 yatak ve 55.232 hekim** gerektiren geçerli çözüm bulundu. Ortalama 16,70 dakika, yıllık maliyet göstergesi 251,77 milyar TL.
+## Aynı hastaneler farklı saatlerde yeterli mi?
 
-Bu hekim sayısı Ankara’nın bütün sektörlerdeki 26.798 hekiminden fazladır. Bina sayısının yetmesi, personelin fiilen mevcut olduğu anlamına gelmez. Üniversite ve özel grup oranları farklı hizmet/eğitim karışımlarını taşır; il için doğru klinik kadro standardını tek başına kanıtlamaz. [Duyarlılık verisi](../data/processed/sensitivity-results.json).
+Kayıtlı EGO planının **209 konumu, 25.050 yatağı, 22.966 hekimi** ve aynı **190,18 mr TL/yıl** tavanı korunur. Her profilde talep bu tesislere yeniden atanabilir; yıllık talep veya gider dört kez toplanmaz. Bütün seçili tesis bağlantıları kullanılır.
 
-## Bağımsız kontroller
+| Profil | Sonuç | İlçe koşulları altında en çok karşılanan talep |
+|---|---|---:|
+| Hafta içi 08.00 | İl hedefi sağlanmıyor | %93,806 |
+| Hafta içi 10.00 | Hedefler sağlandı | %95,001 |
+| Cumartesi 10.00 | İlçe koşulları sağlanamıyor | — |
+| Pazar 10.00 | İlçe koşulları sağlanamıyor | — |
 
-- 29 birim/API testi geçti. Tam sayımla küçük yer/kadro problemi; iki kaynak; alan; çakışma; sayı sınırı; maliyet ve talep korunması; imkânsızlık/sonuçlandırılamama ayrımı; tarifeli yolculuk ve veri ayrıştırma sınırları.
-- Sekiz kayıtlı gerçek veri senaryosu: yedi ana koşu + üniversite duyarlılığı. Geçerli çözümlerde **bütün** atamalar, talebin iki kez sayılmaması, yol süreleri, il/ilçe paydaları, hekim/yatak, toplam alan, tam sayılık, çakışma ve yıllık maliyet yeniden hesaplandı.
-- Büyük yapı izlerine örnek sürüş rotaları Dijkstra ile; toplu taşıma rotaları gün/saat bağımlı yolculuk hesabıyla matris değerlerine karşı denetlendi. Dört EGO profilinin sekizer başlangıcında bütün hedefler bağımsız tek-başlangıç hesabıyla karşılaştırıldı.
-- 4.701 yapı izinin yol/yüzey ray koridorlarıyla kesişimi yok. Matrisler 1.413 × 4.825 (4.701 aday + 124 OSM hastanesi). Negatif süre/NaN yok.
-- Dört sağlık PDF’si SHA-256 ile, Ankara ve üniversite satırları ve MLP mali kalemleri metin/görüntüyle doğrulandı. 2024 V-B sınıfı görsel kontrol edildi.
-- Üretim TypeScript/Vite derlemesi geçti. Tarayıcıda hafta içi 10.00/91 sonucu 171; gün değiştirip tekrar hesaplanan pazar 10.00/91 sonucu 170 olarak görüldü. Gün değişiminde eski sonuç uyarısı ve devre dışı dışa aktarım doğrulandı. Sayı serbest EGO hesabı 211 tesis verdi. Birlik–Hacı Bayram rotasında 413-7, 10.04 binişi, 1,3 dakika bekleme ve 44,5 dakika toplam süre; tahmini ara durak uyarısıyla gösterildi. [Görsel kontrol](screenshots/ego-tarife.png). Canlı süre sınırlı koşunun optimalite açıklıkları kayıtlı deneyden küçük farklar gösterebilir.
-- 390 px çerçevede mevcut ana yerleşim görsel olarak kontrol edildi; yeni EGO kontrolünün etkileşim denetimi masaüstünde yapıldı. Önceki sürümün yöntem penceresi ve JSON indirme kontrolleri ayrıca korunur.
+İlçe koşulları sağlanamıyorsa ana kapsama yüzdesi verilmez. İlçe tabanı kaldırılan tanı raporda ayrıca bulunur; bu değer asıl hedeflerin sağlandığı anlamına gelmez. Dört başlangıç profili bütün gün/yıl garantisi değildir. [Kimlikleri ve bütçesi bağlı rapor](../data/processed/robustness-results.json).
 
-Kaynaklar: [kalibrasyon araştırması](capacity-research.md), [yöntem](methodology.md), [kalite raporu](../data/processed/quality-report.json), [dosya kimlikleri](../data/processed/manifest.json).
+## Yüksek sayıyı ne açıklıyor?
 
-Örnekler: [araba](../data/processed/example-car-result.json), [EGO](../data/processed/example-transit-result.json), [araba ≤91](../data/processed/example-car-91-result.json), [EGO ≤91](../data/processed/example-transit-91-result.json), [835 duyarlılığı](../data/processed/example-car-91-university-result.json). Arayüz canlı hesaplamaları kullanır; sabit 91 deney kartı bundan ayrı etiketlenir.
+İlk kayıtlı EGO atamasında 171 tesis 50 yataklı, 125 tesis 1.000'den ve 143 tesis 5.000'den az kişi eşdeğerine hizmet ediyor. Tesis doluluk medyanı %2,63; bu yatakla ağırlıklandırılmış il doluluğu değildir.
+
+Haymana, Bala, Kızılcahamam, Çamlıdere, Kalecik, Ayaş, Güdül ve Nallıhan birlikte nüfusun %2,43'ini oluşturuyor. Yalnız bu sekiz ilçenin %80 koşulunu ortak bir yerleşimde sağlamak için 45 dk / hafta içi 10.00 coğrafi tanısının alt sınırı 136, bulunan sayı 136. İl geneli koşulu bu tanıda yoktur; ilçeler ayrı çözülüp sayıları toplanmamıştır. Düşük kullanım, erişim hedefleri ile en küçük tesis türünün birlikte incelenmesi gerektiğini gösterir; klinik uygunluk kanıtı değildir.
+
+24 açık etiketli süre/ilçe duyarlılığı raporda ve arayüzde sunulur. Ana %95/%80/45 dk hedefleri bu deneyler nedeniyle değiştirilmedi.
+
+## Bağımsız doğrulama
+
+97 birim/API/arayüz testi ve üretim derlemesi geçti. Kaydedilmiş yedi ana koşu ve 835 duyarlılığında tüm atamalar, nüfus paydaları, yatak/hekim, tam sayılık, yapı alanı/çakışma ve maliyet yeniden hesaplanır. Dört EGO profilinin sekiz başlangıcı × 4.825 hedefi bağımsız tek-başlangıç yönlendirmesiyle karşılaştırılır; bütün kullanılan kesitlerin fiziksel süre sınırları ayrıca denetlenir. Bu, saha seyahat süresi doğrulaması değildir.
+
+Dört sağlık PDF'si ve sayısal kalibrasyon kontrol edildi. 4.701 yapı izinin yol/yüzey ray koridorlarıyla kesişimi yok; konumu bilinmeyen 20.516 kişi paydada kalır. Ulaşım paketi, kayıtlı örnekler ve sağlamlık raporu içerik kimlikleriyle bağlanır. Son hakem ve tarayıcı durumu [denetim kaydında](nightly-review.md) açıklanır.
 
 ```powershell
 .venv\Scripts\python.exe -m pytest -q
 npm run build
 .venv\Scripts\python.exe scripts/verify_health_sources.py
-.venv\Scripts\python.exe scripts/audit_data.py
-.venv\Scripts\python.exe scripts/verify_release.py
 .venv\Scripts\python.exe scripts/verify_transit.py
+.venv\Scripts\python.exe scripts/verify_release.py
+.venv\Scripts\python.exe scripts/audit_robustness.py
 ```
 
-Yeni çözümler üretmek için `verify_release.py --write-examples`, ardından `manifest.py`. Süre sınırlı çözücünün çıktıları değişirse bu tablo ve ekran görüntüleri de güncellenmelidir.
+Yeni örnekler için `verify_transit.py --write`, `verify_release.py --write-examples`, `audit_robustness.py --write`, son olarak `manifest.py` çalıştırılır. Süre sınırlı çözümler değişirse tablolar ve ekran görüntüleri güncellenmelidir. [Yeniden üretim ve kaynaklar](../data/README.md).

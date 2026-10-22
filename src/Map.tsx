@@ -477,8 +477,9 @@ export default function AnkaraMap({
               Yol ve ulaşım ağı
             </label>
             <small>
-              Toplu taşıma çizgileri OSM geometrileridir; tüm hatların aktif
-              olduğunu doğrulamaz.
+              Çizgiler, resmî duraklar arasında OSM yol/ray ağında modellenen
+              güzergâhlardır. Bir çizginin görünmesi, seçili saatte o hatta
+              sefer bulunduğunu doğrulamaz.
             </small>
           </div>
         )}

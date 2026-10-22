@@ -5,6 +5,7 @@ import { transitProfileLabels } from "./types";
 type Report = {
   date: string;
   planningVersion: string;
+  transitPackageId: string;
   note: string;
   cases: Pick<
     Result,
@@ -31,9 +32,11 @@ const fmt = (n: number) =>
 export default function Benchmark({
   run,
   busy,
+  packageId,
 }: {
   run: (s: Scenario) => void;
   busy: boolean;
+  packageId?: string;
 }) {
   const [report, setReport] = useState<Report | null>(null);
   useEffect(() => {
@@ -43,14 +46,28 @@ export default function Benchmark({
       .catch(() => {});
   }, []);
   if (!report) return null;
+  if (!packageId || report.transitPackageId !== packageId) {
+    return (
+      <section className="benchmark" role="status">
+        <h3>91 hastane karşılaştırması güncelleniyor</h3>
+        <p>
+          Kayıtlı deney ile uygulamanın ulaşım veri sürümü eşleşmiyor. Bu
+          kayıtların sayıları güncel sonuç olarak gösterilemez.
+        </p>
+      </section>
+    );
+  }
   return (
     <section className="benchmark" aria-label="91 hastane karşılaştırma deneyi">
       <div className="benchmark-heading">
-        <span className="eyebrow">AYNI HEDEFLERLE KONTROLLÜ DENEY</span>
+        <span className="eyebrow">AYNI KAPSAMA HEDEFLERİ</span>
         <h3>91 hastane yeterli mi?</h3>
         <p>
-          En fazla 91 tesis · il genelinde %95 · her ilçede en az %80. Sıfırdan
-          yerleşim.
+          En fazla 91 tesis · il genelinde %95 · her ilçede en az %80. Süre
+          eşikleri araba için 30, EGO için 45 dakikadır. Sıfırdan yerleşim. Her
+          EGO kartı yalnız belirtilen başlangıç saatini ve o profil için ayrı
+          yerleşimi sınar; aynı hastane planının tüm saatlerde çalıştığı
+          anlamına gelmez.
         </p>
       </div>
       <div className="benchmark-cases">

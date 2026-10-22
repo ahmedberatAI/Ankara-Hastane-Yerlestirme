@@ -23,6 +23,51 @@ COMMUNITY_URL='https://dl.dropboxusercontent.com/scl/fi/d7u3d00gd85w2qbzedze6/an
 DAYS = ('weekday', 'saturday', 'sunday')
 
 
+def fetch_source(session, raw, name, params=None, refresh=False):
+    """Preserve observation time on a cache hit; file mtime is not evidence."""
+    path = raw / name
+    provenance_path = raw / (name + '.source.json')
+    url = URL + ('?hat_no=' + params['hat_no'] if params else '')
+    observed_at = None
+    downloaded = refresh or not path.exists()
+    if downloaded:
+        time.sleep(.45)
+        response = session.get(URL, params=params, timeout=(15, 45))
+        response.raise_for_status()
+        content = response.content
+        observed_at = datetime.now(timezone.utc).isoformat()
+        path.write_bytes(content)
+    else:
+        content = path.read_bytes()
+    digest = hashlib.sha256(content).hexdigest()
+    if not downloaded and provenance_path.exists():
+        prior = json.loads(provenance_path.read_text(encoding='utf-8'))
+        if prior.get('sha256') == digest and prior.get('url') == url:
+            observed_at = prior.get('observedAt')
+    record = {'file': name, 'url': url, 'sha256': digest, 'bytes': len(content),
+              'observedAt': observed_at,
+              'observationTimeStatus': 'recorded_http_fetch' if observed_at else 'unknown_legacy_cache',
+              'downloadedThisRun': downloaded}
+    # Persist only a successful HTTP observation; an old cache stays explicitly unknown.
+    if downloaded:
+        provenance_path.write_text(json.dumps(record, indent=2) + '\n', encoding='utf-8')
+    return content, record
+
+
+def snapshot_metadata(records):
+    identities = [{key: r[key] for key in ('file', 'url', 'sha256')} for r in sorted(records, key=lambda r: r['file'])]
+    digest = hashlib.sha256(json.dumps(identities, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    observed = sorted(r['observedAt'] for r in records if r.get('observedAt'))
+    unknown = len(records) - len(observed)
+    return {'version': 'ego-web-sha256-' + digest, 'sourceSnapshotId': digest,
+            'processedAt': datetime.now(timezone.utc).isoformat(),
+            # Compatibility field: never substitute today's cache-processing time.
+            'retrievedAt': observed[-1] if observed and not unknown else None,
+            'observationPeriod': {'firstFetchedAt': observed[0] if observed else None,
+                                  'lastFetchedAt': observed[-1] if observed else None,
+                                  'unknownSourceCount': unknown}}
+
+
 def parse_route(content, code):
     soup = BeautifulSoup(content, 'html.parser', from_encoding='utf-8' if isinstance(content, bytes) else None)
     kv = soup.select_one('table.hs-kv')
@@ -68,15 +113,8 @@ def run(refresh=False):
     session.headers['User-Agent']='AnkaraHospitalResearch/0.4 (public timetable research; cached requests)'
     records=[]
     def fetch(name,params=None):
-        path=RAW/name
-        if refresh or not path.exists():
-            time.sleep(.45)
-            response=session.get(URL,params=params,timeout=(15,45))
-            response.raise_for_status()
-            path.write_bytes(response.content)
-        content=path.read_bytes()
-        records.append({'file':name,'url':URL+('?hat_no='+params['hat_no'] if params else ''),
-                        'sha256':hashlib.sha256(content).hexdigest(),'bytes':len(content)})
+        content, record = fetch_source(session, RAW, name, params, refresh)
+        records.append(record)
         return content
     content=fetch('directory.html')
     soup=BeautifulSoup(content,'html.parser',from_encoding='utf-8')
@@ -89,7 +127,7 @@ def run(refresh=False):
         except (ValueError,requests.RequestException) as exc:
             errors.append({'route':code,'error':str(exc)})
         if i%40==0:print(f'EGO snapshot {i+1}/{len(codes)}; errors={len(errors)}',flush=True)
-    result={'version':'ego-web-2026-10-22','retrievedAt':datetime.now(timezone.utc).isoformat(),
+    result={**snapshot_metadata(records),
             'directoryCount':len(codes),'routes':routes,'errors':errors,'rawSources':records,
             'calendarScope':'Normal hafta içi / cumartesi / pazar; tarihli istisna takvimi ve tatil doğrulaması yok.',
             'sourceScope':'Resmi hat kimliği, sıralı duraklar, kalkış saatleri ve hat toplam süresi. Ara durak varış saatleri yayımlanmıyor.'}

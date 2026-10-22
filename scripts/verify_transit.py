@@ -4,20 +4,27 @@
 Ordinary invocation audits the packaged profiles and routing traces offline.
 """
 import argparse
+from datetime import datetime, timezone
 import gzip
 import hashlib
+import io
 import json
 from pathlib import Path
 import subprocess
 import sys
 import numpy as np
+from pyproj import Transformer
 from scipy.sparse import load_npz
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from backend.main import dataset, Scenario, travel_times, cached_solve, count_bound
 from backend.timetable import PROFILES, DEFAULT_PROFILE, load_network, route_one
 from backend.feasibility import geographic_bound
+from scripts.transit_provenance import check_package
+from scripts.verify_release import (verify_certificate, verify_result_package,
+                                    verify_report_records, same_values, summarize, TRANSIT_REPORT_KEYS)
 
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'data/processed'
+LEGACY_COMMIT='d2c5e226484e4aa9af9fe1eec801b18e024c96db'
 
 
 def write(path,obj):
@@ -30,10 +37,110 @@ def certificate(times,floor=80):
         np.array([v['districtId'] for v in d['demands']]),d['districts'],d['metadata']['provincePopulation'],45,.95,floor/100,time_limit=60)
 
 
+def ablation_inputs(package_id):
+    # Use the immutable Git object, never an unverified scratch cache. CI needs
+    # fetch-depth: 0 so historical replay also works in a clean checkout.
+    raw = subprocess.check_output(['git','show',LEGACY_COMMIT+':data/processed/transit-matrix.npz'],cwd=ROOT)
+    old_data = json.loads(subprocess.check_output(['git','show',LEGACY_COMMIT+':data/processed/dataset.json'],cwd=ROOT))
+    data = dataset()
+    for field in ('demands','candidates','hospitals','districts'):
+        same_values(old_data[field], data[field], 'ablation.fixedInputs.'+field)
+    same_values(old_data['metadata']['provincePopulation'],data['metadata']['provincePopulation'],'ablation.provincePopulation')
+    legacy = np.load(io.BytesIO(raw))['minutes']
+    direct = load_npz(OUT/'ego-direct.npz').tocoo()
+    assert legacy.shape == direct.shape
+    corrected = legacy.copy()
+    corrected[direct.row,direct.col] = np.minimum(corrected[direct.row,direct.col],direct.data/60)
+    identities = {'legacyCommit':LEGACY_COMMIT,'legacyMatrixSha256':hashlib.sha256(raw).hexdigest(),
+                  'directWalkSha256':hashlib.sha256((OUT/'ego-direct.npz').read_bytes()).hexdigest(),
+                  'transitPackageId':package_id}
+    return legacy, corrected, identities
+
+
+def validate_experiment(report, package_id):
+    results=[]
+    for profile in PROFILES:
+        result=json.loads((OUT/f'example-transit-{profile}-91-result.json').read_text(encoding='utf-8'))
+        expected=Scenario(mode='transit',threshold=45,hospitalLimit=91,transitProfile=profile)
+        same_values(result['scenario'],expected.model_dump(),'experiment.scenario')
+        verify_result_package(result,package_id)
+        verify_certificate(result['geographicCertificate'],count_bound('transit',45,95,80,1,profile))
+        results.append(result)
+    verify_report_records(report,results,package_id)
+    legacy,corrected,identities=ablation_inputs(package_id)
+    same_values(report['ablationInputs'],identities,'ablation.inputs')
+    verify_certificate(report['legacy'],certificate(legacy))
+    verify_certificate(report['walkingCorrectionOnly'],certificate(corrected))
+    verify_certificate(report['withoutDistrictFloor'],certificate(travel_times(Scenario(mode='transit')),floor=0))
+    same_values(json.loads((OUT/'example-transit-91-result.json').read_text(encoding='utf-8')),
+                next(r for r in results if r['scenario']['transitProfile']==DEFAULT_PROFILE),'defaultProfileAlias')
+    assert report['networkVersion']==dataset()['metadata']['transitVersion']
+
+
+def validate_physical_network(network, official, quality):
+    """Audit saved timings independently of the allocation/build functions."""
+    projection=Transformer.from_crs('EPSG:4326','EPSG:32636',always_xy=True)
+    coordinates=np.array([projection.transform(s['lon'],s['lat']) for s in network['stops']])
+    assert np.isfinite(coordinates).all()
+    registry={s['id']:i for i,s in enumerate(network['stops'])}
+    assert len(registry)==len(network['stops']), 'Duplicate stop identity'
+    official_routes={r['id']:r for r in official['routes']}
+    accepted={p['route'] for p in network['patterns']}
+    excluded={r['route'] for r in quality['excludedRoutes']}
+    quarantined={r['route'] for r in quality['quarantinedRoutes']}
+    assert len(excluded)==len(quality['excludedRoutes'])
+    assert accepted.isdisjoint(excluded), 'Excluded route appears in usable timetable'
+    assert accepted.isdisjoint(quarantined), 'Quarantined route appears in usable timetable'
+    assert accepted | excluded == set(official_routes), 'Route quality accounting is incomplete'
+    assert len(accepted)==quality['routedRouteCount']
+    assert quarantined <= excluded and len(quarantined)==quality['quarantinedRouteCount']
+    checks={r['route']:r for r in quality['routeGeometryChecks']}
+    assert len(checks)==len(quality['routeGeometryChecks'])
+    assert accepted <= checks.keys()
+    for code, check in checks.items():
+        route=official_routes[code]
+        known=[s['id'] for s in route['stops'] if s['id'] in registry]
+        points=coordinates[[registry[code] for code in known]]
+        straight=float(np.linalg.norm(np.diff(points,axis=0),axis=1).sum())
+        prefix='drive' if route['mode']=='bus' else ('rail-A' if code.startswith('A') else ('rail-M4' if code.startswith('M4') else 'rail-M123'))
+        keys=[f'{prefix}:{a}:{b}' for a,b in zip(known[:-1],known[1:])]
+        road=sum(network['segments'][key]['meters'] for key in keys)
+        assert np.isfinite(road) and road>=0
+        assert abs(check['straightStopChainMeters']-straight)<=1, 'Reported stop-chain length differs'
+        assert abs(check['routedMeters']-road)<=1, 'Reported path length differs'
+        published=float(route.get('distanceKm') or 0)*1000
+        same_values(check['publishedMeters'],published or None,'geometry.publishedMeters')
+        # Independent release gate: published model policy is 1.5x straight chain,
+        # 2x routed length, or +2 km. Never import the builder's decision function.
+        conflict=published>0 and (straight>max(1.5*published,published+2000) or road>max(2*published,published+2000))
+        assert (check['status']=='quarantined')==conflict, 'Geometry quarantine contradicts independent consistency gate'
+        assert (code in quarantined)==conflict
+    for pattern in network['patterns']:
+        source=official_routes[pattern['route']]
+        assert pattern['mode']==source['mode'], 'Pattern mode differs from its official route'
+        speed=90/3.6 if source['mode']=='bus' else 80/3.6
+        code=source['id']
+        prefix='drive' if source['mode']=='bus' else ('rail-A' if code.startswith('A') else ('rail-M4' if code.startswith('M4') else 'rail-M123'))
+        for i,key in enumerate(pattern['segmentKeys']):
+            segment=network['segments'][key]
+            a,b=pattern['stops'][i:i+2]
+            assert key==f'{prefix}:{network["stops"][a]["id"]}:{network["stops"][b]["id"]}', 'Pattern geometry does not join its declared stops'
+            straight=float(np.linalg.norm(coordinates[a]-coordinates[b]))
+            road=float(segment['meters'])
+            assert np.isfinite(road) and road>=0
+            required=max(road,straight)/speed+10
+            elapsed=pattern['offsets'][i+1]-pattern['offsets'][i]
+            assert np.isfinite(elapsed) and elapsed+1e-5>=required, f'{pattern["route"]} {key}: impossible segment time {elapsed:.3f}s < {required:.3f}s'
+    for record in quality.get('coordinateAddressAudit',{}).get('conflicts',[]):
+        if record['action'].startswith('quarantined'):
+            assert record['stopId'] not in registry, 'Quarantined coordinate retained in timetable'
+
+
 def validate_network():
     d=dataset();network,access,egress,transfers,direct=load_network()
     official=json.loads((OUT/'ego-official.json').read_text(encoding='utf-8'))
     q=json.loads((OUT/'ego-quality.json').read_text(encoding='utf-8'))
+    validate_physical_network(network,official,q)
     assert len(official['routes'])==official['directoryCount']==q['officialRouteCount']
     assert not official['errors']
     assert q['routedRouteCount']+len(q['excludedRoutes'])==q['officialRouteCount']
@@ -87,19 +194,15 @@ def validate_network():
 
 
 def run(regenerate=False):
-    d=dataset()
+    package_id=check_package();d=dataset()
+    assert d['metadata']['transitPackageId']==package_id
     if regenerate:
-        legacy_path=ROOT/'work/ego-research/legacy/transit-matrix.npz'
-        if not legacy_path.exists():
-            legacy_path.parent.mkdir(parents=True,exist_ok=True)
-            legacy_path.write_bytes(subprocess.check_output(['git','show','d2c5e226484e4aa9af9fe1eec801b18e024c96db:data/processed/transit-matrix.npz'],cwd=ROOT))
-        legacy=np.load(legacy_path)['minutes']
+        legacy,corrected,identities=ablation_inputs(package_id)
         old=certificate(legacy)
-        direct=load_npz(OUT/'ego-direct.npz').tocoo();corrected=legacy.copy()
-        corrected[direct.row,direct.col]=np.minimum(corrected[direct.row,direct.col],direct.data/60)
         walking=certificate(corrected)
         print('Ablation',old['minimumCountLowerBound'],walking['minimumCountLowerBound'],flush=True)
-        report={'date':'2026-10-22','networkVersion':d['metadata']['transitVersion'],
+        report={'date':datetime.now(timezone.utc).date().isoformat(),'networkVersion':d['metadata']['transitVersion'],
+            'transitPackageId':package_id,'ablationInputs':identities,
             'legacy':old,'walkingCorrectionOnly':walking,'profiles':[],
             'scope':'Bu test model kapsamı içindir; eksik hizmet ve tahmini zamanlar gerçek Ankara için kesin ihtiyaç sayısı çıkarılmasını engeller.'}
         for profile in PROFILES:
@@ -107,7 +210,7 @@ def run(regenerate=False):
             result=cached_solve(s.model_dump_json())
             write(OUT/f'example-transit-{profile}-91-result.json',result)
             if profile==DEFAULT_PROFILE:write(OUT/'example-transit-91-result.json',result)
-            report['profiles'].append({k:result[k] for k in ('scenario','status','reason','hospitalCount','metrics','capacity','geographicCertificate','transitEvidence') if k in result})
+            report['profiles'].append(summarize(result,TRANSIT_REPORT_KEYS))
             print('91 test',profile,result['status'],result.get('geographicCertificate'),flush=True)
         report['withoutDistrictFloor']=certificate(travel_times(Scenario(mode='transit')),floor=0)
         s=Scenario(mode='transit',threshold=45)
@@ -120,7 +223,11 @@ def run(regenerate=False):
     checks=validate_network()
     if regenerate:
         report['routingChecks']=checks;write(OUT/'transit-validation.json',report)
-    print('All timetable identities, calendars, paths, boarding times and matrices checked.',flush=True)
+    else:
+        report=json.loads((OUT/'transit-validation.json').read_text(encoding='utf-8'))
+        validate_experiment(report,package_id)
+        same_values(report['routingChecks'],checks,'experiment.routingChecks')
+    print('Packaged normal-day profiles, identities, paths, boarding times and matrices checked; dated service exceptions and field travel times are not validated.',flush=True)
 
 
 if __name__=='__main__':

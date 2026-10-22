@@ -118,6 +118,49 @@ export interface HealthPlanning {
   }[];
 }
 export interface CapacitySummary {
+  referenceStage?: {
+    hospitalCount: number;
+    totalBeds: number;
+    totalDoctors: number;
+    coveredPopulation: number;
+    coveragePercent: number;
+    annualEquivalentCostTRY: number;
+    meanMinutes: number;
+    gap: number | null;
+    lowerBoundTRY: number | null;
+    boundScope:
+      | "all_candidate_allocation_edges"
+      | "restricted_allocation_edges";
+    scope: string;
+  };
+  finalPlanCostGap?: number | null;
+  numericalFallback?: {
+    reason: string;
+    rejectedSource: string;
+    selectedSource: string;
+    rejectedClosedSiteFlowResidents: number;
+    allocationAbsoluteDifferenceResidents: number;
+    meanMinutesChange: number;
+    selectedIncumbentValidated: boolean;
+    scope: string;
+  } | null;
+  optimalityScope?:
+    | "all_candidate_allocation_edges"
+    | "restricted_allocation_edges";
+  resourceCleanup?: {
+    applied?: boolean;
+    skippedReason?: string | null;
+    toleratedClosedSiteFlowResidents?: number;
+    beforeHospitalCount: number;
+    afterHospitalCount: number;
+    removedHospitalCount: number;
+    removedBeds: number;
+    removedDoctors: number;
+    annualCostReductionTRY: number;
+    allocationsPreserved: boolean;
+    travelPreserved: boolean;
+    method: string;
+  };
   totalBeds: number;
   totalDoctors: number;
   constructionCostTRY: number;
@@ -189,6 +232,7 @@ export interface Dataset {
     transitRoutes?: number;
     transitStops?: number;
     existingHospitalCount: number;
+    transitPackageId?: string;
     transitDataQuality?: {
       officialRouteCount: number;
       officialStopCount: number;
@@ -228,7 +272,7 @@ export interface Result {
   scenario: Scenario;
   metadata: Dataset["metadata"];
   modelLabel: string;
-  transitEvidence?: { scope: string };
+  transitEvidence?: { scope: string; packageId: string };
   existingComparison?: Metrics & { hospitalCount: number };
   maximumCoveragePercent?: number;
   limitingDistricts?: { name: string; maximumPercent: number }[];

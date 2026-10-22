@@ -238,9 +238,12 @@ export default function HealthMethod({ data }: { data: Dataset }) {
       <p>
         İlk aşamada düşük yıllık maliyetli geçerli plan aranır. Sonra aynı
         toplam talebe örneğin en fazla %10 ek yıllık maliyetle daha kısa yol
-        aranır. Bir dakikaya keyfî TL fiyatı verilmez. Alt sınır ve optimalite
-        açığı maliyet aşamasına aittir; son hastane sayısının minimum olduğunun
-        kanıtı değildir.
+        aranır. Bir dakikaya keyfî TL fiyatı verilmez. Maliyet alt sınırı ve
+        optimalite açığı, her yapı-izi sınıfından en yakın 12 aday bağlantısıyla
+        daraltılan maliyet problemine aittir. Bütün aday bağlantıları için
+        küresel maliyet açığı veya son hastane sayısının minimum olduğunun
+        kanıtı değildir. Tam adaylı coğrafi sayı sertifikası ayrı bir hesap ve
+        ayrı bir kapsamdır.
       </p>
       <p>
         Hızlı model, her mahallede her yapı-izi sınıfından süre içindeki en
@@ -254,11 +257,28 @@ export default function HealthMethod({ data }: { data: Dataset }) {
         <b>Araba:</b> yönlü OSM yolları ve sınıf bazlı hız, 3 dakika giriş/park;
         canlı trafik ve dönüş yasakları yok. <b>EGO:</b> Resmî web sitesindeki
         hat kimliği, sıralı duraklar, hafta içi/cumartesi/pazar kalkış listeleri
-        ve hat toplam süreleri kullanılır. Bekleme, durağa erişimden sonra
+        ve sayfalardaki süre alanı kullanılır. Bekleme, durağa erişimden sonra
         yetişilebilen sefere göre hesaplanır; kaçırılan araca binilemez. Ara
-        durak zamanları, OSM yol/ray ağı üzerindeki süre ağırlıklarının hat
-        toplam süresine dağıtılmasıyla tahmin edilir; resmî durak varış tarifesi
-        değildir.
+        durak zamanları tahminidir. Her komşu durak çifti için yol/ray uzunluğu
+        ile duraklar arası düz mesafenin büyüğü fiziksel alt sınırı belirler:
+        otobüste en çok 90, rayda 80 km/sa ve 10 saniye duruş payı. Süre
+        alanının kalan kısmı ağ ağırlıklarıyla dağıtılır; gerekli asgari süre
+        daha uzunsa toplam artırılıp raporlanır. Bu, resmî ara durak varış
+        tarifesi değildir.
+      </p>
+      <p>
+        EGO sayfasındaki süre alanı bilinen durak zincirine dağıtılır. Bu alanın
+        tek yönü mü, gidiş–dönüş çevrimini mi kapsadığı her hatta
+        doğrulanamamıştır; dağıtım bir model varsayımıdır. Süreler otomatik
+        ikiyle çarpılmaz. Fiziksel hız sınırları, terminaldeki beklemeyi veya
+        aynı araçla dönüş yönüne devam edilebildiğini doğrulamaz.
+      </p>
+      <p>
+        Her EGO profili tek bir normal gün türü ve tek başlangıç saatini sınar.
+        Ayrı profillerde yeniden yer seçmek, aynı hastanelerin gün boyunca
+        hedefleri sağladığını göstermez. Gidiş yolculuğu modellenir; dönüş,
+        randevuya yetişme, araç doluluğu ve erişilebilirlik gereksinimleri
+        ayrıca doğrulanmalıdır.
       </p>
       <p>
         Durak erişimi ve hastaneye son yürüyüş en çok 15 dakika, aktarma
@@ -270,10 +290,15 @@ export default function HealthMethod({ data }: { data: Dataset }) {
       <p>
         Hat yönleri ve ara duraktan başlama notları korunur. Çözümlenemeyen özel
         seferler ana hattın tamamında çalışıyormuş gibi eklenmez. Durak
-        koordinatları öncelikle OSM’den, eksik otobüs duraklarında tarihsel
-        topluluk verisinden gelir. Bu kaynak güncel bir resmî konum envanteri
-        değildir. İstisna takvimi, canlı gecikme, dolmuş ve Başkentray kapsamı
-        yoktur.
+        koordinatlarında öncelik EGO Başkentkart’ın kamusal durak sorgusudur;
+        ardından OSM ve eksik otobüs duraklarında tarihsel topluluk verisi
+        kullanılır. Koordinatların gözlem zamanı ile işlenme zamanı ayrıdır;
+        eski önbelleğin gözlem zamanı bilinmiyorsa yeni tarih uydurulmaz. Resmî
+        sorgu, koordinat ile tarifenin aynı geçerlilik dönemine ait olduğunu
+        garanti etmez. Adres/mesafe tutarsızlıkları kayıt altına alınır;
+        belirlenen kalite eşiklerini aşan veriler kullanımdan çıkarılır. Bu
+        kontroller saha doğrulaması değildir. İstisna takvimi, canlı gecikme,
+        dolmuş ve Başkentray kapsamı yoktur.
       </p>
       {data.metadata.transitDataQuality && (
         <p>

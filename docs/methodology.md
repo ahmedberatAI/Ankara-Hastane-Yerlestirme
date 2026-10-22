@@ -1,4 +1,4 @@
-# Bağımsız yatak/hekim seçimi ve ulaşım modeli · v0.3
+# Bağımsız yatak/hekim seçimi ve ulaşım modeli · v0.5
 
 ## Veri ve hedef
 
@@ -48,9 +48,23 @@ PV = K + O / CRF
 
 Hızlı model her mahallede **her yapı-izi sınıfından en yakın 12** süre içi adayı tutar. Büyük seçenekler daha yakın küçük alanların arkasında kaybolmaz. Kapasiteli modelde coğrafi alt-küme elemesi yapılmaz. Alan, kapasite, çakışma, akış, il/ilçe, tam sayılık ve yıllık bütçe ham çözümde tekrar denetlenir.
 
-LP yuvarlama ve artan kapasite/gider sezgiseli geçerli başlangıç arar; her MILP aşaması 35 saniye ile sınırlıdır. İkinci aşamaya sabit konum/kadro akış LP’siyle de başlangıç verilir. Daha iyi çözüm yoksa ilk plan korunur. Maliyet ve süre optimalite açıklıkları ayrı raporlanır. Sayı minimumunu veya bütün Ankara’da global optimumu kanıtlamaz.
+LP yuvarlama ve artan kapasite/gider sezgiseli geçerli başlangıç arar; her MILP aşaması 35 saniye ile sınırlıdır. İkinci aşamaya sabit konum/kadro akış LP’siyle de başlangıç verilir. Daha iyi çözüm yoksa ilk plan korunur. İlk maliyet planının tesis/yatak/hekim, maliyet ve süre ölçümleri `capacity.referenceStage` içinde ayrı kaydedilir. Daha kısa yol için ek maliyet kullanılması, son planın tesis sayısını artırabilir veya azaltabilir; bunun klinik ihtiyaçta değişiklik olduğu söylenemez.
 
-91 senaryosu için ayrı model **4.701 adayın tamamı ve süre içindeki bütün kenarlar** üzerinde en az tesis sayısının alt sınırını bulur. Kapasite, maliyet ve çakışma kısıtları kaldırılır. Bu eş maliyetli gevşetmede tam alt-küme elemesi geçerlidir. Alt sınır >91 ise asıl modelde de 91 imkânsızdır; alt sınır ≤91 ise kapasite modeli ayrıca çözülmelidir. `inconclusive`, daraltılmış/süre sınırlı aramanın sonuçlandıramadığını belirtir; imkânsızlık değildir. [Deney kayıtları](validation.md).
+Maliyet aşamasının açıklığı yalnız ilk çözüm ile o problemin alt sınırını karşılaştırır. Son planın maliyet açıklığı `finalPlanCostGap` ile ayrıca verilir. Süre açıklığı da gerçekten döndürülen atamanın ikinci aşama alt sınırına göre hesaplanır. **En yakın 12 bağlantıyla çözülen problemde bu açıklıklar yalnız daraltılmış aramaya aittir; tam bağlantılı aday probleminin açıklığı değildir.** İlk maliyet aşaması sıfır açıklıkla bitse bile ek bütçe kullanan son planın maliyet açıklığı sıfır olmayabilir. Hiçbiri minimum hastane sayısını veya sürekli Ankara coğrafyasında global optimumu kanıtlamaz.
+
+Son aşamada kabul edilen akışlar ve süreler sabit tutulup sıfır yüklü tesisler kapatılır; her açık konumda yükü karşılayan en ucuz uygun yatak tipi ve gerekli tam sayı hekim seçilir. Alan, kapasite ve bütçe tekrar denetlenir; maliyet artamaz. Sayısal tolerans yüzünden kapalı tesise pozitif akış içeren bir çözüm yayımlanmaz: mümkünse daha önceki doğrulanmış atamaya açık kayıtla dönülür, güvenli plan yoksa `inconclusive` verilir. Kaynak temizliği uygulanamıyorsa nedeni kaydedilir; akış değiştirilip korunmuş gibi gösterilmez. Alt sınır geçerli maliyeti anlamlı ölçüde aşarsa çelişki sıfır açıklıkla gizlenmez.
+
+91 senaryosu için ayrı model **4.701 adayın tamamı ve süre içindeki bütün kenarlar** üzerinde en az tesis sayısının alt sınırını bulur. Kapasite, maliyet ve çakışma kısıtları kaldırılır. Bu eş maliyetli gevşetmede tam alt-küme elemesi geçerlidir. Alt sınır >91 ise **aynı veri paketi, örnek adaylar ve saat/hedeflerle** asıl modelde de 91 imkânsızdır; alt sınır ≤91 ise kapasite modeli ayrıca çözülmelidir. Bu, eksik hizmet veya tahmini sürelerle gerçek Ankara için kesin ihtiyaç kanıtı değildir. Mevcut 91 hastanenin yer ve kapasitelerini değil, sıfırdan en fazla 91 konumu sınar. `inconclusive`, daraltılmış/süre sınırlı aramanın sonuçlandıramadığını belirtir; imkânsızlık değildir. [Deney kayıtları](validation.md).
+
+## Aynı planın farklı zamanlarda sınanması
+
+Kayıtlı EGO planının konum, yatak ve hekimleri sabit tutulur. Her zaman profilinde, seçilen tesislere süre içinde erişebilen **bütün** bağlantılar üzerinden yıllık talep yeniden atanır; bu değerlendirmede en yakın 12 bağlantı daraltması yoktur. Hekim ve yatak kısıtları ayrı korunur. İlçe tabanları altında karşılanabilen toplam kişi eşdeğeri azamileştirilir; bulunan değer il hedefiyle karşılaştırılır.
+
+Orijinal planın yıllık bütçesi de sabittir: `F + v × atanmış kişi eşdeğeri ≤ orijinal bütçe`. `F`, bina yıllıklaştırması ile tesis/yatak/hekim giderleri; `v`, yeniden atanan talebin kişi başına malzeme gideridir. Dört profilin yıllık talep ve giderleri birbirine eklenmez. Sabit gider tek başına bütçeyi aşıyorsa bu durum ilçe erişim sorunu diye etiketlenmez.
+
+İlçe koşulları birlikte sağlanamıyorsa ana kapsama yüzdesi verilmez. İlçe tabanını kaldıran ayrı tanı, aynı kaynakları ve bütçeyi korur; asıl hedeflerin sağlandığı anlamına gelmez. Çözücü sonuçlandıramadıysa sonuç belirsizdir. Dört profilde başarı tüm gün veya yıl boyunca hizmet garantisi değildir; bu test bir hasta geliş simülasyonu veya bütün profiller için yeni ortak hastane optimizasyonu değildir.
+
+45/60/90 dakika ve %60/%80 ilçe tabanı coğrafi duyarlılıkları ayrıca hesaplanır. Bu tanılarda kapasite, maliyet ve yapı çakışması kaldırılır ve konumlar yeniden seçilebilir. Kırsal ilçeler birlikte sınanır; tekil ilçe minimumları toplanarak genel alt sınır yapılmaz. Tesis doluluğu medyanı ise ilk kayıtlı atamaya ait tesis bazlı bir göstergedir, yatakla ağırlıklandırılmış il doluluğu değildir.
 
 ## Göstergeler ve harita
 
@@ -99,7 +113,11 @@ Trafik çarpanı yalnız sürüş bölümünü büyütür; yürüyüş ve 3 daki
 
 ## EGO zaman bağımlı ulaşım modeli
 
-Resmî EGO web kataloğunun kalkış saatleri, durak sırası ve toplam hat süresi kullanılır. [Tam kaynak ve yöntem açıklaması](transit-research.md).
+Resmî EGO web kataloğunun kalkış saatleri, durak sırası ve “Süresi” alanı kullanılır. Koordinatlarda güncel resmî Başkentkart sorgusu önceliklidir; ardından OSM ve yalnız eksik otobüs konumları için tarihsel ek kaynak gelir. “Süresi” alanı bilinen durak zincirine dağıtılır; alanın her hatta tek yön veya bütün çevrim kapsamı doğrulanmamıştır. Otomatik ikiyle çarpma yapılmaz. [Tam kaynak ve yöntem açıklaması](transit-research.md).
+
+Çözülemeyen özel sefer notları, çelişkili/çoklu saatler ve desteklenmeyen tarihli koşullar açık gerekçeyle ayrılır. Not eşleştiricisi Türkçe bütün olası ifadeleri çözen bir sistem değildir. Eksik veya ayrılmış kayıt, gerçekte sefer bulunmadığı anlamına gelmez. Adres-ilçe çelişkileri kaynak türüyle birlikte kaydedilir; güncel koordinatlar belirsiz adres yüzünden keyfî biçimde taşınmaz. Aşırı rota uzunluğu çelişkileri karantinaya alınır; kalite kapısından geçmek gerçek güzergâh doğruluğunu kanıtlamaz.
+
+Her araç kesitinde ayrı fiziksel süre alt sınırı kullanılır: yol/ray uzunluğu ile duraklar arasındaki düz mesafe alt sınırının büyüğü, otobüste 90 ve raylı sistemde 80 km/sa varsayımına bölünür, 10 saniye durak payı eklenir. Düz mesafe araç rotası yerine çizilmez. Kalan süre ağırlıklarla dağıtılır; kaynak süre alanı bu asgari sürelerin toplamına yetmezse artış raporlanır. Bunlar ölçülmüş işletme hızları veya resmî ara durak varış saatleri değildir.
 
 - Normal hafta içi 08.00/10.00, cumartesi 10.00, pazar 10.00 için ayrı süre matrisleri vardır. Seferler arasında keyfî zaman atlama veya farklı hareket saatlerini birleştirme yoktur.
 - İlk durağa erişimden sonra 60 saniyelik biniş hazırlığını sağlayan ilk sefer seçilir. Aynı araçta ilerlerken tekrar bekleme eklenmez. Ara durak saatleri tahmini olduğundan bu işlem gerçek zamanlı EGO yolculuk tahmini değildir.

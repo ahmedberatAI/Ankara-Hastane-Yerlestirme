@@ -1,124 +1,125 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
+  "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43",
   "cases": [
     {
       "mode": "car",
       "hospitalLimit": null,
       "status": "feasible",
+      "transitProfile": null,
       "hospitalCount": 46,
       "totalBeds": 18550,
-      "totalDoctors": 21613,
+      "totalDoctors": 21590,
       "coveragePercent": 94.99999999999994,
       "minimumDistrictCoveragePercent": 80.0,
       "meanMinutes": 17.32055703552328,
-      "annualEquivalentCostTRY": 143951404929.71988,
-      "annualOperatingCostTRY": 135512079841.15903,
-      "constructionCostTRY": 146955214181.81818,
-      "costStageGap": 0.018251682624763996,
-      "travelStageGap": 0.6609249100845961,
-      "transitProfile": null
+      "annualEquivalentCostTRY": 143877970994.9809,
+      "annualOperatingCostTRY": 135441827269.03189,
+      "constructionCostTRY": 146899816644.7985,
+      "costStageGap": 0.018890631741077153,
+      "travelStageGap": 0.6702065892267723
     },
     {
       "mode": "transit",
       "hospitalLimit": null,
       "status": "feasible",
-      "hospitalCount": 211,
-      "totalBeds": 24950,
-      "totalDoctors": 22971,
-      "coveragePercent": 94.99999999999999,
+      "transitProfile": "weekday-1000",
+      "hospitalCount": 209,
+      "totalBeds": 25050,
+      "totalDoctors": 22966,
+      "coveragePercent": 95.00000000000006,
       "minimumDistrictCoveragePercent": 80.01432664756447,
-      "meanMinutes": 26.941177830896336,
-      "annualEquivalentCostTRY": 172823706328.8688,
-      "annualOperatingCostTRY": 161284904135.68317,
-      "constructionCostTRY": 200926866770.38425,
-      "costStageGap": 0.026053005267101182,
-      "travelStageGap": 0.8012283118363668,
-      "transitProfile": "weekday-1000"
+      "meanMinutes": 27.784355922891738,
+      "annualEquivalentCostTRY": 172875069749.30487,
+      "annualOperatingCostTRY": 161323127145.33115,
+      "constructionCostTRY": 201155682684.16113,
+      "costStageGap": 0.02819735582363134,
+      "travelStageGap": 0.8147436016634301
     },
     {
       "mode": "car",
       "hospitalLimit": 91,
       "status": "feasible",
+      "transitProfile": null,
       "hospitalCount": 46,
       "totalBeds": 18550,
-      "totalDoctors": 21613,
+      "totalDoctors": 21590,
       "coveragePercent": 94.99999999999994,
       "minimumDistrictCoveragePercent": 80.0,
       "meanMinutes": 17.32055703552328,
-      "annualEquivalentCostTRY": 143951404929.71988,
-      "annualOperatingCostTRY": 135512079841.15903,
-      "constructionCostTRY": 146955214181.81818,
+      "annualEquivalentCostTRY": 143877970994.9809,
+      "annualOperatingCostTRY": 135441827269.03189,
+      "constructionCostTRY": 146899816644.7985,
       "costStageGap": 0.018211854057931808,
-      "travelStageGap": 0.5979330033910223,
-      "transitProfile": null
+      "travelStageGap": 0.609819708962069
     },
     {
       "mode": "transit",
       "hospitalLimit": 91,
+      "transitProfile": "weekday-0800",
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 165.99999999999977,
+        "minimumCountLowerBound": 166.0,
         "feasibleGeographicCount": 166,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 822,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      }
+    },
+    {
+      "mode": "transit",
+      "hospitalLimit": 91,
+      "transitProfile": "weekday-1000",
+      "status": "infeasible",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 168.0,
+        "feasibleGeographicCount": 168,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 852,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      }
+    },
+    {
+      "mode": "transit",
+      "hospitalLimit": 91,
+      "transitProfile": "saturday-1000",
+      "status": "infeasible",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 170.0,
+        "feasibleGeographicCount": 170,
         "fullCandidateCount": 4701,
         "undominatedCandidateCount": 837,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
         "districtFloorPercent": 80.0
-      },
-      "transitProfile": "weekday-0800"
+      }
     },
     {
       "mode": "transit",
       "hospitalLimit": 91,
+      "transitProfile": "sunday-1000",
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 170.99999999999991,
-        "feasibleGeographicCount": 171,
+        "minimumCountLowerBound": 169.0,
+        "feasibleGeographicCount": 169,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 846,
+        "undominatedCandidateCount": 838,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
         "districtFloorPercent": 80.0
-      },
-      "transitProfile": "weekday-1000"
-    },
-    {
-      "mode": "transit",
-      "hospitalLimit": 91,
-      "status": "infeasible",
-      "geographicCertificate": {
-        "status": "optimal",
-        "minimumCountLowerBound": 170.9999999999998,
-        "feasibleGeographicCount": 171,
-        "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 843,
-        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-        "thresholdMinutes": 45,
-        "coverageTargetPercent": 95.0,
-        "districtFloorPercent": 80.0
-      },
-      "transitProfile": "saturday-1000"
-    },
-    {
-      "mode": "transit",
-      "hospitalLimit": 91,
-      "status": "infeasible",
-      "geographicCertificate": {
-        "status": "optimal",
-        "minimumCountLowerBound": 169.99999999999994,
-        "feasibleGeographicCount": 170,
-        "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 850,
-        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-        "thresholdMinutes": 45,
-        "coverageTargetPercent": 95.0,
-        "districtFloorPercent": 80.0
-      },
-      "transitProfile": "sunday-1000"
+      }
     }
   ]
 }

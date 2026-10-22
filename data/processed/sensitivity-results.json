@@ -17,16 +17,17 @@
     "mode": "car",
     "hospitalLimit": 91,
     "status": "feasible",
+    "transitProfile": null,
     "hospitalCount": 50,
     "totalBeds": 18650,
-    "totalDoctors": 55232,
+    "totalDoctors": 55220,
     "coveragePercent": 95.00000000000003,
     "minimumDistrictCoveragePercent": 79.99999999999999,
     "meanMinutes": 16.703614449921186,
-    "annualEquivalentCostTRY": 251771011584.51437,
-    "annualOperatingCostTRY": 238626174552.79794,
-    "constructionCostTRY": 228892988611.05902,
-    "costStageGap": 0.01141827937217228,
-    "travelStageGap": 0.5434854716096033
+    "annualEquivalentCostTRY": 251732698227.25925,
+    "annualOperatingCostTRY": 238589521036.90552,
+    "constructionCostTRY": 228864085548.26614,
+    "costStageGap": 0.012029586976174844,
+    "travelStageGap": 0.5620455197771569
   }
 }

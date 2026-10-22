@@ -2360,6 +2360,139 @@ nav > button:hover {
 .site-limit {
   margin: 20px 0 4px;
 }
+.stage-comparison {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #d9e4e4;
+  border-radius: 16px;
+  background: #fff;
+}
+.stage-comparison summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 650;
+  color: #244d48;
+}
+.stage-comparison p,
+.stage-comparison small {
+  font-size: 12px;
+  color: #526565;
+  line-height: 1.75;
+}
+.stage-comparison table {
+  min-width: 460px;
+}
+.robustness-panel {
+  margin: 24px 0;
+  padding: 24px;
+  border: 1px solid #d9e4e4;
+  border-radius: 20px;
+  background: #f8fbfa;
+}
+.robustness-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.robustness-heading h3,
+.robustness-panel > h3 {
+  font-size: 21px;
+  margin: 7px 0 10px;
+}
+.robustness-panel p {
+  color: #526565;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.robustness-status,
+.robustness-result {
+  font-size: 12px;
+  font-weight: 650;
+}
+.robustness-status {
+  padding: 8px 12px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  max-width: 240px;
+}
+.robustness-status.met {
+  background: #dceee7;
+  color: #195d45;
+}
+.robustness-status.limited {
+  background: #f4e9cd;
+  color: #765a20;
+}
+.robustness-result.met {
+  color: #195d45;
+}
+.robustness-result.limited {
+  color: #765a20;
+}
+.robustness-table {
+  min-width: 760px;
+}
+.robustness-table caption {
+  text-align: left;
+  color: #526565;
+  font-size: 12px;
+  padding: 7px 0 12px;
+}
+.robustness-table td {
+  background: #fff;
+}
+.robustness-details {
+  border-top: 1px solid #d9e4e4;
+  padding: 14px 0;
+}
+.robustness-details summary {
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 13px;
+  color: #244d48;
+}
+.robustness-details li {
+  font-size: 13px;
+  margin: 7px 0;
+  color: #526565;
+}
+.robustness-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 650;
+  margin: 16px 0;
+}
+.robustness-profile select {
+  padding: 8px 12px;
+  border: 1px solid #cddbd8;
+  border-radius: 8px;
+  background: #fff;
+  color: #244d48;
+}
+.robustness-panel > small {
+  display: block;
+  color: #647775;
+  font-size: 11px;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+@media (max-width: 700px) {
+  .robustness-panel {
+    padding: 17px;
+  }
+  .robustness-heading,
+  .robustness-profile {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .robustness-status {
+    max-width: none;
+  }
+}
 .benchmark {
   border: 1px solid #cad9b5;
   border-radius: 16px;

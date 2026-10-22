@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-22T19:39:04.373433+00:00",
+  "createdAt": "2026-10-22T21:52:04.999436+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -52,8 +52,8 @@
   "files": [
     {
       "file": "data/processed/benchmark-91.json",
-      "bytes": 8103,
-      "sha256": "5bb4a16399eb126a4a23d3d1f6a1d44b37b1c7b1f046775594f01150e489f1a3"
+      "bytes": 9726,
+      "sha256": "a12f413f02193d929acc981d9c1d098f699c458217ce82decd8ddeb629a93a4a"
     },
     {
       "file": "data/processed/car-matrix.npz",
@@ -62,8 +62,8 @@
     },
     {
       "file": "data/processed/dataset.json",
-      "bytes": 1612433,
-      "sha256": "84f312719648d0e83f017c5425ca3f7920a9a1e138160d39c06273ecbdfd5c31"
+      "bytes": 1612591,
+      "sha256": "bcca29bfb28fe58a02503994dee1ce9674b67558fc443601c4def661e97fe59c"
     },
     {
       "file": "data/processed/districts.geojson",
@@ -77,8 +77,8 @@
     },
     {
       "file": "data/processed/ego-access.npz",
-      "bytes": 139836,
-      "sha256": "a50dc837606db4ab9f84ccee57dad6dbd992e8f2cc3dd0a08128f2a28813a2a4"
+      "bytes": 143991,
+      "sha256": "14edd1753bca55b19f773b03bb5654a09ff3764083044cc6d9db551998ef635f"
     },
     {
       "file": "data/processed/ego-direct.npz",
@@ -87,73 +87,78 @@
     },
     {
       "file": "data/processed/ego-egress.npz",
-      "bytes": 158813,
-      "sha256": "f18848e66436de036d7f7c78dbdb0f9181812ef8a474bfd70378e8877101942b"
+      "bytes": 163835,
+      "sha256": "08344dfb7d4a7002f5a62923a74df7cf41e3f492a1c1355b4e54bbf52e0c116d"
     },
     {
       "file": "data/processed/ego-network.json.gz",
-      "bytes": 3649702,
-      "sha256": "9414dbde72034a3f6a17b61c0b20aadd49c945a290eebede1b1fa39af0f97d67"
+      "bytes": 4081999,
+      "sha256": "9832b57bf27d2f176af89a3c5b0ff998a1abd4415cc4ab771e8d226830222fd4"
     },
     {
       "file": "data/processed/ego-official.json",
-      "bytes": 7081730,
-      "sha256": "6a0a50d35e04b3092759ecba64afdae3a08e3e890bd6ff6b6d2e1bc920db104c"
+      "bytes": 7142592,
+      "sha256": "532387df33f9d8e239dec221449c39a44c3882ff210a8513fbe5d05018bde443"
     },
     {
       "file": "data/processed/ego-quality.json",
-      "bytes": 681169,
-      "sha256": "5377eeb0e722f4cbe1f30bbace54c6f15c874716b014c787218e40307653b5ec"
+      "bytes": 1748992,
+      "sha256": "aabf594f6623dc72db5f2e4f5ff438b2cff126982f4d02d8f753eb0dbead9ca1"
+    },
+    {
+      "file": "data/processed/ego-stop-coordinates.json",
+      "bytes": 6625747,
+      "sha256": "8dfffd1f9ab573666a81d28ffc99121f80b4cb134e1854eb29e25d04389bd1b6"
     },
     {
       "file": "data/processed/ego-transfers.npz",
-      "bytes": 267980,
-      "sha256": "eab038e5a04812f142fe789ec4ec8d65fca24eb9e8776c4b1d209d5797be7f2e"
+      "bytes": 282068,
+      "sha256": "d06491a04b2619384feadd9cf5ebe3e80d5b2048f481e2d11e27ed8d384d04b9"
     },
     {
       "file": "data/processed/example-car-91-result.json",
-      "bytes": 547126,
-      "sha256": "3443c98c2ec10c706adf28299b50078e4a955c7e63dbb9d05abbb79b16d5fcbd"
+      "bytes": 548720,
+      "sha256": "0299c0c45b95228225d39b37e646d22eae478283fd6dc384d3937fd8601ab30a"
     },
     {
       "file": "data/processed/example-car-91-university-result.json",
-      "bytes": 560478,
-      "sha256": "9b1c1b38c60731124cc7209de5d28854d8f92695293a8c99d14fd280d1c1e04e"
+      "bytes": 562072,
+      "sha256": "570311150e61ddc19ee6874c5238b9c4c17f40779663beeb5bcf6773940c7aa6"
     },
     {
       "file": "data/processed/example-car-result.json",
-      "bytes": 546683,
-      "sha256": "9206f7bb4ae0e16ff1b4933158a23d98a0d7ca640f3ce32a6d3247b58e104b85"
+      "bytes": 548279,
+      "sha256": "f77d316349cbd7ccf960b5c684051e36f91427d3fe2ca0878f4d5b1f8d4a7448"
     },
     {
       "file": "data/processed/example-transit-91-result.json",
-      "bytes": 5513,
-      "sha256": "88422ed5978e639cb473e508f5756d2cdbff7f87bca6d1eab335a8b08a2a3ab5"
+      "bytes": 5980,
+      "sha256": "d829a4cdd397c6560888cc1cf47a48085849970b5b1047b9d9c0f17249f4937d"
     },
     {
       "file": "data/processed/example-transit-result.json",
-      "bytes": 747607,
-      "sha256": "78b0fea0d6937674a25661fe4f006fda68ef5d6463fe6888a80e3dff509302e4"
+      "bytes": 746541,
+      "sha256": "554866a7ca191c28a9c9006cf486520d72c1a82341e9394189fe22beafd9b19b"
     },
     {
       "file": "data/processed/example-transit-saturday-1000-91-result.json",
-      "bytes": 5512,
-      "sha256": "348c4c8dc49b8fa2fd711e0ae7cb95e03b65cbeb182f9ecc120a58000a4dc683"
+      "bytes": 5980,
+      "sha256": "cb6f75b3a99be2d0aef660afc8b913fe4791ed097479bf52b2212c70a184c0fa"
     },
     {
       "file": "data/processed/example-transit-sunday-1000-91-result.json",
-      "bytes": 5501,
-      "sha256": "0150fa9727de14674390aef2bad1d01d753699a9c676d487042a7f082aa89b01"
+      "bytes": 5968,
+      "sha256": "421ec36e802468103d907120dcd3abb24f4d964f5f18d201bd887ccdc02a5de2"
     },
     {
       "file": "data/processed/example-transit-weekday-0800-91-result.json",
-      "bytes": 5513,
-      "sha256": "f7ef0597f5b2e04d478aa9ad790919001c3cc3c1fe6e12a2b07a8376e3ac997a"
+      "bytes": 5980,
+      "sha256": "1db1aa2708fe8d777f9e2eb369609bb6d7fb4791ad7a62405fc9a6e5e402d433"
     },
     {
       "file": "data/processed/example-transit-weekday-1000-91-result.json",
-      "bytes": 5513,
-      "sha256": "88422ed5978e639cb473e508f5756d2cdbff7f87bca6d1eab335a8b08a2a3ab5"
+      "bytes": 5980,
+      "sha256": "d829a4cdd397c6560888cc1cf47a48085849970b5b1047b9d9c0f17249f4937d"
     },
     {
       "file": "data/processed/graph-coordinates.npy",
@@ -182,8 +187,8 @@
     },
     {
       "file": "data/processed/quality-report.json",
-      "bytes": 503,
-      "sha256": "20e747a14e67230618aaf46f57864a6aeffb48610a173855cd569dc92d60209d"
+      "bytes": 502,
+      "sha256": "6b2a5a0b53c222ccafebadce3bd24a6856664a89aef6f7c0caf15406626dad2d"
     },
     {
       "file": "data/processed/roads.geojson",
@@ -191,44 +196,54 @@
       "sha256": "68f0c082b9f8031d06c93c1691e3df60432fa9a06323f14e196d47a1fb845987"
     },
     {
+      "file": "data/processed/robustness-results.json",
+      "bytes": 54748,
+      "sha256": "28e7492fd58ec7675f07fef524f55340506ac345201e22a38a11d5fb3ed25e09"
+    },
+    {
       "file": "data/processed/sensitivity-results.json",
-      "bytes": 889,
-      "sha256": "04dc366bc87728e5274a10459c8f40cedcf195bd5620cb697edfa3061691329e"
+      "bytes": 918,
+      "sha256": "9366435e8a43a4511ea8cf3e7b64d8b6625b5b4319d91fcfd5817d43118950de"
     },
     {
       "file": "data/processed/transit-lines.geojson",
-      "bytes": 3589352,
-      "sha256": "5e8403399358c79b3ab245e38b751ee704dfac2c83ec6158f680bf8edf8d6ef6"
+      "bytes": 3393218,
+      "sha256": "eef1c25e8cb7c1bf2e0990b5b72f26c83f3f7d3e6ad4494a4f8cc9ab431e56dd"
     },
     {
       "file": "data/processed/transit-matrix.npz",
-      "bytes": 1115684,
-      "sha256": "9db5e1453a16983e95ba1fe4635318c5ac20ce97e35a11bc845639943a1cd326"
+      "bytes": 1110850,
+      "sha256": "0711e155ee6d6bde43543dc3652e2c8a6f346683c111235f43a0f9fc84c1073e"
+    },
+    {
+      "file": "data/processed/transit-package.json",
+      "bytes": 3636,
+      "sha256": "17c7e85c92d1bf03d33e2f66555f697e4759b16d3e5e6651e11ec4bb904f7ec0"
     },
     {
       "file": "data/processed/transit-saturday-1000-matrix.npz",
-      "bytes": 1092068,
-      "sha256": "629e406bf79ecd64a730404ab2297f1f5945a8ec90a26160742311a4ed638710"
+      "bytes": 1070588,
+      "sha256": "f9dbb8db0f7c5a5da7da21a65d7f86524103464cb7012ddd1010a340a2ff48e2"
     },
     {
       "file": "data/processed/transit-sunday-1000-matrix.npz",
-      "bytes": 1072286,
-      "sha256": "598f7fb76c37b7963066bd5d9b4823f7176ec89087d0799621f18084e0b529e8"
+      "bytes": 1046196,
+      "sha256": "938e1c7ac15e8d4cb27e19d6dc5f88237d30bcef53f0673e99fd8977a458f44a"
     },
     {
       "file": "data/processed/transit-validation.json",
-      "bytes": 10571,
-      "sha256": "916cf4e5275094b6e465a0e158a98435c80450d75f1b940cc27630a41aa75481"
+      "bytes": 12256,
+      "sha256": "b3b2ed9cde09aa7655aae9c041cb467eb30e0584c58bb10ee3383fd4b6411a5d"
     },
     {
       "file": "data/processed/transit-weekday-0800-matrix.npz",
-      "bytes": 1175474,
-      "sha256": "40ea88391a6c1a27b0212a68cdaa9054e986c2fabeb281ccb622a65c6cd72978"
+      "bytes": 1178417,
+      "sha256": "f04761eef9a7aa5feb11920536de1a63912fc6a3f9f15ca20748f70118c595fe"
     },
     {
       "file": "data/processed/transit-weekday-1000-matrix.npz",
-      "bytes": 1115684,
-      "sha256": "9db5e1453a16983e95ba1fe4635318c5ac20ce97e35a11bc845639943a1cd326"
+      "bytes": 1110850,
+      "sha256": "0711e155ee6d6bde43543dc3652e2c8a6f346683c111235f43a0f9fc84c1073e"
     },
     {
       "file": "data/processed/unmatched-neighborhoods.json",
@@ -237,8 +252,8 @@
     },
     {
       "file": "data/processed/validation-results.json",
-      "bytes": 4343,
-      "sha256": "21412b84470a1a1d7bc068ec46d5ac94ad7c522fe54a4fc3cccb25f38915caca"
+      "bytes": 4381,
+      "sha256": "69b08e39d5de9733736babc74fcb9c77bd4d5f12588b4c21bd904611eda40e36"
     },
     {
       "file": "data/processed/walk-graph.npz",

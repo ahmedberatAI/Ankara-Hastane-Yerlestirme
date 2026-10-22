@@ -53,8 +53,8 @@
     4242
   ],
   "hospitalCount": 50,
-  "gap": 0.01141827937217228,
-  "lowerBound": 248896219836.42798,
+  "gap": 0.012029586976174844,
+  "lowerBound": 248742310302.57895,
   "secondaryOptimal": false,
   "metrics": {
     "coveredPopulation": 5614804.000000002,
@@ -20187,16 +20187,48 @@
   ],
   "capacity": {
     "totalBeds": 18650,
-    "totalDoctors": 55232,
-    "constructionCostTRY": 228892988611.05905,
-    "annualOperatingCostTRY": 238626174552.79794,
-    "annualEquivalentCostTRY": 251771011584.51437,
-    "lifecyclePresentCostTRY": 4384125809103.62,
+    "totalDoctors": 55220,
+    "constructionCostTRY": 228864085548.26617,
+    "annualOperatingCostTRY": 238589521036.90555,
+    "annualEquivalentCostTRY": 251732698227.25928,
+    "lifecyclePresentCostTRY": 4383458652955.1885,
     "priceBase": "Aralık 2024 TL (yaklaşık sabit fiyat)",
     "horizonYears": 25,
     "realDiscountRate": 0.03,
     "referenceCostTRY": 251771011584.51437,
     "budgetLimitTRY": 276948112742.9659,
+    "referenceStage": {
+      "hospitalCount": 50,
+      "totalBeds": 18650,
+      "totalDoctors": 55232,
+      "coveredPopulation": 5614804.0,
+      "coveragePercent": 95.0,
+      "annualEquivalentCostTRY": 251771011584.51437,
+      "meanMinutes": 17.297565838880725,
+      "gap": 0.012029586976174844,
+      "lowerBoundTRY": 248742310302.57895,
+      "boundScope": "restricted_allocation_edges",
+      "scope": "Original cost-stage incumbent before travel refinement; this gap is not the final plan cost gap or a minimum hospital-count guarantee."
+    },
+    "resourceCleanup": {
+      "method": "Minimum-cost eligible bed module and necessary integer physicians for each unchanged site load; close zero-load sites.",
+      "applied": true,
+      "skippedReason": null,
+      "toleratedClosedSiteFlowResidents": 0.0,
+      "beforeHospitalCount": 50,
+      "afterHospitalCount": 50,
+      "removedHospitalCount": 0,
+      "removedBeds": 0,
+      "removedDoctors": 12,
+      "annualCostReductionTRY": 38313357.25510599,
+      "allocationsPreserved": true,
+      "travelPreserved": true
+    },
+    "solutionSource": "travel_milp",
+    "numericalFallback": null,
+    "finalPlanCostGap": 0.011879219289901963,
+    "costBoundNumericalToleranceTRY": 100.0,
+    "optimalityScope": "restricted_allocation_edges",
     "referenceMeanMinutes": 17.297565838880725,
     "travelImprovementPercent": 3.4337281585856667,
     "annualVisitsDemand": 47445297.04366386,
@@ -20206,11 +20238,13 @@
     "annualAdmissionsDemand": 1072245.4471850423,
     "annualBedDaysDemand": 5451817.453012415,
     "annualBedDaysServed": 5179226.580361797,
-    "doctorUtilizationPercent": 99.94133698052866,
+    "doctorUtilizationPercent": 99.96305548910827,
     "bedUtilizationPercent": 95.10497227885337,
-    "costStageGap": 0.01141827937217228,
+    "costStageGap": 0.012029586976174844,
     "costStageProvenOptimal": false,
-    "travelStageGap": 0.5434854716096033,
+    "travelStageGap": 0.5620455197771569,
+    "travelStageSolverGap": 0.5620455197771568,
+    "travelStageLowerBoundMeanMinutes": 7.315422784258008,
     "travelStageImproved": true,
     "planningVersion": "independent-capacity-2026-10-v2"
   },
@@ -20289,8 +20323,8 @@
         210
       ]
     },
-    "transitRoutes": 427,
-    "transitStops": 10335,
+    "transitRoutes": 424,
+    "transitStops": 10811,
     "transitAssumptions": {
       "scheduleAvailable": true,
       "intermediateStopTimesObserved": false,
@@ -20330,12 +20364,12 @@
     "transitDataQuality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 427,
-      "coordinateStopCount": 10335,
+      "routedRouteCount": 424,
+      "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10361,
-        "saturday": 8022,
-        "sunday": 7100
+        "weekday": 10397,
+        "saturday": 8116,
+        "sunday": 7109
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -20343,12 +20377,15 @@
         "sunday": 9479
       },
       "coordinateSources": {
-        "OSM stop ref": 6450,
-        "Historical community GTFS coordinate; official stop ID": 3817,
+        "EGO Başkentkart public stop query": 10743,
         "OSM station name / official stop identity": 68
-      }
+      },
+      "quarantinedCoordinateCount": 0,
+      "coordinateAddressConflictCount": 98,
+      "quarantinedRouteCount": 3
     },
-    "transitVersion": "ego-scheduled-v1"
+    "transitVersion": "ego-scheduled-v2-quality-gates",
+    "transitPackageId": "ego-15b324cd658a1d84681e1123048ada710bb4ae83f19258c61cbeba8e78914c43"
   },
   "modelLabel": "OSM yol ağı · tahmini sürüş süresi",
   "selected": [
@@ -20809,14 +20846,14 @@
       "templateId": "b50",
       "templateLabel": "50 yatak",
       "beds": 50,
-      "doctors": 67,
-      "grossAreaM2": 17360,
-      "constructionCostTRY": 522663718.8378632,
-      "annualOperatingCostTRY": 393383570.50074023,
-      "annualEquivalentCostTRY": 423399035.14299196,
+      "doctors": 62,
+      "grossAreaM2": 16960,
+      "constructionCostTRY": 510620776.0074977,
+      "annualOperatingCostTRY": 378111272.2122317,
+      "annualEquivalentCostTRY": 407435136.28668964,
       "operatingBreakdown": {
         "fixedSiteTRY": 62120028.571428575,
-        "physiciansTRY": 204648797.06601468,
+        "physiciansTRY": 189376498.7775061,
         "bedSupportTRY": 88867682.53968254,
         "materialsTRY": 37747062.32361446
       },
@@ -20825,12 +20862,12 @@
       "annualContacts": 51674.98379524382,
       "annualAdmissions": 1142.025404898894,
       "annualBedDays": 5806.612702862699,
-      "contactCapacity": 55945,
+      "contactCapacity": 51770,
       "bedDayCapacity": 14600.0,
-      "doctorUtilizationPercent": 92.36747483286052,
+      "doctorUtilizationPercent": 99.81646473873637,
       "bedUtilizationPercent": 39.77131988262123,
       "physicalOccupancyPercent": 31.817055906096982,
-      "areaUtilizationPercent": 30.320217416464235
+      "areaUtilizationPercent": 29.62159489534755
     },
     {
       "id": "H-1966",
@@ -22355,14 +22392,14 @@
       "templateId": "b50",
       "templateLabel": "50 yatak",
       "beds": 50,
-      "doctors": 87,
-      "grossAreaM2": 18960,
-      "constructionCostTRY": 570835490.1593252,
-      "annualOperatingCostTRY": 465165654.1824973,
-      "annualEquivalentCostTRY": 497947521.0959243,
+      "doctors": 80,
+      "grossAreaM2": 18400,
+      "constructionCostTRY": 553975370.1968136,
+      "annualOperatingCostTRY": 443784436.5785854,
+      "annualEquivalentCostTRY": 475598062.69710106,
       "operatingBreakdown": {
         "fixedSiteTRY": 62120028.571428575,
-        "physiciansTRY": 265737990.2200489,
+        "physiciansTRY": 244356772.61613694,
         "bedSupportTRY": 88867682.53968254,
         "materialsTRY": 48439952.85133733
       },
@@ -22371,12 +22408,12 @@
       "annualContacts": 66313.34002035113,
       "annualAdmissions": 1465.5354182019094,
       "annualBedDays": 7451.49498366877,
-      "contactCapacity": 72645,
+      "contactCapacity": 66800,
       "bedDayCapacity": 14600.0,
-      "doctorUtilizationPercent": 91.28410767478991,
+      "doctorUtilizationPercent": 99.27146709633402,
       "bedUtilizationPercent": 51.03763687444363,
       "physicalOccupancyPercent": 40.83010949955491,
-      "areaUtilizationPercent": 10.477700420216443
+      "areaUtilizationPercent": 10.168232475315536
     }
   ],
   "existingComparison": {

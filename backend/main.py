@@ -19,7 +19,7 @@ from backend.timetable import DEFAULT_PROFILE, PROFILES, journey, load_network
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.4.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.5.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -95,6 +95,12 @@ def benchmark_91():
     if not path.exists(): raise HTTPException(404, '91 tesis deneyi henüz kaydedilmedi.')
     return FileResponse(path, media_type='application/json')
 
+@app.get('/api/robustness')
+def robustness_report():
+    path = DATA / 'robustness-results.json'
+    if not path.exists(): raise HTTPException(404, 'Sabit planın zaman profili deneyi henüz kaydedilmedi.')
+    return FileResponse(path, media_type='application/json')
+
 @lru_cache(maxsize=24)
 def count_bound(mode,threshold,coverage,district_floor,traffic,profile=DEFAULT_PROFILE):
     data=dataset()
@@ -123,7 +129,7 @@ def cached_solve(serialized):
         certificate = count_bound(s.mode,s.threshold,s.coverageTarget,s.districtFloor,s.trafficFactor,s.transitProfile)
     if certificate and (certificate['status']=='infeasible' or
                        certificate['minimumCountLowerBound'] is not None and certificate['minimumCountLowerBound']>s.hospitalLimit+1e-6):
-        result={'status':'infeasible','reason':f'{s.hospitalLimit} tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.',
+        result={'status':'infeasible','reason':f'Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle {s.hospitalLimit} tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.',
                 'geographicCertificate':certificate,'infeasibilityScope':'all_candidates_geography'}
     else:
         result = solve_capacity(times[:, :n_candidates], populations, district_ids, data['districts'],
@@ -137,7 +143,8 @@ def cached_solve(serialized):
     result['metadata'] = data['metadata']
     result['modelLabel'] = ('EGO resmi kalkışlar · '+PROFILES[s.transitProfile]['label']+' · ara durak süreleri tahmini') if s.mode == 'transit' else 'OSM yol ağı · tahmini sürüş süresi'
     if s.mode=='transit':
-        result['transitEvidence']={'version':data['metadata']['transitVersion'],'profile':PROFILES[s.transitProfile],
+        result['transitEvidence']={'version':data['metadata']['transitVersion'],
+            'packageId':data['metadata'].get('transitPackageId'),'profile':PROFILES[s.transitProfile],
             'quality':data['metadata']['transitDataQuality'],
             'scope':'Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir.'}
     if 'selectedIndices' in result:

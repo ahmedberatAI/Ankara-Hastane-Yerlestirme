@@ -16,8 +16,89 @@ from fastapi.testclient import TestClient
 from scipy.sparse.csgraph import dijkstra
 from backend.main import app, dataset, health_planning, travel_times, Scenario, site_conflicts, cached_solve, count_bound, graph
 from backend.timetable import PROFILES, DEFAULT_PROFILE, journey
+from scripts.transit_provenance import check_package
 
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'data/processed'
+
+
+BENCHMARK_KEYS = ('scenario', 'status', 'hospitalCount', 'metrics', 'capacity', 'geographicCertificate')
+TRANSIT_REPORT_KEYS = (*BENCHMARK_KEYS, 'reason', 'transitEvidence')
+
+
+def same_values(saved, expected, context='record'):
+    """Compare a displayed report to its audited source, allowing rounding only."""
+    if isinstance(expected, dict):
+        assert isinstance(saved, dict) and saved.keys() == expected.keys(), f'{context}: fields differ'
+        for key, value in expected.items():
+            same_values(saved[key], value, context + '.' + key)
+    elif isinstance(expected, list):
+        assert isinstance(saved, list) and len(saved) == len(expected), f'{context}: length differs'
+        for i, value in enumerate(expected):
+            same_values(saved[i], value, context + f'[{i}]')
+    elif isinstance(expected, (float, int)) and not isinstance(expected, bool):
+        assert isinstance(saved, (float, int)) and not isinstance(saved, bool), f'{context}: not numeric'
+        assert math.isclose(saved, expected, rel_tol=1e-9, abs_tol=1e-6), f'{context}: {saved} != {expected}'
+    else:
+        assert saved == expected, f'{context}: {saved!r} != {expected!r}'
+
+
+def verify_certificate(saved, fresh):
+    """A new solve must certify every advertised claim, not merely exceed 91."""
+    for field in ('fullCandidateCount', 'undominatedCandidateCount', 'scope',
+                  'thresholdMinutes', 'coverageTargetPercent', 'districtFloorPercent'):
+        same_values(saved[field], fresh[field], 'certificate.' + field)
+    assert saved['status'] in ('optimal', 'bounded', 'infeasible')
+    if saved['status'] == 'infeasible':
+        assert fresh['status'] == 'infeasible', 'Saved geographical infeasibility was not reproduced'
+        assert saved['minimumCountLowerBound'] is None and saved['feasibleGeographicCount'] is None
+        return
+    lower, upper = saved['minimumCountLowerBound'], saved['feasibleGeographicCount']
+    assert lower is not None and math.isfinite(lower) and lower >= 0
+    assert upper is None or (isinstance(upper, int) and upper >= lower - 1e-6)
+    assert fresh['minimumCountLowerBound'] is not None, 'Fresh solve did not certify the saved bound'
+    if saved['status'] == 'optimal':
+        assert upper is not None and math.isclose(lower, upper, abs_tol=1e-6)
+        same_values(fresh['minimumCountLowerBound'], lower, 'certificate.optimalLowerBound')
+        same_values(fresh['feasibleGeographicCount'], upper, 'certificate.optimalFeasibleCount')
+    else:
+        # Time-limited runs need not return identical bounds. A weaker fresh bound
+        # cannot recertify a stronger old one: stop, rather than silently approve it.
+        assert lower <= fresh['minimumCountLowerBound'] + 1e-6, 'Fresh solve is too weak to recertify the saved lower bound; rerun with a longer limit'
+        assert upper is None or upper >= fresh['minimumCountLowerBound'] - 1e-6
+
+
+def verify_result_package(result, package_id):
+    if result['scenario']['mode'] == 'transit':
+        assert package_id and result['metadata'].get('transitPackageId') == package_id, 'Result belongs to a different transit package'
+        assert result.get('transitEvidence', {}).get('packageId') == package_id, 'Result evidence belongs to a different transit package'
+        same_values(result['transitEvidence']['profile'], PROFILES[result['scenario']['transitProfile']], 'result.profile')
+
+
+def summarize(result, keys):
+    return {key: result[key] for key in keys if key in result}
+
+
+def verify_report_records(report, results, package_id):
+    assert report.get('transitPackageId') == package_id, 'Experiment report belongs to a different transit package'
+    expected = {r['scenario']['transitProfile']: summarize(r, TRANSIT_REPORT_KEYS)
+                for r in results if r['scenario']['mode'] == 'transit' and r['scenario']['hospitalLimit'] == 91}
+    profiles = report['profiles']
+    assert len(profiles) == len(expected) == len(PROFILES), 'Missing or duplicate profile report'
+    assert {r['scenario']['transitProfile'] for r in profiles} == set(expected)
+    for record in profiles:
+        same_values(record, expected[record['scenario']['transitProfile']], 'experiment.profile')
+
+
+def verify_benchmark(report, results, transit_report, package_id, quality, sensitivity):
+    assert report.get('transitPackageId') == package_id, 'Benchmark belongs to a different transit package'
+    same_values(report['cases'], [summarize(r, BENCHMARK_KEYS) for r in results if r['scenario']['hospitalLimit'] == 91], 'benchmark.cases')
+    same_values(report.get('sensitivity'), sensitivity, 'benchmark.sensitivity')
+    expected = {'legacyLowerBound': transit_report['legacy']['minimumCountLowerBound'],
+                'walkingCorrectionLowerBound': transit_report['walkingCorrectionOnly']['minimumCountLowerBound'],
+                'withoutDistrictFloorLowerBound': transit_report['withoutDistrictFloor']['minimumCountLowerBound'],
+                'officialRoutes': quality['officialRouteCount'], 'modeledRoutes': quality['routedRouteCount']}
+    for field, value in expected.items():
+        same_values(report['transitAudit'][field], value, 'benchmark.transitAudit.' + field)
 
 
 def audit(result):
@@ -95,7 +176,9 @@ def audit(result):
 
 
 def run(write_examples=False,write_report=False):
-    data=dataset();client=TestClient(app);report=[];benchmark=[]
+    package_id=check_package()
+    data=dataset();client=TestClient(app);report=[];benchmark=[];audited_results=[]
+    assert data['metadata']['transitPackageId'] == package_id
     assert client.get('/api/data').status_code==200
     cases=[('car',30,None,'car',DEFAULT_PROFILE),('transit',45,None,'transit',DEFAULT_PROFILE),('car',30,91,'car-91',DEFAULT_PROFILE)]
     cases += [('transit',45,91,f'transit-{profile}-91',profile) for profile in PROFILES]
@@ -109,11 +192,13 @@ def run(write_examples=False,write_report=False):
                 (OUT/'example-transit-91-result.json').write_bytes(path.read_bytes())
         result=json.loads(path.read_text(encoding='utf-8'))
         assert result['scenario']==s.model_dump()
+        verify_result_package(result, package_id)
         if result['status']=='infeasible':
             certificate=count_bound(mode,threshold,95,80,1,profile)
-            assert limit is not None and certificate['minimumCountLowerBound']>limit
+            verify_certificate(result['geographicCertificate'], certificate)
+            assert limit is not None and (certificate['status']=='infeasible' or certificate['minimumCountLowerBound']>limit)
             assert certificate['fullCandidateCount']==len(data['candidates'])
-            report.append({'mode':mode,'hospitalLimit':limit,'transitProfile':profile,'status':'infeasible','geographicCertificate':certificate})
+            report.append({'mode':mode,'hospitalLimit':limit,'transitProfile':profile,'status':'infeasible','geographicCertificate':result['geographicCertificate']})
         else:
             assert result['status']=='feasible',result.get('reason')
             assert result['capacity']['planningVersion']==health_planning()['version']
@@ -139,7 +224,10 @@ def run(write_examples=False,write_report=False):
                     found=True;break
             assert found,'No large-plot vehicle route verified'
         if limit==91:
-            benchmark.append({key:result[key] for key in ('scenario','status','hospitalCount','metrics','capacity','geographicCertificate') if key in result})
+            if result['status'] != 'infeasible':
+                verify_certificate(result['geographicCertificate'], count_bound(mode,threshold,95,80,1,profile))
+            benchmark.append(summarize(result, BENCHMARK_KEYS))
+        audited_results.append(result)
         print('Audited',label,flush=True)
     sensitivity_path=OUT/'example-car-91-university-result.json'
     sensitivity=None
@@ -150,11 +238,17 @@ def run(write_examples=False,write_report=False):
         sr=json.loads(sensitivity_path.read_text(encoding='utf-8'))
         assert sr['scenario']['contactsPerDoctor']==835 and sr['scenario']['hospitalLimit']==91
         sensitivity={'scenario':sr['scenario'],'summary':audit(sr)}
+    transit_report=json.loads((OUT/'transit-validation.json').read_text(encoding='utf-8'))
+    if write_examples:
+        assert transit_report.get('transitPackageId') == package_id
+        transit_report['profiles'] = [summarize(r, TRANSIT_REPORT_KEYS) for r in audited_results
+                                      if r['scenario']['mode'] == 'transit' and r['scenario']['hospitalLimit'] == 91]
+        (OUT/'transit-validation.json').write_text(json.dumps(transit_report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+    verify_report_records(transit_report, audited_results, package_id)
+    quality=data['metadata']['transitDataQuality']
     if write_examples or write_report:
-        transit_report=json.loads((OUT/'transit-validation.json').read_text(encoding='utf-8'))
-        quality=data['metadata']['transitDataQuality']
         (OUT/'sensitivity-results.json').write_text(json.dumps(sensitivity,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
-        (OUT/'benchmark-91.json').write_text(json.dumps({'date':date.today().isoformat(),'planningVersion':health_planning()['version'],
+        (OUT/'benchmark-91.json').write_text(json.dumps({'date':date.today().isoformat(),'planningVersion':health_planning()['version'],'transitPackageId':package_id,
             'note':'91 kullanıcı karşılaştırma sınırıdır; resmî 2024 envanteri 85. EGO: resmi kalkışlar, tahmini ara durak süreleri ve kısmi hizmet kapsamı; gerçek kent için kesin ihtiyaç sayısı değildir.',
             'cases':benchmark,'sensitivity':sensitivity,'transitAudit':{
                 'legacyLowerBound':transit_report['legacy']['minimumCountLowerBound'],
@@ -162,8 +256,13 @@ def run(write_examples=False,write_report=False):
                 'withoutDistrictFloorLowerBound':transit_report['withoutDistrictFloor']['minimumCountLowerBound'],
                 'officialRoutes':quality['officialRouteCount'],'modeledRoutes':quality['routedRouteCount'],
                 'note':f"{quality['routedRouteCount']}/{quality['officialRouteCount']} yön/varyant modele bağlandı; eksik seferler erişimi olduğundan düşük gösterebilir."}},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
-        (OUT/'validation-results.json').write_text(json.dumps({'date':date.today().isoformat(),'cases':report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+        (OUT/'validation-results.json').write_text(json.dumps({'date':date.today().isoformat(),'transitPackageId':package_id,'cases':report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     else:
+        verify_benchmark(json.loads((OUT/'benchmark-91.json').read_text(encoding='utf-8')), audited_results, transit_report, package_id, quality, sensitivity)
+        saved_validation=json.loads((OUT/'validation-results.json').read_text(encoding='utf-8'))
+        assert saved_validation.get('transitPackageId') == package_id
+        same_values(saved_validation['cases'], report, 'validation.cases')
+        same_values(json.loads((OUT/'sensitivity-results.json').read_text(encoding='utf-8')), sensitivity, 'sensitivity.summary')
         from scripts.manifest import check
         check()
     print(json.dumps(report,ensure_ascii=False,indent=2))

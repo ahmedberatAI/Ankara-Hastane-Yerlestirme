@@ -16,7 +16,6 @@ import {
   SlidersHorizontal,
   Users,
   Timer,
-  Check,
   AlertTriangle,
   ExternalLink,
   Database,
@@ -25,6 +24,11 @@ import {
 import AnkaraMap from "./Map";
 import HealthMethod from "./HealthMethod";
 import Benchmark from "./Benchmark";
+import Robustness from "./Robustness";
+import StageComparison, {
+  CostGapCaption,
+  allocationScopeLabel,
+} from "./StageComparison";
 import { transitProfileLabels } from "./types";
 import type { TransitProfile } from "./types";
 import type {
@@ -196,6 +200,9 @@ export default function App() {
     Object.entries(scenario).some(
       ([key, value]) => result.scenario[key as keyof Scenario] !== value,
     );
+  const displayedScenario = result?.scenario ?? scenario;
+  const displayedProfile =
+    transitProfileLabels[displayedScenario.transitProfile];
   const searchMatches = useMemo(
     () =>
       search.length > 1
@@ -335,7 +342,7 @@ export default function App() {
     const url = URL.createObjectURL(blob),
       a = document.createElement("a");
     a.href = url;
-    a.download = `ankara-${result.scenario.mode}-${result.scenario.threshold}dk.json`;
+    a.download = `ankara-${result.scenario.mode}${result.scenario.mode === "transit" ? `-${result.scenario.transitProfile}` : ""}-${result.scenario.threshold}dk.json`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -779,12 +786,9 @@ export default function App() {
                 <span>adet</span>
               </div>
               <div className="stat-caption">
-                {result?.status === "optimal" ? (
-                  <>
-                    <Check size={13} /> Kapasite ve maliyet koşulları sağlandı
-                  </>
-                ) : result?.status === "feasible" ? (
-                  `Maliyet aşaması açığı %${decimal((result.gap ?? 0) * 100)}`
+                {result?.status === "optimal" ||
+                result?.status === "feasible" ? (
+                  <CostGapCaption result={result} />
                 ) : (
                   "Kapasiteye göre seçilen tesis sayısı"
                 )}
@@ -828,6 +832,20 @@ export default function App() {
               </div>
             </div>
           </div>
+          {result && (
+            <p className={dirty ? "dirty-note" : "small-note"} role="status">
+              Gösterilen hesap:{" "}
+              {result.scenario.mode === "transit"
+                ? `EGO · ${displayedProfile}`
+                : "Araba"}
+              {` · ${result.scenario.threshold} dk · il %${result.scenario.coverageTarget} · ilçe %${result.scenario.districtFloor}.`}
+              {dirty && " Girdi değişiklikleri henüz bu sonuçlara uygulanmadı."}
+              {capacity?.optimalityScope === "all_candidate_allocation_edges"
+                ? " Maliyet açığı, örneklenen adayların bütün talep bağlantılarının bulunduğu probleme aittir; Ankara'nın her olası konumu için kanıt değildir."
+                : result.searchScope &&
+                  ` Maliyet açığı, her yapı izi sınıfından en yakın ${result.searchScope.nearestCandidatesPerFootprintClass} adayla sınırlı aramaya aittir; bütün aday bağlantıları için küresel optimalite kanıtı değildir.`}
+            </p>
+          )}
           {capacity && (
             <section
               className="capacity-strip"
@@ -913,7 +931,7 @@ export default function App() {
             </label>
             <span className="map-data-tag">
               <span />
-              {scenario.mode === "transit"
+              {displayedScenario.mode === "transit"
                 ? "EGO · kalkış tarifesi + tahmini geçiş"
                 : "OSM · yol ağı"}
             </span>
@@ -965,13 +983,34 @@ export default function App() {
               </div>
             </div>
           )}
-          {scenario.mode === "transit" && (
+          {(scenario.mode === "transit" ||
+            displayedScenario.mode === "transit") && (
             <div className="transit-banner">
               <Info size={16} />
               <span>
-                <b>{transitProfileLabels[scenario.transitProfile]}.</b> Resmî
-                kalkışlar kullanılır; ara durak zamanları tahmin edilir. Eksik
-                sefer/konum verisi, hizmet yokluğu sayılmaz.
+                <b>
+                  {result ? "Son hesaplanan: " : "Seçili profil: "}
+                  {displayedScenario.mode === "transit"
+                    ? `EGO · ${displayedProfile}`
+                    : "Araba"}
+                  .
+                </b>{" "}
+                {result &&
+                  (result.scenario.mode !== scenario.mode ||
+                    (scenario.mode === "transit" &&
+                      result.scenario.transitProfile !==
+                        scenario.transitProfile)) && (
+                    <strong>
+                      Bekleyen seçim:{" "}
+                      {scenario.mode === "transit"
+                        ? `EGO · ${transitProfileLabels[scenario.transitProfile]}`
+                        : "Araba"}
+                      ; yeniden hesaplama gerekli.{" "}
+                    </strong>
+                  )}
+                Tek başlangıç saati sınanır; günün tamamında hizmet garantisi
+                vermez. Resmî kalkışlar kullanılır; ara durak zamanları tahmin
+                edilir. Eksik sefer/konum verisi, hizmet yokluğu sayılmaz.
                 {data?.metadata.transitDataQuality && (
                   <small className="transit-coverage">
                     Katalogdaki{" "}
@@ -1093,6 +1132,8 @@ export default function App() {
                       </div>
                     )}
                     <small className="route-footnote">
+                      {result?.scenario.mode === "transit" &&
+                        `Bu rota: ${transitProfileLabels[result.scenario.transitProfile]}. `}
                       Kesikli çizgiler yürüyüş veya varsayılan giriş
                       bağlantısıdır.{" "}
                       {result?.scenario.mode === "transit"
@@ -1166,12 +1207,21 @@ export default function App() {
                     : "Süre sınırında daha kısa geçerli çözüm bulunamadı."}
                 </small>
                 <small>
-                  Süre aşaması optimalite açığı:{" "}
+                  Süre aşaması açığı (
+                  {result
+                    ? allocationScopeLabel(result)
+                    : "kayıtlı arama kapsamında"}
+                  ):{" "}
                   {capacity.travelStageGap == null
                     ? "kanıt sınırı mevcut değil"
                     : `%${decimal(capacity.travelStageGap * 100)}`}
-                  . Bu değer, daha kısa bir yerleşim bulunabilme payını
-                  gösterir; kesin minimum iddiası değildir.
+                  . Çözücünün amaç değeri ile alt sınırı arasındaki farktır;
+                  beklenen iyileşme yüzdesi değildir.{" "}
+                  {capacity.optimalityScope === "all_candidate_allocation_edges"
+                    ? "Örneklenen adayların bütün talep bağlantılarının bulunduğu probleme aittir; sürekli coğrafyada küresel optimalite kanıtı değildir."
+                    : result?.searchScope
+                      ? `Her yapı izi sınıfından en yakın ${result.searchScope.nearestCandidatesPerFootprintClass} aday bağlantısıyla sınırlı probleme aittir; bütün aday bağlantıları için küresel optimalite kanıtı değildir.`
+                      : "Kayıtlı aday bağlantılarına aittir; bütün aday bağlantıları için küresel optimalite kanıtı değildir."}
                 </small>
                 <small>
                   Bina yatırımı {decimal(capacity.constructionCostTRY / 1e9)} mr
@@ -1182,13 +1232,16 @@ export default function App() {
               </div>
             </section>
           )}
+          <StageComparison result={result} />
           <Benchmark
             busy={busy}
+            packageId={data?.metadata.transitPackageId}
             run={(s) => {
               setScenario(s);
               void solve(s);
             }}
           />
+          <Robustness packageId={data?.metadata.transitPackageId} />
           {districtPanel && result?.districts && (
             <section className="district-results">
               <div className="results-intro">

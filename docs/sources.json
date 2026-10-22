@@ -44,10 +44,20 @@
     "title": "EGO hareket saatleri ve durak sıraları",
     "publisher": "EGO Genel Müdürlüğü",
     "url": "https://www.ego.gov.tr/hareketsaatleri",
-    "status": "665 resmi hat/yön/varyant indirildi; kısmi tarife entegrasyonu",
-    "date": "22.10.2026",
-    "usedFor": "Durak sırası, gün türüne göre kalkış ve toplam hat süresi",
-    "note": "427 yön/varyant modele bağlandı. Ara durak varış saatleri tahminidir; çözülemeyen özel sefer notları dışarıda tutulur. Kaynak kimlikleri ve eksikler ego-official.json / ego-quality.json içinde."
+    "status": "665 resmî hat/yön/varyantın kaynak kayıtları doğrulandı",
+    "date": "23.10.2026 işlendi; eski HTTP gözlem zamanı bilinmiyor",
+    "usedFor": "Durak sırası, normal gün türüne göre kalkış ve sayfadaki süre alanı",
+    "note": "666 önbellek HTML kaydının SHA/URL kimliği doğrulandı; observedAt bilinmediği için null, processedAt ayrı tutulur. 10.811 durak kimliği vardır; yeni ağda 424/665 yön-varyant kullanılır. Süre alanının tek yön/çevrim kapsamı her hatta doğrulanmadı; ara durak saatleri tahminidir. Çözülemeyen notlar gerçek hizmet yokluğu sayılmaz. Sefer kapsamı ve dışlama nedenleri ego-quality.json içinde."
+  },
+  {
+    "id": "ego-official-stop-coordinates",
+    "title": "EGO Başkentkart · kamusal durak koordinatı sorgusu",
+    "publisher": "EGO Genel Müdürlüğü",
+    "url": "https://baskentkart.ego.gov.tr/",
+    "status": "10.743 sayısal katalog kimliğinin tamamı ham yanıtıyla doğrulandı",
+    "date": "22–23.10.2026 TSİ; 10.740 bağlı gözlem, 3 eski kayıt zamanı bilinmiyor",
+    "usedFor": "Sayısal durak kimliklerinde birincil koordinat kaynağı; ardından OSM, gerekirse tarihsel ek",
+    "note": "map_init.js içindeki bayiToDo.asp POST DurakSorgula işlemi kullanılır. 10.740 HTTP gözlem zamanı SHA+durak kimliği+endpoint sidecar kaydına bağlıdır; 11535, 14162 ve 14163 için observedAt null korunur. Gözlem aralığı 22 Ekim 23.02–23 Ekim 00.24 TSİ; işlenme zamanı kaynak geçerlilik tarihi değildir. 68 sayısal olmayan katalog kimliği bu sorgu kesitinin dışındadır. Tarife ile aynı tarihli geçerlilik veya açık GTFS lisansı iddia edilmez."
   },
   {
     "id": "ego-rail",
@@ -217,7 +227,7 @@
     "date": "22.10.2026",
     "status": "Kullanılıyor",
     "usedFor": "Kapasiteli MILP, geçerli başlangıç çözümü, alt sınır ve açıklık",
-    "note": "İki aşama süre sınırlı; minimum tesis sayısı veya sürekli coğrafyada global optimum iddiası yoktur."
+    "note": "İki aşama süre sınırlıdır. Varsayılan maliyet ve süre açıklıkları her yapı izi sınıfından en yakın 12 aday bağlantısıyla daraltılan probleme aittir; bütün aday bağlantıları için küresel açıklık değildir. Tam adaylı coğrafi sayı sertifikası ayrıdır. İlk maliyet aşamasının açıklığı son planın açıklığı yerine kullanılmaz; son tesis sayısının minimum olduğu iddia edilmez."
   },
   {
     "id": "au2024",
@@ -274,9 +284,9 @@
     "title": "Transitous Ankara topluluk GTFS koordinat eki",
     "publisher": "Transitous kaynak kataloğu / topluluk arşivi",
     "url": "https://raw.githubusercontent.com/public-transport/transitous/main/feeds/tr.json",
-    "status": "Yalnız eksik otobüs durak koordinatları kullanıldı",
+    "status": "Tarihsel ek kaynak; yeni ağda koordinatı kullanılmadı",
     "date": "22.10.2026 erişimi; tarihsel paket",
-    "usedFor": "Resmi katalogda bulunan, OSM ref eşleşmesi olmayan 3.817 otobüs durak kimliğinin konumu",
-    "note": "Güncel resmi GTFS değildir. Paketin seferleri, takvimi, ara durak saatleri ve şekilleri kullanılmaz. Ham ZIP yeniden dağıtılmaz; OSM ile farklar ve eksik konumlar kalite raporundadır."
+    "usedFor": "Resmî katalogda geçen otobüs duraklarında birincil koordinat ve OSM eşleşmesi eksik kalırsa tarihsel konum eki",
+    "note": "Güncel resmî GTFS değildir. Paketin seferleri, takvimi, ara durak saatleri ve şekilleri kullanılmaz. Yeni ağdaki 10.743 sayısal koordinat resmî sorgudan, 68 istasyon kimliği OSM’den gelir; tarihsel ekten kullanılan koordinat sayısı sıfırdır. Arşiv kaynaklar arası farkları incelemek için korunur; ham ZIP yeniden dağıtılmaz."
   }
 ]
