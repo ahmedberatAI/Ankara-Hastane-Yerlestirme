@@ -5,6 +5,10 @@ export interface Scenario {
   coverageTarget: number;
   districtFloor: number;
   trafficFactor: number;
+  demandMultiplier: number;
+  bedOccupancy: number;
+  visitsPerDoctor: number;
+  costTolerance: number;
 }
 export interface Place {
   id: string;
@@ -23,6 +27,75 @@ export interface Demand extends Place {
 export interface Candidate extends Place {
   accessMeters: number;
   footprintRadiusMeters: number;
+  beds?: number;
+  doctors?: number;
+  templateLabel?: string;
+  constructionCostTRY?: number;
+  assignedPopulation?: number;
+  annualVisits?: number;
+  annualBedDays?: number;
+  visitCapacity?: number;
+  bedDayCapacity?: number;
+  doctorUtilizationPercent?: number;
+  bedUtilizationPercent?: number;
+  physicalOccupancyPercent?: number;
+}
+export interface HealthPlanning {
+  version: string;
+  referenceYear: number;
+  observed: {
+    population: number;
+    hospitalCount: number;
+    beds: number;
+    physicians: number;
+    secondaryTertiaryVisits: number;
+    admissions: number;
+    bedDays: number;
+    occupancyPercent: number;
+  };
+  rates: {
+    visitsPerResident: number;
+    admissionsPerResident: number;
+    bedDaysPerResident: number;
+    lengthOfStayDays: number;
+  };
+  templates: {
+    id: string;
+    label: string;
+    beds: number;
+    doctors: number;
+    grossAreaM2: number;
+    unitCostTRY: number;
+    constructionCostTRY: number;
+  }[];
+  assumptions: string[];
+  sources: {
+    id: string;
+    title: string;
+    url: string;
+    note?: string;
+    verifiedCopyUrl?: string;
+  }[];
+}
+export interface CapacitySummary {
+  totalBeds: number;
+  totalDoctors: number;
+  constructionCostTRY: number;
+  referenceCostTRY: number;
+  budgetLimitTRY: number;
+  referenceMeanMinutes: number;
+  travelImprovementPercent: number;
+  annualVisitsDemand: number;
+  annualVisitsServed: number;
+  annualAdmissionsDemand: number;
+  annualBedDaysDemand: number;
+  annualBedDaysServed: number;
+  doctorUtilizationPercent: number;
+  bedUtilizationPercent: number;
+  costStageGap: number;
+  costStageProvenOptimal: boolean;
+  travelStageGap: number | null;
+  travelStageImproved: boolean;
 }
 export interface Metrics {
   coveragePercent: number;
@@ -53,6 +126,7 @@ export interface Dataset {
   hospitals: Place[];
   districts: District[];
   sources: Source[];
+  healthPlanning: HealthPlanning;
   metadata: {
     provincePopulation: number;
     listedPopulation: number;
@@ -73,10 +147,18 @@ export interface Dataset {
 }
 export interface Assignment {
   demandId: string;
-  candidateId: string;
-  candidateIndex: number;
+  candidateId: string | null;
+  candidateIndex: number | null;
   minutes: number | null;
   covered: boolean;
+  servedFraction: number;
+  allocations: {
+    candidateId: string;
+    candidateIndex: number;
+    population: number;
+    fraction: number;
+    minutes: number;
+  }[];
 }
 export interface Result {
   status: "optimal" | "feasible" | "infeasible" | "timeout";
@@ -96,6 +178,12 @@ export interface Result {
   maximumCoveragePercent?: number;
   limitingDistricts?: { name: string; maximumPercent: number }[];
   secondaryOptimal?: boolean;
+  capacity?: CapacitySummary;
+  searchScope?: {
+    nearestCandidatesPerOrigin: number;
+    candidateCount: number;
+    allocationEdges: number;
+  };
 }
 export interface Route {
   minutes: number;

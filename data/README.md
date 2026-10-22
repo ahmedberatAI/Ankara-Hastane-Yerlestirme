@@ -52,3 +52,11 @@ Repo kökünde, Python bağımlılıkları kurulduktan sonra:
 Nüfus ile OSM konumları farklı tarihlere aittir; mahalle bölünmesi/ad değişikliği etkisi bütünüyle giderilmemiştir. Ad eşleşmesi resmî poligon onayı değildir. Model ham kişisel kayıt kullanmaz; yayımlanmış toplu mahalle nüfuslarını işler.
 
 Harita altlığı yalnız görseldir. Sonuçlar canlı harita karolarından hesaplanmaz; sürümlenmiş ağ matrislerinden hesaplanır. Altlık güncellense bile ağ kesiti değişmez. İnternet olmadığında yerel ana yol katmanı destek sağlar; çevrimdışı harita karosu paketi bu repoda yoktur.
+
+## Kapasite parametreleri (v0.2)
+
+`health-planning.json`: Sağlık Bakanlığı 2024 Ankara gözlemleri, türetilmiş kişi başı yıllık oranlar, varsayımsal tesis şablonları, 2026 birim fiyatları, kaynak tablo/sayfa ve SHA-256. Üst veri ile varsayımlar ayrı alanlardır. [Araştırma](../docs/capacity-research.md).
+
+Sonuçlardaki `assignments[].allocations[]`: tesis kimliği, atanan nüfus eşdeğeri, mahalle talep payı ve ağ süresi. `candidateId/minutes` en büyük paya ait rotadır; mahalle ortalaması değildir. `servedFraction` 0–1, `covered` yalnız tam atama. `selected[]` her tesisin tipi, yatak/hekim, yük ve kapasitesiyle yapım bedelini içerir. `capacity` il toplamları ve iki aşamalı maliyet/süre bilgileri; `searchScope` seyrek aday kapsamı. `metrics.coveredPopulation` kesirli kişi eşdeğeri olabilir; bireysel hasta değildir.
+
+2024 kaynak PDF'leri `data/raw/health/` altında (Git dışında). Doğrulama için `pip install pymupdf==1.26.7` ve `python scripts/verify_health_sources.py --download` kullanılabilir. Dosya kimliği değişirse betik durur; yeni veri otomatik olarak aynı sürümün yerine yazılmaz. İşlenmiş parametreler depoda olduğundan uygulama için PDF bağımlılığı gerekmez.

@@ -23,6 +23,7 @@ import {
   Route as RouteIcon,
 } from "lucide-react";
 import AnkaraMap from "./Map";
+import HealthMethod from "./HealthMethod";
 import type {
   Dataset,
   Scenario,
@@ -39,8 +40,13 @@ const initial: Scenario = {
   coverageTarget: 95,
   districtFloor: 80,
   trafficFactor: 1,
+  demandMultiplier: 1,
+  bedOccupancy: 80,
+  visitsPerDoctor: 4000,
+  costTolerance: 10,
 };
-const number = (n: number) => n.toLocaleString("tr-TR");
+const number = (n: number) =>
+  n.toLocaleString("tr-TR", { maximumFractionDigits: 0 });
 const decimal = (n: number | null | undefined, digits = 1) =>
   n == null
     ? "—"
@@ -99,118 +105,7 @@ function Modal({
         </button>
       </div>
       {kind === "method" ? (
-        <div className="method-content">
-          <p className="lead">
-            Önce hedeflenen erişimi sağlayan hastane sayısını azaltıyoruz. Sonra
-            aynı sayıyla daha fazla kişiye erişiyor, koşulları koruyarak
-            yolculuk süresini iyileştiriyoruz.
-          </p>
-          <div className="method-steps">
-            <article>
-              <span>01</span>
-              <h3>Nüfusun erişimi</h3>
-              <p>
-                Bir mahallenin temsil noktasından hastaneye yolculuk seçtiğiniz
-                süreyi aşmıyorsa nüfusu kapsanmış sayılır.
-              </p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>En az eşdeğer hastane</h3>
-              <p>
-                İl geneli hedef ve her ilçenin erişim tabanı birlikte sağlanır.
-                Her yeni hastanenin maliyeti bir birim kabul edilir.
-              </p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Daha kısa yolculuk</h3>
-              <p>
-                Sayı sabit tutularak kapsama artırılır. Ardından kapsama
-                hedeflerini bozmayan iki tur yer değişimi ile süre
-                iyileştirilir.
-              </p>
-            </article>
-          </div>
-          <div className="formula">
-            <span>ANA GÖSTERGE</span>
-            <strong>
-              Hedef sürede erişen nüfus / Ankara’nın toplam nüfusu
-            </strong>
-            <p>
-              Konumu eşleşmeyen {number(data.metadata.unlocatedPopulation)} kişi
-              toplamdan çıkarılmaz; kapsanmamış kabul edilir.
-            </p>
-          </div>
-          <h3>Neden bu metrik?</h3>
-          <p>
-            Yalnızca ortalama süreyi azaltmak küçük ve uzak ilçeleri geride
-            bırakabilir. Nüfus ağırlıklı kapsama, ilçe tabanı ve en az tesis
-            hedefi, maliyet ile erişimi anlaşılır şekilde bağlar.{" "}
-            <a
-              href="https://www.who.int/tools/accessmod-geographic-access-to-health-care"
-              target="_blank"
-              rel="noreferrer"
-            >
-              WHO AccessMod
-            </a>{" "}
-            erişimi belirli sürede hizmete ulaşabilen nüfusla inceler. Tesis
-            sayısı ve kapsama ilişkisi{" "}
-            <a
-              href="https://doi.org/10.1111/j.1435-5597.1974.tb00902.x"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Church & ReVelle’nin yer seçimi yaklaşımına
-            </a>{" "}
-            dayanır.
-          </p>
-          <div className="note-block">
-            <Info size={20} />
-            <div>
-              <b>30 dakika, %95 ve %80 birer planlama tercihidir.</b>
-              <p>
-                Bunlar evrensel sağlık standardı veya klinik güvenlik sınırı
-                değildir. Farklı eşikleri karşılaştırın. Kapasite, yatak,
-                personel ve gerçek yatırım bedeli bu ilk modelde yoktur.
-              </p>
-            </div>
-          </div>
-          <h3>İki ulaşım modu, iki veri düzeyi</h3>
-          <p>
-            <b>Araba:</b> gerçek yol bağlantıları ve tek yönler kullanılır.
-            Hızlar yol sınıfından tahmin edilir. Canlı trafik ve dönüş yasakları
-            henüz modellenmez; 3 dakika park/giriş payı eklenir.
-          </p>
-          <p>
-            <b>EGO ağ senaryosu:</b> {number(data.metadata.transitRoutes || 0)}{" "}
-            yönlü OSM hat kaydı; gerçek güzergâh geometrisi, yürüyüş
-            bağlantıları ve aktarmalar kullanılır. Otobüs beklemesi 8, raylı
-            sistem 4 dakika; otobüs hızı en fazla 28, raylı sistem hızı 40 km/sa
-            varsayılır. Durak başına 25 saniye eklenir. İlk/son yürüyüş en fazla
-            15, duraklar arası aktarma yürüyüşü 5 dakikadır. Kısa mesafede
-            yalnız yürüyüş de mümkündür. Tüm hatların çalıştığı varsayılır;
-            sefer takvimi, gerçek bekleme ve aktarma sayısı sınırı yoktur. Bu
-            mod resmî tarifeli EGO hesabı değildir.
-          </p>
-          <h3>“Optimal” tam olarak ne demek?</h3>
-          <p>
-            Yalnızca {number(data.metadata.candidateCount)} ayrık aday ve seçili
-            ağ varsayımları içinde en az hastane sayısı için kullanılır. Süre
-            sınırında kanıt tamamlanmazsa sonuç “geçerli çözüm” olarak
-            işaretlenir ve optimalite açığı gösterilir. Ortalama süre için
-            global optimum iddiası yoktur.
-          </p>
-          <p>
-            Her mahalle tek temsil noktasıdır; tüm sakinlerin aynı noktadan
-            çıktığı kabul edilir. Hastaneler 45 metre yarıçaplı örnek yapı
-            alanları olarak modellenir. Mevcut binalar yerleşimi engellemez; OSM
-            yolları tahmini genişlikleriyle, yüzey ray hatları da koridorlarıyla
-            dışlanır. Kesikli giriş bağlantıları varsayımsaldır. Sonraki aşama:
-            nüfus ızgarası, resmî mahalle sınırları, kapasite, yol dönüşleri ve
-            güncel GTFS.
-          </p>
-        </div>
+        <HealthMethod data={data} />
       ) : (
         <div className="sources-content">
           <div className="source-overview">
@@ -372,7 +267,7 @@ export default function App() {
       trafficFactor: 1,
     }));
   }
-  async function selectDemand(demand: Demand) {
+  async function selectDemand(demand: Demand, candidateId?: string) {
     setSelectedDemand(demand);
     setFocus(demand);
     setSearch("");
@@ -384,9 +279,9 @@ export default function App() {
       (a) => a.demandId === demand.id,
     );
     if (!assignment) return;
-    if (assignment.minutes === null) {
+    if (!candidateId && assignment.minutes === null) {
       setRouteError(
-        "Bu senaryoda mahalleden seçili hastanelere ağ bağlantısı bulunmuyor.",
+        "Bu senaryoda mahalleye süre ve kapasite koşullarını sağlayan talep payı atanmadı. Bu, gerçek hayatta hizmet olmadığı anlamına gelmez.",
       );
       return;
     }
@@ -398,7 +293,7 @@ export default function App() {
         body: JSON.stringify({
           ...result!.scenario,
           demandId: demand.id,
-          candidateId: assignment.candidateId,
+          candidateId: candidateId || assignment.candidateId,
         }),
       });
       if (!response.ok) throw Error("Güzergâh getirilemedi. Tekrar deneyin.");
@@ -419,6 +314,7 @@ export default function App() {
           {
             ...result,
             sources: data?.sources,
+            healthPlanning: data?.healthPlanning,
             exportedAt: new Date().toISOString(),
           },
           null,
@@ -435,6 +331,10 @@ export default function App() {
     URL.revokeObjectURL(url);
   }
   const stats = result?.metrics;
+  const capacity = result?.capacity;
+  const selectedAssignment = result?.assignments?.find(
+    (a) => a.demandId === selectedDemand?.id,
+  );
   return (
     <div className="app">
       <header className="header">
@@ -475,7 +375,8 @@ export default function App() {
               <br /> daha yakın.
             </h1>
             <p>
-              Doğru konumlarda, daha az hastaneyle daha fazla insana ulaşın.
+              Yeterli kapasiteyi doğru konumlara yerleştirin. Yapım maliyeti ve
+              yolculuğu birlikte değerlendirin.
             </p>
           </div>
           <div className="control-section">
@@ -539,7 +440,7 @@ export default function App() {
             </div>
             <div className="slider-field">
               <label htmlFor="coverage">
-                Ankara genelinde erişim{" "}
+                Karşılanacak talep payı{" "}
                 <strong>%{scenario.coverageTarget}</strong>
               </label>
               <input
@@ -564,7 +465,7 @@ export default function App() {
             </div>
             <div className="slider-field">
               <label htmlFor="equity">
-                Her ilçede en az erişim{" "}
+                Her ilçede en az talep payı{" "}
                 <strong>%{scenario.districtFloor}</strong>
               </label>
               <input
@@ -604,6 +505,91 @@ export default function App() {
               </label>
             )}
           </div>
+          <details className="capacity-settings">
+            <summary>
+              Kapasite ve bütçe varsayımları <SlidersHorizontal size={16} />
+            </summary>
+            <p>
+              Bu değerler gözlem değil, değiştirilebilir planlama tercihleridir.
+            </p>
+            <label className="select-field">
+              Talep senaryosu
+              <select
+                aria-label="Talep senaryosu"
+                value={scenario.demandMultiplier}
+                disabled={busy}
+                onChange={(e) =>
+                  setScenario((s) => ({
+                    ...s,
+                    demandMultiplier: +e.target.value,
+                  }))
+                }
+              >
+                <option value="0.8">2024 kullanım oranı × 0,8</option>
+                <option value="1">2024 kullanım oranı × 1</option>
+                <option value="1.2">2024 kullanım oranı × 1,2</option>
+                <option value="1.5">2024 kullanım oranı × 1,5</option>
+              </select>
+            </label>
+            <label className="select-field">
+              Yatak doluluk tavanı
+              <select
+                aria-label="Yatak doluluk tavanı"
+                value={scenario.bedOccupancy}
+                disabled={busy}
+                onChange={(e) =>
+                  setScenario((s) => ({ ...s, bedOccupancy: +e.target.value }))
+                }
+              >
+                {[60, 70, 80, 85, 90].map((v) => (
+                  <option key={v} value={v}>
+                    %{v}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="select-field">
+              Yıllık başvuru / hekim
+              <select
+                aria-label="Yıllık başvuru / hekim"
+                value={scenario.visitsPerDoctor}
+                disabled={busy}
+                onChange={(e) =>
+                  setScenario((s) => ({
+                    ...s,
+                    visitsPerDoctor: +e.target.value,
+                  }))
+                }
+              >
+                {[2000, 3000, 4000, 5000, 6000].map((v) => (
+                  <option key={v} value={v}>
+                    {number(v)} başvuru
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="select-field">
+              Daha kısa yol için ek yapım bütçesi
+              <select
+                aria-label="Ek yapım bütçesi"
+                value={scenario.costTolerance}
+                disabled={busy}
+                onChange={(e) =>
+                  setScenario((s) => ({ ...s, costTolerance: +e.target.value }))
+                }
+              >
+                {[0, 5, 10, 20, 30].map((v) => (
+                  <option key={v} value={v}>
+                    En fazla %{v}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p>
+              Ek bütçe, ilk aşamada bulunan geçerli çözümün bedeline göre
+              hesaplanır.
+            </p>
+          </details>
           <div className="action-area">
             <button
               className="primary-btn"
@@ -624,10 +610,10 @@ export default function App() {
             </button>
             <p className={dirty ? "dirty-note" : "small-note"}>
               {busy
-                ? "Hedefler, ilçe dengesi ve seyahat süreleri birlikte çözülüyor."
+                ? "Yatak, hekim, yapım maliyeti ve ulaşım birlikte çözülüyor. Yaklaşık 1–2 dakika sürebilir."
                 : dirty
                   ? "Parametreler değişti. Harita son hesaplanan senaryoyu gösteriyor."
-                  : "Hastane başına 1 maliyet birimi · sıfırdan yerleşim"}
+                  : "50 / 150 / 300 yataklı tesisler · sıfırdan yerleşim"}
             </p>
           </div>
           <button
@@ -639,7 +625,7 @@ export default function App() {
               <SlidersHorizontal size={17} />
             </span>
             <div>
-              <b>Neden bu metrik?</b>
+              <b>Kapasite nasıl hesaplanıyor?</b>
               <span>Modeli ve varsayımları keşfedin</span>
             </div>
             <ArrowUpRight size={17} />
@@ -666,7 +652,9 @@ export default function App() {
                     </span>
                     <div>
                       <b>{title(c.name)}</b>
-                      <small>{title(c.district)}</small>
+                      <small>
+                        {title(c.district)} · {c.beds} yatak · {c.doctors} hekim
+                      </small>
                     </div>
                     <ChevronRight size={15} />
                   </button>
@@ -677,7 +665,7 @@ export default function App() {
           <div className="sidebar-bottom">
             <Database size={14} />
             <span>
-              TÜİK 2025 + OpenStreetMap
+              TÜİK 2025 + Sağlık Bakanlığı 2024
               <br />
               <small>25 ilçenin tamamı değerlendirilir.</small>
             </span>
@@ -714,26 +702,26 @@ export default function App() {
               <div className="stat-caption">
                 {result?.status === "optimal" ? (
                   <>
-                    <Check size={13} /> Aday kümesinde minimum sayı
+                    <Check size={13} /> Kapasite ve maliyet koşulları sağlandı
                   </>
                 ) : result?.status === "feasible" ? (
-                  `Geçerli çözüm · açık %${decimal((result.gap ?? 0) * 100)}`
+                  `Maliyet aşaması açığı %${decimal((result.gap ?? 0) * 100)}`
                 ) : (
-                  "En az maliyet birimi hedefi"
+                  "Kapasiteye göre seçilen tesis sayısı"
                 )}
               </div>
             </div>
             <div className="stat-card">
               <div className="stat-label">
-                Hedef sürede erişim <Users size={17} />
+                Sürede karşılanan talep <Users size={17} />
               </div>
               <div className="stat-number">
                 {stats ? `%${decimal(stats.coveragePercent)}` : "—"}
               </div>
               <div className="stat-caption">
                 {stats
-                  ? `${number(stats.coveredPopulation)} / ${number(data!.metadata.provincePopulation)} kişi`
-                  : "Toplam nüfus üzerinden hesaplanır"}
+                  ? `${number(stats.coveredPopulation)} / ${number(data!.metadata.provincePopulation)} kişi eşdeğeri`
+                  : "Nüfusla orantılı yıllık talep payı"}
               </div>
             </div>
             <div className="stat-card">
@@ -745,7 +733,7 @@ export default function App() {
                 <span>dk</span>
               </div>
               <div className="stat-caption">
-                Hesaplanabilen nüfusla ağırlıklı
+                Kapasiteye atanan talep ile ağırlıklı
               </div>
             </div>
             <div className="stat-card">
@@ -761,6 +749,44 @@ export default function App() {
               </div>
             </div>
           </div>
+          {capacity && (
+            <section
+              className="capacity-strip"
+              aria-label="Kapasite ve maliyet sonuçları"
+            >
+              <div>
+                <span>PLANLANAN YATAK</span>
+                <strong>{number(capacity.totalBeds)}</strong>
+                <small>
+                  Tanımlı kapasitenin %{decimal(capacity.bedUtilizationPercent)}
+                  ’i kullanılıyor
+                </small>
+              </div>
+              <div>
+                <span>PLANLANAN HEKİM</span>
+                <strong>{number(capacity.totalDoctors)}</strong>
+                <small>
+                  Başvuru kapasitesinin %
+                  {decimal(capacity.doctorUtilizationPercent)}’i
+                </small>
+              </div>
+              <div>
+                <span>YAPIM GÖSTERGESİ</span>
+                <strong>
+                  {decimal(capacity.constructionCostTRY / 1e9)} <em>mr ₺</em>
+                </strong>
+                <small>2026 birim bedeli · KDV hariç bina</small>
+              </div>
+              <button onClick={() => setModal("method")}>
+                <Info size={18} />
+                <span>
+                  <b>Bu sayıların arkasında ne var?</b>
+                  <small>Resmî veri, formüller ve varsayımlar</small>
+                </span>
+                <ArrowUpRight size={17} />
+              </button>
+            </section>
+          )}
           <div className="map-toolbar">
             <div className="search-wrap">
               <Search size={16} />
@@ -872,8 +898,8 @@ export default function App() {
             )}
             {busy && (
               <div className="calculation-pill" role="status">
-                <LoaderCircle size={17} className="spin" /> En az hastane sayısı
-                ve erişim dengesi hesaplanıyor…
+                <LoaderCircle size={17} className="spin" /> Kapasite, maliyet ve
+                yolculuk süresi hesaplanıyor…
               </div>
             )}
             {selectedDemand && (
@@ -896,6 +922,42 @@ export default function App() {
                   {title(selectedDemand.district)} ·{" "}
                   {number(selectedDemand.population)} kişi
                 </p>
+                {selectedAssignment && (
+                  <div className="allocation-list">
+                    <b>
+                      Yıllık talebin %
+                      {decimal(selectedAssignment.servedFraction * 100)}’i
+                      atandı
+                    </b>
+                    {selectedAssignment.allocations.map((a) => (
+                      <button
+                        key={a.candidateId}
+                        disabled={routeBusy}
+                        onClick={() =>
+                          void selectDemand(selectedDemand, a.candidateId)
+                        }
+                      >
+                        <span>
+                          {title(
+                            result?.selected?.find(
+                              (c) => c.id === a.candidateId,
+                            )?.name || "",
+                          )}{" "}
+                          · %{decimal(a.fraction * 100)}
+                        </span>
+                        <span>
+                          {decimal(a.minutes)} dk <ArrowUpRight size={12} />
+                        </span>
+                      </button>
+                    ))}
+                    {selectedAssignment.allocations.length > 1 && (
+                      <small>
+                        İlk gösterilen yol en büyük talep payının atandığı
+                        tesise aittir. Diğer payların yolunu seçebilirsiniz.
+                      </small>
+                    )}
+                  </div>
+                )}
                 {routeBusy ? (
                   <div className="route-loading">
                     <LoaderCircle size={15} className="spin" /> Yol ağı
@@ -962,6 +1024,51 @@ export default function App() {
               />
             </button>
           </div>
+          {capacity && (
+            <section className="capacity-explanation">
+              <div>
+                <span className="eyebrow">ERİŞİM + HİZMET KAPASİTESİ</span>
+                <h3>Yakın olsun. Yükü de karşılasın.</h3>
+                <p>
+                  {decimal(capacity.annualVisitsDemand / 1e6, 2)} milyon tahmini
+                  yıllık başvurunun{" "}
+                  {decimal(capacity.annualVisitsServed / 1e6, 2)} milyonu süre
+                  ve kapasite sınırları içinde atanıyor. Bu bir başvuru
+                  tahminidir; tekil hasta sayısı değildir.
+                </p>
+              </div>
+              <div className="tradeoff-summary">
+                <b>Maliyet → daha kısa yol</b>
+                <p>
+                  İlk çözüm: {decimal(capacity.referenceCostTRY / 1e9)} mr ₺ ·{" "}
+                  {decimal(capacity.referenceMeanMinutes)} dk
+                </p>
+                <p>
+                  Son çözüm: {decimal(capacity.constructionCostTRY / 1e9)} mr ₺
+                  · {decimal(stats?.meanMinutes)} dk
+                </p>
+                <small>
+                  Aynı toplam talep · bütçe tavanı{" "}
+                  {decimal(capacity.budgetLimitTRY / 1e9)} mr ₺.{" "}
+                  {capacity.travelImprovementPercent > 0.01
+                    ? `Süre %${decimal(capacity.travelImprovementPercent)} azaldı.`
+                    : "Süre sınırında daha kısa geçerli çözüm bulunamadı."}
+                </small>
+                <small>
+                  Süre aşaması optimalite açığı:{" "}
+                  {capacity.travelStageGap == null
+                    ? "kanıt sınırı mevcut değil"
+                    : `%${decimal(capacity.travelStageGap * 100)}`}
+                  . Bu değer, daha kısa bir yerleşim bulunabilme payını
+                  gösterir; kesin minimum iddiası değildir.
+                </small>
+                <small>
+                  Yapım bedeli; arsa, cihaz, dış altyapı, personel ve işletme
+                  maliyetini içermez.
+                </small>
+              </div>
+            </section>
+          )}
           {districtPanel && result?.districts && (
             <section className="district-results">
               <div className="results-intro">

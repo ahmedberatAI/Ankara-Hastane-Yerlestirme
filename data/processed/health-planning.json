@@ -1,0 +1,149 @@
+{
+  "version": "capacity-2026-10-v1",
+  "referenceYear": 2024,
+  "retrievedAt": "2026-10-22",
+  "observed": {
+    "population": 5864049,
+    "hospitalCount": 85,
+    "beds": 24909,
+    "physicians": 26798,
+    "specialists": 12064,
+    "generalPractitioners": 3448,
+    "residents": 11286,
+    "secondaryTertiaryVisits": 47073855,
+    "admissions": 1063851,
+    "bedDays": 5409136,
+    "occupancyPercent": 59.5
+  },
+  "rates": {
+    "visitsPerResident": 8.027534387928887,
+    "admissionsPerResident": 0.1814191866404936,
+    "bedDaysPerResident": 0.922423397212404,
+    "lengthOfStayDays": 5.08448645534008
+  },
+  "defaults": {
+    "demandMultiplier": 1,
+    "bedOccupancy": 80,
+    "visitsPerDoctor": 4000,
+    "costTolerance": 10
+  },
+  "templates": [
+    {
+      "id": "small",
+      "label": "50 yatak",
+      "beds": 50,
+      "doctors": 30,
+      "grossAreaM2": 12000,
+      "assumedFloors": 2,
+      "unitCostTRY": 40500,
+      "buildingClass": "IV-C",
+      "constructionCostTRY": 486000000
+    },
+    {
+      "id": "medium",
+      "label": "150 yatak",
+      "beds": 150,
+      "doctors": 90,
+      "grossAreaM2": 28000,
+      "assumedFloors": 5,
+      "unitCostTRY": 40500,
+      "buildingClass": "IV-C",
+      "constructionCostTRY": 1134000000
+    },
+    {
+      "id": "large",
+      "label": "300 yatak",
+      "beds": 300,
+      "doctors": 180,
+      "grossAreaM2": 52000,
+      "assumedFloors": 9,
+      "unitCostTRY": 43850,
+      "buildingClass": "V-B",
+      "constructionCostTRY": 2280200000
+    }
+  ],
+  "sources": [
+    {
+      "id": "siy2024",
+      "title": "Sağlık İstatistikleri Yıllığı 2024",
+      "url": "https://dosyamerkez.saglik.gov.tr/Eklenti/52859/0/siy2024tr31122025pdf.pdf",
+      "publicationUrl": "https://www.saglik.gov.tr/TR-114952/saglik-istatistikleri-yilligi-2024.html",
+      "sha256": "0687db84583b17d9a2566749ff9c4cd81740476b1b339479aa7e209870d58890",
+      "tables": [
+        {
+          "table": "7.20",
+          "printedPage": 162,
+          "pdfPage": 191,
+          "fields": [
+            "hospitalCount",
+            "beds"
+          ]
+        },
+        {
+          "table": "8.26",
+          "printedPage": 204,
+          "pdfPage": 233,
+          "fields": [
+            "secondaryTertiaryVisits"
+          ]
+        },
+        {
+          "table": "8.26",
+          "printedPage": 206,
+          "pdfPage": 235,
+          "fields": [
+            "admissions",
+            "bedDays",
+            "occupancyPercent"
+          ]
+        },
+        {
+          "table": "10.12",
+          "printedPage": 261,
+          "pdfPage": 290,
+          "fields": [
+            "physicians",
+            "specialists",
+            "generalPractitioners",
+            "residents"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cost2026",
+      "title": "2026 Yapı Yaklaşık Birim Maliyetleri · Resmî Gazete 33157, 3 Şubat 2026",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2026/02/20260203-4.htm",
+      "verifiedCopyUrl": "https://www.turmob.org.tr/arsiv/mbs/resmigazete/33157-33157-1.pdf",
+      "sha256": "e1d3a2e6fdfe008c240da0b7b59f6ee60681d6e8665a2861a80223afdc60324a",
+      "note": "Resmî Gazete bağlantısı erişilemedi; TÜRMOB üzerindeki aynı tebliğin PDF nüshası görsel olarak doğrulandı. IV-C: 200 yatak altı; V-B: 200 dahil, 400 yatak altı."
+    },
+    {
+      "id": "kestel-area",
+      "title": "Kestel Devlet Hastanesi · fiziksel alan örneği",
+      "url": "https://kesteldh.saglik.gov.tr/TR-589270/hastanemiz.html",
+      "note": "150 yatakla açılan tesis: 26.846 m² kapalı alan, 5.490 m² taban, 8 kat; 2026 kapasitesi 165 yatak. Şablonlar birebir bu bina değildir."
+    },
+    {
+      "id": "wisn",
+      "title": "WHO Workload Indicators of Staffing Need",
+      "url": "https://www.who.int/tools/wisn",
+      "note": "İş yükü ve kullanılabilir çalışma süresi yaklaşımı; uygulamadaki 4.000 başvuru/hekim/yıl bir WHO standardı değildir."
+    },
+    {
+      "id": "population2024",
+      "title": "TÜİK İstatistiklerle Türkiye 2024 · Ankara 5.864.049",
+      "url": "https://veriportali.tuik.gov.tr/api/tr/data/downloads?p=Gw%2FA2HZTNUHe8RkOENcGUdiCNBC3vYByhY73anmn16Tu5T597AxIpzMpdYwG2Nr3fwchzi64xujp1DOmjzMStY5glPPJWcl76E8bLNANwhU%3D&t=y"
+    }
+  ],
+  "assumptions": [
+    "2024 il düzeyindeki hizmet kullanımı / 2024 nüfusu, 2025 mahalle nüfusuna uygulanır. Mahallede ölçülmüş hasta sayısı veya karşılanmamış klinik ihtiyaç değildir.",
+    "İkinci/üçüncü basamak toplamı özel tıp merkezlerini de içerir; hastane talebi için geniş kapsamlı bir vekil değişkendir. Birinci basamak ve diş başvuruları dahil edilmez.",
+    "Ankara dışından gelen hastalar kayıtlı kullanıma dahil olabilir; ikamet kökeni bilinmediğinden il nüfusuna orantılı dağıtılır. Yaş, branş, gündüz nüfusu ve sevk akışları ayrıştırılmamıştır.",
+    "Hekim başına 4.000 yıllık başvuru (20 başvuru × 200 klinik gün) bir iş yükü senaryosudur. Ameliyat, servis, nöbet ve eğitim için ayrı zaman etüdü yapılmamıştır; gerçek kadro standardı değildir.",
+    "50/150/300 yatak ve 30/90/180 hekim, kapalı alan = 4.000 + 160 × yatak m², doluluk tavanı %80 tasarım varsayımlarıdır.",
+    "2026 birim fiyatı × varsayımsal kapalı alan, KDV hariç bina yapım göstergesidir; arsa, çevre düzenlemesi, dış altyapı, tıbbi cihaz, personel ve işletme giderleri dahil değildir.",
+    "45 m yarıçaplı mevcut yol-dışı yapı izi korunur; varsayımsal 2/5/9 kat ile her şablonun kat alanı bu izden küçüktür. Yapı, imar ve mühendislik uygunluğu kontrolü değildir.",
+    "Nüfusun yıllık talebi tesisler arasında bölünebilir. Her mahalle için süre eşiği içindeki en yakın 16 aday değerlendirilir; sürekli alanda global optimum iddiası yoktur."
+  ]
+}

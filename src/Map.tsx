@@ -167,6 +167,36 @@ function SiteMarkers({ sites }: { sites: Candidate[] }) {
                 <small>
                   Yapı alanı yoldan ayrıdır. Binalar engel sayılmamıştır.
                 </small>
+                {c.beds !== undefined && (
+                  <div className="site-capacity">
+                    <b>
+                      {number(c.beds)} yatak · {number(c.doctors || 0)} hekim
+                    </b>
+                    <p>
+                      {number(Math.round(c.assignedPopulation || 0))} kişi
+                      eşdeğerinin yıllık talebi
+                    </p>
+                    <p>
+                      {number(Math.round(c.annualVisits || 0))} /{" "}
+                      {number(c.visitCapacity || 0)} başvuru
+                    </p>
+                    <p>
+                      {number(Math.round(c.annualBedDays || 0))} /{" "}
+                      {number(c.bedDayCapacity || 0)} yatış günü
+                    </p>
+                    <p>
+                      Hekim yükü %{c.doctorUtilizationPercent?.toFixed(1)} ·
+                      yatak kapasite yükü %{c.bedUtilizationPercent?.toFixed(1)}
+                    </p>
+                    <p>
+                      Yapım göstergesi{" "}
+                      {((c.constructionCostTRY || 0) / 1e6).toLocaleString(
+                        "tr-TR",
+                      )}{" "}
+                      mn ₺
+                    </p>
+                  </div>
+                )}
               </div>
             </Popup>
           </Marker>
@@ -305,7 +335,13 @@ export default function AnkaraMap({
         {population &&
           data.demands.map((d) => {
             const a = assignments.get(d.id);
-            const color = a ? (a.covered ? "#3e8772" : "#d88b57") : "#6d8b76";
+            const color = a
+              ? a.covered
+                ? "#3e8772"
+                : a.servedFraction > 0
+                  ? "#d88b57"
+                  : "#8b9692"
+              : "#6d8b76";
             return (
               <CircleMarker
                 key={d.id}
@@ -328,9 +364,7 @@ export default function AnkaraMap({
                   {title(d.district)} · {number(d.population)} kişi
                   <br />
                   {a
-                    ? a.minutes === null
-                      ? "Bu modda bağlantı yok"
-                      : `${a.minutes.toFixed(1)} dk · ${a.covered ? "hedef içinde" : "hedef dışında"}`
+                    ? `Talebin %${(a.servedFraction * 100).toFixed(1)}’i atandı${a.minutes === null ? "" : ` · ana pay ${a.minutes.toFixed(1)} dk`}`
                     : "Güzergâhı incelemek için seçin"}
                 </Tooltip>
               </CircleMarker>
@@ -452,11 +486,17 @@ export default function AnkaraMap({
       <div className="map-legend">
         <span>
           <i className="legend-dot covered" />{" "}
-          {result?.metrics ? "Hedef içinde" : "Mahalle nüfusu"}
+          {result?.metrics ? "Tam atanan talep" : "Mahalle nüfusu"}
         </span>
         {result?.metrics && (
           <span>
-            <i className="legend-dot uncovered" /> Hedef dışında
+            <i className="legend-dot uncovered" /> Kısmi talep
+          </span>
+        )}
+        {result?.metrics && (
+          <span>
+            <i className="legend-dot" style={{ background: "#8b9692" }} />{" "}
+            Atanmamış
           </span>
         )}
         <span>

@@ -53,41 +53,22 @@ Gerekli veri paketi: [GTFS Schedule](https://gtfs.org/documentation/schedule/ref
 
 GTFS elde edilince [OpenTripPlanner](https://www.opentripplanner.org/) ile hafta içi/hafta sonu, sabah yoğun/sakin saat gibi çoklu hareket zamanlarında süre matrisleri üretilmeli. Örnek hareket saatlerinin ortalaması yanında kötü durum yüzdelikleri de karşılaştırılmalıdır.
 
-## 5. Mevcut hastaneler ve kapasite
+## 5. Sağlık hizmeti, kapasite ve maliyet
 
-[Ankara İl Sağlık Müdürlüğü sağlık tesisleri](https://ankaraism.saglik.gov.tr/TR%2C80707/saglik-tesislerimiz.html) resmî envanter doğrulaması için öncelikli kaynaktır. [Sağlık İstatistikleri Yıllığı 2024](https://www.saglik.gov.tr/TR-114952/saglik-istatistikleri-yilligi-2024.html) il düzeyindeki tesis, yatak ve personel göstergeleri için birincil yayın olarak bulundu; bu ilk modele kapasite tablosu aktarılmadı.
+İl düzeyindeki 2024 yatak, hekim, başvuru ve yatış tabloları artık modele alındı. Kaynakların tam değeri, sayfaları, kapsam farkları ve varsayımlar [kapasite araştırmasında](capacity-research.md). 2026 tebliğinden bina yapım bedeli hesaplanıyor; hekim iş yükü, tesis alanı ve kadrosu varsayım olarak ayrı tutuluyor.
 
-Haritada 124 adlandırılmış OSM hastane kaydı vardır. Bunlar resmî sayı, eksiksiz tesis listesi veya aynı hizmeti veren eşdeğer hastaneler değildir. Ad normalizasyonuyla yinelenen adlar azaltılmıştır; farklı adla çizilen aynı kampüs veya aynı adlı ayrı tesis hataları mümkündür. Karşılaştırma **aynı seyahat süresi modelindeki coğrafi erişim** içindir; yeni ağın gerçek kapasiteyi karşıladığını veya daha ucuz olduğunu kanıtlamaz.
+OSM'deki 124 hastane kaydı resmî envanter değildir. Sağlık Bakanlığı yıllığı 2024 için 85 tesis verir; tarih/kapsam eşitlenmeden sayı karşılaştırılmaz. OSM katmanı yalnız kapasitesiz coğrafi erişim karşılaştırmasıdır.
 
-Sonraki veri gereksinimi: tesis koordinatı, acil/genel/branş türü, kamu/özel kapsamı, aktiflik tarihi, yatak, uzmanlık, hekim ve yıllık hizmet kapasitesi. Kişilerin hastane ihtiyacı ile tesisin hizmet arzı eşleştirilmelidir.
+## 6. Model seçimi
 
-## 6. Yapım ve işletme maliyeti
-
-[ÇŞİDB Yüksek Fen Kurulu tebliğ kataloğu](https://yfk.csb.gov.tr/tebligler-iscilikler-329), yapı yaklaşık birim maliyetleri için birincil kaynaktır. [3 Şubat 2026 tarihli ilgili Resmî Gazete bağlantısı](https://www.resmigazete.gov.tr/eskiler/2026/02/20260203-4.htm) bulundu; bu oturumda birincil sunucudan tam metin başarıyla alınamadığı için TL/m² rakamı modele taşınmadı.
-
-Bir hastanenin yatırım bedelini yalnız haritadaki konumdan çıkarmak mümkün değildir. Tip, yatak/kapasite, toplam inşaat alanı, tıbbi donanım ve altyapı kapsamı gereklidir. İşletme/personel maliyetleri ayrıca değerlendirilir. Bu sürümde tüm tesisler aynı **1 maliyet birimine** sahiptir; minimum tesis sayısı yalnız eşdeğer tesis varsayımı altında minimum model maliyetidir.
-
-Gerçek maliyet sürümü için sabit yatırım + kapasiteye bağlı maliyet + yıllık işletme maliyetinin bugünkü değeri tanımlanmalıdır. Birim maliyet kaynağının kapsamı ve fiyat yılı açık tutulmalıdır. Kullanıcı talebi gereği mevcut yapı/yıkım/arsa edinimi kısıtları yer seçimini engellemez.
-
-## 7. Seçilen yöntem ve alternatifler
-
-[WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care), belirli seyahat süresinde erişilebilen nüfusun incelenmesini destekler. [Church & ReVelle (1974)](https://doi.org/10.1111/j.1435-5597.1974.tb00902.x) sabit tesis sayısı altında kapsama yaklaşımının temel kaynaklarındandır. Bu uygulama bununla ilişkili **kısmi küme kapsama** problemini çözer: hedef erişimi sağlayan en az eşdeğer tesis, ek olarak ilçe bazında taban erişim.
-
-| Yöntem                                          | Güçlü yanı                                     | Bu proje için tek başına eksik yanı                                          |
-| ----------------------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
-| p-median: sabit sayıyla ortalama süreyi azaltma | Ortalama yolculuğu iyi temsil eder             | Tesis sayısını önceden ister; küçük uzak nüfusu geride bırakabilir           |
-| Maksimum kapsama: sabit bütçe/tesis sayısı      | Bütçeyle kaç kişiye erişileceği açıktır        | Gerekli minimum tesis sayısını doğrudan seçmez                               |
-| Tam küme kapsama: herkese eşik içinde erişim    | Uç bölgeleri de zorunlu kapsar                 | Veri açığı varken olanaksız; çok küçük uzak talepler maliyeti belirleyebilir |
-| **Hedefli kısmi kapsama + ilçe tabanı**         | Maliyet, erişim ve coğrafi denge açıklanabilir | Eşik ve hedefler politika tercihidir; kapasite ayrıca gerekir                |
-
-Bu aşamada “tek doğru 30 dakika” veya “bilimsel olarak zorunlu %95” iddiası yoktur. Eşik, hedef ve ilçe tabanı senaryo kontrolleridir. Sonraki karar çalışmasında bu parametrelerin duyarlılığı, kapasite ve belirsizlikle birlikte değerlendirilmelidir.
+Kapasiteli yer seçimi kullanılır: il/ilçe talep hedefleri altında düşük yapım maliyeti; ardından belirlenmiş ek bütçeyle sabit toplam talep için daha kısa yol. [Matematiksel yöntem](methodology.md), nüfus eşdeğeri akışlarını, iki kapasite kısıtını ve optimum iddiasının kapsamını açıklar. Eşikler ve kaynak varsayımları kullanıcı tarafından değiştirilebilir.
 
 ## 8. Öncelikli sonraki veri işleri
 
 1. Resmî GTFS ve yeniden kullanım izni: tarifeli EGO hesaplaması için kritik eksik.
 2. Resmî mahalle poligonları ve yerleşim kodları: yanlış ad/merkez eşleşmesini azaltır.
 3. Mahalle içi nüfus ızgarası ve yaş/ihtiyaç ağırlığı: mahalleyi tek nokta sayma yanlılığını azaltır.
-4. Standart tesis türü, hizmet kapasitesi ve maliyet: hastane sayısını hizmet kapasitesiyle bağlar.
+4. Branş bazında kadro/zaman etüdü, yerel hasta akışı, gerçek tip proje alanı ve işletme maliyeti: şablon kapasite varsayımlarını kalibre eder.
 5. Tam yönlendirme motoru ve ölçülmüş sürelerle kalibrasyon: dönüşler, trafik, erişim bariyerleri.
 6. Daha yoğun aday üretimi ve aday yoğunluğu duyarlılığı: ayrık aday çözümünün coğrafi örnekleme etkisi.
 

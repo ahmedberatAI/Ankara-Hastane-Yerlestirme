@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from fastapi.testclient import TestClient
 import numpy as np
-from backend.main import app, matrix, dataset, travel_times, Scenario
+from backend.main import app, matrix, dataset, travel_times, Scenario, health_planning, site_conflicts
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/processed'
@@ -44,8 +44,9 @@ def run(write_examples=False):
         result = response.json()
         if write_examples:
             (OUT/f'example-{mode}-result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8', newline='\n')
-        summary = {'mode': mode, 'scenario': scenario, 'status': result['status'],
-                   'hospitalCount': result.get('hospitalCount'), 'metrics': result.get('metrics')}
+        summary = {'mode': mode, 'scenario': result['scenario'], 'status': result['status'],
+                   'hospitalCount': result.get('hospitalCount'), 'metrics': result.get('metrics'),
+                   'capacity': result.get('capacity'), 'searchScope': result.get('searchScope')}
         if result['status'] == 'infeasible':
             assert 'maximumCoveragePercent' in result
             summary['maximumCoveragePercent'] = result['maximumCoveragePercent']
@@ -60,15 +61,71 @@ def run(write_examples=False):
                                     'hospitalCount': result.get('hospitalCount'), 'metrics': result.get('metrics')}
         assert result['status'] in ('optimal','feasible'), result
         selected = result['selectedIndices']
-        times = travel_times(Scenario(**scenario))[:, selected]
-        nearest = times.min(axis=1)
+        times = travel_times(Scenario(**scenario))
         populations = np.array([d['population'] for d in data['demands']])
-        covered = int(populations[nearest <= scenario['threshold']].sum())
-        assert covered == result['metrics']['coveredPopulation']
+        # Rebuild load from split flows, not from nearest geographic hospital.
+        assigned = np.zeros(n)
+        loads = {j: 0. for j in selected}
+        weighted_time = 0.
+        weighted_edges = []
+        for i, (a, demand) in enumerate(zip(result['assignments'], data['demands'])):
+            assert a['demandId'] == demand['id']
+            for part in a['allocations']:
+                j, population = part['candidateIndex'], part['population']
+                assert j in selected and population >= 0
+                assert part['candidateId'] == data['candidates'][j]['id']
+                assert abs(part['minutes'] - times[i,j]) < 1e-6
+                assert part['minutes'] <= scenario['threshold'] + 1e-7
+                assert abs(part['fraction'] - population / populations[i]) < 1e-6
+                assigned[i] += population; loads[j] += population
+                weighted_time += population * times[i,j]
+                weighted_edges.append((part['minutes'], population))
+            assert assigned[i] <= populations[i] + .001
+            assert abs(a['servedFraction'] - assigned[i] / populations[i]) < 1e-6
+            assert a['covered'] == bool(assigned[i] >= populations[i] - 1e-4)
+            if a['allocations']:
+                assert a['candidateId'] == a['allocations'][0]['candidateId']
+                assert a['minutes'] == a['allocations'][0]['minutes']
+            else:
+                assert a['candidateId'] is None and a['minutes'] is None
+        covered = float(assigned.sum())
+        assert abs(covered - result['metrics']['coveredPopulation']) < .001
         assert covered >= data['metadata']['provincePopulation']*scenario['coverageTarget']/100 - 1e-5
         assert len(selected) == len(set(selected)) == result['hospitalCount']
+        assert not any(a in selected and b in selected for a,b in site_conflicts())
+        assert abs(weighted_time / covered - result['metrics']['meanMinutes']) < 1e-6
         for d in result['districts']:
             assert d['coveragePercent'] >= scenario['districtFloor'] - 1e-5
+            mask = np.array([origin['districtId'] == d['id'] for origin in data['demands']])
+            assert abs(assigned[mask].sum() / d['population'] * 100 - d['coveragePercent']) < 1e-6
+        config = health_planning()
+        params = result['scenario']
+        cost = beds = doctors = 0
+        for c in result['selected']:
+            template = next(t for t in config['templates'] if t['id'] == c['templateId'])
+            load = loads[c['candidateIndex']]
+            visits = load * config['rates']['visitsPerResident'] * params['demandMultiplier']
+            bed_days = load * config['rates']['bedDaysPerResident'] * params['demandMultiplier']
+            assert visits <= template['doctors'] * params['visitsPerDoctor'] + .1
+            assert bed_days <= template['beds'] * 365 * params['bedOccupancy']/100 + .1
+            assert abs(c['annualVisits'] - visits) < .1 and abs(c['annualBedDays'] - bed_days) < .1
+            assert c['doctors'] == template['doctors'] and c['beds'] == template['beds']
+            cost += template['grossAreaM2'] * template['unitCostTRY']
+            beds += template['beds']; doctors += template['doctors']
+        cap = result['capacity']
+        assert cost == cap['constructionCostTRY'] and beds == cap['totalBeds'] and doctors == cap['totalDoctors']
+        assert cost <= cap['budgetLimitTRY'] + 100
+        assert abs(cap['budgetLimitTRY'] - cap['referenceCostTRY'] * (1+params['costTolerance']/100)) < 100
+        assert result['metrics']['meanMinutes'] <= cap['referenceMeanMinutes'] + 1e-6
+        assert result['lowerBound'] <= cap['referenceCostTRY'] + 100
+        # Total-population P90 includes all unassigned/unlocated demand as infinity.
+        weighted_edges.append((float('inf'), data['metadata']['provincePopulation'] - covered))
+        cumulative = 0
+        for minutes, weight in sorted(weighted_edges):
+            cumulative += weight
+            if cumulative >= .9 * data['metadata']['provincePopulation']:
+                assert (result['metrics']['p90Minutes'] is None and not np.isfinite(minutes)) or abs(result['metrics']['p90Minutes'] - minutes) < 1e-6
+                break
         eligible = [a for a in result['assignments'] if a['minutes'] is not None and a['minutes'] > 15]
         chosen_route = None
         for assignment in eligible[:12]:

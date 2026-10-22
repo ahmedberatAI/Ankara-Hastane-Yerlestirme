@@ -6,15 +6,33 @@ from typing import Literal
 import numpy as np
 from scipy.sparse import load_npz
 from scipy.sparse.csgraph import dijkstra
+from scipy.spatial import cKDTree
+from pyproj import Transformer
+from threading import Lock
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
-from backend.optimizer import solve_cover, metrics
+from backend.optimizer import metrics
+from backend.capacity import solve_capacity
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.1.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.2.0')
+solve_lock = Lock()
+
+@lru_cache(maxsize=1)
+def health_planning():
+    return json.loads((DATA / 'health-planning.json').read_text(encoding='utf-8'))
+
+@lru_cache(maxsize=1)
+def site_conflicts():
+    candidates = dataset()['candidates']
+    project = Transformer.from_crs(4326, 32636, always_xy=True)
+    xy = np.array([project.transform(c['lon'], c['lat']) for c in candidates])
+    radii = np.array([c['footprintRadiusMeters'] for c in candidates])
+    return [(a,b) for a,b in sorted(cKDTree(xy).query_pairs(2 * radii.max()))
+            if np.linalg.norm(xy[a] - xy[b]) < radii[a] + radii[b]]
 
 @lru_cache(maxsize=1)
 def dataset():
@@ -46,6 +64,10 @@ class Scenario(BaseModel):
     coverageTarget: float = Field(default=95, ge=50, le=100)
     districtFloor: float = Field(default=80, ge=0, le=100)
     trafficFactor: float = Field(default=1, ge=1, le=2.5)
+    demandMultiplier: float = Field(default=1, ge=.5, le=2)
+    bedOccupancy: float = Field(default=80, ge=50, le=90)
+    visitsPerDoctor: int = Field(default=4000, ge=2000, le=6000)
+    costTolerance: float = Field(default=10, ge=0, le=30)
 
 def travel_times(s):
     times = matrix(s.mode).astype(float)
@@ -64,7 +86,8 @@ def health():
 @app.get('/api/data')
 def get_data():
     data = dataset()
-    return {**data, 'sources': json.loads((ROOT / 'docs/sources.json').read_text(encoding='utf-8'))}
+    return {**data, 'healthPlanning': health_planning(),
+            'sources': json.loads((ROOT / 'docs/sources.json').read_text(encoding='utf-8'))}
 
 @app.get('/api/layers/{name}')
 def get_layer(name: Literal['districts', 'province', 'roads', 'transit-lines']):
@@ -82,16 +105,21 @@ def cached_solve(serialized):
     n_candidates = len(data['candidates'])
     populations = np.array([d['population'] for d in data['demands']])
     district_ids = np.array([d['districtId'] for d in data['demands']])
-    result = solve_cover(times[:, :n_candidates], populations, district_ids, data['districts'],
-                         data['metadata']['provincePopulation'], s.threshold, s.coverageTarget/100, s.districtFloor/100)
+    result = solve_capacity(times[:, :n_candidates], populations, district_ids, data['districts'],
+                         data['metadata']['provincePopulation'], health_planning(), s.threshold,
+                         s.coverageTarget/100, s.districtFloor/100, s.demandMultiplier,
+                         s.bedOccupancy/100, s.visitsPerDoctor, s.costTolerance/100, conflicts=site_conflicts())
     result['scenario'] = s.model_dump()
     result['metadata'] = data['metadata']
     result['modelLabel'] = 'Tarifesiz toplu taşıma ağ senaryosu' if s.mode == 'transit' else 'OSM yol ağı · tahmini sürüş süresi'
     if 'selectedIndices' in result:
-        result['selected'] = [data['candidates'][i] for i in result['selectedIndices']]
+        capacities = {c['candidateIndex']: c for c in result.pop('capacitySites')}
+        result['selected'] = [{**data['candidates'][i], **capacities[i]} for i in result['selectedIndices']]
         for assignment, demand in zip(result['assignments'], data['demands']):
             assignment['demandId'] = demand['id']
-            assignment['candidateId'] = data['candidates'][assignment['candidateIndex']]['id']
+            assignment['candidateId'] = data['candidates'][assignment['candidateIndex']]['id'] if assignment['candidateIndex'] is not None else None
+            for part in assignment['allocations']:
+                part['candidateId'] = data['candidates'][part['candidateIndex']]['id']
         existing = times[:, n_candidates:]
         if existing.shape[1]:
             result['existingComparison'] = {'hospitalCount': existing.shape[1], 'inventory': 'OSM; tür ve kapasite eşdeğerliği doğrulanmadı',
@@ -100,7 +128,8 @@ def cached_solve(serialized):
 
 @app.post('/api/solve')
 def solve(scenario: Scenario):
-    return cached_solve(scenario.model_dump_json())
+    with solve_lock:
+        return cached_solve(scenario.model_dump_json())
 
 class RouteRequest(Scenario):
     demandId: str

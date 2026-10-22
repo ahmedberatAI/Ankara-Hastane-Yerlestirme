@@ -1,19 +1,19 @@
 # ERİŞİM · Ankara Hastane Yerleşim Laboratuvarı
 
-Ankara’nın **25 ilçesinde**, belirlenen seyahat süresinde hedef nüfusa ulaşan **en az eşdeğer hastane sayısını** hesaplayan, harita üzerinde çalışan araştırma uygulaması.
+Ankara’nın **25 ilçesinde**, **yatak, hekim, yıllık hasta talebi, bina yapım bedeli ve ağ üzerinden yolculuk süresini** birlikte değerlendiren, harita üzerinde çalışan araştırma uygulaması.
 
 Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanılır. Mevcut binalar aday konumları engellemez; örnek yapı alanları karayolu ve yüzey demiryolu koridorlarının dışında seçilir. Mevcut hastaneler yeni yerleşimi kısıtlamaz; yalnızca ayrı bir erişim karşılaştırması sağlar.
 
-> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu OSM güzergâhları, duraklar ve yürüyüş ağı üzerinde **tarifesiz bir senaryodur**. Güncel resmî GTFS doğrulanamadığından gerçek sefer saatleri, beklemeler ve hizmet takvimi kullanılıyor gibi gösterilmez. Bu sürüm kapasite, klinik ihtiyaç veya gerçek TL yatırım bütçesi hesaplamaz.
+> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu OSM güzergâhları, duraklar ve yürüyüş ağı üzerinde **tarifesiz bir senaryodur**. Güncel resmî GTFS doğrulanamadığından gerçek sefer saatleri, beklemeler ve hizmet takvimi kullanılıyor gibi gösterilmez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarı 2026 yaklaşık bina yapım göstergesidir; cihaz, arsa ve işletme bütçesi değildir.
 
 ![ERİŞİM uygulamasının harita görünümü](docs/screenshots/overview.png)
 
 ## Kullanım
 
 1. **Araba / EGO** modunu seçin.
-2. En fazla yolculuk süresini, Ankara genelindeki erişim hedefini ve her ilçenin erişim tabanını ayarlayın.
-3. **Yerleşimi hesapla** düğmesine basın. İlk açılışta araba senaryosu otomatik hesaplanır.
-4. Bir mahalleyi arayıp seçerek önerilen hastaneye ağ üzerinden güzergâhı görün.
+2. En fazla yolculuk süresini, Ankara genelinde karşılanacak talep payını ve her ilçenin talep tabanını ayarlayın.
+3. **Kapasite ve bütçe varsayımları** bölümünde talep çarpanı, doluluk, hekim iş yükü ve daha kısa yol için ek bütçeyi seçin. **Yerleşimi hesapla** düğmesine basın. İlk açılışta araba senaryosu otomatik hesaplanır.
+4. Bir mahalleyi arayıp seçerek talebin hangi tesislere ne kadar payla atandığını ve her payın ağ güzergâhını görün.
 5. İlçe sonuçlarını açın, mevcut hastaneleri katman menüsünden gösterin veya senaryoyu kaynaklarıyla birlikte JSON olarak indirin.
 
 Arayüz Türkçedir; kaynaklar, model açıklaması, veri açıkları ve çözümün optimalite durumu uygulamanın içindedir. Parametre değiştirildiğinde eski sonuç açıkça işaretlenir ve yeniden hesaplanana kadar dışa aktarma kapatılır.
@@ -40,28 +40,32 @@ Tek komutla hazırlanmış yerel sürümü başlatmak için: `npm start` (önced
 
 ## Hangi veri gerçekten kullanılıyor?
 
-| Katman             | Kaynak ve sürüm                                                                                          | Bu sürümde durum                                      |
-| ------------------ | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Nüfus              | [TÜİK ADNKS 2025](https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx), 31.12.2025 | 5.910.320 kişi; yayımlanan 1.427 mahalle              |
-| Mahalle konumu     | OSM adları + ilçe poligonları                                                                            | 1.413 mahalle, 5.889.804 kişi konumlandırıldı         |
-| Karayolu / yürüyüş | [Geofabrik Türkiye OSM kesiti](https://download.geofabrik.de/europe/turkey.html), 20.10.2026             | 1.303.779 düğüm, 1.864.240 yönlü sürüş kenarı         |
-| Toplu taşıma       | OSM hat ilişkileri ve sıralı duraklar                                                                    | 337 yönlü hat kaydı, 5.984 durak; tarife kullanılmadı |
-| Mevcut hastaneler  | OSM `hospital` kayıtları                                                                                 | 124 kayıt; resmî ve eksiksiz hastane listesi değildir |
-| Maliyet            | Eşdeğer standart tesis varsayımı                                                                         | Hastane başına 1 birim; TL ve kapasite verisi yok     |
+| Katman             | Kaynak ve sürüm                                                                                          | Bu sürümde durum                                                       |
+| ------------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Nüfus              | [TÜİK ADNKS 2025](https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx), 31.12.2025 | 5.910.320 kişi; yayımlanan 1.427 mahalle                               |
+| Mahalle konumu     | OSM adları + ilçe poligonları                                                                            | 1.413 mahalle, 5.889.804 kişi konumlandırıldı                          |
+| Karayolu / yürüyüş | [Geofabrik Türkiye OSM kesiti](https://download.geofabrik.de/europe/turkey.html), 20.10.2026             | 1.303.779 düğüm, 1.864.240 yönlü sürüş kenarı                          |
+| Toplu taşıma       | OSM hat ilişkileri ve sıralı duraklar                                                                    | 337 yönlü hat kaydı, 5.984 durak; tarife kullanılmadı                  |
+| Mevcut hastaneler  | OSM `hospital` kayıtları                                                                                 | 124 kayıt; resmî ve eksiksiz hastane listesi değildir                  |
+| Talep / kapasite   | Sağlık Bakanlığı 2024 yıllığı                                                                            | Ankara başvuru/yatış/yatak/hekim tabloları; mahalleye orantılı dağıtım |
+| Maliyet            | 2026 yapı yaklaşık birim bedelleri                                                                       | 40.500 / 43.850 TL/m² × varsayımsal kapalı alan; bina göstergesi       |
 
 Konumu bilinmeyen **20.516 kişi paydadan çıkarılmaz**. Bu kişilere erişim kanıtlanmış sayılmaz. Dolayısıyla modelin kapsama oranı, yalnız eşleşen nüfusa bölünerek yapay biçimde yükseltilmez.
 
-## Neden bu ölçüt?
+## Model neyi optimize ediyor?
 
-Ana gösterge **seçili sürede bir hastaneye erişebilen nüfus / resmî toplam nüfus** oranıdır. [WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care) coğrafi erişimi seyahat süresi ve kapsanan nüfus üzerinden inceler. Tesis sayısı–kapsama ilişkisi, [Church & ReVelle’nin kapsama yer seçimi yaklaşımıyla](https://doi.org/10.1111/j.1435-5597.1974.tb00902.x) uyumludur.
+Her adayda en fazla bir 50/150/300 yataklı tesis seçilir. **Atanan başvurular hekim kapasitesini, yatış günleri yatak kapasitesini aşamaz.** Yıllık talep, 2024 Ankara hizmet kullanımı / aynı yılın nüfusu oranıyla 2025 mahallelerine dağıtılır; ölçülmüş mahalle hasta sayısı değildir. 26.798 toplam hekim, hastanelere kullanılabilir kadro olarak atanmaz.
 
-Önce il genelindeki hedef ve **her ilçenin ayrı erişim tabanı** altında hastane sayısı en aza indirilir. Ardından aynı sayıda tesisle kapsama artırılır ve kapsama koşullarını koruyan iki tur yer değiştirme ile nüfus ağırlıklı yolculuk süresi iyileştirilir. Ortalama tek başına kullanılmaz: küçük, uzak ilçeleri gözden kaçırabilir.
+Önce il ve ilçe hedeflerini karşılayan düşük bina yapım bedeli aranır. Sonra aynı toplam talep korunarak, bu bedelin varsayılan **%10 ek bütçesi içinde** yolculuk süresi azaltılır. Bu bütçe bulunan geçerli çözüme göredir; minimum maliyet ispatı tamamlanmayabilir. Tesis sayısı bir sonuçtur, doğrudan amaç değildir.
 
-Başlangıç değerleri araba için **30 dakika**, EGO senaryosu için **45 dakika**, il genelinde **%95**, her ilçede **%80**’dir. Bunlar **değiştirilebilir planlama varsayımlarıdır; evrensel sağlık standardı değildir**. “Optimal”, yalnızca ayrık aday kümesi ve model varsayımları içinde en az hastane sayısı için geçerlidir. Gerçek şehrin sürekli coğrafyasında veya ortalama yolculuk süresinde global optimum iddiası yoktur.
+Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı **%80**, doluluk tavanı **%80**, hekim başına **4.000 yıllık başvuru**. Tesis kadroları 30/90/180; alanları 12.000/28.000/52.000 m². Bunlar **değiştirilebilir planlama/tasarım varsayımlarıdır; resmî klinik standardı değildir**. İlk üç kontrol erişimi, diğerleri kapasite ve bütçe duyarlılığını gösterir.
+
+Bir mahallenin talebi bölünebilir. Yeşil tam, turuncu kısmi, gri atanmamış talep gösterir. İstatistikler en yakın tesise göre değil, kapasiteye uygun atama paylarına göre hesaplanır. Her mahalle için süre sınırındaki **en yakın 16 aday** değerlendirilir; optimalite açıklığı bu seyrek havuza aittir.
 
 ## Araştırma ve teknik belgeler
 
 - [Veri kaynakları araştırması ve eksik veri planı](docs/research.md)
+- [Yatak, hekim, talep ve maliyet araştırması](docs/capacity-research.md)
 - [Matematiksel model, ulaşım varsayımları ve sınırlar](docs/methodology.md)
 - [Veri sözlüğü, köken ve yeniden üretim](data/README.md)
 - [Hesaplanmış örnek senaryolar ve doğrulama](docs/validation.md)
@@ -77,15 +81,15 @@ npm run build
 .venv\Scripts\python.exe scripts/verify_release.py
 ```
 
-Testler küçük bir örnekte minimum tesis sayısını tüm kombinasyonlarla karşılaştırır; ilçe tabanını, erişilemeyen/konumsuz nüfusu, yönlü güzergâhı ve API girdi sınırlarını kontrol eder. `verify_release.py`, hazırlanan matris boyutlarını ve nüfus toplamlarını ve her iki modun gerçek veriyle çözüm/güzergâh tutarlılığını denetler. Ham OSM veri dosyası varsa `scripts/audit_data.py` tüm adayların yol ve yüzey ray koridorlarına taşmadığını ayrıca kontrol eder.
+Testler kapasiteli modeli küçük örneklerde bütün tesis/büyüklük kombinasyonlarıyla karşılaştırır; yatak ve hekim darboğazlarını, bölünmüş talebi, bütçe/süre tercihini, ilçe tabanlarını ve bilinmeyen nüfusu denetler. `verify_release.py`, iki modda gerçek veriyle bütün atamaların sürelerini, kapasite yüklerini, maliyeti ve güzergâhları bağımsız yeniden hesaplar. Ham OSM varsa `scripts/audit_data.py` yol/ray koridorlarını ayrıca denetler.
 
-İlk çözüm işlemciye göre onlarca saniye sürebilir. İlk MILP aşaması 20, ikinci aşama en fazla 10 saniye ile sınırlıdır; yerel süre iyileştirmesi ek süre alır. Kanıt tamamlanmazsa mevcut geçerli çözüm, alt sınır ve optimalite açığıyla gösterilir. Ulaşılamayan hedef için hayalî sonuç üretilmez.
+Yeni senaryo yaklaşık 1–2 dakika sürebilir. Kapasite/maliyet için geçerli başlangıç oluşturulur, ardından her iki MILP aşaması 35'er saniye çalışır. Aynı süreçte aynı parametreler bellekte önbelleğe alınır. Arayüz, çözümün maliyet aşamasındaki optimalite açığını ve mevcut bütçe/süre değişimini gösterir. [Doğrulama sonuçları](docs/validation.md).
 
 ## Yapı ve dağıtım
 
 ```text
 src/                  React + TypeScript + Leaflet arayüz
-backend/              FastAPI, yönlendirme, SciPy/HiGHS optimizasyonu
+backend/              FastAPI, yönlendirme, HiGHS kapasiteli optimizasyonu
 scripts/              İndirme, OSM çıkarımı, ağ/matris üretimi, denetim
 data/processed/       Sürümlenmiş nüfus, coğrafya, ağ ve süre matrisleri
 docs/                 Kaynak araştırması, yöntem, doğrulama

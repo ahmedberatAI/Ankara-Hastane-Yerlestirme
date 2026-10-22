@@ -4,25 +4,55 @@
     "scenario": {
       "mode": "car",
       "threshold": 30,
-      "coverageTarget": 95,
-      "districtFloor": 80,
-      "trafficFactor": 1
+      "coverageTarget": 95.0,
+      "districtFloor": 80.0,
+      "trafficFactor": 1.0,
+      "demandMultiplier": 1.0,
+      "bedOccupancy": 80.0,
+      "visitsPerDoctor": 4000,
+      "costTolerance": 10.0
     },
     "status": "feasible",
-    "hospitalCount": 24,
+    "hospitalCount": 172,
     "metrics": {
-      "coveredPopulation": 5803762,
-      "coveragePercent": 98.19708577538948,
-      "reachablePopulation": 5889804,
-      "unreachableOrUnlocatedPopulation": 20516,
-      "meanMinutes": 21.078173326853083,
-      "p90Minutes": 28.073617935180664,
-      "meanPopulationDenominator": 5889804
+      "coveredPopulation": 5614804.000000003,
+      "coveragePercent": 95.00000000000006,
+      "reachablePopulation": 5614804.000000003,
+      "unreachableOrUnlocatedPopulation": 295515.9999999972,
+      "meanPopulationDenominator": 5614804.000000003,
+      "meanMinutes": 6.930671314187954,
+      "p90Minutes": 10.377984046936035
+    },
+    "capacity": {
+      "totalBeds": 21300,
+      "totalDoctors": 12780,
+      "constructionCostTRY": 166584800000,
+      "referenceCostTRY": 151668600000.0,
+      "budgetLimitTRY": 166835460000.0,
+      "referenceMeanMinutes": 8.280525901553375,
+      "travelImprovementPercent": 16.30155624671371,
+      "annualVisitsDemand": 47445297.04366386,
+      "annualVisitsServed": 45073032.19148069,
+      "annualAdmissionsDemand": 1072245.4471850423,
+      "annualBedDaysDemand": 5451817.453012415,
+      "annualBedDaysServed": 5179226.5803617975,
+      "doctorUtilizationPercent": 88.17103323842075,
+      "bedUtilizationPercent": 83.27266352115566,
+      "costStageGap": 0.03301434838852601,
+      "costStageProvenOptimal": false,
+      "travelStageGap": 0.1432659313717513,
+      "travelStageImproved": true,
+      "planningVersion": "capacity-2026-10-v1"
+    },
+    "searchScope": {
+      "nearestCandidatesPerOrigin": 16,
+      "candidateCount": 1382,
+      "allocationEdges": 19713
     },
     "verifiedRoute": {
-      "from": "AHMETADİL",
-      "to": "ÇİFTLİKKÖY",
-      "minutes": 21.719655990600586,
+      "from": "BALIKHİSAR",
+      "to": "ALTINOVA",
+      "minutes": 15.137649536132812,
       "boardings": []
     }
   },
@@ -31,30 +61,60 @@
     "scenario": {
       "mode": "transit",
       "threshold": 45,
-      "coverageTarget": 95,
-      "districtFloor": 80,
-      "trafficFactor": 1
+      "coverageTarget": 95.0,
+      "districtFloor": 80.0,
+      "trafficFactor": 1.0,
+      "demandMultiplier": 1.0,
+      "bedOccupancy": 80.0,
+      "visitsPerDoctor": 4000,
+      "costTolerance": 10.0
     },
-    "status": "optimal",
-    "hospitalCount": 291,
+    "status": "feasible",
+    "hospitalCount": 439,
     "metrics": {
-      "coveredPopulation": 5618712,
-      "coveragePercent": 95.06612163131607,
-      "reachablePopulation": 5647331,
-      "unreachableOrUnlocatedPopulation": 262989,
-      "meanMinutes": 21.09081258539855,
-      "p90Minutes": 38.90073013305664,
-      "meanPopulationDenominator": 5647331
+      "coveredPopulation": 5614804.0,
+      "coveragePercent": 95.0,
+      "reachablePopulation": 5614804.0,
+      "unreachableOrUnlocatedPopulation": 295516.0,
+      "meanPopulationDenominator": 5614804.0,
+      "meanMinutes": 6.728383452879686,
+      "p90Minutes": 22.352907180786133
+    },
+    "capacity": {
+      "totalBeds": 33850,
+      "totalDoctors": 20310,
+      "constructionCostTRY": 290814400000,
+      "referenceCostTRY": 264558200000.0,
+      "budgetLimitTRY": 291014020000.0,
+      "referenceMeanMinutes": 12.727654105812364,
+      "travelImprovementPercent": 47.13571411555708,
+      "annualVisitsDemand": 47445297.04366386,
+      "annualVisitsServed": 45073032.19148067,
+      "annualAdmissionsDemand": 1072245.4471850423,
+      "annualBedDaysDemand": 5451817.453012415,
+      "annualBedDaysServed": 5179226.580361795,
+      "doctorUtilizationPercent": 55.48132963008452,
+      "bedUtilizationPercent": 52.39904676515849,
+      "costStageGap": 0.02845906874177389,
+      "costStageProvenOptimal": false,
+      "travelStageGap": 0.22457525388088756,
+      "travelStageImproved": true,
+      "planningVersion": "capacity-2026-10-v1"
+    },
+    "searchScope": {
+      "nearestCandidatesPerOrigin": 16,
+      "candidateCount": 1396,
+      "allocationEdges": 6139
     },
     "verifiedRoute": {
       "from": "ATIFBEY",
-      "to": "KAVACIK SUBAYEVLERİ",
-      "minutes": 34.28799819946289,
+      "to": "BASINEVLERİ",
+      "minutes": 33.09148406982422,
       "boardings": [
         {
-          "route": "M4",
-          "stop": "Dışkapı",
-          "mode": "subway"
+          "route": "203-7",
+          "stop": "Dışkapı Metro İstasyonu",
+          "mode": "bus"
         }
       ]
     }

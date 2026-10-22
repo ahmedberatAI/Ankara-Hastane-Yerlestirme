@@ -1,57 +1,72 @@
 # Doğrulama ve örnek hesaplamalar
 
-22 Ekim 2026 tarihinde hazırlanan veri ve uygulama sürümü. Sayılar kaynak nüfus + işlenmiş ağ + açık model varsayımlarının sonuçlarıdır; saha ölçümü veya yatırım kararı değildir.
+22 Ekim 2026 · kapasite modeli v0.2.0. Sayılar resmî nüfus ve il düzeyindeki sağlık kullanımı, işlenmiş yol ağı ve açık planlama varsayımlarından üretilmiştir. Saha ölçümü veya kesin yatırım önerisi değildir.
 
 ## Veri kontrolleri
 
 - 25 ilçenin nüfus toplamı **5.910.320** ile il toplamına eşit.
-- Yayımlanmış 1.427 mahalleden **1.413’ü** konumlandırıldı; modellenen nüfus **5.889.804**.
-- Konumsuz **20.516 kişi** resmî kapsama paydasında korunuyor.
-- **1.397 adayın** tamamının 45 m yarıçaplı izi, OSM karayolu koridorları ve yüzey ray koridorları dışında; adaylar Ankara il sınırında.
-- Her iki süre matrisinin boyutu **1.413 × 1.521**: 1.397 aday + 124 mevcut OSM hastanesi.
-- Matrislerde negatif süre ve `NaN` yok; erişilemeyen bağlantılar `inf` olarak korunuyor.
-- Yol ve yürüyüş grafiğinin ortak düğüm koordinatları WGS84; mesafe hesabı metre tabanlı UTM 36N.
+- 1.427 mahalleden **1.413’ü** konumlandırıldı; modellenen nüfus **5.889.804**. Konumsuz **20.516 kişi** resmî talep paydasında korunuyor.
+- **1.397 adayın** 45 m yarıçaplı yapı izi yol ve yüzey ray koridorları dışında; adaylar Ankara il sınırında. Seçilen yapı izlerinin birbirleriyle çakışması da modelde yasak.
+- İki süre matrisi de **1.413 × 1.521**: 1.397 aday + 124 mevcut OSM hastanesi. Negatif süre ve `NaN` yok; erişilemeyen bağlantılar `inf`.
+- Mesafeler metre tabanlı UTM 36N ile denetleniyor.
+- Sağlık Bakanlığı 2024 PDF’sindeki Ankara yatak, hekim, başvuru, yatış ve yatılan gün satırları sayfa görüntüsü ve metinle doğrulandı. 2026 yapı birim bedellerinin IV-C ve V-B sınıfları tebliğ nüshası üzerinden kontrol edildi.
 
-Ham geometriyle aday kontrolleri [quality-report.json](../data/processed/quality-report.json) içinde; dosya kimlikleri [manifest.json](../data/processed/manifest.json) içindedir.
+Aday geometri kontrolü [quality-report.json](../data/processed/quality-report.json), dosya kimlikleri [manifest.json](../data/processed/manifest.json), sağlık kaynaklarının sayfa ve kapsam ayrıntıları [kapasite araştırması](capacity-research.md) içindedir.
 
-## Gerçek veriyle uçtan uca API kontrolü
+## Gerçek veriyle kapasite ve güzergâh kontrolü
 
-| Gösterge                                                 |                                           Araba |                       EGO ağ senaryosu |
-| -------------------------------------------------------- | ----------------------------------------------: | -------------------------------------: |
-| Süre eşiği                                               |                                           30 dk |                                  45 dk |
-| Genel hedef / ilçe tabanı                                |                                       %95 / %80 |                              %95 / %80 |
-| Bulunan tesis sayısı                                     |                                              24 |                                    291 |
-| Çözüm durumu                                             | Geçerli çözüm; minimum sayı kanıtı tamamlanmadı | Aday havuzunda minimum sayı kanıtlandı |
-| Matematiksel alt sınır                                   |                                              22 |                                    291 |
-| Sayı için optimalite açığı                               |                                           %8,33 |                                     %0 |
-| Eşik içinde kapsama                                      |                                         %98,197 |                                %95,066 |
-| Kapsanan nüfus                                           |                                       5.803.762 |                              5.618.712 |
-| Sonlu süresi hesaplanan nüfusla ağırlıklı ortalama       |                                        21,08 dk |                               21,09 dk |
-| Toplam nüfus üzerinden P90                               |                                        28,07 dk |                               38,90 dk |
-| Konumsuz veya seçilen tesislere ağdan erişilemeyen nüfus |                                          20.516 |                                262.989 |
+Aşağıdaki değerler `verify_release.py --write-examples` koşusunda kaydedilen sonuçlardır. Talep çarpanı 1, yatak doluluk tavanı %80, hekim başına yıllık başvuru 4.000 ve süre iyileştirmesi için ek yapım bütçesi %10 kullanıldı.
 
-Bu koşuların çıktıları [araba](../data/processed/example-car-result.json), [EGO senaryosu](../data/processed/example-transit-result.json) ve [doğrulama özeti](../data/processed/validation-results.json) olarak kaydedildi. UI her yeni parametre için API hesaplamasını kullanır; bu dosyaları sabit sonuç gibi oynatmaz. Süre sınırı nedeniyle başka donanımda ikincil konum/süre veya ispat durumu değişebilir.
+| Gösterge                               |                         Araba |              EGO ağ senaryosu |
+| -------------------------------------- | ----------------------------: | ----------------------------: |
+| Süre eşiği                             |                         30 dk |                         45 dk |
+| Genel hedef / ilçe tabanı              |                     %95 / %80 |                     %95 / %80 |
+| Bulunan tesis sayısı                   |                           172 |                           439 |
+| Planlanan yatak                        |                        21.300 |                        33.850 |
+| Planlanan hekim                        |                        12.780 |                        20.310 |
+| Son bina yapım göstergesi              |            166,5848 milyar TL |            290,8144 milyar TL |
+| İlk maliyet aşamasının bedeli          |            151,6686 milyar TL |            264,5582 milyar TL |
+| İkinci aşamanın bütçe tavanı           |           166,83546 milyar TL |           291,01402 milyar TL |
+| Karşılanan talep payı                  |                           %95 |                           %95 |
+| Atanan nüfus eşdeğeri                  |                     5.614.804 |                     5.614.804 |
+| Atanmayan veya konumsuz nüfus eşdeğeri |                       295.516 |                       295.516 |
+| Atanan talep ağırlıklı ortalama süre   |                       6,93 dk |                       6,73 dk |
+| İlk çözümün ortalama süresi            |                       8,28 dk |                      12,73 dk |
+| Ortalama süre iyileşmesi               |                        %16,30 |                        %47,14 |
+| Toplam nüfus üzerinden P90             |                      10,38 dk |                      22,35 dk |
+| Hekim başvuru kapasitesi kullanımı     |                        %88,17 |                        %55,48 |
+| Tanımlı yatak-gün kapasitesi kullanımı |                        %83,27 |                        %52,40 |
+| Maliyet aşaması optimalite açığı       |                         %3,30 |                         %2,85 |
+| Süre aşaması optimalite açığı          |                        %14,33 |                        %22,46 |
+| Çözüm durumu                           | Geçerli; optimum kanıtlanmadı | Geçerli; optimum kanıtlanmadı |
 
-**291, Ankara için gerçek yatırım önerisi değildir.** Tarifesiz OSM hizmet varsayımı, eksik hat/durak kapsamı, 15 dakikalık ilk/son yürüme sınırı, tek mahalle noktası, aday örneklemesi ve ilçe erişim tabanı bu sonucu etkiler. Küçük kırsal yerleşimler için yürüme/hat bağlantısı yoksa model yakında ayrı bir tesis gerektirebilir. Resmî GTFS, daha ayrıntılı talep ve kapasiteyle sonuç yeniden hesaplanmalıdır. Ayrıca iki sütunun süre eşikleri farklıdır; sayıları tek başına eşdeğer ulaşım performansı karşılaştırması olarak okumayın.
+İki modda da yıllık başvuru tahmini **47.445.297**, atanan başvuru **45.073.032**, toplam yatış tahmini **1.072.245**, yatış günü talebi **5.451.817** ve atanan yatış günü **5.179.227**. Başvurular tekil hasta değildir. Yatak kullanım oranı, %80 doluluk varsayımıyla tanımlanan kapasiteye bölünür; fiziksel yatak doluluğuyla aynı gösterge değildir.
 
-Araba rotasında **Ahmetadil → Çiftlikköy**, EGO örneğinde **Atıfbey → Kavacık Subayevleri** ve **M4 / Dışkapı** binişi doğrulandı. API’den dönen süreler matris/atama süreleriyle 0,001 dakika toleransında uyuşuyor; araba rotasında yol, EGO rotasında gerçek ray/yol üye geometrileri var.
+Çıktılar [araba](../data/processed/example-car-result.json), [EGO](../data/processed/example-transit-result.json) ve [doğrulama özeti](../data/processed/validation-results.json) dosyalarında. Arayüz yeni parametrelerde API hesaplaması yapar; örnek dosyaları sabit sonuç olarak oynatmaz. Çözücü süre sınırlı olduğundan başka koşularda konumlar, sayılar ve ispat açıkları değişebilir. Her mahalle için süre eşiğindeki en yakın 16 aday kullanılır; optimum iddiası tüm sürekli Ankara coğrafyasını kapsamaz.
 
-## Otomatik testler
+**172 veya 439, Ankara’nın gerçek minimum hastane sayısı değildir.** Kapasitesiz önceki modelin 24 tesislik araba sonucu bu sürümün bulgusu olarak kullanılmamalıdır. Tesis büyüklükleri ve hekim üretkenliği varsayımsaldır. EGO’da doğrulanmış GTFS bulunmaması, eksik hat kapsamı, ilk/son yürüyüş sınırı, 50 yataklık en küçük tesis şablonu ve kırsal erişim tabanı çok sayıda yerel tesis gerektirebilir. EGO çözümünde birçok yolculuk yalnız yürüyüştür. Farklı süre eşikleri, tesis sayıları ve bütçeler nedeniyle iki ortalamadan ulaşım modlarının hız sıralaması çıkarılamaz.
 
-`python -m pytest -q`: **11 test geçti**. Küçük örnekte tüm kombinasyonlarla minimum sayı karşılaştırması, kırsal ilçe tabanı, bilinmeyen nüfusun paydası, sonsuz erişim süresi, nüfus ağırlıklı P90, kapsama koruyan iyileştirme, Türkçe ad/erişim etiketleri, aday alt küme elemesinin güvenliği, yönlü yol geri kurma, API parametre sınırları ve katman erişim listesi kontrol edildi.
+Bina yapım göstergesi KDV, arsa, dış altyapı, tıbbi cihaz, personel ve işletme giderlerini kapsamaz. Mevcut OSM hastanelerinin karşılaştırması yalnız coğrafi erişimdir; kapasite eşdeğerliği kanıtı değildir.
 
-`npm run build`: TypeScript denetimi ve Vite üretim derlemesi başarılı.
+## Otomatik doğrulama
 
-`python scripts/verify_release.py --write-examples`: her iki modun çözüm/güzergâh uçları, il/ilçe toplamları, kapsama kısıtları, matris boyutları ve değerleri başarılı. `python scripts/audit_data.py`: yol/ray taşması **0**.
+- `python -m pytest -q`: **20 test geçti**. Küçük örnekte tüm tesis/şablon kombinasyonları ve bağımsız akış hesabıyla maliyet optimumu karşılaştırıldı. Yatak ve hekim darboğazları, artan talep, çözümsüz kapasite, ek bütçeyle süre iyileştirmesi, ilçe tabanı, konumsuz nüfus, çakışan yapı izleri ve API parametre sınırları denetlendi. Önceki ağ ve kapsama testleri de geçiyor.
+- `npm run build`: TypeScript kontrolü ve Vite üretim derlemesi başarılı.
+- `python scripts/verify_release.py --write-examples`: iki modda tüm bölünmüş atamalar bağımsız olarak yeniden toplandı. Her mahallenin talep sınırı, tesis başına yatak/hekim yükü, il ve ilçe tabanı, seçilen tesislerin çakışmaması, bütçe tavanı, maliyet toplamı, ağırlıklı süre ve P90 doğrulandı.
+- Araba güzergâhı **Balıkhisar → Altınova**: 15,13765 dk. EGO güzergâhı **Atıfbey → Basınevleri**: 33,09148 dk, **203-7 / Dışkapı Metro İstasyonu** binişi. API süreleri matrisle 0,001 dakika toleransında uyuşuyor; yol/hat geometrileri mevcut.
+- `python scripts/verify_health_sources.py`: iki PDF’nin SHA-256 kimliği, dört Ankara tablo satırı, türetilmiş oranlar ve tesis maliyet aritmetiği doğrulandı. PDF denetimi isteğe bağlı PyMuPDF bağımlılığı kullanır; uygulama çalışma zamanı için gerekmez.
+- Önceki ham geometri denetiminde yol/ray taşması **0**; bu sürüm aday koordinatlarını ve ulaşım matrislerini değiştirmez.
 
-Test ortamında Starlette/AnyIO bağımlılığından bir kullanımdan kaldırma uyarısı görülüyor; test başarısızlığı yok. Docker dosyası hazırlandı, fakat yerel Docker daemon’u çalışmadığı için konteyner çalıştırması doğrulanmadı.
+Starlette/AnyIO bağımlılığından bir kullanımdan kaldırma uyarısı var; başarısız test yok. Yerel Docker daemon’u çalıştırılmadığından konteyner çalışması doğrulanmadı.
 
 ## Arayüz kontrolü
 
-Derlenmiş uygulama FastAPI üzerinden `127.0.0.1:8000` adresinde tarayıcıda kontrol edildi. Mahalle araması, rota çizimi, iki mod, hedef kontrolleri, model açıklaması, kaynak kataloğu, ilçe sonuçları ve mevcut hastane katmanı inceleme kapsamındadır. 390 px genişlikte gömülü mobil görünüm ayrıca incelendi; bu, gerçek cihaz veya bütün tarayıcılar üzerinde test iddiası değildir. Görseller `docs/screenshots/` altındadır.
+Son üretim derlemesi `127.0.0.1:8000` üzerinden kontrol edildi. Kapasite şeridinin dar masaüstü görünümünde sıkışma sorunu düzeltildi. Yatak, hekim ve maliyet değerleri görünür; maliyet ve süre optimalite açıkları ayrı açıklanıyor.
 
-Harita altlığı haricî OSM karo servisine bağlıdır; servis erişilemezse yerel ana yol katmanı açılır. Hesaplanan süreler harita karolarından türetilmez. EGO varsayımları, optimalite kanıtı ve eksik nüfus arayüzde görünür tutulur.
+Karapürçek aramasında bölünmüş talep payları açıldı; ilk hastaneden Başak’a geçildiğinde rota ve süre 11,7 dakikadan 9,8 dakikaya değişti. Hekim başına başvuru kapasitesi değiştirildiğinde eski sonucu indirme düğmesi devre dışı kaldı. Resmî gözlemler ile değiştirilebilir planlama varsayımları yöntem penceresinde ayrı gösteriliyor.
 
-Tarayıcıdan indirilen EGO JSON dosyasında 291 tesis, 19 kaynak, parametreler ve dışa aktarma zamanı doğrulandı. Parametre değişiminde indirme düğmesi devre dışı kaldı. %100 kapsama denemesi, %97,9 model üst sınırını göstererek çözümsüz döndü. Mevcut hastane katmanında 124 işaret ve ilçe panelinde 25 sonuç kontrol edildi. Konsolda uygulama hatası gözlenmedi.
+Karapürçek tesis penceresinde 150 yatak, 90 hekim, 360.000/360.000 başvuru ve 41.367/43.800 yatış günü yükü görüntülendi. EGO’da Büyükbayat → Şehriban, 141 numaralı otobüsle 28,7 dakika olarak haritada doğrulandı. Rota paneline yükseklik sınırı ve gerektiğinde kaydırma eklendi; panel açıkken harita alanı büyüyor.
 
-OSM çıkarımı, Windows kapanış sorununu gideren osmium 4.3.0 ile yeniden çalıştırıldı; açılmış JSON içeriği önceki veriyle SHA-256 düzeyinde aynı ve süreç normal sonlandı.
+390 px genişliğinde gömülü mobil görünümde sonuç ve kapasite kartları incelendi; bu gerçek cihaz veya tüm tarayıcılar üzerinde test iddiası değildir. Tarayıcı konsolunda uygulama hatası yoktu. İndirilen EGO JSON’unda 23 kaynak, kapasite parametreleri, tesis yükleri, 25 ilçe ve dışa aktarma zamanı doğrulandı. Bu ayrı UI koşusu 486 tesis buldu; yukarıdaki 439 tesislik kayıtlı doğrulama koşusuyla farklılık süre sınırlı çözümden kaynaklanır. İkisi de bütçe ve kapasite koşullarını sağlar; tesis sayısı sabit veya kanıtlanmış minimum değildir.
+
+Harita altlığı haricî OSM karo servisine bağlıdır; erişim kesilirse yerel ana yol katmanı açılır. Hesaplanan süreler karolardan türetilmez. Görseller `docs/screenshots/` altındadır.

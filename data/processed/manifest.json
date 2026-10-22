@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-22T15:37:10.832656+00:00",
+  "createdAt": "2026-10-22T17:36:30.463870+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -17,6 +17,16 @@
       "file": "data/raw/ankara-osm.json.gz",
       "bytes": 21740916,
       "sha256": "8851267f13f4faa8f6d4b2c5f9179e510ce3823b6277ce883b8a36632c402ce5"
+    },
+    {
+      "file": "data/raw/health/siy2024.pdf",
+      "bytes": 43092126,
+      "sha256": "0687db84583b17d9a2566749ff9c4cd81740476b1b339479aa7e209870d58890"
+    },
+    {
+      "file": "data/raw/health/costs2026.pdf",
+      "bytes": 2906427,
+      "sha256": "e1d3a2e6fdfe008c240da0b7b59f6ee60681d6e8665a2861a80223afdc60324a"
     }
   ],
   "files": [
@@ -42,18 +52,23 @@
     },
     {
       "file": "data/processed/example-car-result.json",
-      "bytes": 248593,
-      "sha256": "8a3c80f5d49811e7b973c4d0479fdaef96fe145c70beeab0b1cacbaa42b5596f"
+      "bytes": 647535,
+      "sha256": "90f5779d6e6a2124f0a634012d8bb8471b85521b65af0834704fa56c54ea759f"
     },
     {
       "file": "data/processed/example-transit-result.json",
-      "bytes": 334151,
-      "sha256": "3e42c9280aa3d6a7f3a7794baacaa2e238452713f8a48247a313f89c44196c52"
+      "bytes": 884056,
+      "sha256": "abb7f2c12399485b9031dd7d24cbe3746e4e0a81572e2d3350f468de5e6339d0"
     },
     {
       "file": "data/processed/graph-coordinates.npy",
       "bytes": 20860592,
       "sha256": "b86629c977a931479edc08dc42a7d0c770f7b94b03b685077ac65cd162d0593b"
+    },
+    {
+      "file": "data/processed/health-planning.json",
+      "bytes": 5869,
+      "sha256": "5e57c2ae4e7934924d05fd10a8f21142be659c9acaeff675a40adb545d474637"
     },
     {
       "file": "data/processed/neighborhood-population-2025.csv",
@@ -107,8 +122,8 @@
     },
     {
       "file": "data/processed/validation-results.json",
-      "bytes": 1500,
-      "sha256": "f9c42f947e6b0d3281cf7beb580e18922ef11da16f32b20e337010fd67c61ce2"
+      "bytes": 3773,
+      "sha256": "47d721a65fb9e962522516572a07116f7698093ce0340299c64aac2f76e2b5c6"
     },
     {
       "file": "data/processed/walk-graph.npz",
