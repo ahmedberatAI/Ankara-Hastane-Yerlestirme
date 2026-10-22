@@ -1,153 +1,161 @@
-"""Check the packaged data and both complete solve/route flows without a server."""
+"""Independently audit saved results. --write-examples performs fresh solves.
+
+Recomputes resources/cost/area/quotas from raw assignments, not displayed metrics.
+All four scenarios, plus actual graph paths and the full-edge 91 certificate.
+"""
 import argparse
 import hashlib
 import json
+import math
 import sys
+from datetime import date
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from fastapi.testclient import TestClient
 import numpy as np
-from backend.main import app, matrix, dataset, travel_times, Scenario, health_planning, site_conflicts
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from fastapi.testclient import TestClient
+from scipy.sparse.csgraph import dijkstra
+from backend.main import app, dataset, health_planning, travel_times, Scenario, site_conflicts, cached_solve, count_bound, graph, transit_details
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'data/processed'
+ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'data/processed'
 
-def run(write_examples=False):
-    manifest_path = OUT/'manifest.json'
-    if manifest_path.exists() and not write_examples:
-        manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-        for record in manifest['files']:
-            path = (ROOT/record['file']).resolve()
-            assert path.is_relative_to(OUT.resolve()), 'Manifest path outside the packaged dataset'
-            with path.open('rb') as f:
-                actual = hashlib.file_digest(f,'sha256').hexdigest()
-            assert actual == record['sha256'], f'Dataset integrity mismatch: {record["file"]}'
-    client = TestClient(app)
-    data = dataset()
-    assert len(data['districts']) == 25
-    assert sum(d['population'] for d in data['districts']) == data['metadata']['provincePopulation']
-    assert sum(d['population'] for d in data['demands']) == data['metadata']['matchedPopulation']
-    n, m = len(data['demands']), len(data['candidates']) + len(data['hospitals'])
-    for mode in ('car', 'transit'):
-        a = matrix(mode)
-        assert a.shape == (n, m) and not np.isnan(a).any() and np.all(a >= 0)
-    assert client.get('/api/data').status_code == 200
-    for name in ('districts', 'province', 'roads', 'transit-lines'):
-        assert client.get('/api/layers/' + name).status_code == 200
-    if (ROOT/'dist/index.html').exists():
-        assert client.get('/').status_code == 200
-    report = []
-    for mode, threshold in [('car', 30), ('transit', 45)]:
-        scenario = {'mode': mode, 'threshold': threshold, 'coverageTarget': 95, 'districtFloor': 80, 'trafficFactor': 1}
-        response = client.post('/api/solve', json=scenario)
-        assert response.status_code == 200, response.text
-        result = response.json()
+
+def audit(result):
+    data=dataset(); p=health_planning(); s=Scenario(**result['scenario'])
+    assert result['capacity']['planningVersion']==p['version']
+    n=len(data['demands']); pop=np.array([d['population'] for d in data['demands']])
+    times=travel_times(s); indices=result['selectedIndices']; selected=set(indices)
+    assert len(selected)==result['hospitalCount']
+    assert s.hospitalLimit is None or len(selected)<=s.hospitalLimit
+    assert not any(a in selected and b in selected for a,b in site_conflicts())
+    assigned=np.zeros(n); loads={j:0. for j in selected}; travel=0.; weighted=[]
+    for i,a in enumerate(result['assignments']):
+        assert a['demandId']==data['demands'][i]['id']
+        for part in a['allocations']:
+            j,v=part['candidateIndex'],part['population']
+            assert j in selected and v>=0
+            assert part['candidateId']==data['candidates'][j]['id']
+            assert abs(part['minutes']-times[i,j])<1e-5
+            assert times[i,j]<=s.threshold+1e-6
+            assert abs(part['fraction']-v/pop[i])<1e-7
+            assigned[i]+=v; loads[j]+=v; travel+=v*times[i,j]; weighted.append((times[i,j],v))
+        assert assigned[i]<=pop[i]+.001
+        assert abs(a['servedFraction']-assigned[i]/pop[i])<1e-6
+        assert a['covered']==(assigned[i]>=pop[i]-1e-4)
+        assert a['candidateId']==(a['allocations'][0]['candidateId'] if a['allocations'] else None)
+    covered=assigned.sum(); total=data['metadata']['provincePopulation']
+    assert covered>=total*s.coverageTarget/100-.001
+    assert abs(result['metrics']['coveredPopulation']-covered)<.001
+    assert abs(result['metrics']['meanMinutes']-travel/covered)<1e-6
+    for d in result['districts']:
+        district_pop=assigned[np.array([x['districtId']==d['id'] for x in data['demands']])].sum()
+        assert district_pop>=d['population']*s.districtFloor/100-.001
+        assert abs(d['coveragePercent']-district_pop/d['population']*100)<1e-6
+    eco=p['economics']; design=p['design']; rates=p['rates']; om=s.operatingCostMultiplier
+    crf=eco['realDiscountRate']/(1-(1+eco['realDiscountRate'])**-eco['horizonYears'])
+    beds=doctors=0;capex=opex=0
+    for c in result['selected']:
+        j=c['candidateIndex']; base=data['candidates'][j]
+        assert c['id']==base['id'] and c['lon']==base['lon'] and c['lat']==base['lat']
+        t=next(t for t in p['templates'] if t['id']==c['templateId'])
+        assert c['beds']==t['beds'] and int(c['doctors'])==c['doctors']>=design['minimumDoctorsPerSite']
+        area=t['grossAreaM2']+design['areaPerDoctorM2']*c['doctors']
+        assert area<=math.pi*base['footprintRadiusMeters']**2*design['maxFloors']+.01
+        assert c['grossAreaM2']==area
+        contacts=loads[j]*rates['contactsPerResident']*s.demandMultiplier
+        bed_days=loads[j]*rates['bedDaysPerResident']*s.demandMultiplier
+        assert contacts<=c['doctors']*s.contactsPerDoctor+.1
+        assert bed_days<=t['beds']*365*s.bedOccupancy/100+.1
+        assert abs(c['annualContacts']-contacts)<.1 and abs(c['annualBedDays']-bed_days)<.1
+        cc=area*eco['buildingUnitCostTRY']
+        oc=om*(eco['annualFixedSiteCostTRY']+t['beds']*eco['annualBedSupportCostTRY']+c['doctors']*eco['annualDoctorCostTRY']+contacts*eco['costPerContactTRY'])
+        assert abs(cc-c['constructionCostTRY'])<1 and abs(oc-c['annualOperatingCostTRY'])<1
+        assert abs(cc*crf+oc-c['annualEquivalentCostTRY'])<1
+        capex+=cc;opex+=oc;beds+=c['beds'];doctors+=c['doctors']
+    cap=result['capacity'];annual=capex*crf+opex
+    assert cap['totalBeds']==beds and cap['totalDoctors']==doctors
+    for key,calc in [('constructionCostTRY',capex),('annualOperatingCostTRY',opex),('annualEquivalentCostTRY',annual),('lifecyclePresentCostTRY',annual/crf)]:
+        assert abs(cap[key]-calc)<10
+    assert annual<=cap['budgetLimitTRY']+100
+    assert abs(cap['budgetLimitTRY']-cap['referenceCostTRY']*(1+s.costTolerance/100))<10
+    assert result['lowerBound']<=cap['referenceCostTRY']+100
+    assert result['metrics']['meanMinutes']<=cap['referenceMeanMinutes']+1e-6
+    weighted.append((np.inf,total-covered));cumulative=0
+    for minutes,w in sorted(weighted):
+        cumulative+=w
+        if cumulative>=.9*total-1e-7:
+            assert (not np.isfinite(minutes) and result['metrics']['p90Minutes'] is None) or abs(result['metrics']['p90Minutes']-minutes)<1e-5
+            break
+    return {'mode':s.mode,'hospitalLimit':s.hospitalLimit,'status':result['status'],
+        'hospitalCount':len(selected),'totalBeds':beds,'totalDoctors':doctors,
+        'coveragePercent':float(covered/total*100),'minimumDistrictCoveragePercent':min(d['coveragePercent'] for d in result['districts']),
+        'meanMinutes':float(travel/covered),'annualEquivalentCostTRY':annual,'annualOperatingCostTRY':opex,
+        'constructionCostTRY':capex,'costStageGap':cap['costStageGap'],'travelStageGap':cap['travelStageGap']}
+
+
+def run(write_examples=False,write_report=False):
+    data=dataset();client=TestClient(app);report=[];benchmark=[]
+    assert client.get('/api/data').status_code==200
+    for mode,threshold,limit,label in [('car',30,None,'car'),('transit',45,None,'transit'),('car',30,91,'car-91'),('transit',45,91,'transit-91')]:
+        s=Scenario(mode=mode,threshold=threshold,hospitalLimit=limit)
+        path=OUT/f'example-{label}-result.json'
         if write_examples:
-            (OUT/f'example-{mode}-result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8', newline='\n')
-        summary = {'mode': mode, 'scenario': result['scenario'], 'status': result['status'],
-                   'hospitalCount': result.get('hospitalCount'), 'metrics': result.get('metrics'),
-                   'capacity': result.get('capacity'), 'searchScope': result.get('searchScope')}
-        if result['status'] == 'infeasible':
-            assert 'maximumCoveragePercent' in result
-            summary['maximumCoveragePercent'] = result['maximumCoveragePercent']
-            summary['limitingDistricts'] = result['limitingDistricts']
-            # An explicitly labelled alternate case, not a silent default change.
-            scenario = {**scenario, 'coverageTarget': max(50, int(result['maximumCoveragePercent']//5)*5),
-                        'districtFloor': min([80]+[max(0,int(d['maximumPercent']//5)*5) for d in result['limitingDistricts']])}
-            result = client.post('/api/solve', json=scenario).json()
-            if write_examples:
-                (OUT/f'example-{mode}-alternate-result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False),encoding='utf-8', newline='\n')
-            summary['alternate'] = {'scenario': scenario, 'status': result['status'],
-                                    'hospitalCount': result.get('hospitalCount'), 'metrics': result.get('metrics')}
-        assert result['status'] in ('optimal','feasible'), result
-        selected = result['selectedIndices']
-        times = travel_times(Scenario(**scenario))
-        populations = np.array([d['population'] for d in data['demands']])
-        # Rebuild load from split flows, not from nearest geographic hospital.
-        assigned = np.zeros(n)
-        loads = {j: 0. for j in selected}
-        weighted_time = 0.
-        weighted_edges = []
-        for i, (a, demand) in enumerate(zip(result['assignments'], data['demands'])):
-            assert a['demandId'] == demand['id']
-            for part in a['allocations']:
-                j, population = part['candidateIndex'], part['population']
-                assert j in selected and population >= 0
-                assert part['candidateId'] == data['candidates'][j]['id']
-                assert abs(part['minutes'] - times[i,j]) < 1e-6
-                assert part['minutes'] <= scenario['threshold'] + 1e-7
-                assert abs(part['fraction'] - population / populations[i]) < 1e-6
-                assigned[i] += population; loads[j] += population
-                weighted_time += population * times[i,j]
-                weighted_edges.append((part['minutes'], population))
-            assert assigned[i] <= populations[i] + .001
-            assert abs(a['servedFraction'] - assigned[i] / populations[i]) < 1e-6
-            assert a['covered'] == bool(assigned[i] >= populations[i] - 1e-4)
-            if a['allocations']:
-                assert a['candidateId'] == a['allocations'][0]['candidateId']
-                assert a['minutes'] == a['allocations'][0]['minutes']
-            else:
-                assert a['candidateId'] is None and a['minutes'] is None
-        covered = float(assigned.sum())
-        assert abs(covered - result['metrics']['coveredPopulation']) < .001
-        assert covered >= data['metadata']['provincePopulation']*scenario['coverageTarget']/100 - 1e-5
-        assert len(selected) == len(set(selected)) == result['hospitalCount']
-        assert not any(a in selected and b in selected for a,b in site_conflicts())
-        assert abs(weighted_time / covered - result['metrics']['meanMinutes']) < 1e-6
-        for d in result['districts']:
-            assert d['coveragePercent'] >= scenario['districtFloor'] - 1e-5
-            mask = np.array([origin['districtId'] == d['id'] for origin in data['demands']])
-            assert abs(assigned[mask].sum() / d['population'] * 100 - d['coveragePercent']) < 1e-6
-        config = health_planning()
-        params = result['scenario']
-        cost = beds = doctors = 0
-        for c in result['selected']:
-            template = next(t for t in config['templates'] if t['id'] == c['templateId'])
-            load = loads[c['candidateIndex']]
-            visits = load * config['rates']['visitsPerResident'] * params['demandMultiplier']
-            bed_days = load * config['rates']['bedDaysPerResident'] * params['demandMultiplier']
-            assert visits <= template['doctors'] * params['visitsPerDoctor'] + .1
-            assert bed_days <= template['beds'] * 365 * params['bedOccupancy']/100 + .1
-            assert abs(c['annualVisits'] - visits) < .1 and abs(c['annualBedDays'] - bed_days) < .1
-            assert c['doctors'] == template['doctors'] and c['beds'] == template['beds']
-            cost += template['grossAreaM2'] * template['unitCostTRY']
-            beds += template['beds']; doctors += template['doctors']
-        cap = result['capacity']
-        assert cost == cap['constructionCostTRY'] and beds == cap['totalBeds'] and doctors == cap['totalDoctors']
-        assert cost <= cap['budgetLimitTRY'] + 100
-        assert abs(cap['budgetLimitTRY'] - cap['referenceCostTRY'] * (1+params['costTolerance']/100)) < 100
-        assert result['metrics']['meanMinutes'] <= cap['referenceMeanMinutes'] + 1e-6
-        assert result['lowerBound'] <= cap['referenceCostTRY'] + 100
-        # Total-population P90 includes all unassigned/unlocated demand as infinity.
-        weighted_edges.append((float('inf'), data['metadata']['provincePopulation'] - covered))
-        cumulative = 0
-        for minutes, weight in sorted(weighted_edges):
-            cumulative += weight
-            if cumulative >= .9 * data['metadata']['provincePopulation']:
-                assert (result['metrics']['p90Minutes'] is None and not np.isfinite(minutes)) or abs(result['metrics']['p90Minutes'] - minutes) < 1e-6
-                break
-        eligible = [a for a in result['assignments'] if a['minutes'] is not None and a['minutes'] > 15]
-        chosen_route = None
-        for assignment in eligible[:12]:
-            route = client.post('/api/route',json={**scenario,'demandId':assignment['demandId'],'candidateId':assignment['candidateId']})
-            assert route.status_code == 200, route.text
-            route = route.json()
-            assert abs(route['minutes']-assignment['minutes']) < .001
-            assert any(len(leg['coordinates']) > 1 for leg in route['legs'])
-            if mode == 'car' or route['boardings']:
-                chosen_route = route
-                break
-        assert chosen_route is not None, 'No representative vehicle route was verified'
-        assert any(l['kind'] == ('drive' if mode == 'car' else 'ride') for l in chosen_route['legs'])
-        summary['verifiedRoute'] = {'from':chosen_route['demand'],'to':chosen_route['candidate'],
-                                    'minutes':chosen_route['minutes'],'boardings':chosen_route['boardings']}
-        report.append(summary)
-        print(json.dumps(summary,ensure_ascii=False),flush=True)
+            result=cached_solve(s.model_dump_json())
+            path.write_text(json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8',newline='\n')
+        result=json.loads(path.read_text(encoding='utf-8'))
+        assert result['scenario']==s.model_dump()
+        if result['status']=='infeasible':
+            certificate=count_bound(mode,threshold,95,80,1)
+            assert limit is not None and certificate['minimumCountLowerBound']>limit
+            assert certificate['fullCandidateCount']==len(data['candidates'])
+            report.append({'mode':mode,'hospitalLimit':limit,'status':'infeasible','geographicCertificate':certificate})
+        else:
+            assert result['status']=='feasible',result.get('reason')
+            assert result['capacity']['planningVersion']==health_planning()['version']
+            report.append(audit(result))
+            # A routed large plot is checked against the stored matrix too.
+            candidates={c['candidateIndex']:c for c in result['selected']}
+            pairs=[(a,x) for a in result['assignments'] for x in a['allocations'] if candidates[x['candidateIndex']]['footprintRadiusMeters']>45]
+            found=False
+            for a,x in sorted(pairs,key=lambda q:-q[1]['minutes'])[:40]:
+                response=client.post('/api/route',json={**s.model_dump(),'demandId':a['demandId'],'candidateId':x['candidateId']})
+                assert response.status_code==200
+                route=response.json();assert abs(route['minutes']-x['minutes'])<.001
+                assert any(len(leg['coordinates'])>1 for leg in route['legs'])
+                if mode=='car' or route['boardings']:
+                    di=next(i for i,d in enumerate(data['demands']) if d['id']==a['demandId'])
+                    ci=x['candidateIndex']; demand=data['demands'][di]; candidate=data['candidates'][ci]
+                    if mode=='car':
+                        minutes=dijkstra(graph('drive'),indices=demand['node'])[candidate['node']]/60
+                        minutes=minutes*s.trafficFactor+(demand['snapMeters']+candidate['accessMeters'])/75+3
+                    else:
+                        details=transit_details()
+                        minutes=dijkstra(graph('transit'),indices=details['originBase']+di)[details['destinationBase']+ci]/60
+                    assert abs(minutes-x['minutes'])<.001,'Matrix does not match graph shortest path'
+                    found=True;break
+            assert found,'No large-plot vehicle route verified'
+        if limit==91:
+            benchmark.append({key:result[key] for key in ('scenario','status','hospitalCount','metrics','capacity','geographicCertificate') if key in result})
+        print('Audited',label,flush=True)
+    sensitivity_path=OUT/'example-car-91-university-result.json'
+    sensitivity=None
     if write_examples:
-        (OUT/'validation-results.json').write_text(json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False),encoding='utf-8', newline='\n')
-    return report
+        sr=cached_solve(Scenario(hospitalLimit=91,contactsPerDoctor=835).model_dump_json())
+        sensitivity_path.write_text(json.dumps(sr,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8',newline='\n')
+    if sensitivity_path.exists():
+        sr=json.loads(sensitivity_path.read_text(encoding='utf-8'))
+        assert sr['scenario']['contactsPerDoctor']==835 and sr['scenario']['hospitalLimit']==91
+        sensitivity={'scenario':sr['scenario'],'summary':audit(sr)}
+    if write_examples or write_report:
+        (OUT/'sensitivity-results.json').write_text(json.dumps(sensitivity,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+        (OUT/'benchmark-91.json').write_text(json.dumps({'date':date.today().isoformat(),'planningVersion':health_planning()['version'],
+            'note':'91 kullanıcı karşılaştırma sınırıdır; resmî 2024 envanteri 85. EGO sonucu tarifesiz OSM ağ senaryosuna aittir.',
+            'cases':benchmark,'sensitivity':sensitivity},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+        (OUT/'validation-results.json').write_text(json.dumps({'date':date.today().isoformat(),'cases':report},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+    else:
+        from scripts.manifest import check
+        check()
+    print(json.dumps(report,ensure_ascii=False,indent=2))
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--write-examples',action='store_true')
-    run(parser.parse_args().write_examples)
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--write-examples',action='store_true');parser.add_argument('--write-report',action='store_true')
+    args=parser.parse_args();run(args.write_examples,args.write_report)

@@ -1,0 +1,31 @@
+{
+  "scenario": {
+    "mode": "car",
+    "threshold": 30,
+    "coverageTarget": 95.0,
+    "districtFloor": 80.0,
+    "trafficFactor": 1.0,
+    "demandMultiplier": 1.0,
+    "bedOccupancy": 80.0,
+    "contactsPerDoctor": 835,
+    "costTolerance": 10.0,
+    "hospitalLimit": 91,
+    "operatingCostMultiplier": 1.0
+  },
+  "summary": {
+    "mode": "car",
+    "hospitalLimit": 91,
+    "status": "feasible",
+    "hospitalCount": 50,
+    "totalBeds": 18650,
+    "totalDoctors": 55232,
+    "coveragePercent": 95.00000000000003,
+    "minimumDistrictCoveragePercent": 79.99999999999999,
+    "meanMinutes": 16.703614449921186,
+    "annualEquivalentCostTRY": 251771011584.51437,
+    "annualOperatingCostTRY": 238626174552.79794,
+    "constructionCostTRY": 228892988611.05902,
+    "costStageGap": 0.01141827937217228,
+    "travelStageGap": 0.5434854716096033
+  }
+}

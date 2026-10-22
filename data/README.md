@@ -22,7 +22,7 @@
 | `example-*-result.json`                 | Sürüm hazırlanırken hesaplanan, gerçek çözüm çıktıları; uygulama yerine sabit sonuç göstermez                            |
 | `manifest.json`                         | Kaynak/çıktı bütünlük değerleri                                                                                          |
 
-`id` ve `districtId` TÜİK yerleşim kodlarıdır, metin olarak tutulur. `node` ilgili yol grafiğinde sıfır tabanlı satır indeksidir; OSM kimliği değildir. Talep `osmRef` alanı gerçek OSM nesnesini gösterir. Aday kimliğinin `H-` devamı, üretildiği mahallenin kodudur; koordinatı mahalle merkezinin kendisi değildir. `snapMeters` / `accessMeters` varsayılan son erişim bağlantılarıdır. Kapasite bilgisi yoktur.
+`id` ve `districtId` TÜİK yerleşim kodlarıdır, metin olarak tutulur. `node` ilgili yol grafiğinde sıfır tabanlı satır indeksidir; OSM kimliği değildir. Talep `osmRef` alanı gerçek OSM nesnesini gösterir. Aday kimliğinin `H-` devamı, üretildiği mahallenin kodudur; koordinatı mahalle merkezinin kendisi değildir. `snapMeters` / `accessMeters` varsayılan son erişim bağlantılarıdır. OSM mevcut hastanelerinin kapasite bilgisi doğrulanmamıştır. Yeni tesislerin kapasitesi çözüm çıktısında bulunur.
 
 Nüfus CSV’si ilk çalışma kitabının ilgili alanlarını aktarır. OSM ile coğrafi eşleştirme yalnız `dataset.json` içinde yapılır. Kaynaklarını değiştirmek isteyenler, aynı mahalle/ad sırasını varsaymak yerine kimliklerle birleştirmelidir.
 
@@ -36,6 +36,8 @@ Repo kökünde, Python bağımlılıkları kurulduktan sonra:
 .venv\Scripts\python.exe scripts/extract_osm.py
 .venv\Scripts\python.exe scripts/build_dataset.py
 .venv\Scripts\python.exe scripts/build_transit.py
+.venv\Scripts\python.exe scripts/expand_sites.py
+.venv\Scripts\python.exe scripts/calibrate_health.py
 .venv\Scripts\python.exe scripts/audit_data.py
 .venv\Scripts\python.exe scripts/verify_release.py --write-examples
 .venv\Scripts\python.exe scripts/manifest.py
@@ -53,10 +55,16 @@ Nüfus ile OSM konumları farklı tarihlere aittir; mahalle bölünmesi/ad deği
 
 Harita altlığı yalnız görseldir. Sonuçlar canlı harita karolarından hesaplanmaz; sürümlenmiş ağ matrislerinden hesaplanır. Altlık güncellense bile ağ kesiti değişmez. İnternet olmadığında yerel ana yol katmanı destek sağlar; çevrimdışı harita karosu paketi bu repoda yoktur.
 
-## Kapasite parametreleri (v0.2)
+## Kapasite parametreleri (v0.3)
 
-`health-planning.json`: Sağlık Bakanlığı 2024 Ankara gözlemleri, türetilmiş kişi başı yıllık oranlar, varsayımsal tesis şablonları, 2026 birim fiyatları, kaynak tablo/sayfa ve SHA-256. Üst veri ile varsayımlar ayrı alanlardır. [Araştırma](../docs/capacity-research.md).
+`health-planning.json`: resmî il gözlemleri, gerçek hastane örnekleri, giderlerin kaynak kalemleri, türetim katsayıları, bağımsız yatak seçenekleri ve alan varsayımları. `scripts/calibrate_health.py` bu parametreleri kaynak transkripsiyonundan yeniden üretir. Ham dört PDF Git dışında tutulur; `verify_health_sources.py --download` dosya kimliklerini ve metin satırlarını denetler. Görsel kontrol gereken tebliğ sayfasının SHA-256 kimliği korunur. PyMuPDF yalnız kaynak denetimi içindir; uygulama bağımlılığı değildir.
 
-Sonuçlardaki `assignments[].allocations[]`: tesis kimliği, atanan nüfus eşdeğeri, mahalle talep payı ve ağ süresi. `candidateId/minutes` en büyük paya ait rotadır; mahalle ortalaması değildir. `servedFraction` 0–1, `covered` yalnız tam atama. `selected[]` her tesisin tipi, yatak/hekim, yük ve kapasitesiyle yapım bedelini içerir. `capacity` il toplamları ve iki aşamalı maliyet/süre bilgileri; `searchScope` seyrek aday kapsamı. `metrics.coveredPopulation` kesirli kişi eşdeğeri olabilir; bireysel hasta değildir.
+`selected[]`: seçilen yatak tipi, bağımsız tam sayı `doctors`, toplam `grossAreaM2`, `constructionCostTRY`, `annualOperatingCostTRY`, `annualEquivalentCostTRY` ve gider kırılımı. Temas = başvuru + yatış; `contactCapacity` ve `annualContacts` aynı kapsamı kullanır. `capacity.referenceCostTRY` ve `budgetLimitTRY` artık **yıllık eşdeğer maliyet** birimindedir; eski yapım bütçesiyle karıştırılmamalıdır. Fiyat tabanı yaklaşık Aralık 2024 TL.
 
-2024 kaynak PDF'leri `data/raw/health/` altında (Git dışında). Doğrulama için `pip install pymupdf==1.26.7` ve `python scripts/verify_health_sources.py --download` kullanılabilir. Dosya kimliği değişirse betik durur; yeni veri otomatik olarak aynı sürümün yerine yazılmaz. İşlenmiş parametreler depoda olduğundan uygulama için PDF bağımlılığı gerekmez.
+`assignments[].allocations[]` bölünebilir nüfus eşdeğeri, ağ süresi ve hastane kimliğidir. `candidateId/minutes` en büyük payın rotasıdır. `servedFraction` 0–1, `covered` tam atamayı gösterir. `searchScope` daraltılmış arama kapsamını; `geographicCertificate` tüm adaylarla gerekli konum sayısının alt sınırını bildirir. `inconclusive` çözüm bulunamadığı anlamına gelir, imkânsızlık değildir.
+
+`example-car-91-result.json` ve `example-transit-91-result.json` 91 tesis sınırını test eder. `benchmark-91.json` arayüzdeki sabit karşılaştırma kartıdır; canlı parametrelerden ayrıdır. `example-car-91-university-result.json` ve `sensitivity-results.json` 835 temas/hekim duyarlılığıdır. Örnekler çalışma zamanındaki canlı optimizasyonun yerine oynatılmaz.
+
+`expand_sites.py`, orijinal 1.397 adaya 3.304 büyük yapı izi ekler. Aynı yol girişini ve daha uzun/eşit bağlantıyı kullanır. Transit varış düğümleri çıkışsızdır; eski yürüyüş girişlerinin sürelerine bağlantı farkı eklenir, 15 dakika sınırı tekrar uygulanır, yeni hedeflere Dijkstra çalışır. Daha uzun bağlantı yeni erişim kenarı yaratamayacağı için bu güncelleme aynı ağ varsayımları altında tamdır. Yeniden çalıştırma idempotenttir; yeni kaynak üretiminde önce temel iki ağ betiği çalıştırılmalıdır.
+
+API v0.3 alanı `contactsPerDoctor`, eski `visitsPerDoctor` yerine temas (başvuru + yatış) kapasitesidir. Bilinmeyen girdi alanları sessizce yok sayılmaz; 422 ile reddedilir.

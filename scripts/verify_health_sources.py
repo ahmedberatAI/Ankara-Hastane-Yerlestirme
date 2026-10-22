@@ -18,7 +18,8 @@ RAW = ROOT / 'data/raw/health'
 def verify(download=False):
     config = json.loads((ROOT/'data/processed/health-planning.json').read_text(encoding='utf-8'))
     RAW.mkdir(parents=True, exist_ok=True)
-    for name, source in zip(('siy2024.pdf', 'costs2026.pdf'), config['sources'][:2]):
+    for source in [s for s in config['sources'] if s['id']=='siy2024' or 'localFile' in s]:
+        name=source.get('localFile','siy2024.pdf')
         path = RAW/name
         if not path.exists() and download:
             response = requests.get(source.get('verifiedCopyUrl', source['url']), timeout=120)
@@ -43,8 +44,20 @@ def verify(download=False):
     assert observed['specialists'] + observed['generalPractitioners'] + observed['residents'] == observed['physicians']
     for t in config['templates']:
         assert t['constructionCostTRY'] == t['grossAreaM2'] * t['unitCostTRY']
-        assert t['grossAreaM2']/t['assumedFloors'] <= 3.141592653589793 * 45**2
-    print('Health sources: 2 SHA-256 identities, 4 Ankara table rows, rates and template arithmetic verified.')
+        assert t['grossAreaM2'] == 4000+160*t['beds']
+    au=fitz.open(RAW/'ankara-university-2024.pdf')
+    au_text=re.sub(r'\s+',' ',au[161].get_text())
+    assert '1.097 921 769 734.451 694.180 40.271' in au_text
+    assert '665 836 814 732.837 703.972 28.865' in au_text
+    mlp=fitz.open(RAW/'mlp-2024.pdf')
+    for page,tokens in [(44,['2.828','444']),(118,['9.994.192','6.417.735','5.113.295','2.245.638','2.533.955']),
+                         (119,['3.366.893','184.925','1.007.767'])]:
+        text=mlp[page].get_text()
+        assert all(token in text for token in tokens)
+    assert config['calibration']['contactsPerDoctorObserved']==7000000/3272
+    assert config['economics']['annualDoctorCostTRY']==9994192000/3272
+    assert config['rates']['contactsPerResident']==rates['visitsPerResident']+rates['admissionsPerResident']
+    print('Health sources: 4 PDF identities, Ankara tables, university hospital rows, MLP component values and derived inputs verified.')
 
 
 if __name__ == '__main__':

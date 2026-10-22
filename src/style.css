@@ -2357,3 +2357,72 @@ nav > button:hover {
     700 12px Manrope,
     sans-serif;
 }
+.site-limit {
+  margin: 20px 0 4px;
+}
+.benchmark {
+  border: 1px solid #cad9b5;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+  background: #f2f7e9;
+}
+.benchmark-heading h3 {
+  margin: 7px 0;
+  font-size: 24px;
+  letter-spacing: -0.7px;
+}
+.benchmark-heading p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #526847;
+}
+.benchmark-cases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 18px 0;
+}
+.benchmark-cases article {
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid #dbe4ce;
+  background: #fcfdf8;
+}
+.benchmark-cases article > span {
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  display: block;
+  color: #60774f;
+}
+.benchmark-cases b {
+  display: block;
+  font-size: 17px;
+  margin-top: 10px;
+}
+.benchmark-cases p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #526847;
+}
+.benchmark > small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.7;
+  color: #647453;
+}
+.benchmark-sensitivity {
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 12px 0;
+  border-top: 1px solid #dbe4ce;
+  color: #526847;
+}
+@media (max-width: 700px) {
+  .benchmark {
+    padding: 18px;
+  }
+  .benchmark-cases {
+    grid-template-columns: 1fr;
+  }
+}

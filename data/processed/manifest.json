@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-22T17:36:30.463870+00:00",
+  "createdAt": "2026-10-22T18:33:21.798102+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -24,21 +24,36 @@
       "sha256": "0687db84583b17d9a2566749ff9c4cd81740476b1b339479aa7e209870d58890"
     },
     {
-      "file": "data/raw/health/costs2026.pdf",
-      "bytes": 2906427,
-      "sha256": "e1d3a2e6fdfe008c240da0b7b59f6ee60681d6e8665a2861a80223afdc60324a"
+      "file": "data/raw/health/costs2024.pdf",
+      "bytes": 465635,
+      "sha256": "a9dbd058559d594990cd2846b80f7a0918d655e5b309dbf669501543de51b728"
+    },
+    {
+      "file": "data/raw/health/ankara-university-2024.pdf",
+      "bytes": 16065504,
+      "sha256": "87a8d83716b43a8005c6daf04b3477d2493d322a9da4870ad6abb1852eff38b9"
+    },
+    {
+      "file": "data/raw/health/mlp-2024.pdf",
+      "bytes": 4613132,
+      "sha256": "14487ee62d0ab668dbc6293593b5a8fbc02562180791c85b4a520604b8b60dc3"
     }
   ],
   "files": [
     {
+      "file": "data/processed/benchmark-91.json",
+      "bytes": 4687,
+      "sha256": "5fcbb0adfb03af845c498824a63d13c1b7061f237b260dea6b68d42ec21941fc"
+    },
+    {
       "file": "data/processed/car-matrix.npz",
-      "bytes": 7607604,
-      "sha256": "e86bed9026787bc73d954ee79ce672b69131c99417d135ba25366ad87bc9d968"
+      "bytes": 23224073,
+      "sha256": "5de0792359ab23cf3276b9afe5a3c7df65342eb88b25b82b82184730c38bd2b7"
     },
     {
       "file": "data/processed/dataset.json",
-      "bytes": 692436,
-      "sha256": "60fd6d10824dc6758d9af1f3d6e530519de1da4ac9044c934fc5eae1fbe21a76"
+      "bytes": 1611645,
+      "sha256": "cce8feef6938d57ae038c33b018b5acd6a7b5abfb7e167508e2396c3d477abcd"
     },
     {
       "file": "data/processed/districts.geojson",
@@ -51,14 +66,29 @@
       "sha256": "f3817e7cf6ce331cefb00f30432a2ff18aad20f58238641fbebb25c0124ea538"
     },
     {
+      "file": "data/processed/example-car-91-result.json",
+      "bytes": 545941,
+      "sha256": "b3cffe582dc33b38d9689eb199e04e84d454adf40c9b58013ba4a2a2dada39d7"
+    },
+    {
+      "file": "data/processed/example-car-91-university-result.json",
+      "bytes": 559293,
+      "sha256": "10cd438aab475da37f26b2c2e44e6e0e3fca760442dfc2cd9f1b239eb05706cd"
+    },
+    {
       "file": "data/processed/example-car-result.json",
-      "bytes": 647535,
-      "sha256": "90f5779d6e6a2124f0a634012d8bb8471b85521b65af0834704fa56c54ea759f"
+      "bytes": 545498,
+      "sha256": "0b14b965ff6d9426cec4f59d204251d2afb498a71d0a30061506eca18a3a89a8"
+    },
+    {
+      "file": "data/processed/example-transit-91-result.json",
+      "bytes": 3357,
+      "sha256": "31b22123e737fd8b7cc864d0bac7d847a9b80c72ad25e3613c798cfcd0b0dc69"
     },
     {
       "file": "data/processed/example-transit-result.json",
-      "bytes": 884056,
-      "sha256": "abb7f2c12399485b9031dd7d24cbe3746e4e0a81572e2d3350f468de5e6339d0"
+      "bytes": 974857,
+      "sha256": "223dc36ce1659ab50b55802984ba6fabbd28c48c718f2a4df2a9314784042dd8"
     },
     {
       "file": "data/processed/graph-coordinates.npy",
@@ -67,8 +97,8 @@
     },
     {
       "file": "data/processed/health-planning.json",
-      "bytes": 5869,
-      "sha256": "5e57c2ae4e7934924d05fd10a8f21142be659c9acaeff675a40adb545d474637"
+      "bytes": 12978,
+      "sha256": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
     },
     {
       "file": "data/processed/neighborhood-population-2025.csv",
@@ -87,8 +117,8 @@
     },
     {
       "file": "data/processed/quality-report.json",
-      "bytes": 457,
-      "sha256": "4dee17c832501ccff8f3d452f77319a23552b0b0e2fb3efc1e32d1cc84f06f61"
+      "bytes": 503,
+      "sha256": "20e747a14e67230618aaf46f57864a6aeffb48610a173855cd569dc92d60209d"
     },
     {
       "file": "data/processed/roads.geojson",
@@ -96,14 +126,19 @@
       "sha256": "68f0c082b9f8031d06c93c1691e3df60432fa9a06323f14e196d47a1fb845987"
     },
     {
+      "file": "data/processed/sensitivity-results.json",
+      "bytes": 851,
+      "sha256": "e532d3e3d56b9034deaa7e65848817110a52f65828ad828c814adf85bc8a8728"
+    },
+    {
       "file": "data/processed/transit-details.json.gz",
-      "bytes": 3569937,
-      "sha256": "62daaf882a143f71a3cc72f53655e9a071ea5aad87013eb81906c321cda67858"
+      "bytes": 3730633,
+      "sha256": "b7d73d08332428c9167c962b7974d1407a460732f771c3ae965d1e5e2b8f4ca2"
     },
     {
       "file": "data/processed/transit-graph.npz",
-      "bytes": 598330,
-      "sha256": "f0854b1a6039eeb914efa969bb00ada133887676972250ec1d7dcdab406ba9f9"
+      "bytes": 638313,
+      "sha256": "bb1e6d6eb2406ce3cd776dec244b786fd410eec4fd8bc5afa7c2ba256b3a9c6d"
     },
     {
       "file": "data/processed/transit-lines.geojson",
@@ -112,8 +147,8 @@
     },
     {
       "file": "data/processed/transit-matrix.npz",
-      "bytes": 961314,
-      "sha256": "8a6b6c0bb46161413c1db68d340a264ef9846dd1a33dd4262c2ad11169ee06ca"
+      "bytes": 1957193,
+      "sha256": "e8686156fb09ed6d4f8f06fb1c20849cee3b42d77653e110b428ff2d052ef5ab"
     },
     {
       "file": "data/processed/unmatched-neighborhoods.json",
@@ -122,8 +157,8 @@
     },
     {
       "file": "data/processed/validation-results.json",
-      "bytes": 3773,
-      "sha256": "47d721a65fb9e962522516572a07116f7698093ce0340299c64aac2f76e2b5c6"
+      "bytes": 2262,
+      "sha256": "547d299bfe2c5e625cb2e41ba7592224ffecc7e670c07f289d04edbf5c3e6a9e"
     },
     {
       "file": "data/processed/walk-graph.npz",

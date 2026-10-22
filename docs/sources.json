@@ -180,16 +180,6 @@
     "note": "Tablo 7.20, 8.26, 10.12; basılı s.162, 204, 206, 261. Hekim toplamı ayrılabilir hastane kadrosu değildir. Mahalleye dağıtım varsayımdır."
   },
   {
-    "id": "construction-cost",
-    "title": "2026 Yapı Yaklaşık Birim Maliyetleri",
-    "publisher": "ÇŞİDB Yüksek Fen Kurulu",
-    "url": "https://www.turmob.org.tr/arsiv/mbs/resmigazete/33157-33157-1.pdf",
-    "status": "Kullanılıyor · tebliğ nüshası doğrulandı",
-    "date": "22.10.2026",
-    "usedFor": "IV-C 40.500, V-B 43.850 TL/m² × varsayımsal alan",
-    "note": "Resmî Gazete 33157 (03.02.2026), TÜRMOB PDF nüshası görsel kontrol edildi. KDV/arsa/cihaz/işletme hariç bina göstergesi."
-  },
-  {
     "id": "kestel-area",
     "title": "Kestel Devlet Hastanesi · fiziksel alan örneği",
     "publisher": "T.C. Sağlık Bakanlığı",
@@ -207,7 +197,7 @@
     "date": "22.10.2026",
     "status": "Araştırmada kullanıldı",
     "usedFor": "Kapasite varsayımı ve veri kapsamının açıklanması",
-    "note": "İş yükü ve kullanılabilir çalışma süresi yaklaşımı; uygulamadaki 4.000 başvuru/hekim/yıl bir WHO standardı değildir."
+    "note": "Gözlenen temas/hekim oranı WISN kadro standardı değildir; branş bazlı faaliyet süreleri ayrıca gerekir."
   },
   {
     "id": "population2024",
@@ -228,5 +218,55 @@
     "status": "Kullanılıyor",
     "usedFor": "Kapasiteli MILP, geçerli başlangıç çözümü, alt sınır ve açıklık",
     "note": "İki aşama süre sınırlı; minimum tesis sayısı veya sürekli coğrafyada global optimum iddiası yoktur."
+  },
+  {
+    "id": "au2024",
+    "title": "Ankara Üniversitesi 2024 İdare Faaliyet Raporu · tablo 110, basılı s.160",
+    "url": "https://sgdb.ankara.edu.tr/wp-content/uploads/sites/172/2025/07/A.U._2024_Yili_Idare_Faaliyet_Raporu_s.pdf",
+    "publisher": "Ankara Üniversitesi",
+    "date": "22.10.2026",
+    "status": "Kullanılıyor · gözlem / aktarılan proxy",
+    "usedFor": "Bağımsız yatak/hekim kapasitesi ve yıllık maliyet kalibrasyonu",
+    "note": "Cebeci ve İbni Sina yatak, hekim, ayakta/yatarak hasta kayıtları. Döner sermaye giderleri eksik kapsam nedeniyle toplam işletme maliyeti olarak kullanılmadı."
+  },
+  {
+    "id": "mlp2024",
+    "title": "MLP Care 2024 Faaliyet Raporu · basılı s.9, 44, 95, 118–119",
+    "url": "https://investor.mlpcare.com/site/assets/files/3349/mlp_care_2024_faaliyet_raporu.pdf",
+    "publisher": "MLP Care",
+    "date": "22.10.2026",
+    "status": "Kullanılıyor · gözlem / aktarılan proxy",
+    "usedFor": "Bağımsız yatak/hekim kapasitesi ve yıllık maliyet kalibrasyonu",
+    "note": "MLP portföy göstergeleri ile konsolide giderlerin kapsamı birebir değildir; yönetilen tesisler, yan işler, yabancı faaliyetler ve yıl içi açılışlar vardır. Bölme işlemleri kamu hastanesi birim maliyeti ölçümü değil, açıkça aktarılan yaklaşık kalibrasyon senaryosudur. Yıl sonu hekim sayısı FTE veya yıllık ortalama değildir."
+  },
+  {
+    "id": "cost2024",
+    "title": "2024 Yapı Yaklaşık Birim Maliyetleri · 20 Şubat 2024, RG 32466",
+    "url": "https://webdosya.csb.gov.tr/db/sivas/menu/yapi-yaklasik-birim-maliyetleri-2024_20240223090428.pdf",
+    "publisher": "ÇŞİDB",
+    "date": "22.10.2026",
+    "status": "Kullanılıyor · gözlem / aktarılan proxy",
+    "usedFor": "Bağımsız yatak/hekim kapasitesi ve yıllık maliyet kalibrasyonu",
+    "note": "2024 tebliğinde hastaneler V-B, 22.250 TL/m². 2026 tebliğinin yatak eşikleri bu yıla taşınmadı. Ocak fiyat düzeyi varsayılıp genel TÜFE ile yaklaşık Aralık 2024 TL’ye çevrildi; inşaat endeksi veya ihale fiyatı değildir."
+  },
+  {
+    "id": "etlik",
+    "title": "Etlik Şehir Hastanesi · resmî tanıtım",
+    "url": "https://etliksehir.saglik.gov.tr/TR-852985/tanitim.html",
+    "publisher": "T.C. Sağlık Bakanlığı",
+    "date": "22.10.2026",
+    "status": "Kullanılıyor · gözlem / aktarılan proxy",
+    "usedFor": "Bağımsız yatak/hekim kapasitesi ve yıllık maliyet kalibrasyonu",
+    "note": "4.050 yatak ve 1.145.129 m² kapalı alan; büyük tesis ölçeğinin gerçek örneği."
+  },
+  {
+    "id": "cpi",
+    "title": "TCMB · TÜİK tüketici fiyatları aylık ve yıllık değişimleri",
+    "url": "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari",
+    "publisher": "TCMB / TÜİK",
+    "date": "22.10.2026",
+    "status": "Kullanılıyor · gözlem / aktarılan proxy",
+    "usedFor": "Bağımsız yatak/hekim kapasitesi ve yıllık maliyet kalibrasyonu",
+    "note": "2024 Aralık yıllık %44,38 ve Ocak aylık %6,70; yaklaşık Ocak–Aralık katsayısı 1,4438 / 1,067."
   }
 ]

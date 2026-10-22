@@ -1,122 +1,69 @@
-[
-  {
-    "mode": "car",
-    "scenario": {
+{
+  "date": "2026-10-22",
+  "cases": [
+    {
       "mode": "car",
-      "threshold": 30,
-      "coverageTarget": 95.0,
-      "districtFloor": 80.0,
-      "trafficFactor": 1.0,
-      "demandMultiplier": 1.0,
-      "bedOccupancy": 80.0,
-      "visitsPerDoctor": 4000,
-      "costTolerance": 10.0
+      "hospitalLimit": null,
+      "status": "feasible",
+      "hospitalCount": 46,
+      "totalBeds": 18550,
+      "totalDoctors": 21613,
+      "coveragePercent": 94.99999999999994,
+      "minimumDistrictCoveragePercent": 80.0,
+      "meanMinutes": 17.32055703552328,
+      "annualEquivalentCostTRY": 143951404929.71988,
+      "annualOperatingCostTRY": 135512079841.15903,
+      "constructionCostTRY": 146955214181.81818,
+      "costStageGap": 0.018251682624763996,
+      "travelStageGap": 0.6609249100845961
     },
-    "status": "feasible",
-    "hospitalCount": 172,
-    "metrics": {
-      "coveredPopulation": 5614804.000000003,
-      "coveragePercent": 95.00000000000006,
-      "reachablePopulation": 5614804.000000003,
-      "unreachableOrUnlocatedPopulation": 295515.9999999972,
-      "meanPopulationDenominator": 5614804.000000003,
-      "meanMinutes": 6.930671314187954,
-      "p90Minutes": 10.377984046936035
-    },
-    "capacity": {
-      "totalBeds": 21300,
-      "totalDoctors": 12780,
-      "constructionCostTRY": 166584800000,
-      "referenceCostTRY": 151668600000.0,
-      "budgetLimitTRY": 166835460000.0,
-      "referenceMeanMinutes": 8.280525901553375,
-      "travelImprovementPercent": 16.30155624671371,
-      "annualVisitsDemand": 47445297.04366386,
-      "annualVisitsServed": 45073032.19148069,
-      "annualAdmissionsDemand": 1072245.4471850423,
-      "annualBedDaysDemand": 5451817.453012415,
-      "annualBedDaysServed": 5179226.5803617975,
-      "doctorUtilizationPercent": 88.17103323842075,
-      "bedUtilizationPercent": 83.27266352115566,
-      "costStageGap": 0.03301434838852601,
-      "costStageProvenOptimal": false,
-      "travelStageGap": 0.1432659313717513,
-      "travelStageImproved": true,
-      "planningVersion": "capacity-2026-10-v1"
-    },
-    "searchScope": {
-      "nearestCandidatesPerOrigin": 16,
-      "candidateCount": 1382,
-      "allocationEdges": 19713
-    },
-    "verifiedRoute": {
-      "from": "BALIKHİSAR",
-      "to": "ALTINOVA",
-      "minutes": 15.137649536132812,
-      "boardings": []
-    }
-  },
-  {
-    "mode": "transit",
-    "scenario": {
+    {
       "mode": "transit",
-      "threshold": 45,
-      "coverageTarget": 95.0,
-      "districtFloor": 80.0,
-      "trafficFactor": 1.0,
-      "demandMultiplier": 1.0,
-      "bedOccupancy": 80.0,
-      "visitsPerDoctor": 4000,
-      "costTolerance": 10.0
+      "hospitalLimit": null,
+      "status": "feasible",
+      "hospitalCount": 370,
+      "totalBeds": 30750,
+      "totalDoctors": 23795,
+      "coveragePercent": 94.99999999999987,
+      "minimumDistrictCoveragePercent": 80.0,
+      "meanMinutes": 19.960434411245583,
+      "annualEquivalentCostTRY": 198344450797.9216,
+      "annualOperatingCostTRY": 183987514611.08966,
+      "constructionCostTRY": 249999450215.55875,
+      "costStageGap": 0.033707332784572,
+      "travelStageGap": 0.7684492798767891
     },
-    "status": "feasible",
-    "hospitalCount": 439,
-    "metrics": {
-      "coveredPopulation": 5614804.0,
-      "coveragePercent": 95.0,
-      "reachablePopulation": 5614804.0,
-      "unreachableOrUnlocatedPopulation": 295516.0,
-      "meanPopulationDenominator": 5614804.0,
-      "meanMinutes": 6.728383452879686,
-      "p90Minutes": 22.352907180786133
+    {
+      "mode": "car",
+      "hospitalLimit": 91,
+      "status": "feasible",
+      "hospitalCount": 46,
+      "totalBeds": 18550,
+      "totalDoctors": 21613,
+      "coveragePercent": 94.99999999999994,
+      "minimumDistrictCoveragePercent": 80.0,
+      "meanMinutes": 17.32055703552328,
+      "annualEquivalentCostTRY": 143951404929.71988,
+      "annualOperatingCostTRY": 135512079841.15903,
+      "constructionCostTRY": 146955214181.81818,
+      "costStageGap": 0.018211854057931808,
+      "travelStageGap": 0.5979330033910223
     },
-    "capacity": {
-      "totalBeds": 33850,
-      "totalDoctors": 20310,
-      "constructionCostTRY": 290814400000,
-      "referenceCostTRY": 264558200000.0,
-      "budgetLimitTRY": 291014020000.0,
-      "referenceMeanMinutes": 12.727654105812364,
-      "travelImprovementPercent": 47.13571411555708,
-      "annualVisitsDemand": 47445297.04366386,
-      "annualVisitsServed": 45073032.19148067,
-      "annualAdmissionsDemand": 1072245.4471850423,
-      "annualBedDaysDemand": 5451817.453012415,
-      "annualBedDaysServed": 5179226.580361795,
-      "doctorUtilizationPercent": 55.48132963008452,
-      "bedUtilizationPercent": 52.39904676515849,
-      "costStageGap": 0.02845906874177389,
-      "costStageProvenOptimal": false,
-      "travelStageGap": 0.22457525388088756,
-      "travelStageImproved": true,
-      "planningVersion": "capacity-2026-10-v1"
-    },
-    "searchScope": {
-      "nearestCandidatesPerOrigin": 16,
-      "candidateCount": 1396,
-      "allocationEdges": 6139
-    },
-    "verifiedRoute": {
-      "from": "ATIFBEY",
-      "to": "BASINEVLERİ",
-      "minutes": 33.09148406982422,
-      "boardings": [
-        {
-          "route": "203-7",
-          "stop": "Dışkapı Metro İstasyonu",
-          "mode": "bus"
-        }
-      ]
+    {
+      "mode": "transit",
+      "hospitalLimit": 91,
+      "status": "infeasible",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 291.0,
+        "feasibleGeographicCount": 291,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 1085,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      }
     }
-  }
-]
+  ]
+}

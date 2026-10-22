@@ -7,8 +7,10 @@ export interface Scenario {
   trafficFactor: number;
   demandMultiplier: number;
   bedOccupancy: number;
-  visitsPerDoctor: number;
+  contactsPerDoctor: number;
   costTolerance: number;
+  hospitalLimit: number | null;
+  operatingCostMultiplier: number;
 }
 export interface Place {
   id: string;
@@ -34,7 +36,10 @@ export interface Candidate extends Place {
   assignedPopulation?: number;
   annualVisits?: number;
   annualBedDays?: number;
-  visitCapacity?: number;
+  contactCapacity?: number;
+  annualContacts?: number;
+  annualOperatingCostTRY?: number;
+  annualEquivalentCostTRY?: number;
   bedDayCapacity?: number;
   doctorUtilizationPercent?: number;
   bedUtilizationPercent?: number;
@@ -43,6 +48,29 @@ export interface Candidate extends Place {
 export interface HealthPlanning {
   version: string;
   referenceYear: number;
+  defaults: { contactsPerDoctor: number };
+  calibration: {
+    hospitalExamples: {
+      name: string;
+      beds: number;
+      physicians?: number;
+      grossAreaM2?: number;
+      outpatientVisits?: number;
+      admissions?: number;
+    }[];
+    contactsPerDoctorObserved: number;
+    universityContactsPerDoctorObserved: number;
+    scopeNote: string;
+  };
+  economics: {
+    priceBase: string;
+    horizonYears: number;
+    realDiscountRate: number;
+    annualDoctorCostTRY: number;
+    annualBedSupportCostTRY: number;
+    costPerContactTRY: number;
+    annualFixedSiteCostTRY: number;
+  };
   observed: {
     population: number;
     hospitalCount: number;
@@ -58,12 +86,12 @@ export interface HealthPlanning {
     admissionsPerResident: number;
     bedDaysPerResident: number;
     lengthOfStayDays: number;
+    contactsPerResident: number;
   };
   templates: {
     id: string;
     label: string;
     beds: number;
-    doctors: number;
     grossAreaM2: number;
     unitCostTRY: number;
     constructionCostTRY: number;
@@ -81,6 +109,12 @@ export interface CapacitySummary {
   totalBeds: number;
   totalDoctors: number;
   constructionCostTRY: number;
+  annualOperatingCostTRY: number;
+  annualEquivalentCostTRY: number;
+  lifecyclePresentCostTRY: number;
+  priceBase: string;
+  annualContactsDemand: number;
+  annualContactsServed: number;
   referenceCostTRY: number;
   budgetLimitTRY: number;
   referenceMeanMinutes: number;
@@ -161,7 +195,7 @@ export interface Assignment {
   }[];
 }
 export interface Result {
-  status: "optimal" | "feasible" | "infeasible" | "timeout";
+  status: "optimal" | "feasible" | "infeasible" | "timeout" | "inconclusive";
   reason?: string;
   hospitalCount?: number;
   costUnits?: number;
@@ -179,8 +213,13 @@ export interface Result {
   limitingDistricts?: { name: string; maximumPercent: number }[];
   secondaryOptimal?: boolean;
   capacity?: CapacitySummary;
+  geographicCertificate?: {
+    minimumCountLowerBound: number | null;
+    fullCandidateCount: number;
+    scope: string;
+  };
   searchScope?: {
-    nearestCandidatesPerOrigin: number;
+    nearestCandidatesPerFootprintClass: number;
     candidateCount: number;
     allocationEdges: number;
   };

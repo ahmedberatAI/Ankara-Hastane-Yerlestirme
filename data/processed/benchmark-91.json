@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-22",
+  "planningVersion": "independent-capacity-2026-10-v2",
+  "note": "91 kullanıcı karşılaştırma sınırıdır; resmî 2024 envanteri 85. EGO sonucu tarifesiz OSM ağ senaryosuna aittir.",
+  "cases": [
+    {
+      "scenario": {
+        "mode": "car",
+        "threshold": 30,
+        "coverageTarget": 95.0,
+        "districtFloor": 80.0,
+        "trafficFactor": 1.0,
+        "demandMultiplier": 1.0,
+        "bedOccupancy": 80.0,
+        "contactsPerDoctor": 2140,
+        "costTolerance": 10.0,
+        "hospitalLimit": 91,
+        "operatingCostMultiplier": 1.0
+      },
+      "status": "feasible",
+      "hospitalCount": 46,
+      "metrics": {
+        "coveredPopulation": 5614803.999999996,
+        "coveragePercent": 94.99999999999994,
+        "reachablePopulation": 5614803.999999996,
+        "unreachableOrUnlocatedPopulation": 295516.0000000037,
+        "meanPopulationDenominator": 5614803.999999996,
+        "meanMinutes": 17.32055703552328,
+        "p90Minutes": 24.378969192504883
+      },
+      "capacity": {
+        "totalBeds": 18550,
+        "totalDoctors": 21613,
+        "constructionCostTRY": 146955214181.8182,
+        "annualOperatingCostTRY": 135512079841.15901,
+        "annualEquivalentCostTRY": 143951404929.71988,
+        "lifecyclePresentCostTRY": 2506647074408.18,
+        "priceBase": "Aralık 2024 TL (yaklaşık sabit fiyat)",
+        "horizonYears": 25,
+        "realDiscountRate": 0.03,
+        "referenceCostTRY": 143951404929.71988,
+        "budgetLimitTRY": 158346545422.69186,
+        "referenceMeanMinutes": 18.288521124237054,
+        "travelImprovementPercent": 5.292741179771883,
+        "annualVisitsDemand": 47445297.04366386,
+        "annualVisitsServed": 45073032.19148064,
+        "annualContactsDemand": 48517542.4908489,
+        "annualContactsServed": 46091665.366306424,
+        "annualAdmissionsDemand": 1072245.4471850423,
+        "annualBedDaysDemand": 5451817.453012415,
+        "annualBedDaysServed": 5179226.580361791,
+        "doctorUtilizationPercent": 99.65373333699392,
+        "bedUtilizationPercent": 95.61766754720288,
+        "costStageGap": 0.018211854057931808,
+        "costStageProvenOptimal": false,
+        "travelStageGap": 0.5979330033910223,
+        "travelStageImproved": true,
+        "planningVersion": "independent-capacity-2026-10-v2"
+      },
+      "geographicCertificate": {
+        "status": "bounded",
+        "minimumCountLowerBound": 22.0,
+        "feasibleGeographicCount": 24,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 646,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 30,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      }
+    },
+    {
+      "scenario": {
+        "mode": "transit",
+        "threshold": 45,
+        "coverageTarget": 95.0,
+        "districtFloor": 80.0,
+        "trafficFactor": 1.0,
+        "demandMultiplier": 1.0,
+        "bedOccupancy": 80.0,
+        "contactsPerDoctor": 2140,
+        "costTolerance": 10.0,
+        "hospitalLimit": 91,
+        "operatingCostMultiplier": 1.0
+      },
+      "status": "infeasible",
+      "geographicCertificate": {
+        "status": "optimal",
+        "minimumCountLowerBound": 291.0,
+        "feasibleGeographicCount": 291,
+        "fullCandidateCount": 4701,
+        "undominatedCandidateCount": 1085,
+        "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+        "thresholdMinutes": 45,
+        "coverageTargetPercent": 95.0,
+        "districtFloorPercent": 80.0
+      }
+    }
+  ],
+  "sensitivity": {
+    "scenario": {
+      "mode": "car",
+      "threshold": 30,
+      "coverageTarget": 95.0,
+      "districtFloor": 80.0,
+      "trafficFactor": 1.0,
+      "demandMultiplier": 1.0,
+      "bedOccupancy": 80.0,
+      "contactsPerDoctor": 835,
+      "costTolerance": 10.0,
+      "hospitalLimit": 91,
+      "operatingCostMultiplier": 1.0
+    },
+    "summary": {
+      "mode": "car",
+      "hospitalLimit": 91,
+      "status": "feasible",
+      "hospitalCount": 50,
+      "totalBeds": 18650,
+      "totalDoctors": 55232,
+      "coveragePercent": 95.00000000000003,
+      "minimumDistrictCoveragePercent": 79.99999999999999,
+      "meanMinutes": 16.703614449921186,
+      "annualEquivalentCostTRY": 251771011584.51437,
+      "annualOperatingCostTRY": 238626174552.79794,
+      "constructionCostTRY": 228892988611.05902,
+      "costStageGap": 0.01141827937217228,
+      "travelStageGap": 0.5434854716096033
+    }
+  }
+}

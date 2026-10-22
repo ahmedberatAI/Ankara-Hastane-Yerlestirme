@@ -8,4 +8,4 @@
 
 Bu dosya uygulama koduna ayrıca bir lisans atamaz. Bağımlılıkların lisansları kendi paketlerinde geçerlidir.
 
-- **2026 yapı bedelleri:** Resmî Gazete 33157 tebliğinin TÜRMOB nüshası. Kaynak, sınıf ve fiyat yılı health-planning.json içinde; kapalı alan ve kadro şablonları proje varsayımıdır.
+- **2024 yapı bedelleri:** Resmî Gazete 32466 tebliğinin ÇŞİDB nüshası; hastaneler V-B. **Ankara Üniversitesi ve MLP 2024 raporları:** yalnız gözlenen kapasite/hizmet sayıları ve mali kalem transkripsiyonları kullanılır; PDF’lerin tamamı yeniden dağıtılmaz. Fiyat dönüşümü, alan, kadro ve işletme gider aktarımı varsayımları health-planning.json içinde ayrılır.

@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import AnkaraMap from "./Map";
 import HealthMethod from "./HealthMethod";
+import Benchmark from "./Benchmark";
 import type {
   Dataset,
   Scenario,
@@ -42,7 +43,9 @@ const initial: Scenario = {
   trafficFactor: 1,
   demandMultiplier: 1,
   bedOccupancy: 80,
-  visitsPerDoctor: 4000,
+  contactsPerDoctor: 2140,
+  hospitalLimit: null,
+  operatingCostMultiplier: 1,
   costTolerance: 10,
 };
 const number = (n: number) =>
@@ -186,7 +189,10 @@ export default function App() {
   const routeVersion = useRef(0);
   const solveVersion = useRef(0);
   const dirty =
-    !!result && JSON.stringify(result.scenario) !== JSON.stringify(scenario);
+    !!result &&
+    Object.entries(scenario).some(
+      ([key, value]) => result.scenario[key as keyof Scenario] !== value,
+    );
   const searchMatches = useMemo(
     () =>
       search.length > 1
@@ -375,7 +381,7 @@ export default function App() {
               <br /> daha yakın.
             </h1>
             <p>
-              Yeterli kapasiteyi doğru konumlara yerleştirin. Yapım maliyeti ve
+              Yeterli kapasiteyi doğru konumlara yerleştirin. Yapım, işletme ve
               yolculuğu birlikte değerlendirin.
             </p>
           </div>
@@ -505,6 +511,24 @@ export default function App() {
               </label>
             )}
           </div>
+          <label className="select-field site-limit">
+            Hastane sayısı sınırı
+            <select
+              aria-label="Hastane sayısı sınırı"
+              disabled={busy}
+              value={scenario.hospitalLimit ?? "auto"}
+              onChange={(e) =>
+                setScenario((s) => ({
+                  ...s,
+                  hospitalLimit:
+                    e.target.value === "auto" ? null : +e.target.value,
+                }))
+              }
+            >
+              <option value="auto">Maliyet ve erişime göre seç</option>
+              <option value="91">En fazla 91 hastane</option>
+            </select>
+          </label>
           <details className="capacity-settings">
             <summary>
               Kapasite ve bütçe varsayımları <SlidersHorizontal size={16} />
@@ -541,37 +565,63 @@ export default function App() {
                   setScenario((s) => ({ ...s, bedOccupancy: +e.target.value }))
                 }
               >
-                {[60, 70, 80, 85, 90].map((v) => (
+                {[59.5, 60, 70, 80, 85, 90].map((v) => (
                   <option key={v} value={v}>
-                    %{v}
+                    %{decimal(v, v === 59.5 ? 1 : 0)}
+                    {v === 59.5 ? " · Ankara 2024" : ""}
                   </option>
                 ))}
               </select>
             </label>
             <label className="select-field">
-              Yıllık başvuru / hekim
+              Yıllık temas / hekim
               <select
-                aria-label="Yıllık başvuru / hekim"
-                value={scenario.visitsPerDoctor}
+                aria-label="Yıllık temas / hekim"
+                value={scenario.contactsPerDoctor}
                 disabled={busy}
                 onChange={(e) =>
                   setScenario((s) => ({
                     ...s,
-                    visitsPerDoctor: +e.target.value,
+                    contactsPerDoctor: +e.target.value,
                   }))
                 }
               >
-                {[2000, 3000, 4000, 5000, 6000].map((v) => (
+                {[835, 1500, 2140, 3000, 4000, 6000].map((v) => (
                   <option key={v} value={v}>
-                    {number(v)} başvuru
+                    {number(v)} temas
+                    {v === 2140
+                      ? " · MLP proxy"
+                      : v === 835
+                        ? " · AÜ duyarlılığı"
+                        : ""}
                   </option>
                 ))}
               </select>
             </label>
             <label className="select-field">
-              Daha kısa yol için ek yapım bütçesi
+              İşletme maliyeti duyarlılığı
               <select
-                aria-label="Ek yapım bütçesi"
+                aria-label="İşletme maliyeti duyarlılığı"
+                value={scenario.operatingCostMultiplier}
+                disabled={busy}
+                onChange={(e) =>
+                  setScenario((s) => ({
+                    ...s,
+                    operatingCostMultiplier: +e.target.value,
+                  }))
+                }
+              >
+                {[0.5, 0.75, 1, 1.25, 1.5, 2].map((v) => (
+                  <option key={v} value={v}>
+                    Gider proxy tutarı × {decimal(v, 2)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="select-field">
+              Daha kısa yol için ek yıllık maliyet
+              <select
+                aria-label="Ek yıllık maliyet"
                 value={scenario.costTolerance}
                 disabled={busy}
                 onChange={(e) =>
@@ -580,7 +630,8 @@ export default function App() {
               >
                 {[0, 5, 10, 20, 30].map((v) => (
                   <option key={v} value={v}>
-                    En fazla %{v}
+                    En fazla %{decimal(v, v === 59.5 ? 1 : 0)}
+                    {v === 59.5 ? " · Ankara 2024" : ""}
                   </option>
                 ))}
               </select>
@@ -610,10 +661,10 @@ export default function App() {
             </button>
             <p className={dirty ? "dirty-note" : "small-note"}>
               {busy
-                ? "Yatak, hekim, yapım maliyeti ve ulaşım birlikte çözülüyor. Yaklaşık 1–2 dakika sürebilir."
+                ? "Bağımsız yatak ve hekim kapasitesi, işletme ve ulaşım çözülüyor. Birkaç dakika sürebilir."
                 : dirty
                   ? "Parametreler değişti. Harita son hesaplanan senaryoyu gösteriyor."
-                  : "50 / 150 / 300 yataklı tesisler · sıfırdan yerleşim"}
+                  : "50–4.050 yatak · hekim kadrosu ayrıca seçilir"}
             </p>
           </div>
           <button
@@ -766,16 +817,17 @@ export default function App() {
                 <span>PLANLANAN HEKİM</span>
                 <strong>{number(capacity.totalDoctors)}</strong>
                 <small>
-                  Başvuru kapasitesinin %
+                  Temas kapasitesinin %
                   {decimal(capacity.doctorUtilizationPercent)}’i
                 </small>
               </div>
               <div>
-                <span>YAPIM GÖSTERGESİ</span>
+                <span>YILLIK MALİYET GÖSTERGESİ</span>
                 <strong>
-                  {decimal(capacity.constructionCostTRY / 1e9)} <em>mr ₺</em>
+                  {decimal(capacity.annualEquivalentCostTRY / 1e9)}{" "}
+                  <em>mr ₺</em>
                 </strong>
-                <small>2026 birim bedeli · KDV hariç bina</small>
+                <small>Yıllıklaştırılmış bina + işletme · 2024 TL</small>
               </div>
               <button onClick={() => setModal("method")}>
                 <Info size={18} />
@@ -852,6 +904,18 @@ export default function App() {
               <AlertTriangle size={19} />
               <div>
                 <b>{result.reason}</b>
+                {result.geographicCertificate?.minimumCountLowerBound !=
+                  null && (
+                  <p>
+                    Kapasite sınırsızken gerekli coğrafi alt sınır:{" "}
+                    {Math.ceil(
+                      result.geographicCertificate.minimumCountLowerBound -
+                        1e-6,
+                    )}{" "}
+                    tesis. Kullanılan bütün adaylar ve süre içindeki bütün ağ
+                    bağlantılarıyla hesaplandı.
+                  </p>
+                )}
                 {result.maximumCoveragePercent !== undefined && (
                   <p>
                     Tüm adaylar açılsa bile ulaşılabilen üst sınır: %
@@ -1038,14 +1102,14 @@ export default function App() {
                 </p>
               </div>
               <div className="tradeoff-summary">
-                <b>Maliyet → daha kısa yol</b>
+                <b>Yıllık maliyet → daha kısa yol</b>
                 <p>
                   İlk çözüm: {decimal(capacity.referenceCostTRY / 1e9)} mr ₺ ·{" "}
                   {decimal(capacity.referenceMeanMinutes)} dk
                 </p>
                 <p>
-                  Son çözüm: {decimal(capacity.constructionCostTRY / 1e9)} mr ₺
-                  · {decimal(stats?.meanMinutes)} dk
+                  Son çözüm: {decimal(capacity.annualEquivalentCostTRY / 1e9)}{" "}
+                  mr ₺/yıl · {decimal(stats?.meanMinutes)} dk
                 </p>
                 <small>
                   Aynı toplam talep · bütçe tavanı{" "}
@@ -1063,12 +1127,21 @@ export default function App() {
                   gösterir; kesin minimum iddiası değildir.
                 </small>
                 <small>
-                  Yapım bedeli; arsa, cihaz, dış altyapı, personel ve işletme
-                  maliyetini içermez.
+                  Bina yatırımı {decimal(capacity.constructionCostTRY / 1e9)} mr
+                  ₺; işletme {decimal(capacity.annualOperatingCostTRY / 1e9)} mr
+                  ₺/yıl. Aralık 2024 TL; cihaz, arsa ve dış altyapı yatırımları
+                  hariç.
                 </small>
               </div>
             </section>
           )}
+          <Benchmark
+            busy={busy}
+            run={(s) => {
+              setScenario(s);
+              void solve(s);
+            }}
+          />
           {districtPanel && result?.districts && (
             <section className="district-results">
               <div className="results-intro">

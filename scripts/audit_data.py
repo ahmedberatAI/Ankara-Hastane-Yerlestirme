@@ -42,7 +42,7 @@ def run():
     assert sum(d['population'] for d in data['districts'])==data['metadata']['provincePopulation']
     report={'date':date.today().isoformat(),'roadFootprintViolations':invalid,'surfaceRailConflicts':rail_conflicts,'matrixDimensions':dimensions,
         'matchedPopulation':sum(d['population'] for d in data['demands']),'missingPopulation':data['metadata']['unlocatedPopulation'],
-        'candidateCount':len(data['candidates']),'scope':'Geographic access prototype, not a capacity or clinical model',
+        'candidateCount':len(data['candidates']),'scope':'All candidate footprint / road / rail exclusions and routing matrix dimensions; resource audit is separate',
         'sourceSha256':data['metadata']['sha256']}
     (OUT/'quality-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8', newline='\n')
     print(json.dumps(report,ensure_ascii=False))

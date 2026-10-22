@@ -177,8 +177,8 @@ function SiteMarkers({ sites }: { sites: Candidate[] }) {
                       eşdeğerinin yıllık talebi
                     </p>
                     <p>
-                      {number(Math.round(c.annualVisits || 0))} /{" "}
-                      {number(c.visitCapacity || 0)} başvuru
+                      {number(Math.round(c.annualContacts || 0))} /{" "}
+                      {number(c.contactCapacity || 0)} temas
                     </p>
                     <p>
                       {number(Math.round(c.annualBedDays || 0))} /{" "}

@@ -1,57 +1,63 @@
-# Kapasiteli yer seçimi ve ulaşım modeli
+# Bağımsız yatak/hekim seçimi ve ulaşım modeli · v0.3
 
-## Amaç
+## Veri ve hedef
 
-Sıfırdan 50, 150 veya 300 yataklı tesislerin konum ve büyüklükleri seçilir. Mevcut hastaneler kısıt değildir. Bir tesisin hem hekim başvuru kapasitesi hem yatak-gün kapasitesi karşılanmadan talep atanamaz. Eski kapasitesiz model `backend/optimizer.py` içinde tarihsel karşılaştırma ve ortak istatistik yardımcıları için korunur; `/api/solve` artık `backend/capacity.py` kullanır.
+2024 Ankara hizmet kullanımı / aynı yılın nüfusu, 2025 mahallelerine uygulanır. Temas = ikinci/üçüncü basamak başvurusu + yatış; yatak yükü ayrı olarak yatış günüdür. Mahallede ölçülmüş klinik ihtiyaç değildir; il dışı sevkler ve özel tıp merkezi başvuruları ayrıştırılamamıştır. [Kalibrasyon kaynakları](capacity-research.md).
 
-## Veri ile varsayımın ayrılması
+50/150/300/600/1.000/2.000/4.050 yatak seçenekleri vardır. Hekim sayısı yatak tipine sabitlenmez: bağımsız tam sayıdır. 2.140 temas/hekim/yıl, 7 milyon / 3.272 gözlenen özel grup oranından aktarılmış yaklaşık senaryodur; yıllık ortalama FTE veya klinik kapasite standardı değildir. 835 üniversite örneği ve gider çarpanı duyarlılık seçenekleridir. %80 yatak doluluğu planlama tavanıdır; Ankara gözlemi %59,5.
 
-Ayrıntılı köken, tablo/sayfa, SHA-256 ve varsayımlar: [health-planning.json](../data/processed/health-planning.json), [kapasite araştırması](capacity-research.md).
+## Değişkenler
 
-2024 Ankara toplamları: 47.073.855 ikinci/üçüncü basamak başvurusu; 1.063.851 yatış; 5.409.136 yatış günü. Aynı yılın 5.864.049 nüfusuna bölünerek oranlar türetilir. Bu oranlar 2025 nüfusuna ve kullanıcının talep çarpanına uygulanır. Birinci basamak ve diş başvuruları eklenmez. İkinci/üçüncü basamak toplamındaki özel tıp merkezleri ayrıştırılamadığından talep geniş kapsamlı bir vekil değişkendir. İl dışından gelen hastaların kökeni bilinmez; bütün kullanım il nüfusuna dağıtılır. Bu, gözlenmiş mahalle talebi veya karşılanmamış klinik ihtiyaç ölçümü değildir.
-
-26.798 hekim ve 24.909 yatak mevcut durum bağlamıdır; tüm hekimleri hastanelere atanabilir insan kaynağı kabul eden bir bütçe kısıtı kullanılmaz. Şablon kadroları 30/90/180 hekimdir. Hekim başına yıllık 4.000 başvuru ve %80 yatak doluluk tavanı değiştirilebilir varsayımlardır. Başvuru kapasitesi; ameliyat, servis, nöbet ve eğitim saatlerini ayrı ayrı kapsayan bir kadro standardı değildir.
-
-## Değişkenler ve kısıtlar
-
-`i`: mahalle, `j`: aday, `k`: tesis tipi; `p_i`: nüfus; `x_jk`: ikili tesis seçimi; `z_ij >= 0`: yıllık talebi o tesise atanan **kişi eşdeğeri** (tekil hasta değil). Mahalle talebi bölünebilir. `v`: kişi başına yıllık başvuru; `b`: kişi başına yatış günü, her ikisi de talep çarpanını içerir. `D_k`, `B_k`, `C_k`: hekim, yatak ve bina yapım bedeli; `R`: başvuru/hekim/yıl; `u`: doluluk tavanı; `t_ij`: ağ süresi.
+`x_jk ∈ {0,1}` yatak tipi; `d_j ∈ Z+` hekim kadrosu; `z_ij ≥ 0` bir mahalleden tesise atanan yıllık talebin kişi eşdeğeri. `B_k` yatak sayısı, `A_k = 4000 + 160 B_k` yatak tesisinin alanı; `a = 80` m²/hekim. `S_j = π r_j² × 9` izin azami kat alanı. `c`, `b` kişi başı temas ve yatış günü; `R` temas/hekim; `u` doluluk; `T` yolculuk eşiği.
 
 ```text
-sum_k x_jk <= 1                                    adayda en fazla bir tesis
-sum_k(x_ak + x_bk) <= 1                            yapı izleri çakışan aday çifti
-sum_j z_ij <= p_i                                  talebi iki kez sayma
-sum_i v * z_ij <= sum_k D_k * R * x_jk              hekim kapasitesi
-sum_i b * z_ij <= sum_k B_k * 365 * u * x_jk         yatak-gün kapasitesi
-sum_ij z_ij >= q * P                               il hedefi
-sum_{i in d,j} z_ij >= r * P_d                     her ilçe tabanı
-z_ij = 0  if t_ij > T or no path                   süre/ağ kısıtı
+sum_k x_jk <= 1                              bir adayda bir yatak tipi
+12 sum_k x_jk <= d_j                         açık tesiste asgari kadro varsayımı
+d_j <= sum_k floor((S_j-A_k)/a) x_jk          bağımsız kadro + toplam alan
+sum_i c z_ij <= R d_j                        hekim kaynağı
+sum_i b z_ij <= sum_k 365 u B_k x_jk          yatak kaynağı
+sum_j z_ij <= p_i                            talebi iki kez sayma
+sum_ij z_ij >= q P                           resmî il toplamına göre hedef
+sum_{i in district,j} z_ij >= r P_d           her ilçenin hedefi
+z_ij = 0 if t_ij > T or no route             ağ ve süre
+sum_jk x_jk <= 91                            yalnız 91 senaryosunda
+sum_k(x_ak+x_bk) <= 1                        çakışan iki iz
 ```
 
-Yatış sayısı ayrıca raporlanır: `atanan kişi eşdeğeri × yıllık yatış/nüfus`. Ortalama yatış süresi `5.409.136 / 1.063.851 = 5,084486...` gündür; yatış günü oranı bu süreyle **tekrar çarpılmaz**. Yatak doluluğu yıllık kapasiteyi tanımlar; pik gün, branş ve kuyruk garantisi değildir.
+Asgari kadronun alanı sığmayan tip kapatılır. Kapalı tesiste kadro sıfırdır. Yatış günü tekrar ortalama yatış süresiyle çarpılmaz. Branş, hemşire, pik saat, ameliyat/nöbet veya acil kapasitesi ayrıca modellenmez. 26.798 mevcut hekim tüm sektörler toplamıdır, atanabilir hastane kadrosu bütçesi değildir.
 
-## Maliyet ve yolculuk süresi
+## Maliyet
 
-1. `min sum_jk C_k x_jk`: kapasite, süre, il ve ilçe hedefleri altında düşük maliyetli çözüm.
-2. Bulunan geçerli çözümün bedeli `C_ref`, atanan talebi `Z_ref` olarak kaydedilir. `sum C_k x_jk <= (1+epsilon) C_ref` ve `sum z_ij = Z_ref` eklenir. `min sum t_ij z_ij` çözülür. Toplam talep sabit olduğundan bu, atanan talebin ortalama süresini azaltır. Hangi mahalleye ne kadar pay ayrıldığı iki aşamada değişebilir; ilçe tabanları korunur.
+Bütün bileşenler yaklaşık Aralık 2024 TL. 2024 V-B hastane bedeli 22.250 TL/m²; Ocak düzeyi varsayılıp `(1+0.4438)/(1+0.067)` genel TÜFE katsayısıyla yaklaşık Aralık düzeyine taşınır. Bu inşaat fiyat endeksi değil, ortak satın alma gücü proxy dönüşümüdür.
 
-Varsayılan epsilon %10, değiştirilebilir aralık %0–30. **Bütçe, kanıtlanmış minimuma değil bulunan maliyet çözümüne göredir.** Dakikayı keyfî parasal değere dönüştürmeyen epsilon-kısıt yaklaşımıdır. Sonucun tesis sayısı amaç fonksiyonu değildir; kapasite ve maliyet seçimlerinden çıkar.
+```text
+K = unit_cost × sum_j(sum_k A_k x_jk + 80 d_j)
+O = operating_multiplier × (fixed_site × sum_jk x_jk
+      + physician_cost × sum_j d_j + bed_support × sum_jk B_k x_jk
+      + materials_per_contact × sum_ij c z_ij)
+CRF = 0.03 / (1 - (1.03)^(-25))
+EAC = K × CRF + O
+PV = K + O / CRF
+```
 
-Şablonlarda alan `4.000 + 160 × yatak` m² varsayılır. 2026 tebliğinde IV-C: 40.500 TL/m² (200 yatak altı), V-B: 43.850 TL/m² (200–399 yatak). Bedeller 486 milyon, 1,134 milyar ve 2,2802 milyar TL'dir. **Bina yapım göstergesi**; KDV, arsa, çevre/dış altyapı, tıbbi cihaz, personel ve işletme giderleri hariçtir. Yaşam döngüsü maliyeti veya ihale keşfi değildir. Eşit birim maliyet yaklaşımı kaldırılmıştır.
+İlk aşama EAC’yi azaltır. İkinci aşama `EAC ≤ EAC_ref × (1+epsilon)` ve **aynı toplam atanmış talep** altında `sum t_ij z_ij` azaltır. Varsayılan epsilon %10’dur. 25 yıl, %3 reel iskonto, sabit yıllık reel işletme ve sıfır hurda varsayılır. Amortisman ve finansman tekrar gider olarak eklenmez. Arsa, tıbbi cihaz yatırımı/yenilemesi, dış altyapı ve KDV/kurumlar vergisi eksiktir; toplam yaşam döngüsü bütçesi olduğu iddia edilmez.
 
-## Çözüm kapsamı ve kalite
+İşletme kalemlerini sabit/yatak/hekim/temasa ayırma, MLP portföy ve konsolidasyon kapsamlarının farklı olması nedeniyle **yaklaşık aktarım varsayımıdır**. Sadece resmî/gözlenen veri etiketiyle sunulmaz.
 
-Her mahalle için eşik içindeki en yakın 16 aday tutulur. Kırsalda daha az bağlantı varsa hepsi kullanılır. Yalnız bu seyrek bağlantı havuzunda optimalite sınırı raporlanır; 1.397 adayın tüm olası bağlantıları için global optimum iddiası yoktur. Kapasite nedeniyle, eski küme-kapsama modelindeki alt-küme aday elemesi **kullanılmaz**: aynı yere erişen ek tesis ek kapasite sağlar.
+## Çözüm kapsamı ve 91 ispatı
 
-HiGHS 1.12, tek iş parçacığı, seed 7. LP gevşetmesi (en fazla 15 saniye), ilçe ve il hedeflerini kapasite/maliyet oranıyla tamamlayan başlangıç çözümü; maliyet MILP'si 35 saniye. Seyahat aşaması için sabit tesislerde LP ataması ve bütçeye sığan kapasite ekleme denemeleri en fazla 12 saniye; ardından tam seyrek aday havuzunda seyahat MILP'si 35 saniye. Yerel başlangıç denemeleri optimalite iddiası taşımaz. Her ekleme LP ile doğrulanır. MILP toleransı %1; `optimal` etiketi yalnız raporlanan açık sıfıra yakınsa ve ek bütçe sıfırsa kullanılır. Aksi halde `feasible` ve iki aşamanın açıklıkları ayrı raporlanır.
+Hızlı model her mahallede **her yapı-izi sınıfından en yakın 12** süre içi adayı tutar. Büyük seçenekler daha yakın küçük alanların arkasında kaybolmaz. Kapasiteli modelde coğrafi alt-küme elemesi yapılmaz. Alan, kapasite, çakışma, akış, il/ilçe, tam sayılık ve yıllık bütçe ham çözümde tekrar denetlenir.
 
-Başlangıç çözümü sıcak başlangıç olarak verilir. İkinci aşama daha iyi geçerli çözüm bulamazsa ilk çözüm korunur. Ham, yuvarlanmamış çözümde kapasite, akış, il/ilçe ve bütçe kısıtları yeniden hesaplanır; ihlalde sonuç yayımlanmaz. API girdi aralıkları doğrulanır. Yeni senaryolar tekrar hesaplanır, aynı süreçte sonuçlar LRU belleğinde saklanır.
+LP yuvarlama ve artan kapasite/gider sezgiseli geçerli başlangıç arar; her MILP aşaması 35 saniye ile sınırlıdır. İkinci aşamaya sabit konum/kadro akış LP’siyle de başlangıç verilir. Daha iyi çözüm yoksa ilk plan korunur. Maliyet ve süre optimalite açıklıkları ayrı raporlanır. Sayı minimumunu veya bütün Ankara’da global optimumu kanıtlamaz.
+
+91 senaryosu için ayrı model **4.701 adayın tamamı ve süre içindeki bütün kenarlar** üzerinde en az tesis sayısının alt sınırını bulur. Kapasite, maliyet ve çakışma kısıtları kaldırılır. Bu eş maliyetli gevşetmede tam alt-küme elemesi geçerlidir. Alt sınır >91 ise asıl modelde de 91 imkânsızdır; alt sınır ≤91 ise kapasite modeli ayrıca çözülmelidir. `inconclusive`, daraltılmış/süre sınırlı aramanın sonuçlandıramadığını belirtir; imkânsızlık değildir. [Deney kayıtları](validation.md).
 
 ## Göstergeler ve harita
 
 - **Karşılanan talep:** `sum z_ij / resmi P`. Homojen oranlar nedeniyle başvuru, yatış günü ve nüfus eşdeğeri payı aynıdır. En yakın hastanenin yakın olması tek başına kapsanma değildir.
 - **Ortalama süre:** `sum t_ij z_ij / sum z_ij`; yalnız atanan talep. Payda JSON'da bulunur.
 - **P90:** her atamanın süresi ve kişi eşdeğeri ağırlığı; atanmamış ve konumsuz nüfus sonsuz süreyle toplam paydada. Sonuç sonsuzsa `null`/`—`.
-- **Hekim yükü:** atanan başvuru / hekim başvuru kapasitesi. **Yatak kapasite yükü:** yatış günü / (yatak × 365 × doluluk tavanı). Yüzde 100 kapasite yükü, fiziksel doluluğun seçilen tavana ulaştığını anlatır. Fiziksel doluluk da JSON'da ayrı bulunur.
+- **Hekim yükü:** atanan temas / hekim temas kapasitesi. **Yatak kapasite yükü:** yatış günü / (yatak × 365 × doluluk tavanı). Yüzde 100 kapasite yükü, fiziksel doluluğun seçilen tavana ulaştığını anlatır. Fiziksel doluluk da JSON'da ayrı bulunur.
 - **Mahalle rengi:** tam atanmış yeşil; kısmi turuncu; hiç atanmamış gri. Atanmamış olması yalnız ağ eksikliği anlamına gelmez: kapasite, süre veya kısmi hedefin ekonomik seçimi olabilir.
 - **Güzergâh:** ilk olarak en çok payın atandığı tesis; bölünen payların diğer rotaları da seçilebilir. En yakın tesis ile kapasiteye uygun tesis aynı olmak zorunda değildir.
 - **Mevcut envanter karşılaştırması:** OSM tesislerinin kapasitesi doğrulanmadığı için yalnız coğrafi erişimdir; kapasiteye göre talep karşılama ile eşdeğer gösterge değildir.
@@ -70,7 +76,9 @@ Konumu bilinmeyen 20.516 kişi erişilmiş sayılmaz ve resmî paydada kalır. B
 
 Nüfusa göre sıralanan talep noktalarının farklı yol giriş düğümleri etrafında aday aranır. Yarıçaplar `80, 100, 125, 150, 180, 220, 270, 330, 400, 500, 650` metredir; her halkada 48 açı denenir. İlk uygun konum alınır. Aynı giriş düğümü tekrar kullanılmaz. Uygun aday bulunmaması, mahallenin talebini silmez.
 
-Örnek tesis izi, **45 m yarıçaplı bir dairedir** (yaklaşık 6.362 m² taban alanı). Bu, yola taşmama kontrolü için geometrik bir varsayımdır. 50/150/300 yataklı şablonlarda 12.000/28.000/52.000 m² kapalı alan ve 2/5/9 kat varsayımıyla kat alanı dairenin alanını aşmaz. Mühendislik/imar uygunluğu anlamına gelmez. Büyük parsellerde daha fazla aday ve farklı yapı izi duyarlılığı sonraki aşamadır.
+İlk 1.397 adet 45 m izine, aynı girişler çevresinde 80/120/210 m izler eklendi: toplam 4.701 aday. Büyük izlerin bağlantısı orijinalden kısa olamaz ve 650 m sınırını aşamaz. Her yarıçap için 48 açılı, 125–650 m uzaklıklı halkalarda ilk yol/ray dışı konum seçilir. Bir girişe birden fazla alternatif iz bağlanabilir; seçilen izler fiziksel olarak çakışamaz.
+
+Kapalı alan `4.000 + 160 × yatak + 80 × hekim` m² ve en fazla 9 kat birer tasarım varsayımıdır. İzin 9 kat alanı aşılmaz. Büyük hastane seçeneği küçük yapı izi üzerinde mümkün değilse değişken üst sınırı sıfırlanır. Gerçek Etlik kampüsünün taban planı veya imar uygunluğu modellenmez.
 
 Mevcut bina, mülkiyet, imar, yıkım maliyeti, eğim, tarım/orman/su alanı yerleşim engeli olarak kullanılmaz; istenen idealize edilmiş kapsam budur. İl sınırının dışında aday üretilmez. OSM karayollarının tahmini genişlik koridorları ve yüzey ray yollarının 5 m yarı genişlik koridorları dışlanır. Yeraltındaki ray hatları yüzeyde engel sayılmaz.
 

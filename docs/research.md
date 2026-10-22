@@ -55,7 +55,7 @@ GTFS elde edilince [OpenTripPlanner](https://www.opentripplanner.org/) ile hafta
 
 ## 5. Sağlık hizmeti, kapasite ve maliyet
 
-İl düzeyindeki 2024 yatak, hekim, başvuru ve yatış tabloları artık modele alındı. Kaynakların tam değeri, sayfaları, kapsam farkları ve varsayımlar [kapasite araştırmasında](capacity-research.md). 2026 tebliğinden bina yapım bedeli hesaplanıyor; hekim iş yükü, tesis alanı ve kadrosu varsayım olarak ayrı tutuluyor.
+İl düzeyindeki 2024 yatak, hekim, başvuru ve yatış tabloları artık modele alındı. Kaynakların tam değeri, sayfaları, kapsam farkları ve varsayımlar [kapasite araştırmasında](capacity-research.md). 2024 tebliği ve MLP işletme kalemleri ortak yaklaşık Aralık 2024 fiyat düzeyinde kullanılıyor; gerçek hastane örnekleriyle büyük ölçek seçenekleri, bağımsız kadro ve gider duyarlılığı eklendi. Kamu hastanesine aktarılan proxy tutarları varsayım olarak ayrı tutuluyor.
 
 OSM'deki 124 hastane kaydı resmî envanter değildir. Sağlık Bakanlığı yıllığı 2024 için 85 tesis verir; tarih/kapsam eşitlenmeden sayı karşılaştırılmaz. OSM katmanı yalnız kapasitesiz coğrafi erişim karşılaştırmasıdır.
 

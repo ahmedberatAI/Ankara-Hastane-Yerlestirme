@@ -15,10 +15,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from backend.optimizer import metrics
 from backend.capacity import solve_capacity
+from backend.feasibility import geographic_bound
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.2.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.3.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -59,6 +60,7 @@ def transit_details():
         return json.load(f)
 
 class Scenario(BaseModel):
+    model_config = {'extra': 'forbid'}
     mode: Literal['car', 'transit'] = 'car'
     threshold: int = Field(default=30, ge=10, le=120)
     coverageTarget: float = Field(default=95, ge=50, le=100)
@@ -66,8 +68,10 @@ class Scenario(BaseModel):
     trafficFactor: float = Field(default=1, ge=1, le=2.5)
     demandMultiplier: float = Field(default=1, ge=.5, le=2)
     bedOccupancy: float = Field(default=80, ge=50, le=90)
-    visitsPerDoctor: int = Field(default=4000, ge=2000, le=6000)
+    contactsPerDoctor: int = Field(default=2140, ge=500, le=10000)
     costTolerance: float = Field(default=10, ge=0, le=30)
+    hospitalLimit: int | None = Field(default=None, ge=1, le=1000)
+    operatingCostMultiplier: float = Field(default=1, ge=.5, le=2)
 
 def travel_times(s):
     times = matrix(s.mode).astype(float)
@@ -89,6 +93,19 @@ def get_data():
     return {**data, 'healthPlanning': health_planning(),
             'sources': json.loads((ROOT / 'docs/sources.json').read_text(encoding='utf-8'))}
 
+@app.get('/api/benchmark-91')
+def benchmark_91():
+    path = DATA / 'benchmark-91.json'
+    if not path.exists(): raise HTTPException(404, '91 tesis deneyi henüz kaydedilmedi.')
+    return FileResponse(path, media_type='application/json')
+
+@lru_cache(maxsize=24)
+def count_bound(mode,threshold,coverage,district_floor,traffic):
+    data=dataset()
+    return geographic_bound(travel_times(Scenario(mode=mode,threshold=threshold,trafficFactor=traffic))[:,:len(data['candidates'])],
+        np.array([d['population'] for d in data['demands']]),np.array([d['districtId'] for d in data['demands']]),
+        data['districts'],data['metadata']['provincePopulation'],threshold,coverage/100,district_floor/100)
+
 @app.get('/api/layers/{name}')
 def get_layer(name: Literal['districts', 'province', 'roads', 'transit-lines']):
     return FileResponse(DATA / f'{name}.geojson', media_type='application/geo+json')
@@ -105,10 +122,21 @@ def cached_solve(serialized):
     n_candidates = len(data['candidates'])
     populations = np.array([d['population'] for d in data['demands']])
     district_ids = np.array([d['districtId'] for d in data['demands']])
-    result = solve_capacity(times[:, :n_candidates], populations, district_ids, data['districts'],
+    certificate = None
+    if s.hospitalLimit is not None:
+        certificate = count_bound(s.mode,s.threshold,s.coverageTarget,s.districtFloor,s.trafficFactor)
+    if certificate and (certificate['status']=='infeasible' or
+                       certificate['minimumCountLowerBound'] is not None and certificate['minimumCountLowerBound']>s.hospitalLimit+1e-6):
+        result={'status':'infeasible','reason':f'{s.hospitalLimit} tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor.',
+                'geographicCertificate':certificate,'infeasibilityScope':'all_candidates_geography'}
+    else:
+        result = solve_capacity(times[:, :n_candidates], populations, district_ids, data['districts'],
                          data['metadata']['provincePopulation'], health_planning(), s.threshold,
                          s.coverageTarget/100, s.districtFloor/100, s.demandMultiplier,
-                         s.bedOccupancy/100, s.visitsPerDoctor, s.costTolerance/100, conflicts=site_conflicts())
+                         s.bedOccupancy/100, s.contactsPerDoctor, s.costTolerance/100, conflicts=site_conflicts(),
+                         plot_radii=[c['footprintRadiusMeters'] for c in data['candidates']],
+                         hospital_limit=s.hospitalLimit,operating_cost_multiplier=s.operatingCostMultiplier)
+        if certificate: result['geographicCertificate']=certificate
     result['scenario'] = s.model_dump()
     result['metadata'] = data['metadata']
     result['modelLabel'] = 'Tarifesiz toplu taşıma ağ senaryosu' if s.mode == 'transit' else 'OSM yol ağı · tahmini sürüş süresi'
