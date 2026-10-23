@@ -2,7 +2,17 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
-## Dört profilde ortak konum seçimi: yeni doğrulanmış örnek
+## 23 Ekim 05.35 TSİ: ortak maliyet aramasında 209 konum
+
+Yeni arama önceki 239 konum havuzunda yatak ve hekimleri yeniden seçti: **209 konum / 26.400 yatak / 23.035 hekim**. Dört profilde il %95, her ilçe en az %80 ve 45 dakika hedefleri korundu. Yıllık eşdeğer maliyet **175,868263289 milyar TL**; 239 planına göre **%7,035719** düşük, değişmeyen önceki model tavanının **%7,221406** altında. Yıllık malzeme gideri bir kez sayıldı. İki bağımsız hakem kaynakları, tam atamaları, maliyetleri ve bütün özgün model koşullarını doğruladı.
+
+Maliyet alt sınırı 173,211849311 milyar TL ve son planla %1,510457 açıklık **yalnız başlangıçtaki 239 konum havuzuna** aittir; tüm Ankara adaylarına veya minimum hastane sayısına genellenmez. Arama 300,328 saniyede zaman sınırında durdu. Ortalama süreler **31,69 / 32,37 / 32,43 / 32,82 dakika**; önceki plana göre üç profil biraz uzadı. Henüz süre iyileştirmesi kabulü yok. Aynı kişilere ilişkin koşullu ortak bölüm %92,677795–%92,780537; kimlik gözlemi veya %95 ortak kişi garantisi değildir.
+
+Hacettepe'nin resmî mali bölümündeki yıllık gider/devreden borç ve bütçe transferi ayrımı ayrıca doğrulandı; tam kamu işletme gideri katsayısı türetilmedi. [Kaynak kapsamı](hacettepe-finance-check.md). Ulaşım girdileri, sağlık katsayıları ve 91 deneyleri değişmedi. Bu ilerleme mevcut model içindeki maliyet aramasındadır; gerçek EGO ve klinik kalibrasyon açıkları sürüyor.
+
+Güncellenen sertifika salt okunur denetimden geçti; 47 çıktı manifestosu eşleşti. Arayüz regresyonu ve üretim derlemesi geçti. Tarayıcıda 209 konum / 26.400 yatak / 23.035 hekim, %7,22 tavan farkı ve dört profil görüldü. [Güncel hesap ekranı](screenshots/ortak-plan-209.png). Önceki kodun 623 testlik kabulü korunur; bu adımda çözücü kodu değiştirilmedi.
+
+## Önceki ortak konum kontrol noktası: 239 konum
 
 Konum, yatak ve hekim kaynaklarını birlikte seçen araştırma **239 konum / 31.550 yatak / 23.242 hekim** içeren bir ortak plan buldu. Dört başlangıç profilinin her birinde il %95, bütün ilçelerde en az %80 ve bütün pozitif atamalarda 45 dakika sınırı korundu. Yıllık eşdeğer maliyet **189,178318200 milyar TL**, önceki değişmeyen model tavanının **378,621009 milyon TL / %0,199740** altında. Bu yalnız mevcut modelde eski tavanı karşılayan en az bir ortak plan bulunduğunu gösterir; gerçek kamu bütçesi, minimum hastane sayısı veya 91 hastanenin yeterliliği kanıtı değildir.
 

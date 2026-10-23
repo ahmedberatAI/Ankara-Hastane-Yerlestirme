@@ -80,7 +80,7 @@ Yeni arayüz ilk maliyet planı ile son planı ayrı gösterir. Ayrıca kayıtl�
 
 Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısını dört profil için birlikte yeniden seçer. Ayrıca bütçeyi kaldırıp alanların izin verdiği en yüksek kapasiteyi hesaplar. Böylece yalnız kaynak satın almanın yeterli olup olmadığı ayrı sınanır; yeni hastane yerleşimiyle karıştırılmaz. [Dar sefer kanıtları ve kalan veri açıklıkları](docs/service-evidence.md).
 
-**Konumlar da dört profil için birlikte seçildiğinde**, doğrulanmış yeni örnek 239 konum / 31.550 yatak / 23.242 hekimle aynı %95/%80/45 dakika hedeflerini sağlıyor. Yıllık eşdeğer maliyet 189,178 milyar TL; önceki model tavanının yalnız %0,20 altında. Yıllık talep bir kez sayılıyor. Bu, mevcut modelde uygun bir ortak plan bulunduğunu gösterir; minimum sayı, aynı kişilerin dört profilde %95 kapsamı veya gerçek EGO yeterliliği değildir. Arayüzde ayrı haritası ve bağımsız yeniden hesaplanan kanıtı bulunur. [Ortak yerleşim: hesap ve sınırlar](docs/joint-plan.md).
+**Konumlar da dört profil için birlikte seçildiğinde**, doğrulanmış yeni örnek 209 konum / 26.400 yatak / 23.035 hekimle aynı %95/%80/45 dakika hedeflerini sağlıyor. Yıllık eşdeğer maliyet 175,868 milyar TL; önceki model tavanının %7,22 altında. Yıllık talep bir kez sayılıyor. Bu, mevcut modelde uygun bir ortak plan bulunduğunu gösterir; minimum sayı, aynı kişilerin dört profilde %95 kapsamı veya gerçek EGO yeterliliği değildir. Arayüzde ayrı haritası ve bağımsız yeniden hesaplanan kanıtı bulunur. [Ortak yerleşim: hesap ve sınırlar](docs/joint-plan.md).
 
 ## Araştırma ve teknik belgeler
 

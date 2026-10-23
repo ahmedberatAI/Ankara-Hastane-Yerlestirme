@@ -95,7 +95,7 @@ export function JointPlanContent({ report, packageId, planningVersion, map, curr
     <p className="joint-budget">{state === "within"
       ? <>Önceki tek profil hesabının <b>{fmt(report.originalTransitBudgetTRY / 1e9, 3)} mr ₺/yıl</b> tavanının
           {" "}<b>%{fmt(report.budgetSlackTRY / report.originalTransitBudgetTRY * 100, 2)}</b> altında.
-          Pay küçük; bu tavan gerçek bir kamu bütçesi değil, model karşılaştırmasıdır.</>
+          Bu tavan gerçek bir kamu bütçesi değil, model karşılaştırmasıdır.</>
       : <>Hedefleri sağlayan bu plan önceki <b>{fmt(report.originalTransitBudgetTRY / 1e9, 3)} mr ₺/yıl</b> maliyet tavanını aşıyor.
           Tavanın altında başka bir çözüm bulunamayacağı sonucu çıkarılamaz.</>}
     </p>

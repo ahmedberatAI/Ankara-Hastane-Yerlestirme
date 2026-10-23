@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-23T02:15:05.600940+00:00",
+  "createdAt": "2026-10-23T02:33:45.675029+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -177,13 +177,13 @@
     },
     {
       "file": "data/processed/joint-plan-summary.json",
-      "bytes": 110347,
-      "sha256": "414bf060d017e248e928a2c1e9059e75459dd20d2edda9e550dad323e40e5890"
+      "bytes": 101718,
+      "sha256": "068abab31966c4f911e8b01d5063356b347db80425186fbdeaf1c5c8849fbf5c"
     },
     {
       "file": "data/processed/joint-plan.json",
-      "bytes": 606835,
-      "sha256": "ef6102aa6a5e45e64fb9da1c0d420a21f88da10a4bb15350130927cfa139ac0f"
+      "bytes": 582459,
+      "sha256": "ac9c4e1031aa15d3ad1bc1b2d6b78b6094fa16ddb1ca035ee09bb31ae7bf9a93"
     },
     {
       "file": "data/processed/neighborhood-population-2025.csv",

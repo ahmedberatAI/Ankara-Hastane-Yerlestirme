@@ -29,6 +29,8 @@ MLP konsolide 2024 dipnot 19 ve 20 (basılı s.118–119 / PDF 119–120) **bin 
 
 Ankara Üniversitesi raporundaki 6.282.744.302,45 TL hastane döner sermaye gideri (PDF 291) bütün merkezi bütçe ücretlerini kapsamayabildiğinden **toplam işletme gideri olarak kullanılmadı**. Raporlar arası eksik kapsam sessizce tamamlanmadı.
 
+Ek [Hacettepe 2024 mali bölüm kontrolü](hacettepe-finance-check.md), yıllık gider ile devreden borcun ve bütçeler arası transferlerin ayrılması gerektiğini doğruladı. Bu kaynak da doğrudan tam işletme maliyeti katsayısına dönüştürülmedi.
+
 ## Kaynak ve tasarım varsayımları
 
 - Temas = başvuru + yatış. MLP’nin ayakta/yatan toplam ziyaretiyle kapsam uyumu için ikisi toplanır. Bunlar tekil hasta sayısı değildir. Bir yatış ile bir muayenenin süreleri eşit değildir; kaynakta gözlenen ortalama hizmet karışımı aktarılır, aktivite süreleri ölçülmez.

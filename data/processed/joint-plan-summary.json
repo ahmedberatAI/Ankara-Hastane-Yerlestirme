@@ -19,9 +19,9 @@
     "operatingCostMultiplier": 1.0,
     "transitProfile": "weekday-1000"
   },
-  "hospitalCount": 239,
-  "beds": 31550,
-  "doctors": 23242,
+  "hospitalCount": 209,
+  "beds": 26400,
+  "doctors": 23035,
   "selected": [
     {
       "candidateIndex": 8,
@@ -38,12 +38,12 @@
     {
       "candidateIndex": 34,
       "id": "H-139852",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 53,
-      "grossAreaM2": 16240.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 13816.62095779969,
+      "maximumAssignedPopulationAcrossProfiles": 47483.6177533713,
       "lon": 32.88679171293634,
       "lat": 40.031799446788405
     },
@@ -55,55 +55,31 @@
       "doctors": 73,
       "grossAreaM2": 33840.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 19030.440187158063,
+      "maximumAssignedPopulationAcrossProfiles": 19030.44018715806,
       "lon": 32.566030532204636,
       "lat": 40.027782841492574
     },
     {
-      "candidateIndex": 116,
-      "id": "H-1895",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 148,
-      "grossAreaM2": 39840.0,
-      "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 38582.26229725197,
-      "lon": 32.7870497107042,
-      "lat": 39.97097004597443
-    },
-    {
       "candidateIndex": 117,
       "id": "H-1562",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 48,
-      "grossAreaM2": 15840.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 12513.166150460098,
+      "maximumAssignedPopulationAcrossProfiles": 47483.61775337125,
       "lon": 32.79959187394444,
       "lat": 39.89447804678565
-    },
-    {
-      "candidateIndex": 152,
-      "id": "H-1903",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 52,
-      "grossAreaM2": 16160.0,
-      "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 13355.0,
-      "lon": 32.65480936448595,
-      "lat": 39.81790048803083
     },
     {
       "candidateIndex": 174,
       "id": "H-1909",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 40,
-      "grossAreaM2": 15200.0,
+      "doctors": 61,
+      "grossAreaM2": 16880.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 10427.638458716749,
+      "maximumAssignedPopulationAcrossProfiles": 15827.872584457113,
       "lon": 32.766997017247036,
       "lat": 40.04460947086253
     },
@@ -112,10 +88,10 @@
       "id": "H-1907",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 42,
-      "grossAreaM2": 15360.0,
+      "doctors": 41,
+      "grossAreaM2": 15280.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 10949.020381652586,
+      "maximumAssignedPopulationAcrossProfiles": 10688.329420184667,
       "lon": 32.65700564549725,
       "lat": 40.02108229324452
     },
@@ -136,10 +112,10 @@
       "id": "H-178823",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 32,
-      "grossAreaM2": 14560.0,
+      "doctors": 31,
+      "grossAreaM2": 14480.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 8115.0,
+      "maximumAssignedPopulationAcrossProfiles": 8081.419805505561,
       "lon": 31.672397840911714,
       "lat": 40.09865110952452
     },
@@ -148,10 +124,10 @@
       "id": "H-1918",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 106,
-      "grossAreaM2": 36480.0,
+      "doctors": 147,
+      "grossAreaM2": 39760.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 27633.241915599385,
+      "maximumAssignedPopulationAcrossProfiles": 38321.57133578405,
       "lon": 33.086760096962415,
       "lat": 40.13690614269047
     },
@@ -160,22 +136,22 @@
       "id": "H-2071",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 92,
-      "grossAreaM2": 35360.0,
+      "doctors": 94,
+      "grossAreaM2": 35520.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 23983.568455048517,
+      "maximumAssignedPopulationAcrossProfiles": 24354.903119592527,
       "lon": 33.235184209385366,
       "lat": 39.91787967160692
     },
     {
       "candidateIndex": 324,
       "id": "H-2002",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 34,
-      "grossAreaM2": 14720.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 151,
+      "grossAreaM2": 40080.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 8863.492689909237,
+      "maximumAssignedPopulationAcrossProfiles": 39148.000000000065,
       "lon": 31.915389501305032,
       "lat": 40.16001904188566
     },
@@ -184,10 +160,10 @@
       "id": "H-2257",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
+      "doctors": 46,
+      "grossAreaM2": 15680.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.291537615025,
+      "maximumAssignedPopulationAcrossProfiles": 11991.784227524262,
       "lon": 33.550225840025256,
       "lat": 38.928857225774074
     },
@@ -196,10 +172,10 @@
       "id": "H-2211",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
+      "doctors": 40,
+      "grossAreaM2": 15200.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.291537615024,
+      "maximumAssignedPopulationAcrossProfiles": 10300.0,
       "lon": 31.340865207075034,
       "lat": 40.19329885779272
     },
@@ -211,7 +187,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 1683.0,
+      "maximumAssignedPopulationAcrossProfiles": 1682.9999999999998,
       "lon": 32.68157176450383,
       "lat": 39.275190239881326
     },
@@ -235,7 +211,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 2806.0,
+      "maximumAssignedPopulationAcrossProfiles": 2806.0000000000055,
       "lon": 32.305888626718705,
       "lat": 40.03086596550234
     },
@@ -271,7 +247,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 2651.0,
+      "maximumAssignedPopulationAcrossProfiles": 2651.000000000004,
       "lon": 32.328128611144294,
       "lat": 40.01644587384542
     },
@@ -283,7 +259,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 819.0,
+      "maximumAssignedPopulationAcrossProfiles": 818.9999999999991,
       "lon": 32.89689744815127,
       "lat": 39.68860113112324
     },
@@ -307,7 +283,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 815.0,
+      "maximumAssignedPopulationAcrossProfiles": 815.0000000000001,
       "lon": 33.02650892719125,
       "lat": 39.54626258628209
     },
@@ -319,7 +295,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 726.0,
+      "maximumAssignedPopulationAcrossProfiles": 725.9999999999991,
       "lon": 32.57949560836791,
       "lat": 39.18904571827795
     },
@@ -343,7 +319,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 1055.0,
+      "maximumAssignedPopulationAcrossProfiles": 1054.9999999999995,
       "lon": 33.40580467589945,
       "lat": 39.39605769746162
     },
@@ -379,7 +355,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 581.0,
+      "maximumAssignedPopulationAcrossProfiles": 580.9999999999995,
       "lon": 33.50677032732329,
       "lat": 38.98368699237127
     },
@@ -403,7 +379,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 558.0,
+      "maximumAssignedPopulationAcrossProfiles": 557.9999999999998,
       "lon": 32.26032867942273,
       "lat": 40.06189359247209
     },
@@ -415,7 +391,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 526.0,
+      "maximumAssignedPopulationAcrossProfiles": 525.9999999999998,
       "lon": 32.24848286108555,
       "lat": 40.48851036111654
     },
@@ -427,7 +403,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 523.0,
+      "maximumAssignedPopulationAcrossProfiles": 522.9999999999997,
       "lon": 32.68861465651273,
       "lat": 39.169628702432036
     },
@@ -439,7 +415,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 521.0,
+      "maximumAssignedPopulationAcrossProfiles": 521.0000000000003,
       "lon": 32.51711886609263,
       "lat": 39.27558043040554
     },
@@ -451,7 +427,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 497.0,
+      "maximumAssignedPopulationAcrossProfiles": 496.9999999999999,
       "lon": 33.215269215619706,
       "lat": 39.4595664902754
     },
@@ -463,7 +439,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 497.0,
+      "maximumAssignedPopulationAcrossProfiles": 496.9999999999999,
       "lon": 32.69290149745847,
       "lat": 39.43610469760211
     },
@@ -499,7 +475,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 465.0,
+      "maximumAssignedPopulationAcrossProfiles": 464.9999999999999,
       "lon": 32.70715568417637,
       "lat": 39.37388972926403
     },
@@ -559,7 +535,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 452.0,
+      "maximumAssignedPopulationAcrossProfiles": 451.99999999999994,
       "lon": 32.21475697197139,
       "lat": 40.1283958095166
     },
@@ -583,7 +559,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 449.0,
+      "maximumAssignedPopulationAcrossProfiles": 448.99999999999983,
       "lon": 33.473822625749875,
       "lat": 40.023791029515564
     },
@@ -619,7 +595,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 421.0,
+      "maximumAssignedPopulationAcrossProfiles": 420.9999999999994,
       "lon": 33.70099217072796,
       "lat": 38.765286009636355
     },
@@ -631,7 +607,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 418.0,
+      "maximumAssignedPopulationAcrossProfiles": 417.99999999999926,
       "lon": 32.36786624099273,
       "lat": 39.918481006701136
     },
@@ -691,7 +667,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 392.0,
+      "maximumAssignedPopulationAcrossProfiles": 391.99999999999943,
       "lon": 32.23239181480299,
       "lat": 40.247764779098745
     },
@@ -703,7 +679,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 388.0,
+      "maximumAssignedPopulationAcrossProfiles": 387.9999999999999,
       "lon": 33.15549181192627,
       "lat": 39.646143355591484
     },
@@ -727,7 +703,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 382.0,
+      "maximumAssignedPopulationAcrossProfiles": 958.0,
       "lon": 33.422567611765956,
       "lat": 39.313914987975615
     },
@@ -751,7 +727,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 363.0,
+      "maximumAssignedPopulationAcrossProfiles": 362.99999999999955,
       "lon": 31.468410860717917,
       "lat": 40.17574105301874
     },
@@ -787,7 +763,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 356.0,
+      "maximumAssignedPopulationAcrossProfiles": 355.9999999999999,
       "lon": 33.26106259229352,
       "lat": 39.19896565070479
     },
@@ -811,7 +787,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 322.0,
+      "maximumAssignedPopulationAcrossProfiles": 321.9999999999992,
       "lon": 32.92408535487726,
       "lat": 39.34284017965136
     },
@@ -823,7 +799,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 318.0,
+      "maximumAssignedPopulationAcrossProfiles": 317.9999999999996,
       "lon": 33.20695018080713,
       "lat": 39.31498303968127
     },
@@ -847,7 +823,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 315.0,
+      "maximumAssignedPopulationAcrossProfiles": 314.9999999999995,
       "lon": 32.47592413880752,
       "lat": 40.44574486491096
     },
@@ -883,7 +859,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 308.0,
+      "maximumAssignedPopulationAcrossProfiles": 307.99999999999983,
       "lon": 33.46831898057245,
       "lat": 40.259188237657284
     },
@@ -895,7 +871,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 296.0,
+      "maximumAssignedPopulationAcrossProfiles": 295.9999999999994,
       "lon": 32.569898236011824,
       "lat": 39.51652741869585
     },
@@ -907,7 +883,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 295.0,
+      "maximumAssignedPopulationAcrossProfiles": 294.99999999999994,
       "lon": 33.20300490931568,
       "lat": 39.69256492735707
     },
@@ -919,7 +895,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 295.0,
+      "maximumAssignedPopulationAcrossProfiles": 294.99999999999994,
       "lon": 32.5320699888808,
       "lat": 39.17220176818893
     },
@@ -955,7 +931,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 286.0,
+      "maximumAssignedPopulationAcrossProfiles": 285.9999999999996,
       "lon": 32.509662415133576,
       "lat": 39.22241927614283
     },
@@ -979,7 +955,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 263.0,
+      "maximumAssignedPopulationAcrossProfiles": 262.9999999999999,
       "lon": 32.24751210346527,
       "lat": 40.467502688211454
     },
@@ -991,7 +967,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 260.0,
+      "maximumAssignedPopulationAcrossProfiles": 259.9999999999998,
       "lon": 32.28820506011602,
       "lat": 40.171423034647496
     },
@@ -1003,7 +979,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 257.0,
+      "maximumAssignedPopulationAcrossProfiles": 256.99999999999966,
       "lon": 32.580286255402555,
       "lat": 39.375296635465425
     },
@@ -1027,7 +1003,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 255.0,
+      "maximumAssignedPopulationAcrossProfiles": 254.9999999999999,
       "lon": 31.352084170038502,
       "lat": 40.26025290109618
     },
@@ -1039,7 +1015,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 818.0,
+      "maximumAssignedPopulationAcrossProfiles": 817.9999999999997,
       "lon": 32.402654926907246,
       "lat": 40.43858919823673
     },
@@ -1051,7 +1027,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 248.0,
+      "maximumAssignedPopulationAcrossProfiles": 247.99999999999932,
       "lon": 32.35310153187042,
       "lat": 40.48049881550313
     },
@@ -1099,7 +1075,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 450.0,
+      "maximumAssignedPopulationAcrossProfiles": 449.9999999999993,
       "lon": 30.97578631850979,
       "lat": 40.07162607956664
     },
@@ -1159,7 +1135,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 229.0,
+      "maximumAssignedPopulationAcrossProfiles": 228.9999999999992,
       "lon": 32.7467074048923,
       "lat": 40.329202240540326
     },
@@ -1171,7 +1147,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 225.0,
+      "maximumAssignedPopulationAcrossProfiles": 224.99999999999966,
       "lon": 33.33878470557127,
       "lat": 40.19735695317926
     },
@@ -1219,7 +1195,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 222.0,
+      "maximumAssignedPopulationAcrossProfiles": 221.99999999999955,
       "lon": 32.44299929519844,
       "lat": 40.45053034956923
     },
@@ -1231,7 +1207,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 222.0,
+      "maximumAssignedPopulationAcrossProfiles": 221.99999999999955,
       "lon": 32.73297764596086,
       "lat": 40.55866548785695
     },
@@ -1243,7 +1219,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 218.0,
+      "maximumAssignedPopulationAcrossProfiles": 217.99999999999997,
       "lon": 32.322573144969674,
       "lat": 40.47260805009606
     },
@@ -1255,7 +1231,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 218.0,
+      "maximumAssignedPopulationAcrossProfiles": 217.99999999999997,
       "lon": 31.39060276433304,
       "lat": 40.193916875102566
     },
@@ -1279,7 +1255,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 213.0,
+      "maximumAssignedPopulationAcrossProfiles": 212.9999999999992,
       "lon": 32.59143853642577,
       "lat": 40.65283110601804
     },
@@ -1291,7 +1267,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 420.0,
+      "maximumAssignedPopulationAcrossProfiles": 419.99999999999994,
       "lon": 32.322798621116625,
       "lat": 39.309357657624325
     },
@@ -1303,7 +1279,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 320.0,
+      "maximumAssignedPopulationAcrossProfiles": 320.0000000000003,
       "lon": 31.42147222037653,
       "lat": 40.07865563337062
     },
@@ -1339,7 +1315,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 571.0,
+      "maximumAssignedPopulationAcrossProfiles": 570.9999999999998,
       "lon": 33.32907888969662,
       "lat": 40.24196244215926
     },
@@ -1363,7 +1339,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 324.0,
+      "maximumAssignedPopulationAcrossProfiles": 323.99999999999983,
       "lon": 32.681299743175714,
       "lat": 40.40490206712431
     },
@@ -1387,7 +1363,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 45.0,
-      "maximumAssignedPopulationAcrossProfiles": 453.0,
+      "maximumAssignedPopulationAcrossProfiles": 452.99999999999943,
       "lon": 33.585652852803015,
       "lat": 39.07871175860035
     },
@@ -1396,10 +1372,10 @@
       "id": "H-1899-R120",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 179,
-      "grossAreaM2": 42320.0,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 46663.68210275745,
+      "maximumAssignedPopulationAcrossProfiles": 47483.617753371334,
       "lon": 32.67015733595314,
       "lat": 39.847390901492275
     },
@@ -1408,132 +1384,84 @@
       "id": "H-1592-R120",
       "templateId": "b300",
       "beds": 300,
-      "doctors": 222,
-      "grossAreaM2": 69760.0,
+      "doctors": 344,
+      "grossAreaM2": 79520.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 57873.393445877955,
+      "maximumAssignedPopulationAcrossProfiles": 89677.69074496406,
       "lon": 32.76759706393299,
       "lat": 39.903140512586845
     },
     {
       "candidateIndex": 1405,
       "id": "H-1703-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 344,
-      "grossAreaM2": 79520.0,
+      "templateId": "b1000",
+      "beds": 1000,
+      "doctors": 1213,
+      "grossAreaM2": 261040.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 89677.69074496404,
+      "maximumAssignedPopulationAcrossProfiles": 316218.13626058545,
       "lon": 32.86633891985415,
       "lat": 40.02232195027301
-    },
-    {
-      "candidateIndex": 1415,
-      "id": "H-198209-R210",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 571,
-      "grossAreaM2": 145680.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 148854.53899818158,
-      "lon": 32.605865185278894,
-      "lat": 40.008295183132894
     },
     {
       "candidateIndex": 1417,
       "id": "H-1645-R120",
       "templateId": "b600",
       "beds": 600,
-      "doctors": 450,
-      "grossAreaM2": 136000.0,
+      "doctors": 499,
+      "grossAreaM2": 139920.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 117310.93266056343,
+      "maximumAssignedPopulationAcrossProfiles": 130084.78977249144,
       "lon": 32.80277845023884,
       "lat": 39.78714008703713
     },
     {
       "candidateIndex": 1419,
       "id": "H-1723-R80",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 278,
-      "grossAreaM2": 74240.0,
+      "templateId": "b600",
+      "beds": 600,
+      "doctors": 728,
+      "grossAreaM2": 158240.0,
       "footprintRadiusMeters": 80.0,
-      "maximumAssignedPopulationAcrossProfiles": 72472.0872880814,
+      "maximumAssignedPopulationAcrossProfiles": 189783.01994864483,
       "lon": 32.81146887647311,
       "lat": 40.002858822554444
     },
     {
       "candidateIndex": 1425,
       "id": "H-1859-R80",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 318,
-      "grossAreaM2": 77440.0,
+      "templateId": "b600",
+      "beds": 600,
+      "doctors": 728,
+      "grossAreaM2": 158240.0,
       "footprintRadiusMeters": 80.0,
-      "maximumAssignedPopulationAcrossProfiles": 82899.72574679815,
+      "maximumAssignedPopulationAcrossProfiles": 189783.01994864485,
       "lon": 32.79826726689743,
       "lat": 39.96182961050883
-    },
-    {
-      "candidateIndex": 1438,
-      "id": "H-1688-R210",
-      "templateId": "b1000",
-      "beds": 1000,
-      "doctors": 892,
-      "grossAreaM2": 235360.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 232536.3376293835,
-      "lon": 32.87822328092907,
-      "lat": 40.01523005847231
     },
     {
       "candidateIndex": 1446,
       "id": "H-527085-R210",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 89,
-      "grossAreaM2": 35120.0,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 23201.495570644765,
+      "maximumAssignedPopulationAcrossProfiles": 47483.61775337136,
       "lon": 32.66900123111726,
       "lat": 39.992074185071665
     },
     {
-      "candidateIndex": 1473,
-      "id": "H-1745-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 388,
-      "grossAreaM2": 131040.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 101148.09304955247,
-      "lon": 32.941594605886856,
-      "lat": 39.90416297172557
-    },
-    {
       "candidateIndex": 1483,
       "id": "H-1598-R210",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 259,
-      "grossAreaM2": 72720.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 136,
+      "grossAreaM2": 38880.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 67518.95902019096,
+      "maximumAssignedPopulationAcrossProfiles": 35453.97075963695,
       "lon": 32.86002155021003,
       "lat": 39.85788494276209
-    },
-    {
-      "candidateIndex": 1490,
-      "id": "H-1642-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 307,
-      "grossAreaM2": 76560.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 80032.12517065104,
-      "lon": 32.61019853529182,
-      "lat": 39.938153585601945
     },
     {
       "candidateIndex": 1492,
@@ -1550,84 +1478,60 @@
     {
       "candidateIndex": 1505,
       "id": "H-99783-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 233,
-      "grossAreaM2": 70640.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 60740.99402202506,
+      "maximumAssignedPopulationAcrossProfiles": 47483.617753371334,
       "lon": 32.609717673431845,
       "lat": 39.990350331805026
     },
     {
       "candidateIndex": 1514,
       "id": "H-1818-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 287,
-      "grossAreaM2": 74960.0,
+      "templateId": "b1000",
+      "beds": 1000,
+      "doctors": 1215,
+      "grossAreaM2": 261200.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 74818.30594129267,
+      "maximumAssignedPopulationAcrossProfiles": 316557.45168914227,
       "lon": 32.580938474916486,
       "lat": 39.9805298880103
     },
     {
       "candidateIndex": 1517,
       "id": "H-1853-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 319,
-      "grossAreaM2": 77520.0,
+      "templateId": "b50",
+      "beds": 50,
+      "doctors": 61,
+      "grossAreaM2": 16880.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 83160.41670826607,
+      "maximumAssignedPopulationAcrossProfiles": 15827.872584457113,
       "lon": 32.69241977420944,
       "lat": 39.96699574115369
     },
     {
       "candidateIndex": 1521,
       "id": "H-1880-R80",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 87,
-      "grossAreaM2": 34960.0,
+      "templateId": "b600",
+      "beds": 600,
+      "doctors": 729,
+      "grossAreaM2": 158320.0,
       "footprintRadiusMeters": 80.0,
-      "maximumAssignedPopulationAcrossProfiles": 22680.11364770893,
+      "maximumAssignedPopulationAcrossProfiles": 189934.47101348534,
       "lon": 32.679526207456306,
       "lat": 39.8881809761991
-    },
-    {
-      "candidateIndex": 1522,
-      "id": "H-1880-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 336,
-      "grossAreaM2": 78880.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 87592.16305322069,
-      "lon": 32.67501626537476,
-      "lat": 39.88683294171031
-    },
-    {
-      "candidateIndex": 1529,
-      "id": "H-1732-R210",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 271,
-      "grossAreaM2": 73680.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 70647.25055780598,
-      "lon": 32.85885439658787,
-      "lat": 40.03622244976965
     },
     {
       "candidateIndex": 1539,
       "id": "H-1590-R120",
       "templateId": "b300",
       "beds": 300,
-      "doctors": 339,
-      "grossAreaM2": 79120.0,
+      "doctors": 365,
+      "grossAreaM2": 81200.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 88374.23593762444,
+      "maximumAssignedPopulationAcrossProfiles": 94967.23550674267,
       "lon": 32.81930141729586,
       "lat": 39.8456512276159
     },
@@ -1636,94 +1540,58 @@
       "id": "H-1658-R120",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 75,
-      "grossAreaM2": 34000.0,
+      "doctors": 148,
+      "grossAreaM2": 39840.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 19551.822110093904,
+      "maximumAssignedPopulationAcrossProfiles": 38339.0,
       "lon": 32.72947105529686,
       "lat": 39.823045860115016
     },
     {
       "candidateIndex": 1561,
       "id": "H-1634-R210",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 455,
-      "grossAreaM2": 136400.0,
+      "templateId": "b300",
+      "beds": 300,
+      "doctors": 287,
+      "grossAreaM2": 74960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 118614.38746790301,
+      "maximumAssignedPopulationAcrossProfiles": 74818.30594129275,
       "lon": 32.667459535996116,
       "lat": 39.96541349904245
     },
     {
       "candidateIndex": 1564,
       "id": "H-1787-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 204,
-      "grossAreaM2": 68320.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 170,
+      "grossAreaM2": 41600.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 53180.95613945542,
+      "maximumAssignedPopulationAcrossProfiles": 44317.46344954618,
       "lon": 32.94583192071721,
       "lat": 39.907373366135204
-    },
-    {
-      "candidateIndex": 1571,
-      "id": "H-1746-R210",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 336,
-      "grossAreaM2": 78880.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 87592.16305322069,
-      "lon": 32.91681465550903,
-      "lat": 39.94360174736133
     },
     {
       "candidateIndex": 1580,
       "id": "H-1800-R210",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 136,
-      "grossAreaM2": 38880.0,
+      "doctors": 175,
+      "grossAreaM2": 42000.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 35453.97075963695,
+      "maximumAssignedPopulationAcrossProfiles": 45620.91825688584,
       "lon": 32.99385162982593,
       "lat": 39.872698938851826
     },
     {
-      "candidateIndex": 1591,
-      "id": "H-1628-R210",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 649,
-      "grossAreaM2": 151920.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 169188.43399267926,
-      "lon": 32.67286528464017,
-      "lat": 39.95113212107367
-    },
-    {
-      "candidateIndex": 1607,
-      "id": "H-1849-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 419,
-      "grossAreaM2": 133520.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 109229.51285505794,
-      "lon": 32.76859833771428,
-      "lat": 39.98253865963321
-    },
-    {
       "candidateIndex": 1609,
       "id": "H-1627-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 565,
-      "grossAreaM2": 145200.0,
+      "templateId": "b1000",
+      "beds": 1000,
+      "doctors": 1215,
+      "grossAreaM2": 261200.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 147290.39322937408,
+      "maximumAssignedPopulationAcrossProfiles": 316557.45168914227,
       "lon": 32.6821596596875,
       "lat": 39.94736011818114
     },
@@ -1732,22 +1600,22 @@
       "id": "H-2227-R120",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
+      "doctors": 61,
+      "grossAreaM2": 16880.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.2915376150245,
+      "maximumAssignedPopulationAcrossProfiles": 15827.872584457113,
       "lon": 32.133435534507086,
       "lat": 39.59112321525597
     },
     {
       "candidateIndex": 1615,
       "id": "H-1709-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 507,
-      "grossAreaM2": 140560.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 132170.31746423477,
+      "maximumAssignedPopulationAcrossProfiles": 47483.617753371334,
       "lon": 32.836071402060824,
       "lat": 40.00780306178541
     },
@@ -1756,10 +1624,10 @@
       "id": "H-1600-R120",
       "templateId": "b600",
       "beds": 600,
-      "doctors": 511,
-      "grossAreaM2": 140880.0,
+      "doctors": 661,
+      "grossAreaM2": 152880.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 133213.08131010647,
+      "maximumAssignedPopulationAcrossProfiles": 172316.72553029453,
       "lon": 32.836691765634384,
       "lat": 39.89803309119593
     },
@@ -1768,46 +1636,34 @@
       "id": "H-1856-R120",
       "templateId": "b600",
       "beds": 600,
-      "doctors": 546,
-      "grossAreaM2": 143680.0,
+      "doctors": 715,
+      "grossAreaM2": 157200.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 142337.26496148363,
+      "maximumAssignedPopulationAcrossProfiles": 186394.03744956185,
       "lon": 32.783469830482254,
       "lat": 39.951265701366225
     },
     {
       "candidateIndex": 1657,
       "id": "H-2223-R120",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.2915376150245,
+      "maximumAssignedPopulationAcrossProfiles": 47483.617753371334,
       "lon": 32.13341041823944,
       "lat": 39.58718085601591
     },
     {
-      "candidateIndex": 1659,
-      "id": "H-1662-R120",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 42,
-      "grossAreaM2": 15360.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 10949.020381652586,
-      "lon": 32.75681465363128,
-      "lat": 39.83628912895146
-    },
-    {
       "candidateIndex": 1664,
       "id": "H-1506-R80",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 200,
-      "grossAreaM2": 68000.0,
+      "templateId": "b600",
+      "beds": 600,
+      "doctors": 729,
+      "grossAreaM2": 158320.0,
       "footprintRadiusMeters": 80.0,
-      "maximumAssignedPopulationAcrossProfiles": 52138.19229358374,
+      "maximumAssignedPopulationAcrossProfiles": 189934.47101348534,
       "lon": 32.86137170544647,
       "lat": 39.942315425968985
     },
@@ -1816,82 +1672,34 @@
       "id": "H-139850-R210",
       "templateId": "b600",
       "beds": 600,
-      "doctors": 555,
-      "grossAreaM2": 144400.0,
+      "doctors": 729,
+      "grossAreaM2": 158320.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 144683.4836146949,
+      "maximumAssignedPopulationAcrossProfiles": 189934.4710134855,
       "lon": 32.91948788974979,
       "lat": 40.0442288283542
     },
     {
-      "candidateIndex": 1681,
-      "id": "H-1601-R120",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 54,
-      "grossAreaM2": 16320.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 14077.31191926761,
-      "lon": 32.77895173187151,
-      "lat": 39.91556057267021
-    },
-    {
       "candidateIndex": 1682,
       "id": "H-1548-R80",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 168,
-      "grossAreaM2": 41440.0,
+      "templateId": "b600",
+      "beds": 600,
+      "doctors": 729,
+      "grossAreaM2": 158320.0,
       "footprintRadiusMeters": 80.0,
-      "maximumAssignedPopulationAcrossProfiles": 43796.08152661035,
+      "maximumAssignedPopulationAcrossProfiles": 189934.4710134856,
       "lon": 32.872406984623844,
       "lat": 39.9320979861517
-    },
-    {
-      "candidateIndex": 1685,
-      "id": "H-1891-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 248,
-      "grossAreaM2": 71840.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 64651.35844404384,
-      "lon": 32.83760018783211,
-      "lat": 39.962816706861254
-    },
-    {
-      "candidateIndex": 1709,
-      "id": "H-99784-R120",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 135,
-      "grossAreaM2": 38800.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 35193.279798169024,
-      "lon": 32.65090811630383,
-      "lat": 39.88402580380654
-    },
-    {
-      "candidateIndex": 1722,
-      "id": "H-1758-R80",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 145,
-      "grossAreaM2": 39600.0,
-      "footprintRadiusMeters": 80.0,
-      "maximumAssignedPopulationAcrossProfiles": 37800.189412848216,
-      "lon": 32.91193775167838,
-      "lat": 39.949767103961
     },
     {
       "candidateIndex": 1726,
       "id": "H-1755-R210",
       "templateId": "b1000",
       "beds": 1000,
-      "doctors": 992,
-      "grossAreaM2": 243360.0,
+      "doctors": 1215,
+      "grossAreaM2": 261200.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 258605.43377617537,
+      "maximumAssignedPopulationAcrossProfiles": 316557.4516891421,
       "lon": 32.93151750020157,
       "lat": 39.95780220949563
     },
@@ -1900,10 +1708,10 @@
       "id": "H-1618-R120",
       "templateId": "b300",
       "beds": 300,
-      "doctors": 355,
-      "grossAreaM2": 80400.0,
+      "doctors": 354,
+      "grossAreaM2": 80320.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 92545.29132111114,
+      "maximumAssignedPopulationAcrossProfiles": 92284.60035964334,
       "lon": 32.94830471660946,
       "lat": 39.83468357464232
     },
@@ -1912,10 +1720,10 @@
       "id": "H-2167-R210",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 14,
-      "grossAreaM2": 13120.0,
+      "doctors": 61,
+      "grossAreaM2": 16880.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 3649.673460550862,
+      "maximumAssignedPopulationAcrossProfiles": 15827.872584457133,
       "lon": 32.69585234439011,
       "lat": 40.20972550318949
     },
@@ -1927,115 +1735,43 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 2978.0,
+      "maximumAssignedPopulationAcrossProfiles": 2977.9999999999995,
       "lon": 33.142060897156796,
       "lat": 40.21062583384362
     },
     {
-      "candidateIndex": 1754,
-      "id": "H-1560-R210",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 361,
-      "grossAreaM2": 80880.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 94109.43708991865,
-      "lon": 32.8411515745642,
-      "lat": 39.861536368563634
-    },
-    {
-      "candidateIndex": 1767,
-      "id": "H-1842-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 560,
-      "grossAreaM2": 144800.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 145986.93842203452,
-      "lon": 32.54390287223926,
-      "lat": 40.015992966142264
-    },
-    {
-      "candidateIndex": 1768,
-      "id": "H-1842-R210",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 256,
-      "grossAreaM2": 72480.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 66736.8861357872,
-      "lon": 32.54290701925677,
-      "lat": 40.02164581339064
-    },
-    {
-      "candidateIndex": 1772,
-      "id": "H-2254-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.2915376150245,
-      "lon": 33.531922849059455,
-      "lat": 38.91732806373314
-    },
-    {
-      "candidateIndex": 1779,
-      "id": "H-178977-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 33,
-      "grossAreaM2": 14640.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 8602.801728441318,
-      "lon": 32.12916019576299,
-      "lat": 39.608948599941186
-    },
-    {
       "candidateIndex": 1781,
       "id": "H-1697-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 379,
-      "grossAreaM2": 130320.0,
+      "templateId": "b300",
+      "beds": 300,
+      "doctors": 347,
+      "grossAreaM2": 79760.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 98801.8743963412,
+      "maximumAssignedPopulationAcrossProfiles": 90459.76362936795,
       "lon": 32.86105998381326,
       "lat": 39.96448741696449
-    },
-    {
-      "candidateIndex": 1790,
-      "id": "H-1741-R210",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 172,
-      "grossAreaM2": 41760.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 44838.84537248202,
-      "lon": 32.92499422687692,
-      "lat": 40.0636643822412
     },
     {
       "candidateIndex": 1799,
       "id": "H-1910-R210",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 13,
-      "grossAreaM2": 13040.0,
+      "doctors": 54,
+      "grossAreaM2": 16320.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 3388.9824990829434,
+      "maximumAssignedPopulationAcrossProfiles": 13911.0,
       "lon": 32.54770468879607,
       "lat": 39.82518498662523
     },
     {
       "candidateIndex": 1825,
       "id": "H-2224-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 354,
-      "grossAreaM2": 80320.0,
+      "templateId": "b150",
+      "beds": 150,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 92284.60035964323,
+      "maximumAssignedPopulationAcrossProfiles": 47483.617753371334,
       "lon": 32.13294927721429,
       "lat": 39.565614567257775
     },
@@ -2044,10 +1780,10 @@
       "id": "H-1469-R210",
       "templateId": "b2000",
       "beds": 2000,
-      "doctors": 1782,
-      "grossAreaM2": 466560.0,
+      "doctors": 2328,
+      "grossAreaM2": 510240.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 464551.29333583126,
+      "maximumAssignedPopulationAcrossProfiles": 606888.5582973147,
       "lon": 32.86649429866469,
       "lat": 39.945597126367794
     },
@@ -2064,50 +1800,38 @@
       "lat": 38.92707391900676
     },
     {
-      "candidateIndex": 1854,
-      "id": "H-2206-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 28,
-      "grossAreaM2": 14240.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 7299.346921101723,
-      "lon": 31.365678463700885,
-      "lat": 40.18760195445601
-    },
-    {
       "candidateIndex": 1856,
       "id": "H-1499-R120",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 177,
-      "grossAreaM2": 42160.0,
+      "templateId": "b300",
+      "beds": 300,
+      "doctors": 264,
+      "grossAreaM2": 73120.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 46142.300179821614,
+      "maximumAssignedPopulationAcrossProfiles": 68822.4138275306,
       "lon": 32.907891864440025,
       "lat": 39.981293971451514
     },
     {
       "candidateIndex": 1862,
       "id": "H-1833-R120",
-      "templateId": "b600",
-      "beds": 600,
-      "doctors": 539,
-      "grossAreaM2": 143120.0,
+      "templateId": "b1000",
+      "beds": 1000,
+      "doctors": 1212,
+      "grossAreaM2": 260960.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 140512.4282312082,
+      "maximumAssignedPopulationAcrossProfiles": 315957.44529911765,
       "lon": 32.547493292501386,
       "lat": 39.954224810661486
     },
     {
       "candidateIndex": 1867,
       "id": "H-1740-R210",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 167,
-      "grossAreaM2": 41360.0,
+      "templateId": "b50",
+      "beds": 50,
+      "doctors": 48,
+      "grossAreaM2": 15840.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 43535.39056514243,
+      "maximumAssignedPopulationAcrossProfiles": 12513.16615046027,
       "lon": 32.93058507621071,
       "lat": 40.08320946138323
     },
@@ -2116,58 +1840,34 @@
       "id": "H-2258-R210",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
+      "doctors": 42,
+      "grossAreaM2": 15360.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.291537615024,
+      "maximumAssignedPopulationAcrossProfiles": 10949.020381652586,
       "lon": 33.551189696418746,
       "lat": 38.94871091188528
-    },
-    {
-      "candidateIndex": 1935,
-      "id": "H-1916-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 34,
-      "grossAreaM2": 14720.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 8863.492689909237,
-      "lon": 33.092599614292894,
-      "lat": 40.159787999174206
     },
     {
       "candidateIndex": 1939,
       "id": "H-1906-R120",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 45,
-      "grossAreaM2": 15600.0,
+      "doctors": 24,
+      "grossAreaM2": 13920.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 11731.093266056341,
+      "maximumAssignedPopulationAcrossProfiles": 6256.583075230068,
       "lon": 32.753478703352556,
       "lat": 40.065031277928746
-    },
-    {
-      "candidateIndex": 1956,
-      "id": "H-2250-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.2915376150245,
-      "lon": 33.55015574514487,
-      "lat": 38.95521630593951
     },
     {
       "candidateIndex": 1969,
       "id": "H-1530-R120",
       "templateId": "b600",
       "beds": 600,
-      "doctors": 707,
-      "grossAreaM2": 156560.0,
+      "doctors": 480,
+      "grossAreaM2": 138400.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 184308.50975781854,
+      "maximumAssignedPopulationAcrossProfiles": 125131.66150460098,
       "lon": 32.889309045468,
       "lat": 39.90244195122411
     },
@@ -2188,24 +1888,12 @@
       "id": "H-2189-R120",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 45,
-      "grossAreaM2": 15600.0,
+      "doctors": 12,
+      "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 11731.093266056341,
+      "maximumAssignedPopulationAcrossProfiles": 3128.2915376150245,
       "lon": 32.63303444132961,
       "lat": 40.05970408589512
-    },
-    {
-      "candidateIndex": 2012,
-      "id": "H-1998-R210",
-      "templateId": "b150",
-      "beds": 150,
-      "doctors": 114,
-      "grossAreaM2": 37120.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 29718.769607342736,
-      "lon": 31.91051337938281,
-      "lat": 40.168449453962936
     },
     {
       "candidateIndex": 2026,
@@ -2232,62 +1920,14 @@
       "lat": 39.26560927874304
     },
     {
-      "candidateIndex": 2088,
-      "id": "H-1510-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 3128.2915376150245,
-      "lon": 32.98410042807042,
-      "lat": 40.069266710155055
-    },
-    {
-      "candidateIndex": 2094,
-      "id": "H-2261-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 40,
-      "grossAreaM2": 15200.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 10427.638458716749,
-      "lon": 33.552915556758194,
-      "lat": 38.93957508336661
-    },
-    {
-      "candidateIndex": 2097,
-      "id": "H-177971-R210",
-      "templateId": "b50",
-      "beds": 50,
-      "doctors": 12,
-      "grossAreaM2": 12960.0,
-      "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 597.0,
-      "lon": 31.825013883498308,
-      "lat": 40.014897560018255
-    },
-    {
-      "candidateIndex": 2153,
-      "id": "H-1873-R120",
-      "templateId": "b300",
-      "beds": 300,
-      "doctors": 333,
-      "grossAreaM2": 78640.0,
-      "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 86810.09016881694,
-      "lon": 32.776256209471896,
-      "lat": 40.00845758017691
-    },
-    {
       "candidateIndex": 2158,
       "id": "H-183240-R120",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 81,
-      "grossAreaM2": 34480.0,
+      "doctors": 183,
+      "grossAreaM2": 42640.0,
       "footprintRadiusMeters": 120.0,
-      "maximumAssignedPopulationAcrossProfiles": 21115.967878901418,
+      "maximumAssignedPopulationAcrossProfiles": 47483.617753371334,
       "lon": 32.60812495077004,
       "lat": 39.851140981429936
     },
@@ -2299,7 +1939,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 1752.0,
+      "maximumAssignedPopulationAcrossProfiles": 1751.999999999999,
       "lon": 33.797204752969385,
       "lat": 39.010330910502816
     },
@@ -2308,10 +1948,10 @@
       "id": "H-2166-R210",
       "templateId": "b50",
       "beds": 50,
-      "doctors": 27,
-      "grossAreaM2": 14160.0,
+      "doctors": 61,
+      "grossAreaM2": 16880.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 7038.655959633806,
+      "maximumAssignedPopulationAcrossProfiles": 15827.872584457118,
       "lon": 32.66370416512855,
       "lat": 40.2182928701161
     },
@@ -2323,7 +1963,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 380.0,
+      "maximumAssignedPopulationAcrossProfiles": 1000.0,
       "lon": 32.68889964036502,
       "lat": 40.62459836153883
     },
@@ -2359,7 +1999,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 289.0,
+      "maximumAssignedPopulationAcrossProfiles": 288.9999999999997,
       "lon": 32.33086154409514,
       "lat": 40.50758872256125
     },
@@ -2383,7 +2023,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 251.0,
+      "maximumAssignedPopulationAcrossProfiles": 250.99999999999943,
       "lon": 32.47985484163443,
       "lat": 39.006354419721
     },
@@ -2416,10 +2056,10 @@
       "id": "H-2193-R210",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 133,
-      "grossAreaM2": 38640.0,
+      "doctors": 70,
+      "grossAreaM2": 33600.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 34671.89787523319,
+      "maximumAssignedPopulationAcrossProfiles": 18248.367302754334,
       "lon": 32.66108847310303,
       "lat": 40.18071038349909
     },
@@ -2431,7 +2071,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 202.0,
+      "maximumAssignedPopulationAcrossProfiles": 201.99999999999994,
       "lon": 32.75392356497277,
       "lat": 40.64680102432692
     },
@@ -2479,7 +2119,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 814.0,
+      "maximumAssignedPopulationAcrossProfiles": 238.0,
       "lon": 33.438057498983504,
       "lat": 39.29548083998353
     },
@@ -2491,7 +2131,7 @@
       "doctors": 19,
       "grossAreaM2": 13520.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 4845.0,
+      "maximumAssignedPopulationAcrossProfiles": 4844.999999999999,
       "lon": 32.595224665622254,
       "lat": 40.09962254824988
     },
@@ -2503,7 +2143,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 2573.0,
+      "maximumAssignedPopulationAcrossProfiles": 2572.9999999999995,
       "lon": 32.485705165287015,
       "lat": 40.490536450643084
     },
@@ -2551,7 +2191,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 187.0,
+      "maximumAssignedPopulationAcrossProfiles": 186.9999999999994,
       "lon": 32.363978410560115,
       "lat": 40.350212071743684
     },
@@ -2563,7 +2203,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 601.0,
+      "maximumAssignedPopulationAcrossProfiles": 600.9999999999991,
       "lon": 32.486187764763265,
       "lat": 39.31048918666729
     },
@@ -2584,10 +2224,10 @@
       "id": "H-1827-R210",
       "templateId": "b150",
       "beds": 150,
-      "doctors": 131,
-      "grossAreaM2": 38480.0,
+      "doctors": 72,
+      "grossAreaM2": 33760.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 34150.51595229735,
+      "maximumAssignedPopulationAcrossProfiles": 18769.74922569015,
       "lon": 32.54024255851033,
       "lat": 39.87261228704562
     },
@@ -2599,7 +2239,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 1104.0,
+      "maximumAssignedPopulationAcrossProfiles": 1103.999999999999,
       "lon": 33.235800942015864,
       "lat": 39.573579212784274
     },
@@ -2647,7 +2287,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 318.0,
+      "maximumAssignedPopulationAcrossProfiles": 317.9999999999996,
       "lon": 33.5720118271278,
       "lat": 40.197771334793735
     },
@@ -2683,7 +2323,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 193.0,
+      "maximumAssignedPopulationAcrossProfiles": 192.9999999999996,
       "lon": 32.394929274813485,
       "lat": 40.31794562375737
     },
@@ -2695,7 +2335,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 459.0,
+      "maximumAssignedPopulationAcrossProfiles": 458.99999999999966,
       "lon": 32.18552028683326,
       "lat": 40.188342362273
     },
@@ -2731,7 +2371,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 248.0,
+      "maximumAssignedPopulationAcrossProfiles": 247.99999999999932,
       "lon": 32.458519382517885,
       "lat": 39.3795612037435
     },
@@ -2743,7 +2383,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 173.0,
+      "maximumAssignedPopulationAcrossProfiles": 173.00000000000048,
       "lon": 32.79329895571001,
       "lat": 40.418933518437804
     },
@@ -2755,7 +2395,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 283.0,
+      "maximumAssignedPopulationAcrossProfiles": 282.9999999999995,
       "lon": 32.66810248098495,
       "lat": 40.57721444633409
     },
@@ -2767,7 +2407,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 277.0,
+      "maximumAssignedPopulationAcrossProfiles": 276.99999999999926,
       "lon": 33.6828387718993,
       "lat": 39.081612909589936
     },
@@ -2791,7 +2431,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 263.0,
+      "maximumAssignedPopulationAcrossProfiles": 262.9999999999999,
       "lon": 32.17891590895249,
       "lat": 40.262668211706305
     },
@@ -2827,7 +2467,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 877.0,
+      "maximumAssignedPopulationAcrossProfiles": 257.0,
       "lon": 32.72877310040156,
       "lat": 40.64492251658309
     },
@@ -2875,7 +2515,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 308.0,
+      "maximumAssignedPopulationAcrossProfiles": 307.99999999999983,
       "lon": 32.813588976998254,
       "lat": 40.472266697638766
     },
@@ -2887,7 +2527,7 @@
       "doctors": 12,
       "grossAreaM2": 12960.0,
       "footprintRadiusMeters": 210.0,
-      "maximumAssignedPopulationAcrossProfiles": 225.0,
+      "maximumAssignedPopulationAcrossProfiles": 224.99999999999963,
       "lon": 33.324620653198146,
       "lat": 40.09310656442567
     }
@@ -2895,89 +2535,89 @@
   "profiles": [
     {
       "profile": "weekday-0800",
-      "coveredPopulation": 5614803.999999999,
-      "coveragePercent": 94.99999999999999,
-      "meanMinutes": 32.154112843616254,
-      "maxMinutes": 44.955360412597656,
-      "allocationCount": 778,
-      "minimumDistrictCoveragePercent": 80.0402284400704,
+      "coveredPopulation": 5614804.000000004,
+      "coveragePercent": 95.00000000000007,
+      "meanMinutes": 31.68801645094581,
+      "maxMinutes": 44.89632034301758,
+      "allocationCount": 750,
+      "minimumDistrictCoveragePercent": 80.00000000000001,
       "districts": [
         {
           "id": "1872",
           "name": "AKYURT",
           "population": 46956,
-          "coveredPopulation": 37612.73460550862,
-          "coveragePercent": 80.10208409044343
+          "coveredPopulation": 38321.57133578405,
+          "coveragePercent": 81.61166056687973
         },
         {
           "id": "1130",
           "name": "ALTINDAĞ",
           "population": 418072,
-          "coveredPopulation": 406678.0,
-          "coveragePercent": 97.27463212078302
+          "coveredPopulation": 415454.68001164333,
+          "coveragePercent": 99.37395472828683
         },
         {
           "id": "1157",
           "name": "AYAŞ",
           "population": 13136,
-          "coveredPopulation": 10685.0,
-          "coveragePercent": 81.34135200974421
+          "coveredPopulation": 10685.000000000002,
+          "coveragePercent": 81.34135200974423
         },
         {
           "id": "1167",
           "name": "BALA",
           "population": 20109,
-          "coveredPopulation": 16294.0,
-          "coveragePercent": 81.02839524590979
+          "coveredPopulation": 16293.999999999996,
+          "coveragePercent": 81.02839524590978
         },
         {
           "id": "1187",
           "name": "BEYPAZARI",
           "population": 48359,
-          "coveredPopulation": 39179.26229725197,
-          "coveragePercent": 81.01751958736112
+          "coveredPopulation": 39148.000000000065,
+          "coveragePercent": 80.95287330176403
         },
         {
           "id": "1227",
           "name": "ÇAMLIDERE",
           "population": 10203,
-          "coveredPopulation": 8256.0,
-          "coveragePercent": 80.91737724198765
+          "coveredPopulation": 8255.999999999996,
+          "coveragePercent": 80.91737724198762
         },
         {
           "id": "1231",
           "name": "ÇANKAYA",
           "population": 952198,
-          "coveredPopulation": 931171.8424917465,
-          "coveragePercent": 97.79182927203654
+          "coveredPopulation": 911622.235506743,
+          "coveragePercent": 95.73872613749903
         },
         {
           "id": "1260",
           "name": "ÇUBUK",
           "population": 101437,
-          "coveredPopulation": 83708.0,
-          "coveragePercent": 82.52215660952118
+          "coveredPopulation": 84100.0,
+          "coveragePercent": 82.90860336957914
         },
         {
           "id": "1302",
           "name": "ELMADAĞ",
           "population": 45644,
-          "coveredPopulation": 39491.56845504852,
-          "coveragePercent": 86.52083177427157
+          "coveredPopulation": 39862.90311959253,
+          "coveragePercent": 87.3343771790214
         },
         {
           "id": "1922",
           "name": "ETİMESGUT",
           "population": 632458,
-          "coveredPopulation": 630673.0,
-          "coveragePercent": 99.71776782015564
+          "coveredPopulation": 622518.9668291551,
+          "coveragePercent": 98.42850700428409
         },
         {
           "id": "1924",
           "name": "EVREN",
           "population": 2927,
-          "coveredPopulation": 2438.0,
-          "coveragePercent": 83.29347454731807
+          "coveredPopulation": 2437.999999999998,
+          "coveragePercent": 83.29347454731801
         },
         {
           "id": "1744",
@@ -2990,338 +2630,152 @@
           "id": "1365",
           "name": "GÜDÜL",
           "population": 8028,
-          "coveredPopulation": 6542.0,
-          "coveragePercent": 81.48978574987544
+          "coveredPopulation": 6541.999999999998,
+          "coveragePercent": 81.48978574987542
         },
         {
           "id": "1387",
           "name": "HAYMANA",
           "population": 25798,
-          "coveredPopulation": 20777.0,
-          "coveragePercent": 80.53725094968603
+          "coveredPopulation": 20776.999999999996,
+          "coveragePercent": 80.537250949686
         },
         {
           "id": "1815",
           "name": "KAHRAMANKAZAN",
           "population": 63143,
-          "coveredPopulation": 50963.227295417855,
-          "coveragePercent": 80.71081085063722
+          "coveredPopulation": 55351.0,
+          "coveragePercent": 87.65975642589044
         },
         {
           "id": "1427",
           "name": "KALECİK",
           "population": 12564,
-          "coveredPopulation": 10175.0,
-          "coveragePercent": 80.98535498248965
+          "coveredPopulation": 10174.999999999998,
+          "coveragePercent": 80.98535498248964
         },
         {
           "id": "1745",
           "name": "KEÇİÖREN",
           "population": 931722,
-          "coveredPopulation": 919569.232840385,
-          "coveragePercent": 98.69566596478188
+          "coveredPopulation": 913764.1362605853,
+          "coveragePercent": 98.07261567941782
         },
         {
           "id": "1473",
           "name": "KIZILCAHAMAM",
           "population": 27841,
-          "coveredPopulation": 22284.0,
-          "coveragePercent": 80.0402284400704
+          "coveredPopulation": 22283.999999999996,
+          "coveragePercent": 80.04022844007038
         },
         {
           "id": "1746",
           "name": "MAMAK",
           "population": 690329,
-          "coveredPopulation": 636638.23756034,
-          "coveragePercent": 92.22243851270046
+          "coveredPopulation": 668842.0000000001,
+          "coveragePercent": 96.88742614028963
         },
         {
           "id": "1539",
           "name": "NALLIHAN",
           "population": 26083,
-          "coveredPopulation": 20951.0,
-          "coveragePercent": 80.32434919296094
+          "coveredPopulation": 20917.41980550556,
+          "coveragePercent": 80.19560558795216
         },
         {
           "id": "1578",
           "name": "POLATLI",
           "population": 131894,
-          "coveredPopulation": 107143.98516331457,
-          "coveragePercent": 81.23491983207316
+          "coveredPopulation": 110795.10809119977,
+          "coveragePercent": 84.00314501887863
         },
         {
           "id": "2034",
           "name": "PURSAKLAR",
           "population": 168881,
-          "coveredPopulation": 164035.29153761503,
-          "coveragePercent": 97.13069648901595
+          "coveredPopulation": 162023.0,
+          "coveragePercent": 95.93915242093546
         },
         {
           "id": "1747",
           "name": "SİNCAN",
           "population": 605366,
-          "coveredPopulation": 585119.0,
-          "coveragePercent": 96.65541176742664
+          "coveredPopulation": 582565.4401871581,
+          "coveragePercent": 96.23359094946828
         },
         {
           "id": "1658",
           "name": "ŞEREFLİKOÇHİSAR",
           "population": 32831,
-          "coveredPopulation": 26335.0,
-          "coveragePercent": 80.21382230209254
+          "coveredPopulation": 26264.800000000003,
+          "coveragePercent": 80.00000000000001
         },
         {
           "id": "1723",
           "name": "YENİMAHALLE",
           "population": 721531,
-          "coveredPopulation": 695267.6177533714,
-          "coveragePercent": 96.36004797484395
+          "coveredPopulation": 682985.738852637,
+          "coveragePercent": 94.6578509936007
         }
       ]
     },
     {
       "profile": "weekday-1000",
-      "coveredPopulation": 5614803.999999999,
-      "coveragePercent": 94.99999999999999,
-      "meanMinutes": 32.2580994005985,
-      "maxMinutes": 44.919639587402344,
-      "allocationCount": 770,
+      "coveredPopulation": 5614804.000000003,
+      "coveragePercent": 95.00000000000004,
+      "meanMinutes": 32.36704689481487,
+      "maxMinutes": 44.8923454284668,
+      "allocationCount": 737,
       "minimumDistrictCoveragePercent": 79.99999999999999,
       "districts": [
         {
           "id": "1872",
           "name": "AKYURT",
           "population": 46956,
-          "coveredPopulation": 37612.734605508624,
-          "coveragePercent": 80.10208409044344
-        },
-        {
-          "id": "1130",
-          "name": "ALTINDAĞ",
-          "population": 418072,
-          "coveredPopulation": 409993.61567751865,
-          "coveragePercent": 98.06770500715633
-        },
-        {
-          "id": "1157",
-          "name": "AYAŞ",
-          "population": 13136,
-          "coveredPopulation": 10849.0,
-          "coveragePercent": 82.58982947624848
-        },
-        {
-          "id": "1167",
-          "name": "BALA",
-          "population": 20109,
-          "coveredPopulation": 16294.0,
-          "coveragePercent": 81.02839524590979
-        },
-        {
-          "id": "1187",
-          "name": "BEYPAZARI",
-          "population": 48359,
-          "coveredPopulation": 39179.26229725197,
-          "coveragePercent": 81.01751958736114
-        },
-        {
-          "id": "1227",
-          "name": "ÇAMLIDERE",
-          "population": 10203,
-          "coveredPopulation": 8256.0,
-          "coveragePercent": 80.91737724198765
-        },
-        {
-          "id": "1231",
-          "name": "ÇANKAYA",
-          "population": 952198,
-          "coveredPopulation": 909113.1806865078,
-          "coveragePercent": 95.47522476276025
-        },
-        {
-          "id": "1260",
-          "name": "ÇUBUK",
-          "population": 101437,
-          "coveredPopulation": 83708.0,
-          "coveragePercent": 82.52215660952118
-        },
-        {
-          "id": "1302",
-          "name": "ELMADAĞ",
-          "population": 45644,
-          "coveredPopulation": 39491.56845504852,
-          "coveragePercent": 86.52083177427157
-        },
-        {
-          "id": "1922",
-          "name": "ETİMESGUT",
-          "population": 632458,
-          "coveredPopulation": 626683.3438238623,
-          "coveragePercent": 99.08695025185266
-        },
-        {
-          "id": "1924",
-          "name": "EVREN",
-          "population": 2927,
-          "coveredPopulation": 2438.0,
-          "coveragePercent": 83.29347454731807
-        },
-        {
-          "id": "1744",
-          "name": "GÖLBAŞI",
-          "population": 172810,
-          "coveredPopulation": 138248.0,
-          "coveragePercent": 80.0
-        },
-        {
-          "id": "1365",
-          "name": "GÜDÜL",
-          "population": 8028,
-          "coveredPopulation": 6542.0,
-          "coveragePercent": 81.48978574987544
-        },
-        {
-          "id": "1387",
-          "name": "HAYMANA",
-          "population": 25798,
-          "coveredPopulation": 20777.0,
-          "coveragePercent": 80.53725094968603
-        },
-        {
-          "id": "1815",
-          "name": "KAHRAMANKAZAN",
-          "population": 63143,
-          "coveredPopulation": 50514.399999999994,
-          "coveragePercent": 79.99999999999999
-        },
-        {
-          "id": "1427",
-          "name": "KALECİK",
-          "population": 12564,
-          "coveredPopulation": 10175.0,
-          "coveragePercent": 80.98535498248965
-        },
-        {
-          "id": "1745",
-          "name": "KEÇİÖREN",
-          "population": 931722,
-          "coveredPopulation": 926300.0,
-          "coveragePercent": 99.41806676240338
-        },
-        {
-          "id": "1473",
-          "name": "KIZILCAHAMAM",
-          "population": 27841,
-          "coveredPopulation": 22284.0,
-          "coveragePercent": 80.0402284400704
-        },
-        {
-          "id": "1746",
-          "name": "MAMAK",
-          "population": 690329,
-          "coveredPopulation": 659467.0,
-          "coveragePercent": 95.52937802120438
-        },
-        {
-          "id": "1539",
-          "name": "NALLIHAN",
-          "population": 26083,
-          "coveredPopulation": 20951.0,
-          "coveragePercent": 80.32434919296094
-        },
-        {
-          "id": "1578",
-          "name": "POLATLI",
-          "population": 131894,
-          "coveredPopulation": 107143.9851633146,
-          "coveragePercent": 81.23491983207317
-        },
-        {
-          "id": "2034",
-          "name": "PURSAKLAR",
-          "population": 168881,
-          "coveredPopulation": 162061.29153761503,
-          "coveragePercent": 95.96182610099125
-        },
-        {
-          "id": "1747",
-          "name": "SİNCAN",
-          "population": 605366,
-          "coveredPopulation": 585119.0,
-          "coveragePercent": 96.65541176742664
-        },
-        {
-          "id": "1658",
-          "name": "ŞEREFLİKOÇHİSAR",
-          "population": 32831,
-          "coveredPopulation": 26335.0,
-          "coveragePercent": 80.21382230209254
-        },
-        {
-          "id": "1723",
-          "name": "YENİMAHALLE",
-          "population": 721531,
-          "coveredPopulation": 695267.6177533714,
-          "coveragePercent": 96.36004797484395
-        }
-      ]
-    },
-    {
-      "profile": "saturday-1000",
-      "coveredPopulation": 5614804.0,
-      "coveragePercent": 95.00000000000001,
-      "meanMinutes": 31.97911100598389,
-      "maxMinutes": 44.955360412597656,
-      "allocationCount": 773,
-      "minimumDistrictCoveragePercent": 80.0,
-      "districts": [
-        {
-          "id": "1872",
-          "name": "AKYURT",
-          "population": 46956,
-          "coveredPopulation": 37564.80000000001,
-          "coveragePercent": 80.00000000000001
+          "coveredPopulation": 38128.0,
+          "coveragePercent": 81.19942073430445
         },
         {
           "id": "1130",
           "name": "ALTINDAĞ",
           "population": 418072,
           "coveredPopulation": 415588.0,
-          "coveragePercent": 99.40584396945981
+          "coveragePercent": 99.4058439694598
         },
         {
           "id": "1157",
           "name": "AYAŞ",
           "population": 13136,
-          "coveredPopulation": 10685.0,
-          "coveragePercent": 81.34135200974421
+          "coveredPopulation": 10849.000000000004,
+          "coveragePercent": 82.58982947624851
         },
         {
           "id": "1167",
           "name": "BALA",
           "population": 20109,
-          "coveredPopulation": 16294.0,
-          "coveragePercent": 81.02839524590979
+          "coveredPopulation": 16293.999999999996,
+          "coveragePercent": 81.02839524590978
         },
         {
           "id": "1187",
           "name": "BEYPAZARI",
           "population": 48359,
-          "coveredPopulation": 39179.26229725197,
-          "coveragePercent": 81.01751958736114
+          "coveredPopulation": 39148.0,
+          "coveragePercent": 80.95287330176389
         },
         {
           "id": "1227",
           "name": "ÇAMLIDERE",
           "population": 10203,
-          "coveredPopulation": 8256.0,
-          "coveragePercent": 80.91737724198765
+          "coveredPopulation": 8255.999999999996,
+          "coveragePercent": 80.91737724198762
         },
         {
           "id": "1231",
           "name": "ÇANKAYA",
           "population": 952198,
-          "coveredPopulation": 894673.8424917465,
-          "coveragePercent": 93.95880294767963
+          "coveredPopulation": 921639.025279234,
+          "coveragePercent": 96.79069114608875
         },
         {
           "id": "1260",
@@ -3334,194 +2788,8 @@
           "id": "1302",
           "name": "ELMADAĞ",
           "population": 45644,
-          "coveredPopulation": 39491.56845504852,
-          "coveragePercent": 86.52083177427157
-        },
-        {
-          "id": "1922",
-          "name": "ETİMESGUT",
-          "population": 632458,
-          "coveredPopulation": 626840.5435016337,
-          "coveragePercent": 99.11180560632228
-        },
-        {
-          "id": "1924",
-          "name": "EVREN",
-          "population": 2927,
-          "coveredPopulation": 2438.0,
-          "coveragePercent": 83.29347454731807
-        },
-        {
-          "id": "1744",
-          "name": "GÖLBAŞI",
-          "population": 172810,
-          "coveredPopulation": 138248.0,
-          "coveragePercent": 80.0
-        },
-        {
-          "id": "1365",
-          "name": "GÜDÜL",
-          "population": 8028,
-          "coveredPopulation": 6542.0,
-          "coveragePercent": 81.48978574987544
-        },
-        {
-          "id": "1387",
-          "name": "HAYMANA",
-          "population": 25798,
-          "coveredPopulation": 20777.0,
-          "coveragePercent": 80.53725094968603
-        },
-        {
-          "id": "1815",
-          "name": "KAHRAMANKAZAN",
-          "population": 63143,
-          "coveredPopulation": 50963.227295417855,
-          "coveragePercent": 80.71081085063722
-        },
-        {
-          "id": "1427",
-          "name": "KALECİK",
-          "population": 12564,
-          "coveredPopulation": 10175.0,
-          "coveragePercent": 80.98535498248965
-        },
-        {
-          "id": "1745",
-          "name": "KEÇİÖREN",
-          "population": 931722,
-          "coveredPopulation": 926300.0,
-          "coveragePercent": 99.41806676240338
-        },
-        {
-          "id": "1473",
-          "name": "KIZILCAHAMAM",
-          "population": 27841,
-          "coveredPopulation": 22284.0,
-          "coveragePercent": 80.0402284400704
-        },
-        {
-          "id": "1746",
-          "name": "MAMAK",
-          "population": 690329,
-          "coveredPopulation": 667869.9268990924,
-          "coveragePercent": 96.74661312201752
-        },
-        {
-          "id": "1539",
-          "name": "NALLIHAN",
-          "population": 26083,
-          "coveredPopulation": 20951.0,
-          "coveragePercent": 80.32434919296094
-        },
-        {
-          "id": "1578",
-          "name": "POLATLI",
-          "population": 131894,
-          "coveredPopulation": 107143.98516331459,
-          "coveragePercent": 81.23491983207317
-        },
-        {
-          "id": "2034",
-          "name": "PURSAKLAR",
-          "population": 168881,
-          "coveredPopulation": 162109.22614312364,
-          "coveragePercent": 95.9902097590159
-        },
-        {
-          "id": "1747",
-          "name": "SİNCAN",
-          "population": 605366,
-          "coveredPopulation": 585119.0,
-          "coveragePercent": 96.65541176742664
-        },
-        {
-          "id": "1658",
-          "name": "ŞEREFLİKOÇHİSAR",
-          "population": 32831,
-          "coveredPopulation": 26335.0,
-          "coveragePercent": 80.21382230209254
-        },
-        {
-          "id": "1723",
-          "name": "YENİMAHALLE",
-          "population": 721531,
-          "coveredPopulation": 695267.6177533714,
-          "coveragePercent": 96.36004797484395
-        }
-      ]
-    },
-    {
-      "profile": "sunday-1000",
-      "coveredPopulation": 5614803.999999999,
-      "coveragePercent": 94.99999999999999,
-      "meanMinutes": 32.47552236647079,
-      "maxMinutes": 44.8923454284668,
-      "allocationCount": 772,
-      "minimumDistrictCoveragePercent": 80.0402284400704,
-      "districts": [
-        {
-          "id": "1872",
-          "name": "AKYURT",
-          "population": 46956,
-          "coveredPopulation": 37612.73460550862,
-          "coveragePercent": 80.10208409044343
-        },
-        {
-          "id": "1130",
-          "name": "ALTINDAĞ",
-          "population": 418072,
-          "coveredPopulation": 415588.0,
-          "coveragePercent": 99.40584396945981
-        },
-        {
-          "id": "1157",
-          "name": "AYAŞ",
-          "population": 13136,
-          "coveredPopulation": 10849.0,
-          "coveragePercent": 82.58982947624848
-        },
-        {
-          "id": "1167",
-          "name": "BALA",
-          "population": 20109,
-          "coveredPopulation": 16294.0,
-          "coveragePercent": 81.02839524590979
-        },
-        {
-          "id": "1187",
-          "name": "BEYPAZARI",
-          "population": 48359,
-          "coveredPopulation": 39179.26229725197,
-          "coveragePercent": 81.01751958736114
-        },
-        {
-          "id": "1227",
-          "name": "ÇAMLIDERE",
-          "population": 10203,
-          "coveredPopulation": 8256.0,
-          "coveragePercent": 80.91737724198765
-        },
-        {
-          "id": "1231",
-          "name": "ÇANKAYA",
-          "population": 952198,
-          "coveredPopulation": 908494.8424917465,
-          "coveragePercent": 95.41028677772339
-        },
-        {
-          "id": "1260",
-          "name": "ÇUBUK",
-          "population": 101437,
-          "coveredPopulation": 83708.0,
-          "coveragePercent": 82.52215660952118
-        },
-        {
-          "id": "1302",
-          "name": "ELMADAĞ",
-          "population": 45644,
-          "coveredPopulation": 39491.56845504852,
-          "coveragePercent": 86.52083177427157
+          "coveredPopulation": 39862.90311959253,
+          "coveragePercent": 87.3343771790214
         },
         {
           "id": "1922",
@@ -3534,43 +2802,43 @@
           "id": "1924",
           "name": "EVREN",
           "population": 2927,
-          "coveredPopulation": 2438.0,
-          "coveragePercent": 83.29347454731807
+          "coveredPopulation": 2437.999999999998,
+          "coveragePercent": 83.29347454731801
         },
         {
           "id": "1744",
           "name": "GÖLBAŞI",
           "population": 172810,
           "coveredPopulation": 142816.0,
-          "coveragePercent": 82.64336554597534
+          "coveragePercent": 82.64336554597536
         },
         {
           "id": "1365",
           "name": "GÜDÜL",
           "population": 8028,
-          "coveredPopulation": 6542.0,
-          "coveragePercent": 81.48978574987544
+          "coveredPopulation": 6541.999999999998,
+          "coveragePercent": 81.48978574987542
         },
         {
           "id": "1387",
           "name": "HAYMANA",
           "population": 25798,
-          "coveredPopulation": 20777.0,
-          "coveragePercent": 80.53725094968603
+          "coveredPopulation": 20776.999999999996,
+          "coveragePercent": 80.537250949686
         },
         {
           "id": "1815",
           "name": "KAHRAMANKAZAN",
           "population": 63143,
-          "coveredPopulation": 50963.227295417855,
-          "coveragePercent": 80.71081085063722
+          "coveredPopulation": 52598.0003688168,
+          "coveragePercent": 83.2998121229856
         },
         {
           "id": "1427",
           "name": "KALECİK",
           "population": 12564,
-          "coveredPopulation": 10175.0,
-          "coveragePercent": 80.98535498248965
+          "coveredPopulation": 10174.999999999998,
+          "coveragePercent": 80.98535498248964
         },
         {
           "id": "1745",
@@ -3583,36 +2851,222 @@
           "id": "1473",
           "name": "KIZILCAHAMAM",
           "population": 27841,
-          "coveredPopulation": 22284.0,
-          "coveragePercent": 80.0402284400704
+          "coveredPopulation": 22272.799999999996,
+          "coveragePercent": 79.99999999999999
         },
         {
           "id": "1746",
           "name": "MAMAK",
           "population": 690329,
-          "coveredPopulation": 663578.470400725,
-          "coveragePercent": 96.12495931660483
+          "coveredPopulation": 659124.0,
+          "coveragePercent": 95.47969156735412
         },
         {
           "id": "1539",
           "name": "NALLIHAN",
           "population": 26083,
-          "coveredPopulation": 20951.0,
-          "coveragePercent": 80.32434919296094
+          "coveredPopulation": 20917.41980550556,
+          "coveragePercent": 80.19560558795216
         },
         {
           "id": "1578",
           "name": "POLATLI",
           "population": 131894,
-          "coveredPopulation": 107143.9851633146,
-          "coveragePercent": 81.23491983207317
+          "coveredPopulation": 110795.10809119979,
+          "coveragePercent": 84.00314501887863
         },
         {
           "id": "2034",
           "name": "PURSAKLAR",
           "population": 168881,
-          "coveredPopulation": 162061.29153761503,
-          "coveragePercent": 95.96182610099125
+          "coveredPopulation": 153638.25491731675,
+          "coveragePercent": 90.97426881491508
+        },
+        {
+          "id": "1747",
+          "name": "SİNCAN",
+          "population": 605366,
+          "coveredPopulation": 576819.8686603241,
+          "coveragePercent": 95.28448387592368
+        },
+        {
+          "id": "1658",
+          "name": "ŞEREFLİKOÇHİSAR",
+          "population": 32831,
+          "coveredPopulation": 26264.799999999992,
+          "coveragePercent": 79.99999999999999
+        },
+        {
+          "id": "1723",
+          "name": "YENİMAHALLE",
+          "population": 721531,
+          "coveredPopulation": 679179.8197580131,
+          "coveragePercent": 94.13037274323807
+        }
+      ]
+    },
+    {
+      "profile": "saturday-1000",
+      "coveredPopulation": 5614804.000000001,
+      "coveragePercent": 95.00000000000001,
+      "meanMinutes": 32.42617860310534,
+      "maxMinutes": 44.8923454284668,
+      "allocationCount": 746,
+      "minimumDistrictCoveragePercent": 80.04022844007038,
+      "districts": [
+        {
+          "id": "1872",
+          "name": "AKYURT",
+          "population": 46956,
+          "coveredPopulation": 38128.0,
+          "coveragePercent": 81.19942073430445
+        },
+        {
+          "id": "1130",
+          "name": "ALTINDAĞ",
+          "population": 418072,
+          "coveredPopulation": 415588.0,
+          "coveragePercent": 99.40584396945981
+        },
+        {
+          "id": "1157",
+          "name": "AYAŞ",
+          "population": 13136,
+          "coveredPopulation": 10685.000000000002,
+          "coveragePercent": 81.34135200974424
+        },
+        {
+          "id": "1167",
+          "name": "BALA",
+          "population": 20109,
+          "coveredPopulation": 16293.999999999996,
+          "coveragePercent": 81.02839524590978
+        },
+        {
+          "id": "1187",
+          "name": "BEYPAZARI",
+          "population": 48359,
+          "coveredPopulation": 39148.00000000006,
+          "coveragePercent": 80.95287330176401
+        },
+        {
+          "id": "1227",
+          "name": "ÇAMLIDERE",
+          "population": 10203,
+          "coveredPopulation": 8255.999999999996,
+          "coveragePercent": 80.91737724198762
+        },
+        {
+          "id": "1231",
+          "name": "ÇANKAYA",
+          "population": 952198,
+          "coveredPopulation": 902274.9999999999,
+          "coveragePercent": 94.75707783465202
+        },
+        {
+          "id": "1260",
+          "name": "ÇUBUK",
+          "population": 101437,
+          "coveredPopulation": 83708.0,
+          "coveragePercent": 82.52215660952118
+        },
+        {
+          "id": "1302",
+          "name": "ELMADAĞ",
+          "population": 45644,
+          "coveredPopulation": 39862.90311959253,
+          "coveragePercent": 87.3343771790214
+        },
+        {
+          "id": "1922",
+          "name": "ETİMESGUT",
+          "population": 632458,
+          "coveredPopulation": 630523.7492256901,
+          "coveragePercent": 99.69416929277361
+        },
+        {
+          "id": "1924",
+          "name": "EVREN",
+          "population": 2927,
+          "coveredPopulation": 2437.999999999998,
+          "coveragePercent": 83.29347454731801
+        },
+        {
+          "id": "1744",
+          "name": "GÖLBAŞI",
+          "population": 172810,
+          "coveredPopulation": 142816.0,
+          "coveragePercent": 82.64336554597534
+        },
+        {
+          "id": "1365",
+          "name": "GÜDÜL",
+          "population": 8028,
+          "coveredPopulation": 6541.999999999998,
+          "coveragePercent": 81.48978574987542
+        },
+        {
+          "id": "1387",
+          "name": "HAYMANA",
+          "population": 25798,
+          "coveredPopulation": 20776.999999999996,
+          "coveragePercent": 80.537250949686
+        },
+        {
+          "id": "1815",
+          "name": "KAHRAMANKAZAN",
+          "population": 63143,
+          "coveredPopulation": 53255.087115375376,
+          "coveragePercent": 84.340444887597
+        },
+        {
+          "id": "1427",
+          "name": "KALECİK",
+          "population": 12564,
+          "coveredPopulation": 10174.999999999998,
+          "coveragePercent": 80.98535498248964
+        },
+        {
+          "id": "1745",
+          "name": "KEÇİÖREN",
+          "population": 931722,
+          "coveredPopulation": 918203.2425328549,
+          "coveragePercent": 98.54905675006653
+        },
+        {
+          "id": "1473",
+          "name": "KIZILCAHAMAM",
+          "population": 27841,
+          "coveredPopulation": 22283.999999999996,
+          "coveragePercent": 80.04022844007038
+        },
+        {
+          "id": "1746",
+          "name": "MAMAK",
+          "population": 690329,
+          "coveredPopulation": 669173.381706432,
+          "coveragePercent": 96.93542958595569
+        },
+        {
+          "id": "1539",
+          "name": "NALLIHAN",
+          "population": 26083,
+          "coveredPopulation": 20917.419805505557,
+          "coveragePercent": 80.19560558795214
+        },
+        {
+          "id": "1578",
+          "name": "POLATLI",
+          "population": 131894,
+          "coveredPopulation": 110795.10809119979,
+          "coveragePercent": 84.00314501887863
+        },
+        {
+          "id": "2034",
+          "name": "PURSAKLAR",
+          "population": 168881,
+          "coveredPopulation": 160049.0,
+          "coveragePercent": 94.77028203291074
         },
         {
           "id": "1747",
@@ -3625,15 +3079,201 @@
           "id": "1658",
           "name": "ŞEREFLİKOÇHİSAR",
           "population": 32831,
-          "coveredPopulation": 26335.0,
-          "coveragePercent": 80.21382230209254
+          "coveredPopulation": 26334.999999999996,
+          "coveragePercent": 80.21382230209252
         },
         {
           "id": "1723",
           "name": "YENİMAHALLE",
           "population": 721531,
-          "coveredPopulation": 677173.6177533714,
-          "coveragePercent": 93.85232481395413
+          "coveredPopulation": 681456.1084033506,
+          "coveragePercent": 94.44585311003277
+        }
+      ]
+    },
+    {
+      "profile": "sunday-1000",
+      "coveredPopulation": 5614804.000000001,
+      "coveragePercent": 95.00000000000003,
+      "meanMinutes": 32.82361777699534,
+      "maxMinutes": 44.8923454284668,
+      "allocationCount": 748,
+      "minimumDistrictCoveragePercent": 80.04022844007038,
+      "districts": [
+        {
+          "id": "1872",
+          "name": "AKYURT",
+          "population": 46956,
+          "coveredPopulation": 38128.0,
+          "coveragePercent": 81.19942073430445
+        },
+        {
+          "id": "1130",
+          "name": "ALTINDAĞ",
+          "population": 418072,
+          "coveredPopulation": 415588.00000000006,
+          "coveragePercent": 99.40584396945981
+        },
+        {
+          "id": "1157",
+          "name": "AYAŞ",
+          "population": 13136,
+          "coveredPopulation": 10849.000000000004,
+          "coveragePercent": 82.58982947624851
+        },
+        {
+          "id": "1167",
+          "name": "BALA",
+          "population": 20109,
+          "coveredPopulation": 16293.999999999996,
+          "coveragePercent": 81.02839524590978
+        },
+        {
+          "id": "1187",
+          "name": "BEYPAZARI",
+          "population": 48359,
+          "coveredPopulation": 39148.0,
+          "coveragePercent": 80.95287330176389
+        },
+        {
+          "id": "1227",
+          "name": "ÇAMLIDERE",
+          "population": 10203,
+          "coveredPopulation": 8255.999999999996,
+          "coveragePercent": 80.91737724198762
+        },
+        {
+          "id": "1231",
+          "name": "ÇANKAYA",
+          "population": 952198,
+          "coveredPopulation": 902978.0,
+          "coveragePercent": 94.83090701723802
+        },
+        {
+          "id": "1260",
+          "name": "ÇUBUK",
+          "population": 101437,
+          "coveredPopulation": 83708.00000000012,
+          "coveragePercent": 82.52215660952129
+        },
+        {
+          "id": "1302",
+          "name": "ELMADAĞ",
+          "population": 45644,
+          "coveredPopulation": 39862.90311959253,
+          "coveragePercent": 87.3343771790214
+        },
+        {
+          "id": "1922",
+          "name": "ETİMESGUT",
+          "population": 632458,
+          "coveredPopulation": 630673.0,
+          "coveragePercent": 99.71776782015564
+        },
+        {
+          "id": "1924",
+          "name": "EVREN",
+          "population": 2927,
+          "coveredPopulation": 2437.999999999998,
+          "coveragePercent": 83.29347454731801
+        },
+        {
+          "id": "1744",
+          "name": "GÖLBAŞI",
+          "population": 172810,
+          "coveredPopulation": 142816.0,
+          "coveragePercent": 82.64336554597536
+        },
+        {
+          "id": "1365",
+          "name": "GÜDÜL",
+          "population": 8028,
+          "coveredPopulation": 6541.999999999998,
+          "coveragePercent": 81.48978574987542
+        },
+        {
+          "id": "1387",
+          "name": "HAYMANA",
+          "population": 25798,
+          "coveredPopulation": 20776.999999999996,
+          "coveragePercent": 80.537250949686
+        },
+        {
+          "id": "1815",
+          "name": "KAHRAMANKAZAN",
+          "population": 63143,
+          "coveredPopulation": 55351.00000000004,
+          "coveragePercent": 87.6597564258905
+        },
+        {
+          "id": "1427",
+          "name": "KALECİK",
+          "population": 12564,
+          "coveredPopulation": 10174.999999999998,
+          "coveragePercent": 80.98535498248964
+        },
+        {
+          "id": "1745",
+          "name": "KEÇİÖREN",
+          "population": 931722,
+          "coveredPopulation": 926300.0,
+          "coveragePercent": 99.41806676240338
+        },
+        {
+          "id": "1473",
+          "name": "KIZILCAHAMAM",
+          "population": 27841,
+          "coveredPopulation": 22283.999999999996,
+          "coveragePercent": 80.04022844007038
+        },
+        {
+          "id": "1746",
+          "name": "MAMAK",
+          "population": 690329,
+          "coveredPopulation": 664411.0,
+          "coveragePercent": 96.24555827728518
+        },
+        {
+          "id": "1539",
+          "name": "NALLIHAN",
+          "population": 26083,
+          "coveredPopulation": 20917.419805505488,
+          "coveragePercent": 80.19560558795187
+        },
+        {
+          "id": "1578",
+          "name": "POLATLI",
+          "population": 131894,
+          "coveredPopulation": 110795.10809119979,
+          "coveragePercent": 84.00314501887863
+        },
+        {
+          "id": "2034",
+          "name": "PURSAKLAR",
+          "population": 168881,
+          "coveredPopulation": 160049.0,
+          "coveragePercent": 94.77028203291074
+        },
+        {
+          "id": "1747",
+          "name": "SİNCAN",
+          "population": 605366,
+          "coveredPopulation": 584969.7492256901,
+          "coveragePercent": 96.63075713298899
+        },
+        {
+          "id": "1658",
+          "name": "ŞEREFLİKOÇHİSAR",
+          "population": 32831,
+          "coveredPopulation": 26335.0,
+          "coveragePercent": 80.21382230209252
+        },
+        {
+          "id": "1723",
+          "name": "YENİMAHALLE",
+          "population": 721531,
+          "coveredPopulation": 675158.8197580131,
+          "coveragePercent": 93.57308553035325
         }
       ]
     }
@@ -3645,18 +3285,18 @@
   "annualDemandCountedOnce": true,
   "sameIndividualsAcrossProfilesConstrained": false,
   "withinOriginalTransitBudget": true,
-  "annualEquivalentCostTRY": 189178318200.07632,
-  "decimalAnnualEquivalentCostTRY": "189178318200.076312061396655684944246015943716",
+  "annualEquivalentCostTRY": 175868263288.7018,
+  "decimalAnnualEquivalentCostTRY": "175868263288.701820070258781870797300915922512",
   "decimalAnnualMaterialCostTRY": "33668611722.743994245843320718663615736000",
-  "decimalAnnualFixedResourceCostTRY": "155509706477.332317815553334966280630279943716",
+  "decimalAnnualFixedResourceCostTRY": "142199651565.957825824415461152133685179922512",
   "originalTransitBudgetTRY": 189556939209.2935,
-  "budgetSlackTRY": 378621009.21718794,
-  "decimalBudgetSlackTRY": "378621009.217187938603344315055753984056284",
-  "budgetSlackPercent": 0.19973998883741478,
+  "budgetSlackTRY": 13688675920.59168,
+  "decimalBudgetSlackTRY": "13688675920.591679929741218129202699084077488",
+  "budgetSlackPercent": 7.221405862371383,
   "minimumAreaSlackM2": 14615.526111673978,
   "minimumPlotClearanceMeters": 197.56739791465316,
-  "minimumDoctorContactSlack": -4.897360123646226e-10,
-  "minimumBedDaySlack": -4.455988682826936e-12,
+  "minimumDoctorContactSlack": -1.921065774279917e-09,
+  "minimumBedDaySlack": -2.8814935551837486e-10,
   "numericalTolerances": {
     "residents": 0.001,
     "capacity": 0.1,
@@ -3668,74 +3308,74 @@
   "conditionalOverlap": {
     "province": {
       "denominator": 5910320,
-      "lowerResidents": 5415277.841469696,
-      "upperResidents": 5450942.369487259,
-      "lowerPercent": 91.62410565704896,
-      "upperPercent": 92.2275336950835
+      "lowerResidents": 5477554.241424645,
+      "upperResidents": 5483626.645725119,
+      "lowerPercent": 92.67779479663784,
+      "upperPercent": 92.78053719130467
     },
     "districts": [
       {
         "id": "1872",
         "name": "AKYURT",
         "denominator": 46956,
-        "lowerResidents": 32472.00381652586,
-        "upperResidents": 37320.29268990924,
-        "lowerPercent": 69.15410984011811,
-        "upperPercent": 79.47928420203858
+        "lowerResidents": 38122.57133578405,
+        "upperResidents": 38122.57133578405,
+        "lowerPercent": 81.18785956168338,
+        "upperPercent": 81.18785956168338
       },
       {
         "id": "1130",
         "name": "ALTINDAĞ",
         "denominator": 418072,
-        "lowerResidents": 406678.0,
-        "upperResidents": 406678.0,
-        "lowerPercent": 97.27463212078302,
-        "upperPercent": 97.27463212078302
+        "lowerResidents": 415454.6800116431,
+        "upperResidents": 415454.6800116431,
+        "lowerPercent": 99.37395472828678,
+        "upperPercent": 99.37395472828678
       },
       {
         "id": "1157",
         "name": "AYAŞ",
         "denominator": 13136,
-        "lowerResidents": 10685.0,
-        "upperResidents": 10685.0,
-        "lowerPercent": 81.34135200974421,
-        "upperPercent": 81.34135200974421
+        "lowerResidents": 10684.999999999995,
+        "upperResidents": 10684.999999999998,
+        "lowerPercent": 81.34135200974417,
+        "upperPercent": 81.3413520097442
       },
       {
         "id": "1167",
         "name": "BALA",
         "denominator": 20109,
-        "lowerResidents": 16294.0,
-        "upperResidents": 16294.0,
-        "lowerPercent": 81.02839524590979,
-        "upperPercent": 81.02839524590979
+        "lowerResidents": 16293.999999999985,
+        "upperResidents": 16293.999999999996,
+        "lowerPercent": 81.02839524590972,
+        "upperPercent": 81.02839524590978
       },
       {
         "id": "1187",
         "name": "BEYPAZARI",
         "denominator": 48359,
-        "lowerResidents": 37482.04918900788,
-        "upperResidents": 38172.29420184667,
-        "lowerPercent": 77.50790791581272,
-        "upperPercent": 78.93524308163252
+        "lowerResidents": 39148.0,
+        "upperResidents": 39148.0,
+        "lowerPercent": 80.95287330176389,
+        "upperPercent": 80.95287330176389
       },
       {
         "id": "1227",
         "name": "ÇAMLIDERE",
         "denominator": 10203,
-        "lowerResidents": 8256.0,
-        "upperResidents": 8256.0,
-        "lowerPercent": 80.91737724198765,
-        "upperPercent": 80.91737724198765
+        "lowerResidents": 8255.999999999989,
+        "upperResidents": 8255.999999999996,
+        "lowerPercent": 80.91737724198754,
+        "upperPercent": 80.91737724198762
       },
       {
         "id": "1231",
         "name": "ÇANKAYA",
         "denominator": 952198,
-        "lowerResidents": 838741.1751415407,
-        "upperResidents": 843645.0176332872,
-        "lowerPercent": 88.08474446927433,
-        "upperPercent": 88.5997468628675
+        "lowerResidents": 861549.2607859767,
+        "upperResidents": 861549.2607859767,
+        "lowerPercent": 90.48005360082426,
+        "upperPercent": 90.48005360082426
       },
       {
         "id": "1260",
@@ -3750,164 +3390,164 @@
         "id": "1302",
         "name": "ELMADAĞ",
         "denominator": 45644,
-        "lowerResidents": 38356.273820194074,
-        "upperResidents": 39491.56845504852,
-        "lowerPercent": 84.03355056566924,
-        "upperPercent": 86.52083177427157
+        "lowerResidents": 39841.6124783701,
+        "upperResidents": 39862.90311959253,
+        "lowerPercent": 87.28773218466853,
+        "upperPercent": 87.3343771790214
       },
       {
         "id": "1922",
         "name": "ETİMESGUT",
         "denominator": 632458,
-        "lowerResidents": 622850.887325496,
-        "upperResidents": 622850.8873254961,
-        "lowerPercent": 98.48098803801929,
-        "upperPercent": 98.48098803801929
+        "lowerResidents": 622369.7160548453,
+        "upperResidents": 622518.9668291551,
+        "lowerPercent": 98.40490847690205,
+        "upperPercent": 98.42850700428409
       },
       {
         "id": "1924",
         "name": "EVREN",
         "denominator": 2927,
-        "lowerResidents": 2438.0,
-        "upperResidents": 2438.0,
-        "lowerPercent": 83.29347454731807,
-        "upperPercent": 83.29347454731807
+        "lowerResidents": 2437.999999999993,
+        "upperResidents": 2437.999999999998,
+        "lowerPercent": 83.29347454731784,
+        "upperPercent": 83.29347454731801
       },
       {
         "id": "1744",
         "name": "GÖLBAŞI",
         "denominator": 172810,
-        "lowerResidents": 133680.0,
-        "upperResidents": 133680.0,
-        "lowerPercent": 77.35663445402464,
-        "upperPercent": 77.35663445402466
+        "lowerResidents": 142816.0,
+        "upperResidents": 142816.0,
+        "lowerPercent": 82.64336554597534,
+        "upperPercent": 82.64336554597534
       },
       {
         "id": "1365",
         "name": "GÜDÜL",
         "denominator": 8028,
-        "lowerResidents": 6542.0,
-        "upperResidents": 6542.0,
-        "lowerPercent": 81.48978574987544,
-        "upperPercent": 81.48978574987544
+        "lowerResidents": 6541.999999999994,
+        "upperResidents": 6541.999999999998,
+        "lowerPercent": 81.48978574987537,
+        "upperPercent": 81.48978574987542
       },
       {
         "id": "1387",
         "name": "HAYMANA",
         "denominator": 25798,
-        "lowerResidents": 20777.0,
-        "upperResidents": 20777.0,
-        "lowerPercent": 80.53725094968603,
-        "upperPercent": 80.53725094968603
+        "lowerResidents": 20776.999999999978,
+        "upperResidents": 20776.999999999996,
+        "lowerPercent": 80.53725094968594,
+        "upperPercent": 80.537250949686
       },
       {
         "id": "1815",
         "name": "KAHRAMANKAZAN",
         "denominator": 63143,
-        "lowerResidents": 43818.195750466366,
-        "upperResidents": 45818.52517065104,
-        "lowerPercent": 69.39517563382539,
-        "upperPercent": 72.56311098720529
+        "lowerResidents": 50502.08748419217,
+        "upperResidents": 50502.087484192176,
+        "lowerPercent": 79.98050058469217,
+        "upperPercent": 79.98050058469217
       },
       {
         "id": "1427",
         "name": "KALECİK",
         "denominator": 12564,
-        "lowerResidents": 10175.0,
-        "upperResidents": 10175.0,
-        "lowerPercent": 80.98535498248965,
-        "upperPercent": 80.98535498248965
+        "lowerResidents": 10174.999999999993,
+        "upperResidents": 10174.999999999998,
+        "lowerPercent": 80.9853549824896,
+        "upperPercent": 80.98535498248964
       },
       {
         "id": "1745",
         "name": "KEÇİÖREN",
         "denominator": 931722,
-        "lowerResidents": 914613.232840385,
-        "upperResidents": 914613.232840385,
-        "lowerPercent": 98.16374764579832,
-        "upperPercent": 98.16374764579832
+        "lowerResidents": 905667.3787934402,
+        "upperResidents": 905667.3787934402,
+        "lowerPercent": 97.20360566708098,
+        "upperPercent": 97.20360566708098
       },
       {
         "id": "1473",
         "name": "KIZILCAHAMAM",
         "denominator": 27841,
-        "lowerResidents": 22284.0,
-        "upperResidents": 22284.0,
-        "lowerPercent": 80.0402284400704,
-        "upperPercent": 80.0402284400704
+        "lowerResidents": 22272.79999999998,
+        "upperResidents": 22272.799999999996,
+        "lowerPercent": 79.99999999999993,
+        "upperPercent": 79.99999999999999
       },
       {
         "id": "1746",
         "name": "MAMAK",
         "denominator": 690329,
-        "lowerResidents": 621275.1644594324,
-        "upperResidents": 621275.1644594324,
-        "lowerPercent": 89.99696730970774,
-        "upperPercent": 89.99696730970774
+        "lowerResidents": 653788.381706432,
+        "upperResidents": 653788.381706432,
+        "lowerPercent": 94.70678208599551,
+        "upperPercent": 94.70678208599551
       },
       {
         "id": "1539",
         "name": "NALLIHAN",
         "denominator": 26083,
-        "lowerResidents": 20951.0,
-        "upperResidents": 20951.0,
-        "lowerPercent": 80.32434919296094,
-        "upperPercent": 80.32434919296094
+        "lowerResidents": 20816.679222022165,
+        "upperResidents": 20917.419805505488,
+        "lowerPercent": 79.80937477292552,
+        "upperPercent": 80.19560558795187
       },
       {
         "id": "1578",
         "name": "POLATLI",
         "denominator": 131894,
-        "lowerResidents": 89787.85912664802,
-        "upperResidents": 94598.47742021606,
-        "lowerPercent": 68.07577230704052,
-        "upperPercent": 71.72310902710969
+        "lowerResidents": 101653.43236479911,
+        "upperResidents": 104801.32427359933,
+        "lowerPercent": 77.07206723944918,
+        "upperPercent": 79.45875041593956
       },
       {
         "id": "2034",
         "name": "PURSAKLAR",
         "denominator": 168881,
-        "lowerResidents": 160049.0,
-        "upperResidents": 162061.29153761503,
-        "lowerPercent": 94.77028203291074,
-        "upperPercent": 95.96182610099125
+        "lowerResidents": 153638.25491731672,
+        "upperResidents": 153638.25491731672,
+        "lowerPercent": 90.97426881491508,
+        "upperPercent": 90.97426881491508
       },
       {
         "id": "1747",
         "name": "SİNCAN",
         "denominator": 605366,
-        "lowerResidents": 585119.0,
-        "upperResidents": 585119.0,
-        "lowerPercent": 96.65541176742664,
-        "upperPercent": 96.65541176742664
+        "lowerResidents": 574266.3088474822,
+        "upperResidents": 576819.8686603241,
+        "lowerPercent": 94.86266305796529,
+        "upperPercent": 95.28448387592368
       },
       {
         "id": "1658",
         "name": "ŞEREFLİKOÇHİSAR",
         "denominator": 32831,
-        "lowerResidents": 26335.0,
-        "upperResidents": 26335.0,
-        "lowerPercent": 80.21382230209254,
-        "upperPercent": 80.21382230209254
+        "lowerResidents": 26194.599999999988,
+        "upperResidents": 26194.59999999999,
+        "lowerPercent": 79.78617769790742,
+        "upperPercent": 79.78617769790745
       },
       {
         "id": "1723",
         "name": "YENİMAHALLE",
         "denominator": 721531,
-        "lowerResidents": 661910.0,
-        "upperResidents": 677173.6177533714,
-        "lowerPercent": 91.73687617025463,
-        "upperPercent": 93.85232481395413
+        "lowerResidents": 650577.477422342,
+        "upperResidents": 650677.1480021573,
+        "lowerPercent": 90.1662544537022,
+        "upperPercent": 90.18006821635625
       }
     ],
     "sameIndividualsObserved": false,
-    "numericalClippingResidents": 1.59631e-10,
+    "numericalClippingResidents": 1.232243949019242e-09,
     "scope": "Conditional intersections of subsets of each origin population, not observed patient identities. Lower=max(0,sum(served)-3*population); upper=min(served). Full denominators retained."
   },
   "generation": {
-    "method": "Deterministic batch closure with four separate fixed-resource feasibility LPs and resource cleanup; final plan independently verified.",
-    "researchReportSHA256": "c301e5cb0b0dfdfd0ea01bcb29416a34e6077d88fc70396812904222637f664f",
-    "researchVectorSHA256": "086a8120874e35f84c4843ac962f20ce13d545c64b167d94af91af342806b328",
+    "method": "Reusable bounded joint-plan cost search; complete independently audited plan",
+    "researchReportSHA256": "4d0c0779ca7b9bcfea732e3dc4e9cd8bdd303bb1a20115414bea24672e4154e0",
+    "researchVectorSHA256": "41698007f9ae623cfc179ddda58b499c6379703e0627c45d6c378dd2fa22f9a2",
     "searchProvenOptimal": false,
     "minimumHospitalCountProven": false,
     "travelTimeOptimized": false,
@@ -3926,7 +3566,7 @@
     "transit-weekday-1000-matrix.npz": "32c1f46a471b5225fb89327498195c345d77eeb1b65c6a18d6dcbc7451400ad9",
     "transit-saturday-1000-matrix.npz": "d2a263ec748aed403ff96323572c5d3208b01ced38881c5cbf4057e13cc65bb5",
     "transit-sunday-1000-matrix.npz": "8569790d726a140e1b3b2138c12b50781f2001a94fd60af197a51bec10afa101",
-    "joint-plan.json": "ef6102aa6a5e45e64fb9da1c0d420a21f88da10a4bb15350130927cfa139ac0f"
+    "joint-plan.json": "ac9c4e1031aa15d3ad1bc1b2d6b78b6094fa16ddb1ca035ee09bb31ae7bf9a93"
   },
   "auditCodeSHA256": "b23cc7c3a1fcdae70c3d2b58896684423b8e7214db2c93e9e15c56d3b0577148",
   "auditCodeHashNormalization": "CRLF converted to LF; all nine input hashes use exact file bytes"
