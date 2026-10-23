@@ -344,6 +344,16 @@ export default function HealthMethod({ data }: { data: Dataset }) {
         kontroller saha doğrulaması değildir. İstisna takvimi, canlı gecikme,
         dolmuş ve Başkentray kapsamı yoktur.
       </p>
+      <p>
+        Başkentray araştırmasında iki resmî tabloda 146 trenin 24 istasyondaki
+        yayımlanmış saatleri karşılaştırıldı. Normal hafta içi kapsamı, tablolar ile bağlantı
+        veren sayfanın birlikte değerlendirilmesine dayanıyor; hafta sonu
+        takvimi bilinmiyor. Peron–giriş bağlantılarının katı ve erişim koşulları
+        tamamlanmadığı için bu trenler henüz hesaba eklenmedi.{" "}
+        <a href="https://github.com/ahmedberatAI/Ankara-Hastane-Yerlestirme/blob/main/docs/baskentray-research.md" target="_blank" rel="noreferrer">
+          Doğrulanan kaynaklar ve açık erişim sorunu
+        </a>.
+      </p>
       {data.metadata.transitDataQuality && (
         <p>
           Resmî katalog:{" "}

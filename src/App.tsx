@@ -1244,6 +1244,7 @@ export default function App() {
           <Benchmark
             busy={busy}
             packageId={data?.metadata.transitPackageId}
+            planningVersion={data?.healthPlanning.version}
             run={(s) => {
               setScenario(s);
               void solve(s);

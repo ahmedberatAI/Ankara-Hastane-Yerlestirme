@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Scenario, Result } from "./types";
 import { transitProfileLabels } from "./types";
+import TransportRelaxation from "./TransportRelaxation";
 
 type Report = {
   date: string;
@@ -29,15 +30,14 @@ type Report = {
 const fmt = (n: number) =>
   n.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 
-export default function Benchmark({
-  run,
-  busy,
-  packageId,
-}: {
+type BenchmarkProps = {
   run: (s: Scenario) => void;
   busy: boolean;
   packageId?: string;
-}) {
+  planningVersion?: string;
+};
+
+export default function Benchmark(props: BenchmarkProps) {
   const [report, setReport] = useState<Report | null>(null);
   useEffect(() => {
     fetch("/api/benchmark-91")
@@ -46,12 +46,17 @@ export default function Benchmark({
       .catch(() => {});
   }, []);
   if (!report) return null;
-  if (!packageId || report.transitPackageId !== packageId) {
+  return <BenchmarkContent {...props} report={report} />;
+}
+
+export function BenchmarkContent({ report, run, busy, packageId, planningVersion }: BenchmarkProps & { report: Report }) {
+  if (!packageId || report.transitPackageId !== packageId ||
+      !planningVersion || report.planningVersion !== planningVersion) {
     return (
       <section className="benchmark" role="status">
         <h3>91 hastane karşılaştırması güncelleniyor</h3>
         <p>
-          Kayıtlı deney ile uygulamanın ulaşım veri sürümü eşleşmiyor. Bu
+          Kayıtlı deney ile uygulamanın ulaşım veya sağlık veri sürümü eşleşmiyor. Bu
           kayıtların sayıları güncel sonuç olarak gösterilemez.
         </p>
       </section>
@@ -132,6 +137,7 @@ export default function Benchmark({
           atanabilirlik garantisi vermez.
         </p>
       )}
+      <TransportRelaxation packageId={packageId} planningVersion={planningVersion} />
       <small>
         {report.note} Kayıt: {report.date}. Bu kart sabit deney kaydıdır;
         yukarıdaki canlı parametrelerle değişmez.

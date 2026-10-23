@@ -2,6 +2,16 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
+## 23 Ekim 04.10 TSİ: kapasite ile ulaşımı ayıran ek kontrol
+
+Ulaşım kısıtları kaldırılan yeni bağımsız denetimde kayıtlı araba planının **46 tesis / 18.550 yatak / 21.590 hekim** kaynakları ve atamaları dört alternatif profil için aynı tutuldu. Konumlandırılamayan nüfus paydalarda kaldı; il %95 ve her ilçe %80 hedefi korundu. Aynı yıllık talep ve malzeme gideri yalnız bir kez sayıldı. Yıllık eşdeğer maliyet **143,878 milyar TL**, kayıtlı EGO bütçesi **189,557 milyar TL** altında. Bu yalnız toplam kapasite, alan ve maliyet varsayımlarının yüksek EGO sayısını tek başına zorlamadığını gösterir. Gerçek EGO ağıyla 91 tesisin yeterliliği, minimum tesis sayısı veya klinik gerçekçilik kanıtlanmıyor. [Hesap ve sınırları](transport-relaxation.md).
+
+Ulaşım hakemi üretim denetçisini hazırladı; kanıt hakemi kaynak kimliklerini, bağımsız ondalık maliyet/akış hesabını, dört profil kapsamını ve arayüz iddialarını çapraz inceledi. Kaynak ya da sağlık veri sürümü uyuşmazsa sonuç gizleniyor. Dosya yazımı için bulunan geçici dosya bağlantısı hatası, benzersiz ve özel açılmış dosya ile atomik değiştirme kullanılarak giderildi. Kabul yalnız bu tanının iç tutarlılığı kapsamındadır.
+
+Başkentray için iki resmî tabloda 146 tren / 24 istasyon / 3.504 saat hücresi doğrulandı. Hafta içi takvimi sayfa ile tabloların birlikte yorumuna dayanıyor; hafta sonu takvimi bilinmiyor. Ray yolları doğrulansa da kat ve erişim koşullarıyla perona ulaşım kanıtı tamamlanmadı. Bu nedenle trenler üretim ağına eklenmedi; eksik model kapsamı gerçek hizmet yokluğu sayılmadı. [Kaynaklar ve erişim sorunu](baskentray-research.md).
+
+**432 test geçti, iki test Windows sembolik bağlantı oluşturma izni nedeniyle atlandı; üretim derlemesi geçti.** Yeni rapor salt okunur yeniden üretimle ve 45 çıktı manifestosuyla doğrulandı. Yerel arayüzde yeni panelin sayıları, açıklamaları ve kaynak bağlantısı kontrol edildi; tarayıcı hata günlüğü boş. Matematik, ulaşım paketi ve önceki 91 deney girdileri değişmediği için aynı deneyler yeniden çözülmedi. [Ekran kontrolü](screenshots/kapasite-ulasim-tanisi.png). Ulaşım süreleri, eksik hizmetler, klinik kapasite ve tam maliyet kalibrasyonu açık; genel başarı kabulü yok.
+
 ## v0.7: giderilen hatalar ve kabul kapsamı
 
 216 ek durağın yol bağlantısı, resmî sıra ve tek yönlü yol kanıtıyla yeniden kuruldu. 477 aday değişiklik belirsiz komşular nedeniyle bekletildi; önceki üç uzak-durak bağlantısı kimlikleri korunarak ayrıca doğrulandı. İlk daha geniş prototipler, iki yönlü paralel yol ve aynı yolun başka kolu gibi karşıörnekler nedeniyle kabul edilmedi. Yeni eşleştirmeye dokunan her parçanın iki ucu ortak durak kaydına kilitleniyor; rota araması başka bir düğüme geri dönemiyor. 438 çiftin 437'si geçiyor, önceden de kullanılmayan bir çift mevcut geometri sınırında belirsiz kalıyor. [Yöntem ve sınırlar](bus-stop-matching.md).

@@ -74,6 +74,8 @@ Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı *
 
 Bunlar kaydedilmiş model sonuçlarıdır; minimum hastane ihtiyacı sayıları değildir. Araba/91 için ilk maliyet açıklığı %1,82, son plan maliyet açıklığı %1,77; her ikisi daraltılmış aday bağlantıları kapsamındadır. Eski 291 sınırı yalnız yürüyüş hatası düzeltilince 169'a iner. Yeni dört profilde coğrafi sınırlar 165–170 aralığında; eksik hizmet ve tahmini zamanlarla gerçek Ankara için kesin ihtiyaç çıkarılamaz. Resmî 2024 envanteri 85; 91 kullanıcı karşılaştırma eşiğidir. [Deney ve sınırlar](docs/transit-validation.md).
 
+**Kapasiteyi ulaşım etkisinden ayıran kontrol:** ulaşım kısıtları kaldırıldığında kayıtlı 46 tesis / 18.550 yatak / 21.590 hekim planı, aynı %95/%80 hedeflerini ve EGO yıllık bütçesini sağlıyor. Böylece yüksek EGO sayısının yalnız toplam yatak ve hekim ihtiyacından doğmadığı görülebiliyor. Bu, gerçek EGO hizmetiyle 91 tesisin yeterliliğini veya minimum sayıyı kanıtlamıyor. [Tanı, yeniden hesaplama ve sınırlar](docs/transport-relaxation.md).
+
 Yeni arayüz ilk maliyet planı ile son planı ayrı gösterir. Ayrıca kayıtlı 261 tesisli EGO planını **aynı konum, yatak, hekim ve yıllık bütçeyle dört profilde** sınar; başarısız profil gizlenmez. Küçük tesis kullanımı, kırsal erişim ve 24 süre/ilçe duyarlılığı da sunulur. [Kapasite ve dayanıklılık sonuçları](docs/validation.md), [bağımsız hakem döngüsü](docs/nightly-review.md).
 
 Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısını dört profil için birlikte yeniden seçer. Ayrıca bütçeyi kaldırıp alanların izin verdiği en yüksek kapasiteyi hesaplar. Böylece yalnız kaynak satın almanın yeterli olup olmadığı ayrı sınanır; yeni hastane yerleşimiyle karıştırılmaz. [Dar sefer kanıtları ve kalan veri açıklıkları](docs/service-evidence.md).
@@ -82,7 +84,10 @@ Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısın�
 
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)
+- [Ulaşım kaldırıldığında 91 sınırı: bağımsız kaynak ve bütçe tanığı](docs/transport-relaxation.md)
+- [Kapasite ve ulaşım tanısı: arayüz kontrolü](docs/screenshots/kapasite-ulasim-tanisi.png)
 - [Durak–yol yön eşleştirmesi ve bağımsız denetimi](docs/bus-stop-matching.md)
+- [Başkentray: doğrulanan tarife ve henüz çözülemeyen peron erişimi](docs/baskentray-research.md)
 - [v0.7: aynı yapı izlerinde kaynak artırımı ve dört profil kapasite tavanı](docs/screenshots/ego-ortak-kapasite-v07.png)
 - [Tarihsel v0.5: gün/saat seçimi ve biniş saatli rota ekranı](docs/screenshots/ego-tarife-v05.png)
 - [Tarihsel v0.5: aynı planın dört profilde kapasite ve bütçe testi](docs/screenshots/ego-dayaniklilik.png)
@@ -104,6 +109,8 @@ npm run build
 .venv\Scripts\python.exe scripts/verify_release.py
 .venv\Scripts\python.exe scripts/verify_transit.py
 .venv\Scripts\python.exe scripts/audit_robustness.py
+.venv\Scripts\python.exe scripts/audit_shared_capacity.py
+.venv\Scripts\python.exe scripts/audit_transport_relaxation.py
 ```
 
 Testler bağımsız yer/kadro seçimini küçük örneklerde tam sayım ve akış LP’siyle karşılaştırır; yatak ve hekim darboğazlarını, bölünmüş talebi, bütçe/süre tercihini, ilçe tabanlarını ve bilinmeyen nüfusu denetler. `verify_release.py`, kaydedilmiş araba ve dört EGO profili senaryolarındaki bütün atamaları, alanı, iki kaynağı ve yıllık maliyeti bağımsız hesaplar; 91 için tam coğrafi alt sınırı ve büyük alanların ağ rotalarını doğrular. `--write-examples` yeni çözümler üretir. `scripts/verify_transit.py` dört profilin kalkış, aktarma ve matris tutarlılığını kontrol eder. Ham OSM varsa `scripts/audit_data.py` yol/ray koridorlarını ayrıca denetler.

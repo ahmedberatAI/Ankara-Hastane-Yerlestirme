@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "status": "witness_validated",
+  "witnessFound": true,
+  "solverRun": false,
+  "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
+  "planningVersion": "independent-capacity-2026-10-v2",
+  "hospitalLimit": 91,
+  "hospitalCount": 46,
+  "beds": 18550,
+  "doctors": 21590,
+  "withinHospitalLimit": true,
+  "withinOriginalTransitBudget": true,
+  "sameHealthScenarioParameters": {
+    "coverageTarget": 95.0,
+    "districtFloor": 80.0,
+    "demandMultiplier": 1.0,
+    "bedOccupancy": 80.0,
+    "contactsPerDoctor": 2140,
+    "operatingCostMultiplier": 1.0
+  },
+  "profiles": [
+    {
+      "profile": "weekday-0800",
+      "allocationSHA256": "9f17f66092c8a2f2e423fb89fa0b396f0e8402268a4ddef027cd97f5c34eb023",
+      "allocationCount": 858,
+      "coveredPopulation": 5614803.999999996,
+      "coveragePercent": 94.99999999999994,
+      "minimumDistrictCoveragePercent": 80.0
+    },
+    {
+      "profile": "weekday-1000",
+      "allocationSHA256": "9f17f66092c8a2f2e423fb89fa0b396f0e8402268a4ddef027cd97f5c34eb023",
+      "allocationCount": 858,
+      "coveredPopulation": 5614803.999999996,
+      "coveragePercent": 94.99999999999994,
+      "minimumDistrictCoveragePercent": 80.0
+    },
+    {
+      "profile": "saturday-1000",
+      "allocationSHA256": "9f17f66092c8a2f2e423fb89fa0b396f0e8402268a4ddef027cd97f5c34eb023",
+      "allocationCount": 858,
+      "coveredPopulation": 5614803.999999996,
+      "coveragePercent": 94.99999999999994,
+      "minimumDistrictCoveragePercent": 80.0
+    },
+    {
+      "profile": "sunday-1000",
+      "allocationSHA256": "9f17f66092c8a2f2e423fb89fa0b396f0e8402268a4ddef027cd97f5c34eb023",
+      "allocationCount": 858,
+      "coveredPopulation": 5614803.999999996,
+      "coveragePercent": 94.99999999999994,
+      "minimumDistrictCoveragePercent": 80.0
+    }
+  ],
+  "resourcesSharedAcrossProfiles": true,
+  "annualDemandCountedOnce": true,
+  "minimumAreaSlackM2": 14615.526111673978,
+  "minimumPlotClearanceMeters": 1178.9195915316493,
+  "annualEquivalentCostTRY": 143877970994.9809,
+  "decimalAnnualEquivalentCostTRY": "143877970994.9808966356092009489311414835",
+  "decimalAnnualMaterialCostTRY": "33668611722.74399424584332071866361573600",
+  "originalTransitBudgetTRY": 189556939209.2935,
+  "budgetSlackTRY": 45678968214.31259,
+  "numericalTolerances": {
+    "residents": 0.001,
+    "capacity": 0.1,
+    "areaM2": 0.001,
+    "moneyTRY": 1.0,
+    "districtPercent": 1e-06
+  },
+  "scope": "All transport constraints removed; every demand-candidate pair is allowed. Same saved locations, resources and allocations copied to four alternative profiles. No route, departure, walking connection or real travel time is asserted. A feasible relaxation does not establish actual EGO feasibility or an optimal hospital count.",
+  "noWitnessInterpretation": "If this saved plan exceeds count or budget, no conclusion of infeasibility follows; no other plan was searched.",
+  "sourceSHA256": {
+    "dataset.json": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
+    "health-planning.json": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48",
+    "example-car-result.json": "60a394ae5810b2ca8c0917782e21f3a79059165205a46a6ba561610bb1552556",
+    "example-transit-result.json": "86d213de7fa307cb5fe24b9e9f60e9ccff18a91f7737a13a9e488a7b8cdc2213"
+  },
+  "auditCodeSHA256": "a4be5bdce93dea8bb16d0c5efb75ddfc13883ef68478cc509cf9646cab61c247",
+  "auditCodeHashNormalization": "CRLF converted to LF; all four input hashes use exact file bytes"
+}

@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-22T23:56:24.772029+00:00",
+  "createdAt": "2026-10-23T01:02:47.800250+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -254,6 +254,11 @@
       "file": "data/processed/transit-weekday-1000-matrix.npz",
       "bytes": 1118657,
       "sha256": "32c1f46a471b5225fb89327498195c345d77eeb1b65c6a18d6dcbc7451400ad9"
+    },
+    {
+      "file": "data/processed/transport-relaxation-results.json",
+      "bytes": 3557,
+      "sha256": "cdcd0c330860e5c37311bce36d5a761f1dcd06e97996bb86b097b000de7fefed"
     },
     {
       "file": "data/processed/unmatched-neighborhoods.json",

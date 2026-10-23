@@ -6,7 +6,7 @@ import subprocess
 import pytest
 
 
-@pytest.mark.parametrize('script', ['robustness_ui.mjs', 'stage_comparison_ui.mjs', 'shared_capacity_ui.mjs'])
+@pytest.mark.parametrize('script', ['robustness_ui.mjs', 'stage_comparison_ui.mjs', 'shared_capacity_ui.mjs', 'transport_relaxation_ui.mjs', 'benchmark_ui.mjs'])
 def test_ui_cards_keep_evidence_scopes_and_unknown_results_separate(script):
     root = Path(__file__).resolve().parents[1]
     node = shutil.which('node')
