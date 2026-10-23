@@ -105,6 +105,15 @@ export default function HealthMethod({ data }: { data: Dataset }) {
         hekim, hastanelere ayrılabilir bir kadro bütçesi değildir. Kullanıcının
         91 karşılaştırma sınırı ile tarihli resmî envanter farklı şeylerdir.
       </p>
+      <p>
+        30 Eylül 2026 tarihli{" "}
+        <a href="https://dosyasb.saglik.gov.tr/Eklenti/56342/0/haber-bulteni-2025-trpdf.pdf" target="_blank" rel="noreferrer">
+          2025 Haber Bülteni
+        </a>{" "}
+        de kontrol edildi. İlgili yatak, hekim ve kullanım tabloları Türkiye
+        veya bölge düzeyindedir; Ankara il satırı yoktur. Bu nedenle Ankara
+        kalibrasyonu 2024 verisini kullanmayı sürdürüyor.
+      </p>
       <div className="formula">
         <span>İKİ AYRI KAYNAK KISITI</span>
         <strong>Atanan temas ≤ seçilen hekim × yıllık temas/hekim</strong>
@@ -282,11 +291,23 @@ export default function HealthMethod({ data }: { data: Dataset }) {
       </p>
       <p>
         Açık yol eşleştirme sorunu: bazı duraklar en yakın yol düğümüyle
-        eşleştirilirken karşı taşıt yoluna bağlanabiliyor. 615, 560-8 ve
-        516/616 örneklerinde gereksiz U dönüşleri saptandı; yol sürelerini
-        uzatabilen bu hata henüz tüm ağda giderilmedi. Bu nedenle mevcut
+        eşleştirilirken karşı taşıt yoluna bağlanabiliyor. 516/616'da incelenen
+        iki bağlantı düzeltildi; 615 ve 560-8'deki örnekler komşu durak
+        belirsizliği nedeniyle bekliyor. Yol sürelerini uzatabilen bu hata
+        henüz tüm ağda giderilmedi. Bu nedenle mevcut
         EGO hastane sayıları gerçek ihtiyaç tahmini olarak kullanılamaz.
       </p>
+      {data.metadata.transitDataQuality?.additionalDirectionMatchedStops !== undefined &&
+        data.metadata.transitDataQuality.neighborWithheldStops !== undefined && (
+        <p>
+          Bu sürümde {fmt(data.metadata.transitDataQuality.additionalDirectionMatchedStops)} ek
+          durağın yola bağlantısı, resmî durak sırası ve yol yönü birlikte
+          değerlendirilerek yeniden kuruldu. Komşu bağlantısı belirsiz kalan{" "}
+          {fmt(data.metadata.transitDataQuality.neighborWithheldStops)} aday
+          değişiklik bekletildi. Bu kısmi düzeltme gerçek peron girişinin veya
+          bütün otobüs güzergâhlarının sahada doğrulandığı anlamına gelmez.
+        </p>
+      )}
       {!!data.metadata.transitDataQuality?.reviewedServiceEvents?.appliedCount && (
         <p>
           Özel notlu seferlerden {fmt(data.metadata.transitDataQuality.reviewedServiceEvents.appliedCount)} kayıt
@@ -296,6 +317,11 @@ export default function HealthMethod({ data }: { data: Dataset }) {
           kullanılır; bunların güncel varış ölçümü olduğu doğrulanmadı. Seçilen
           yönün süre bütçesi yeniden dağıtılır, birleşik tur süresinin bir parçası
           alınarak yolculuk kısaltılmaz. Ters yön veya desteklenmeyen günler üretilmez.
+          {" "}527-1'in 25 kalkışı, erişilebilir sayfadaki aynı gün/saat/not ve
+          1–98 durak sırasıyla eşleştirildi. 85 dakika yayımlanmış süre alanıdır;
+          fiziksel alt sınır daha yüksekse artırılır. Ekli tablonun geçerlilik
+          tarihi belirsizdir. 527-2'de Rüzgarlı başlangıcının durak kimliği
+          doğrulanamadığı için bu yöndeki 25 kayıt bekletilir.
         </p>
       )}
       <p>

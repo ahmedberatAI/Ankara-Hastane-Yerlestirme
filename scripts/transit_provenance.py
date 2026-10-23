@@ -14,10 +14,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROFILES = ('weekday-0800', 'weekday-1000', 'saturday-1000', 'sunday-1000')
 MODEL_FILES = ('backend/timetable.py', 'backend/geo.py', 'backend/bus_projection.py',
+               'backend/bus_stop_matching.py',
                'backend/service_evidence.py', 'scripts/build_timetable.py', 'scripts/audit_service_evidence.py')
 EVIDENCE_FILES = tuple(f'data/evidence/ego/{name}.html.gz' for name in (
     'ego-5608-accessible-7686', 'ego-615-accessible-7621', 'ego-615-announcement-7621',
-    'ego-route-560-8', 'ego-route-615', 'ego-route-615-1'))
+    'ego-route-560-8', 'ego-route-615', 'ego-route-615-1',
+    'ego-route-527-1', 'ego-527-directions-7333', 'ego-527-accessible-7721'))
 ARTIFACT_FILES = (
     'ego-official.json', 'ego-stop-coordinates.json', 'ego-service-evidence.json', 'ego-quality.json', 'ego-network.json.gz',
     'graph-coordinates.npy', 'walk-graph.npz',

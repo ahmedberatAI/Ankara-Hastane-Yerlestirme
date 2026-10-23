@@ -3,6 +3,7 @@ from collections import Counter
 import hashlib
 import gzip
 import json
+import re
 from pathlib import Path
 from bs4 import BeautifulSoup
 import numpy as np
@@ -25,6 +26,29 @@ def validate_evidence_archive(evidence,root):
         assert len(body)==source['bytes'], 'Evidence archive byte size mismatch'
         soups[sid]=BeautifulSoup(body,'html.parser',from_encoding='utf-8')
     for e in evidence['events']:
+        span_evidence=e.get('spanEvidence')
+        assert span_evidence is not None or not any(
+            evidence['sources'][sid]['kind']=='accessible_notice' for sid in e['evidenceSourceIds']), 'Accessible span evidence is required'
+        if span_evidence is not None:
+            sid=span_evidence['sourceId'];source=evidence['sources'][sid]
+            assert sid in e['evidenceSourceIds'] and e['routeId'] in source['routeIds']
+            assert source['kind']=='accessible_notice'
+            heading=soups[sid].select_one('h1').get_text(' ',strip=True)
+            assert heading==span_evidence['exactHeading'] and heading.startswith(e['routeId']+' ')
+            labels={'weekday':'Hafta İçi:','saturday':'Cumartesi:','sunday':'Pazar:'}
+            assert span_evidence['calendarLabel']==labels[e['calendar']]
+            rows=[row for row in soups[sid].select('.portlet-body table tr')
+                  if row.select_one('th').get_text(' ',strip=True)==labels[e['calendar']]]
+            assert len(rows)==1, 'Accessible evidence calendar is absent or ambiguous'
+            row_text=' '.join(rows[0].select_one('td').get_text(' ',strip=True).split())
+            entries=re.findall(r'(?<!\S)\d{2}:\d{2};[^;]+;\d+;\d+(?=\s|$)',row_text)
+            assert ' '.join(entries)==row_text, 'Accessible evidence contains an unparsed entry'
+            a,b=e['span']['indicesZeroBasedInclusive'];seconds=e['departureSeconds']
+            assert isinstance(seconds,int) and not isinstance(seconds,bool) and seconds%60==0, 'Accessible evidence has minute precision only'
+            expected=f'{seconds//3600:02d}:{seconds%3600//60:02d};{e["exactNote"]};{a+1};{b+1}'
+            assert entries.count(expected)==1 and span_evidence['exactEntry']==expected, 'Accessible evidence differs in clock/note/span'
+            assert span_evidence['indicesOneBasedInclusive']==[a+1,b+1]
+            assert span_evidence['tableEffectiveDateConfirmed'] is False
         duration=e['durationEvidence'];sid=duration['sourceId']
         assert sid in e['evidenceSourceIds'] and e['routeId'] in evidence['sources'][sid]['routeIds']
         if duration['type']=='dated_planned_departure_to_closing_interval':

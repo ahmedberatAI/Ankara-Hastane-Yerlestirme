@@ -1,7 +1,7 @@
 {
   "format": "reviewed-ego-events-v1",
-  "reviewedAt": "2026-10-22T22:09:59.976384+00:00",
-  "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+  "reviewedAt": "2026-10-22T23:07:46.717640+00:00",
+  "scope": "49 narrowly reviewed event interpretations across 560-8,615 and527-1. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services including527-2 remain unresolved; no missing service is treated as confirmed absent.",
   "sources": {
     "ego-5608-accessible-7686": {
       "id": "ego-5608-accessible-7686",
@@ -124,6 +124,65 @@
       "routeIds": [
         "615-1"
       ]
+    },
+    "ego-route-527-1": {
+      "id": "ego-route-527-1",
+      "url": "https://www.ego.gov.tr/hareketsaatleri?hat_no=527-1",
+      "finalUrl": "https://www.ego.gov.tr/hareketsaatleri?hat_no=527-1",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:54:45.098520+00:00",
+      "sha256": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692",
+      "bytes": 129628,
+      "contentType": "text/html; charset=utf-8",
+      "packagedRawSha256": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692",
+      "sameBytesAsPackagedRaw": true,
+      "kind": "timetable",
+      "routeIds": [
+        "527-1"
+      ],
+      "scope": "Observed official source; historical notice is direction evidence, not current measured journey time.",
+      "archiveFile": "data/evidence/ego/ego-route-527-1.html.gz"
+    },
+    "ego-527-directions-7333": {
+      "id": "ego-527-directions-7333",
+      "url": "https://www.ego.gov.tr/tr/duyuru/7333/5271-kizilcahamam-ankara-ve-5272-ankara-kizilcahamam-hakkinda",
+      "finalUrl": "https://www.ego.gov.tr/tr/duyuru/7333/5271-kizilcahamam-ankara-ve-5272-ankara-kizilcahamam-hakkinda",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:54:46.397752+00:00",
+      "sha256": "2644407ab4145debb0dcdbe2259b77a666fdd5b3822d6fa3e1c336b76a40aefe",
+      "bytes": 43890,
+      "contentType": "text/html; charset=utf-8",
+      "kind": "dated_notice",
+      "routeIds": [
+        "527-1",
+        "527-2"
+      ],
+      "scope": "Observed official source; historical notice is direction evidence, not current measured journey time.",
+      "archiveFile": "data/evidence/ego/ego-527-directions-7333.html.gz",
+      "publicationDate": "2023-01-03",
+      "announcedEffectiveFrom": "2023-01-06"
+    },
+    "ego-527-accessible-7721": {
+      "id": "ego-527-accessible-7721",
+      "url": "https://www.ego.gov.tr/engelli/duyurudetay/7721",
+      "finalUrl": "https://www.ego.gov.tr/engelli/duyurudetay/7721",
+      "method": "GET",
+      "statusCode": 200,
+      "observedAt": "2026-10-22T22:54:46.975296+00:00",
+      "sha256": "6f14a716489f75d7ae4035c2b1f56ee529f25e9b451bda6d503aa9d743809483",
+      "bytes": 3263,
+      "contentType": "text/html; charset=utf-8",
+      "kind": "accessible_notice",
+      "routeIds": [
+        "527-1"
+      ],
+      "scope": "Appended 527-1 table gives exact clock/note/1..98 entries. The body describes a different direction change; its 2025 date is not asserted as this appended table validity.",
+      "archiveFile": "data/evidence/ego/ego-527-accessible-7721.html.gz",
+      "announcementEffectiveFrom": "2025-12-26",
+      "appendedTableEffectiveFrom": null,
+      "appendedTableEffectiveDateConfirmed": false
     }
   },
   "events": [
@@ -1530,6 +1589,1681 @@
       "currentArrivalTimeConfirmed": false,
       "isMeasuredTravelTime": false,
       "assumption": "2025 planned weekday terminal interval applied to the matching published outbound event; current validity and terminal identification are not a measured stop-time guarantee."
+    },
+    {
+      "id": "527-1-weekday-0545",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 20700,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "435c699247dc2b67bd29a3d4e1c795f30b43ef07abfe5add262bd9c515388ced",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "05:45;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-0630",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 23400,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "dc02f621b892f11b3524881cb342834db37de8e0b86d2a59dfde5ad92c225d4c",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "06:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-0830",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 30600,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "ecb48a9154d4fef20042389319dcc3f1ebc85053bdd468646c5239646f719a71",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "08:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-0845",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 31500,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "cf531159ad9596fef94345e83df244ecef7a0e9407e9052febd3f035dc0953b2",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "08:45;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1030",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 37800,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "39ea17b3c3ff3d78da68d475a86d82cf931964dcfa0da76a2ac3f0a991cb2d3a",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "10:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1300",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 46800,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "eecaeca5f4c95f6e7d6535c68cd1e5f622b48b2fbed2dfcdf14df01e5cc4c6f8",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "13:00;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1530",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 55800,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "d15c2188e134d9026528b18e9268ffb10e7dec3ee7ad95d98dd7254131ff7678",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "15:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1630",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 59400,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "de1641775af92f5c9be0e0516005e32b3b04cf398b0bfae9fdb064c7c8df04ce",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "16:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1645",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 60300,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "28e488c1f8937dd33bb7b1ae63ea4c8d75ddcc4196653b07b6695bc201b8aaba",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "16:45;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1715",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 62100,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "8395e0fdc05ff17d2c8e8c74221f9c41ad2f3c692c3fe3783b775a49a00dbc15",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "17:15;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-weekday-1845",
+      "routeId": "527-1",
+      "calendar": "weekday",
+      "departureSeconds": 67500,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "b9b7afa0583921268791e4692b877d216af6e55bcf73f4362b6372a2f84d6c62",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Hafta İçi:",
+        "exactEntry": "18:45;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-0630",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 23400,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "f794f999f6402ab583b5cbd2ff253fb8ae9390aa7de908c355ff5e64734849ec",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "06:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-0700",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 25200,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "edf90fc00790adb16c4c99b68263b440bf030aa7bdaee4f8acb7d16afbf8b46b",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "07:00;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-0830",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 30600,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "f49469ad9bcc5331a038b34939cd79e628e1599a7b5941e8fd8295c1b7c112b9",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "08:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-0930",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 34200,
+      "exactNote": "KIZILCAHAMAMDAN",
+      "recordSha256": "9b537e62d4415521b01816055c0b982b8ecdda3b80d78f8bf5eb57be787dc32f",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "09:30;KIZILCAHAMAMDAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-1530",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 55800,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "1b099bab29d31bbb4483435c89ca7adfcbcd47f18ff4ae94efccb96dae95b9b7",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "15:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-1630",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 59400,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "783e440e93ecee8c9397fa003c5dccea43e5e52ab86435a6ec7c4115802e5006",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "16:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-1730",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 63000,
+      "exactNote": "KIZILCAHAMAM DAN",
+      "recordSha256": "b3f4f8a14126138d29c3bec194e5bbf2fd23b8a9babbd57e169119cc031e737f",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "17:30;KIZILCAHAMAM DAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-saturday-1830",
+      "routeId": "527-1",
+      "calendar": "saturday",
+      "departureSeconds": 66600,
+      "exactNote": "KIZILCAHAMAMDAN",
+      "recordSha256": "71dd4631b2c002f823fa3888aed6118437f67326b5f78be004a67c95e3e01f29",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Cumartesi:",
+        "exactEntry": "18:30;KIZILCAHAMAMDAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-sunday-0830",
+      "routeId": "527-1",
+      "calendar": "sunday",
+      "departureSeconds": 30600,
+      "exactNote": "KIZILCAHAMAMDAN BAŞLAR",
+      "recordSha256": "029c6a29de8739c999ad9190e4a5dad544c40aaab84a0aaa6cc16ca41c8db064",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Pazar:",
+        "exactEntry": "08:30;KIZILCAHAMAMDAN BAŞLAR;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-sunday-0930",
+      "routeId": "527-1",
+      "calendar": "sunday",
+      "departureSeconds": 34200,
+      "exactNote": "KIZILCAHAMAMDAN BAŞLAR",
+      "recordSha256": "d1ab3aa073f285a7e5dc49d34b8bb7a2f25c60b4e20e795e489a6ac2b62817d1",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Pazar:",
+        "exactEntry": "09:30;KIZILCAHAMAMDAN BAŞLAR;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-sunday-1200",
+      "routeId": "527-1",
+      "calendar": "sunday",
+      "departureSeconds": 43200,
+      "exactNote": "KIZILCAHAMAMDAN",
+      "recordSha256": "c31fbb39e21e2d1d82dbb77052139debd0cd7d4b317181713ebca355fb5649df",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Pazar:",
+        "exactEntry": "12:00;KIZILCAHAMAMDAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-sunday-1730",
+      "routeId": "527-1",
+      "calendar": "sunday",
+      "departureSeconds": 63000,
+      "exactNote": "KIZILCAHAMAMDAN BAŞLAR",
+      "recordSha256": "92360eccc446a5ddf52201e744b49a4a40414e076a214c0320567805b534ff39",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Pazar:",
+        "exactEntry": "17:30;KIZILCAHAMAMDAN BAŞLAR;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-sunday-1820",
+      "routeId": "527-1",
+      "calendar": "sunday",
+      "departureSeconds": 66000,
+      "exactNote": "KIZILCAHAMAMDAN BAŞLAR",
+      "recordSha256": "2925cfd118ec47acf6062c3cba35bd7f5ffaa14ae373303231d4938db6e34a53",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Pazar:",
+        "exactEntry": "18:20;KIZILCAHAMAMDAN BAŞLAR;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
+    },
+    {
+      "id": "527-1-sunday-1930",
+      "routeId": "527-1",
+      "calendar": "sunday",
+      "departureSeconds": 70200,
+      "exactNote": "KIZILCAHAMAMDAN",
+      "recordSha256": "b17c95be4ddace14b9a68d004bd7ba6644af0e9ca61fc0870c829e09d02a4f56",
+      "stopSequenceSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+      "direction": "Kızılcahamam → Ankara",
+      "durationEvidence": {
+        "type": "published_route_duration_field",
+        "sourceId": "ego-route-527-1",
+        "sourceField": "Süresi",
+        "publishedMinutes": 85.0,
+        "scope": "Complete separately catalogued direction, all published stops; 85 minute field not halved or sliced. Estimated offsets, not measured arrivals.",
+        "perDepartureClosingClock": null,
+        "perDepartureClosingTimeConfirmed": false,
+        "serviceDateValidityConfirmed": false,
+        "isMeasuredTravelTime": false
+      },
+      "timingConfidence": "published_whole_one_way_route_duration_field_not_per_trip_arrival_measurement",
+      "span": {
+        "indicesZeroBasedInclusive": [
+          0,
+          97
+        ],
+        "stopIdsSha256": "74bb16c781c6bde184999c46bb305311cb33c200747893c02147070502004698",
+        "start": {
+          "stopId": "51477",
+          "sequenceOneBased": 1,
+          "name": "SOĞUKSU MİLLİ PARKI GİRİŞİ",
+          "address": "-",
+          "occurrenceOrdinalOfSameStopId": 1
+        },
+        "end": {
+          "stopId": "11650",
+          "sequenceOneBased": 98,
+          "name": "ADLİYE",
+          "address": "Doğanbey Mh.Atatürk Blv.Altındağ",
+          "occurrenceOrdinalOfSameStopId": 1
+        }
+      },
+      "durationBudgetSeconds": 5100.0,
+      "dependentRouteRawHashes": {
+        "527-1": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692"
+      },
+      "evidenceSourceIds": [
+        "ego-route-527-1",
+        "ego-527-directions-7333",
+        "ego-527-accessible-7721"
+      ],
+      "currentArrivalTimeConfirmed": false,
+      "isMeasuredTravelTime": false,
+      "assumption": "527-1 erişilebilir sayfasındaki gün/saat/not ve 1..98 kaydı, ayrı yön kataloğunun tam 98 durak zinciriyle eşlenir. Sayfaya eklenmiş tablonun geçerlilik tarihi doğrulanmamıştır; 2025 tarihli açıklama diğer yönün saat değişimini anlatır. Yayımlanmış 85 dakika bütün zincire dağıtılan tahmin bütçesidir; fiziksel alt sınır daha yüksekse süre artırılır. Ölçülmüş ara durak varış saati değildir.",
+      "spanEvidence": {
+        "type": "reviewed_accessible_exact_row",
+        "sourceId": "ego-527-accessible-7721",
+        "exactHeading": "527-1 Kızılcahamam Ankara hattının servis saatleri yeniden düzenlenmiştir",
+        "calendarLabel": "Pazar:",
+        "exactEntry": "19:30;KIZILCAHAMAMDAN;1;98",
+        "indicesOneBasedInclusive": [
+          1,
+          98
+        ],
+        "tableEffectiveDateConfirmed": false
+      }
     }
   ],
   "held": {
@@ -1541,6 +3275,10 @@
       "490",
       "677"
     ],
-    "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+    "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research.",
+    "5272FullDirectionCandidates": {
+      "count": 25,
+      "reason": "Ruzgarli-to-12485 exact origin/span unresolved. First12485 and second12488 share the published departure address. 7721 appended1..98 table belongs to527-1, not527-2. No reversed or inferred departure added."
+    }
   }
 }

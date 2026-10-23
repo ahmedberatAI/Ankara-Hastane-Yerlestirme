@@ -47,7 +47,7 @@
     "status": "665 resmî hat/yön/varyantın kaynak kayıtları doğrulandı",
     "date": "23.10.2026 işlendi; eski HTTP gözlem zamanı bilinmiyor",
     "usedFor": "Durak sırası, normal gün türüne göre kalkış ve sayfadaki süre alanı",
-    "note": "666 önbellek HTML kaydının SHA/URL kimliği doğrulandı; observedAt bilinmediği için null, processedAt ayrı tutulur. 10.811 durak kimliği vardır. Süre alanının tek yön/çevrim kapsamı her hatta doğrulanmadı; ara durak saatleri tahminidir. Yeni altı dar kanıt arşivinin ayrı HTTP gözlemleri eski 666 önbelleğin zamanını geriye dönük doldurmaz. 24 dar sefer yorumu ve sınırlamaları docs/service-evidence.md içinde; kullanılan sefer kapsamı ve dışlama nedenleri ego-quality.json içinde."
+    "note": "666 önbellek HTML kaydının SHA/URL kimliği doğrulandı; observedAt bilinmediği için null, processedAt ayrı tutulur. 10.811 durak kimliği vardır. Süre alanının tek yön/çevrim kapsamı her hatta doğrulanmadı; ara durak saatleri tahminidir. Dokuz dar kanıt arşivinin ayrı HTTP gözlemleri eski 666 önbelleğin zamanını geriye dönük doldurmaz. 49 uygulanmış dar sefer yorumu ve sınırlamaları docs/service-evidence.md içinde; kullanılan sefer kapsamı ve dışlama nedenleri ego-quality.json içinde."
   },
   {
     "id": "ego-official-stop-coordinates",
@@ -390,5 +390,71 @@
     "archiveFile": "data/evidence/ego/ego-route-615-1.html.gz",
     "sha256Scope": "gzip açıldıktan sonraki HTTP yanıt baytları",
     "isMeasuredTravelTime": false
+  },
+  {
+    "id": "siy2025-bulletin-scope",
+    "title": "Sağlık İstatistikleri Yıllığı 2025 Haber Bülteni · kapsam kontrolü",
+    "publisher": "T.C. Sağlık Bakanlığı",
+    "url": "https://dosyasb.saglik.gov.tr/Eklenti/56342/0/haber-bulteni-2025-trpdf.pdf",
+    "status": "İndirildi; ilgili tablolar görsel olarak incelendi",
+    "date": "30.09.2026 yayımlandı; 23.10.2026 TSİ kontrol edildi",
+    "observedAt": "2026-10-22T23:00:52.775294+00:00",
+    "sha256": "3a39bcdf77ccb05c0e38552aab0232c714189bae14aede70bacf47bd7f2542b9",
+    "bytes": 640294,
+    "usedFor": "Veri güncelliği ve coğrafi kapsam kontrolü; Ankara model katsayılarına aktarılmadı",
+    "note": "Tablo7 yatakları İBBS-1 bölgelerinde, Tablo15 hizmet kullanımını Türkiye genelinde, Tablo18 hekimleri ülke/sektör düzeyinde, Tablo20 hekim oranlarını İBBS-1 düzeyinde verir. Ankara il satırı bulunmaz. Daha yeni bölge/ülke toplamı Ankara2024 yatak, hekim veya talep değerinin yerine geçmez; docs/health-data-freshness.md."
+  },
+  {
+    "id": "ego-route-527-1",
+    "title": "527-1 Kızılcahamam → Ankara hareket sayfası",
+    "publisher": "EGO Genel Müdürlüğü",
+    "url": "https://www.ego.gov.tr/hareketsaatleri?hat_no=527-1",
+    "status": "Gerçek HTTP yanıtı arşivlendi; 25 kural yeni ağda uygulandı",
+    "date": "23.10.2026 TSİ HTTP gözlemi; duyuru ve tablo tarihleri ayrıdır",
+    "usedFor": "527-1 tam yönündeki 25 olayın kaynak, gün, saat, not ve durak aralığına bağlı yorumu",
+    "note": "Ayrı yönün 51477→11650, 1–98 tam durak zinciri; 11 hafta içi/8 cumartesi/6 pazar kalkışı ve 85 dakika Süresi alanı. 25 kural yeni ağda uygulandı. Süre ölçülmüş varış değildir; fiziksel alt sınır daha büyükse model süreyi artırır.",
+    "observedAt": "2026-10-22T22:54:45.098520+00:00",
+    "sha256": "3f5af5be9983188f4f240f6d5d5f48c0fde38429daf8578965ee872afa9b8692",
+    "bytes": 129628,
+    "archiveFile": "data/evidence/ego/ego-route-527-1.html.gz",
+    "sha256Scope": "gzip açıldıktan sonraki HTTP yanıt baytları",
+    "isMeasuredTravelTime": false
+  },
+  {
+    "id": "ego-527-directions-7333",
+    "title": "527-1 ve 527-2 yön/cadde duyurusu",
+    "publisher": "EGO Genel Müdürlüğü",
+    "url": "https://www.ego.gov.tr/tr/duyuru/7333/5271-kizilcahamam-ankara-ve-5272-ankara-kizilcahamam-hakkinda",
+    "status": "Gerçek HTTP yanıtı arşivlendi; 25 uygulanmış 527-1 kuralına destekleyici kaynak",
+    "date": "23.10.2026 TSİ HTTP gözlemi; duyuru ve tablo tarihleri ayrıdır",
+    "usedFor": "527-1 tam yönündeki 25 olayın kaynak, gün, saat, not ve durak aralığına bağlı yorumu",
+    "note": "03.01.2023 yayını, 06.01.2023 başlangıcı. Karşıt yön ve cadde sırası için destekleyici tarihli kaynak; güncel yolculuk süresi veya Rüzgarlı=12485 kimlik eşlemesi sağlamaz. Yalnız 527-1 kurallarına kaynak olarak bağlandı; 527-2 hattının 25 olayı başlangıç/span belirsizliği nedeniyle bekletildi.",
+    "observedAt": "2026-10-22T22:54:46.397752+00:00",
+    "sha256": "2644407ab4145debb0dcdbe2259b77a666fdd5b3822d6fa3e1c336b76a40aefe",
+    "bytes": 43890,
+    "archiveFile": "data/evidence/ego/ego-527-directions-7333.html.gz",
+    "sha256Scope": "gzip açıldıktan sonraki HTTP yanıt baytları",
+    "isMeasuredTravelTime": false,
+    "publicationDate": "2023-01-03",
+    "announcedEffectiveFrom": "2023-01-06"
+  },
+  {
+    "id": "ego-527-accessible-7721",
+    "title": "527-1 erişilebilir saat ve 1–98 aralık tablosu",
+    "publisher": "EGO Genel Müdürlüğü",
+    "url": "https://www.ego.gov.tr/engelli/duyurudetay/7721",
+    "status": "Gerçek HTTP yanıtı arşivlendi; 25 kural yeni ağda uygulandı",
+    "date": "23.10.2026 TSİ HTTP gözlemi; duyuru ve tablo tarihleri ayrıdır",
+    "usedFor": "527-1 tam yönündeki 25 olayın kaynak, gün, saat, not ve durak aralığına bağlı yorumu",
+    "note": "Başlık ve 25 gün/saat/not/1;98 kaydı 527-1 hattına ait; güncel tarife kesitiyle birebir eşleşir. Gövde 26.12.2025 tarihinden itibaren diğer yöndeki Rüzgarlı saat değişimini anlatır; bu tarih eklenmiş tablonun geçerlilik tarihi sayılmaz. 527-2 hattına aralık veya başlangıç aliası aktarılmaz. Yeni 25 kural ağda uygulandı; bütün dar sefer kurallarının uygulanan sayısı 49/49.",
+    "observedAt": "2026-10-22T22:54:46.975296+00:00",
+    "sha256": "6f14a716489f75d7ae4035c2b1f56ee529f25e9b451bda6d503aa9d743809483",
+    "bytes": 3263,
+    "archiveFile": "data/evidence/ego/ego-527-accessible-7721.html.gz",
+    "sha256Scope": "gzip açıldıktan sonraki HTTP yanıt baytları",
+    "isMeasuredTravelTime": false,
+    "announcementEffectiveFrom": "2025-12-26",
+    "appendedTableEffectiveFrom": null,
+    "appendedTableEffectiveDateConfirmed": false
   }
 ]

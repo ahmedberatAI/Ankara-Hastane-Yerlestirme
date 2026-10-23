@@ -91,7 +91,7 @@ def _osm_road_policy(tags):
     return one not in ('-1', 'reverse'), one not in ('yes', '1', 'true'), max(5., speed)
 
 
-def _original_osm(osm, target_edges):
+def _original_osm(osm, target_edges, include_roads=False):
     """Read original indexed endpoints and permitted consecutive raw edges.
 
     Retain only requested edge costs, plus outgoing vertices for the old snap
@@ -99,7 +99,8 @@ def _original_osm(osm, target_edges):
     """
     _require(isinstance(osm.get('ways'), dict), 'raw OSM ways missing')
     index, coordinates, outgoing, costs = {}, [], set(), {}
-    for way in osm['ways'].values():
+    roads = []
+    for way_id, way in osm['ways'].items():
         policy = _osm_road_policy(way.get('tags', {}))
         refs = way.get('nodes', [])
         if policy is None or len(refs) < 2:
@@ -117,6 +118,10 @@ def _original_osm(osm, target_edges):
             ids.append(index[ref])
         projected = _xy(geometry, 'raw OSM way')
         forward, reverse, speed = policy
+        if include_roads:
+            roads.append({'id': str(way.get('id', way_id)), 'nodes': ids,
+                          'xy': projected, 'osmNodeIds': list(refs), 'tags': way.get('tags', {}),
+                          'direction': 0 if forward and reverse else (1 if forward else -1)})
         for a, b, length in zip(ids[:-1], ids[1:], np.linalg.norm(np.diff(projected, axis=0), axis=1)):
             if a == b or length <= 0:
                 continue
@@ -127,10 +132,13 @@ def _original_osm(osm, target_edges):
                         costs[u, v] = min(costs.get((u, v), math.inf), float(length / (speed / 3.6)))
     _require(coordinates and outgoing, 'raw OSM contains no permitted bus edges')
     points = _xy(coordinates, 'raw OSM original nodes')
-    return points, costs, cKDTree(points[sorted(outgoing)])
+    outgoing_indices = np.array(sorted(outgoing), dtype=int)
+    tree = cKDTree(points[outgoing_indices])
+    return points, costs, tree, {'roads': roads, 'coordinates': points,
+                                'outgoingIndices': outgoing_indices, 'outgoingTree': tree}
 
 
-def validate_bus_projections(network, quality, osm=None):
+def validate_bus_projections(network, quality, osm=None, official=None):
     """Reject inconsistent attachments; return an explicit evidence summary.
 
     Geometry audit covers saved drive segments, including attachments passed
@@ -153,18 +161,29 @@ def validate_bus_projections(network, quality, osm=None):
     _require(_integer(report['attemptedStopCount'], 'attempted count') == len(attachments) + len(unresolved),
              'attempted stop count differs')
     changed = {code: r for code, r in attachments.items() if r.get('changed') is True}
-    _require(set(changed) == set(projections), 'report and stop projection identities differ')
+    far_changed = dict(changed)
+    matching = quality.get('busStopMatching')
+    direction_records = matching.get('attachments', {}) if isinstance(matching, dict) else {}
+    _require(isinstance(direction_records, dict), 'direction attachment map invalid')
+    _require(set(changed).isdisjoint(direction_records), 'far and direction records overlap')
+    _require(set(changed) | set(direction_records) == set(projections),
+             'report and stop projection identities differ')
     _require(_integer(report['projectedStopCount'], 'projected count') == len(changed), 'projected stop count differs')
     for code, record in attachments.items():
         _require(isinstance(record.get('changed'), bool), code + ': changed flag missing')
-        _require(record == projections[code] if code in changed else not registry[code].get('driveProjection'),
+        _require(record == projections[code] if code in changed else code not in projections or code in direction_records,
                  code + ': report and stop projection records differ')
+    for code, record in direction_records.items():
+        _require(record == projections[code] and record.get('method') == 'direction_order',
+                 code + ': direction report and stop records differ')
+    changed.update(direction_records)
     edge_coordinates, edge_costs, node_records, records = {}, {}, {}, {}
     for code, r in changed.items():
         label = code + ': '
         stop = registry[code]
         edge = tuple(r['edge'])
-        _require(len(edge) == 2 and edge[0] < edge[1], label + 'original edge identity invalid')
+        _require(len(edge) == 2 and edge[0] != edge[1] and
+                 (code in direction_records or edge[0] < edge[1]), label + 'original edge identity invalid')
         for node in edge:
             _integer(node, label + 'edge node')
         node = _integer(r['node'], label + 'projected node')
@@ -190,19 +209,30 @@ def validate_bus_projections(network, quality, osm=None):
             _require(abs(_number(value, label + field) - distance) <= RECORD_TOLERANCE_METERS,
                      label + field + ' differs from stop-to-projection distance')
         old = _number(r['originalNodeSnapMeters'], label + 'old node distance')
-        _require(old > MAXIMUM_SNAP_METERS, label + 'old node distance does not exceed 300 m')
+        direction_match = code in direction_records
+        if direction_match:
+            _require(distance <= 15 + RECORD_TOLERANCE_METERS and
+                     old-distance >= 10-RECORD_TOLERANCE_METERS,
+                     label + 'direction projection violates proximity/improvement policy')
+            _integer(r.get('originalNode'), label + 'original node')
+        else:
+            _require(r.get('method', 'far_edge') == 'far_edge', label + 'unknown projection method')
+            _require(old > MAXIMUM_SNAP_METERS, label + 'old node distance does not exceed 300 m')
         costs = tuple(r[name] for name in ('forwardSeconds', 'reverseSeconds'))
         _require(any(v is not None for v in costs), label + 'original edge has no permitted direction')
         for value in costs:
             if value is not None:
                 _require(_number(value, label + 'edge seconds') > 0, label + 'edge seconds must be positive')
-        if edge in edge_costs:
-            _require(edge_costs[edge] == costs, label + 'one original edge has conflicting direction costs')
-        edge_costs[edge] = costs
+        canonical_edge = tuple(sorted(edge))
+        canonical_costs = costs if edge == canonical_edge else costs[::-1]
+        if canonical_edge in edge_costs:
+            _require(edge_costs[canonical_edge] == canonical_costs, label + 'one original edge has conflicting direction costs')
+        edge_costs[canonical_edge] = canonical_costs
         interior = 1e-12 < fraction < 1 - 1e-12
         _require((node not in edge) if interior else node == edge[0 if fraction <= 1e-12 else 1],
                  label + 'projected node identity conflicts with fraction')
-        signature = (edge, tuple(r['projectedCoordinates']), fraction, costs)
+        signature = (canonical_edge, tuple(r['projectedCoordinates']),
+                     fraction if edge == canonical_edge else 1-fraction, canonical_costs)
         if node in node_records:
             _require(node_records[node] == signature, label + 'one projected node belongs to different edges or positions')
         node_records[node] = signature
@@ -212,14 +242,18 @@ def validate_bus_projections(network, quality, osm=None):
                          label + 'original node coordinates conflict')
             edge_coordinates[index] = point
         records[code] = {'node': node, 'edge': edge, 'endpoints': endpoints, 'point': p,
-                         'fraction': fraction, 'costs': costs, 'interior': interior, 'oldDistance': old}
+                         'fraction': fraction, 'costs': costs, 'interior': interior, 'oldDistance': old,
+                         'directionMatch': direction_match}
     interior_nodes = {r['node'] for r in records.values() if r['interior']}
-    _require(_integer(report['addedVertexCount'], 'added vertex count') == len(interior_nodes),
+    far_interior = {r['node'] for code, r in records.items() if code in far_changed and r['interior']}
+    _require(_integer(report['addedVertexCount'], 'added vertex count') == len(far_interior),
              'added vertex count differs from distinct inserted nodes')
     _require(interior_nodes.isdisjoint(edge_coordinates), 'inserted vertex used as an original edge endpoint')
 
+    raw_context = None
     if osm is not None and records:
-        original, permitted, old_tree = _original_osm(osm, {r['edge'] for r in records.values()})
+        original, permitted, old_tree, raw_context = _original_osm(
+            osm, {tuple(sorted(r['edge'])) for r in records.values()}, include_roads=False)
         for code, r in records.items():
             _require(max(r['edge']) < len(original), code + ': invented original node index')
             _require(np.max(np.linalg.norm(original[list(r['edge'])] - r['endpoints'], axis=1)) <= RECORD_TOLERANCE_METERS,
@@ -234,9 +268,15 @@ def validate_bus_projections(network, quality, osm=None):
                     _require(math.isclose(value, actual, rel_tol=1e-9, abs_tol=1e-6),
                              code + ': original edge cost disagrees with raw OSM/model speed policy')
             stop = registry[code]
-            actual = float(old_tree.query(_xy([[stop['lon'], stop['lat']]], code)[0])[0])
-            _require(actual > MAXIMUM_SNAP_METERS and abs(actual - r['oldDistance']) <= RECORD_TOLERANCE_METERS,
+            actual, tree_index = old_tree.query(_xy([[stop['lon'], stop['lat']]], code)[0])
+            actual = float(actual)
+            _require((r['directionMatch'] or actual > MAXIMUM_SNAP_METERS) and
+                     abs(actual - r['oldDistance']) <= RECORD_TOLERANCE_METERS,
                      code + ': original nearest outgoing node distance disagrees with raw OSM')
+            if 'originalNode' in changed[code]:
+                old_node = _integer(changed[code]['originalNode'], code + ': original node')
+                _require(old_node == int(raw_context['outgoingIndices'][tree_index]),
+                         code + ': original node differs from nearest outgoing raw node')
 
     # A geometry-only pass cannot identify a road by proximity to a crossing.
     # At each inserted point both adjacent pieces must fit ONE original edge.

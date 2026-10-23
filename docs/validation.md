@@ -1,4 +1,4 @@
-# Doğrulama ve 91 hastane deneyi · v0.6
+# Doğrulama ve 91 hastane deneyi · v0.7
 
 23 Ekim 2026 TSİ. İl genelinde %95, her ilçede %80 talep; talep çarpanı 1, %80 yatak doluluğu, 2.140 temas/hekim/yıl ve %10 ek yıllık maliyet. Tutarlar yaklaşık Aralık 2024 TL; kısmi gider kalibrasyonu, saha ölçümü değildir. EGO örnekleri yeni ağla yeniden çözüldü. Araba modelinin sayısal planları korunup tekrar denetlendi; yeniden çözülmüş gibi sunulmaz.
 
@@ -7,7 +7,7 @@
 | Senaryo | Tesis | Yatak | Hekim | Ortalama süre | Yıllık eşdeğer maliyet |
 |---|---:|---:|---:|---:|---:|
 | Araba · 30 dk · sayı serbest | 46 | 18.550 | 21.590 | 17,32 dk | 143,88 mr TL/yıl |
-| EGO · hafta içi 10.00 · 45 dk · sayı serbest | 209 | 24.950 | 22.966 | 27,87 dk | 172,67 mr TL/yıl |
+| EGO · hafta içi 10.00 · 45 dk · sayı serbest | 261 | 27.800 | 23.534 | 29,06 dk | 183,93 mr TL/yıl |
 | Araba · 30 dk · en fazla 91 | 46 | 18.550 | 21.590 | 17,32 dk | 143,88 mr TL/yıl |
 | Araba · en fazla 91 · 835 temas/hekim duyarlılığı | 50 | 18.650 | 55.220 | 16,70 dk | 251,73 mr TL/yıl |
 
@@ -19,7 +19,7 @@ Araba/91 planı **46 tesisle** hedefleri sağlar: 31×50, 5×150, 3×300, 2×600
 |---|---:|---:|---:|---:|---:|
 | Araba · sayı serbest | 46 → 46 | 143,95 → 143,88 | %1,89 | %1,84 | %67,02 |
 | Araba · en fazla 91 | 46 → 46 | 143,95 → 143,88 | %1,82 | %1,77 | %60,98 |
-| EGO · hafta içi 10.00 | 209 → 209 | 172,68 → 172,67 | %2,76 | %2,75 | %80,79 |
+| EGO · hafta içi 10.00 | 204 → 261 | 172,32 → 183,93 | %2,54 | %8,69 | %82,02 |
 
 Maliyet alt sınırı her yapı izi sınıfından en yakın 12 aday bağlantısının tutulduğu **daraltılmış kaynak problemine** aittir. Tam aday bağlantıları için küresel maliyet sınırı değildir. İlk aşamanın açıklığı son planın açıklığı yerine kullanılamaz. Süre aşaması ayrı bir amaçtır; büyük açıklık daha iyi yerleşim olasılığını açık bırakır. Hiçbir kapasite planı minimum hastane sayısı kanıtı değildir. Süre sınırlı tekrar koşularında yerleşim ve kaynak sayıları değişebilir.
 
@@ -30,7 +30,7 @@ Kaynak temizliği aynı kabul edilen hasta akışını korur; boş tesisleri kap
 | Profil | En fazla 91 | Gerekli coğrafi koşul |
 |---|---|---|
 | Hafta içi 08.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **165** |
-| Hafta içi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **166** |
+| Hafta içi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **167** |
 | Cumartesi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **170** |
 | Pazar 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **168** |
 
@@ -38,35 +38,35 @@ Kaynak temizliği aynı kabul edilen hasta akışını korur; boş tesisleri kap
 
 ## Aynı hastaneler farklı saatlerde yeterli mi?
 
-Kayıtlı EGO planının **209 konumu, 24.950 yatağı, 22.966 hekimi** ve aynı **189,95 mr TL/yıl** tavanı korunur. Her profilde talep bu tesislere yeniden atanabilir; yıllık talep veya gider dört kez toplanmaz. Bütün seçili tesis bağlantıları kullanılır.
+Kayıtlı EGO planının **261 konumu, 27.800 yatağı, 23.534 hekimi** ve aynı **189,56 mr TL/yıl** tavanı korunur. Her profilde talep bu tesislere yeniden atanabilir; yıllık talep veya gider dört kez toplanmaz. Bütün seçili tesis bağlantıları kullanılır.
 
 | Profil | Sonuç | İlçe koşulları altında en çok karşılanan talep |
 |---|---|---:|
-| Hafta içi 08.00 | İl hedefi sağlanmıyor | %93,655 |
-| Hafta içi 10.00 | Hedefler sağlandı | %95,002 |
-| Cumartesi 10.00 | İlçe koşulları sağlanamıyor | — |
-| Pazar 10.00 | İlçe koşulları sağlanamıyor | — |
+| Hafta içi 08.00 | İl hedefi sağlanmıyor | %92,506 |
+| Hafta içi 10.00 | Hedefler sağlandı | %95,206 |
+| Cumartesi 10.00 | İl hedefi sağlanmıyor | %85,757 |
+| Pazar 10.00 | İl hedefi sağlanmıyor | %85,252 |
 
 İlçe koşulları sağlanamıyorsa ana kapsama yüzdesi verilmez. İlçe tabanı kaldırılan tanı raporda ayrıca bulunur; bu değer asıl hedeflerin sağlandığı anlamına gelmez. Dört başlangıç profili bütün gün/yıl garantisi değildir. [Kimlikleri ve bütçesi bağlı rapor](../data/processed/robustness-results.json).
 
 ## Aynı yapı izlerinde kapasite artırımı yeterli mi?
 
-Kayıtlı 209 konum ve yapı izi zorunlu açık tutulup dört profil için ortak yatak tipi/hekim sayısı seçildi. Sonuç: **`infeasible`**. Yeni konum veya daha geniş yapı izi seçilmedi; minimum hastane sayısı aranmadı. Kaynak tavanları ile yıllık maliyetler bir kez sayıldı. Orijinal bütçe 189,95 mr TL/yıldır.
+Kayıtlı 261 konum ve yapı izi zorunlu açık tutulup dört profil için ortak yatak tipi/hekim sayısı seçildi. Sonuç: **`infeasible`**. Yeni konum veya daha geniş yapı izi seçilmedi; minimum hastane sayısı aranmadı. Kaynak tavanları ile yıllık maliyetler bir kez sayıldı. Orijinal bütçe 189,56 mr TL/yıldır.
 
 Aşağıdaki **ayrı iyimser sınırda maliyet ve bütçe kaldırılır**; her alanda mümkün olan en yüksek yatak/hekim kapasitesi kullanılır, ilçe tabanları korunur. İl hedefinin altında kalan üst sınır, yalnız bu konum ve yapı izlerinde daha fazla kaynak satın almanın yetmediğini gösterir. Gerçek Ankara veya bütün adaylar için olanaksızlık değildir.
 
 | Profil | En çok karşılanan talep | %95'e en az açık, kişi eşdeğeri | Denetim durumu |
 |---|---:|---:|---|
-| Hafta içi 08.00 | %94,722 | 16.424,76 | optimal |
-| Hafta içi 10.00 | %96,037 | 0,00 | optimal |
-| Cumartesi 10.00 | %89,800 | 307.320,28 | optimal |
-| Pazar 10.00 | %89,720 | 312.043,28 | optimal |
+| Hafta içi 08.00 | %96,963 | 0,00 | optimal |
+| Hafta içi 10.00 | %96,542 | 0,00 | optimal |
+| Cumartesi 10.00 | %92,094 | 171.772,19 | optimal |
+| Pazar 10.00 | %91,074 | 232.051,81 | optimal |
 
 [Paket, plan ve kaynak hashleriyle bağlı ortak kapasite raporu](../data/processed/shared-capacity-results.json). Zaman sınırı sonuçsuzluğu olanaksızlık olarak yorumlanmaz; bilinmeyen yüzdeler sıfır yapılmaz.
 
 ## Yüksek sayıyı ne açıklıyor?
 
-İlk kayıtlı EGO atamasında 172 tesis 50 yataklı, 125 tesis 1.000'den ve 143 tesis 5.000'den az kişi eşdeğerine hizmet ediyor. Tesis doluluk medyanı %2,63; bu yatakla ağırlıklandırılmış il doluluğu değildir.
+İlk kayıtlı EGO atamasında 226 tesis 50 yataklı, 177 tesis 1.000'den ve 199 tesis 5.000'den az kişi eşdeğerine hizmet ediyor. Tesis doluluk medyanı %2,32; bu yatakla ağırlıklandırılmış il doluluğu değildir.
 
 Haymana, Bala, Kızılcahamam, Çamlıdere, Kalecik, Ayaş, Güdül ve Nallıhan birlikte nüfusun %2,43'ini oluşturuyor. Yalnız bu sekiz ilçenin %80 koşulunu ortak bir yerleşimde sağlamak için 45 dk / hafta içi 10.00 coğrafi tanısının alt sınırı 135, bulunan sayı 135. İl geneli koşulu bu tanıda yoktur; ilçeler ayrı çözülüp sayıları toplanmamıştır. Düşük kullanım, erişim hedefleri ile en küçük tesis türünün birlikte incelenmesi gerektiğini gösterir; klinik uygunluk kanıtı değildir.
 
@@ -74,7 +74,7 @@ Haymana, Bala, Kızılcahamam, Çamlıdere, Kalecik, Ayaş, Güdül ve Nallıhan
 
 ## Bağımsız doğrulama
 
-Python test paketi ve üretim derlemesi geçti. Kaydedilmiş yedi ana koşu ve 835 duyarlılığında tüm atamalar, nüfus paydaları, yatak/hekim, tam sayılık, yapı alanı/çakışma ve maliyet yeniden hesaplanır. Dört EGO profilinin sekiz başlangıcı × 4.825 hedefi bağımsız tek-başlangıç yönlendirmesiyle karşılaştırılır; bütün kullanılan kesitlerin fiziksel süre sınırları ayrıca denetlenir. Üç durak projeksiyonunun özgün yönlü kenarları ham OSM ile, 24 özel sefer yorumu altı gerçek kaynak arşiviyle kontrol edildi. Bu, saha seyahat süresi doğrulaması değildir.
+Python test paketi ve üretim derlemesi geçti. Kaydedilmiş yedi ana koşu ve 835 duyarlılığında tüm atamalar, nüfus paydaları, yatak/hekim, tam sayılık, yapı alanı/çakışma ve maliyet yeniden hesaplanır. Dört EGO profilinin sekiz başlangıcı × 4.825 hedefi bağımsız tek-başlangıç yönlendirmesiyle karşılaştırılır; bütün kullanılan kesitlerin fiziksel süre sınırları ayrıca denetlenir. Üç uzak durak ve 216 ek yön eşlemesinin özgün kenarları ham OSM ile, 49 özel sefer yorumu 9 gerçek kaynak arşiviyle kontrol edildi. Bu, saha seyahat süresi doğrulaması değildir.
 
 Dört sağlık PDF'si ve sayısal kalibrasyon kontrol edildi. 4.701 yapı izinin yol/yüzey ray koridorlarıyla kesişimi yok; konumu bilinmeyen 20.516 kişi paydada kalır. Ulaşım paketi, kayıtlı örnekler ve sağlamlık raporu içerik kimlikleriyle bağlanır. Son hakem ve tarayıcı durumu [denetim kaydında](nightly-review.md) açıklanır.
 

@@ -1,12 +1,12 @@
 {
   "date": "2026-10-22",
   "networkVersion": "ego-scheduled-v3-reviewed-events",
-  "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+  "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
   "ablationInputs": {
     "legacyCommit": "d2c5e226484e4aa9af9fe1eec801b18e024c96db",
     "legacyMatrixSha256": "e8686156fb09ed6d4f8f06fb1c20849cee3b42d77653e110b428ff2d052ef5ab",
     "directWalkSha256": "e6be283be74866508cfdf96db76ed5ad8b95a09e204033ca6386c954f05755bf",
-    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d"
+    "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997"
   },
   "legacy": {
     "status": "optimal",
@@ -52,7 +52,7 @@
         "minimumCountLowerBound": 165.0,
         "feasibleGeographicCount": 165,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 822,
+        "undominatedCandidateCount": 824,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -61,7 +61,7 @@
       "reason": "Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle 91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.",
       "transitEvidence": {
         "version": "ego-scheduled-v3-reviewed-events",
-        "packageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+        "packageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
         "profile": {
           "day": "weekday",
           "seconds": 28800,
@@ -70,12 +70,12 @@
         "quality": {
           "officialRouteCount": 665,
           "officialStopCount": 10811,
-          "routedRouteCount": 428,
+          "routedRouteCount": 430,
           "coordinateStopCount": 10811,
           "usedDepartures": {
-            "weekday": 10437,
-            "saturday": 8143,
-            "sunday": 7136
+            "weekday": 10449,
+            "saturday": 8153,
+            "sunday": 7144
           },
           "officialDepartures": {
             "weekday": 14414,
@@ -90,10 +90,35 @@
           "coordinateAddressConflictCount": 98,
           "quarantinedRouteCount": 3,
           "reviewedServiceEvents": {
-            "definedCount": 24,
-            "sourceValidCount": 24,
-            "appliedCount": 24,
+            "definedCount": 49,
+            "sourceValidCount": 49,
+            "appliedCount": 49,
             "appliedEventIds": [
+              "527-1-weekday-0545",
+              "527-1-weekday-0630",
+              "527-1-weekday-0830",
+              "527-1-weekday-0845",
+              "527-1-weekday-1030",
+              "527-1-weekday-1300",
+              "527-1-weekday-1530",
+              "527-1-weekday-1630",
+              "527-1-weekday-1645",
+              "527-1-weekday-1715",
+              "527-1-weekday-1845",
+              "527-1-saturday-0630",
+              "527-1-saturday-0700",
+              "527-1-saturday-0830",
+              "527-1-saturday-0930",
+              "527-1-saturday-1530",
+              "527-1-saturday-1630",
+              "527-1-saturday-1730",
+              "527-1-saturday-1830",
+              "527-1-sunday-0830",
+              "527-1-sunday-0930",
+              "527-1-sunday-1200",
+              "527-1-sunday-1730",
+              "527-1-sunday-1820",
+              "527-1-sunday-1930",
               "5608-weekday-0740",
               "5608-weekday-0800",
               "5608-weekday-1100",
@@ -121,7 +146,7 @@
             ],
             "invalidated": [],
             "notAppliedEventIds": [],
-            "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+            "scope": "49 narrowly reviewed event interpretations across 560-8,615 and527-1. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services including527-2 remain unresolved; no missing service is treated as confirmed absent.",
             "held": {
               "615ReturnEvents": 5,
               "5604DurationCandidates": 21,
@@ -131,9 +156,17 @@
                 "490",
                 "677"
               ],
-              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research.",
+              "5272FullDirectionCandidates": {
+                "count": 25,
+                "reason": "Ruzgarli-to-12485 exact origin/span unresolved. First12485 and second12488 share the published departure address. 7721 appended1..98 table belongs to527-1, not527-2. No reversed or inferred departure added."
+              }
             }
-          }
+          },
+          "additionalDirectionMatchedStops": 216,
+          "neighborWithheldStops": 477,
+          "originalFarProjectedStops": 3,
+          "projectionPolicyVersion": "direction-order-neighbor-lock-v1"
         },
         "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
       }
@@ -156,10 +189,10 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 166.0,
-        "feasibleGeographicCount": 166,
+        "minimumCountLowerBound": 167.0,
+        "feasibleGeographicCount": 167,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 851,
+        "undominatedCandidateCount": 850,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -168,7 +201,7 @@
       "reason": "Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle 91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.",
       "transitEvidence": {
         "version": "ego-scheduled-v3-reviewed-events",
-        "packageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+        "packageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
         "profile": {
           "day": "weekday",
           "seconds": 36000,
@@ -177,12 +210,12 @@
         "quality": {
           "officialRouteCount": 665,
           "officialStopCount": 10811,
-          "routedRouteCount": 428,
+          "routedRouteCount": 430,
           "coordinateStopCount": 10811,
           "usedDepartures": {
-            "weekday": 10437,
-            "saturday": 8143,
-            "sunday": 7136
+            "weekday": 10449,
+            "saturday": 8153,
+            "sunday": 7144
           },
           "officialDepartures": {
             "weekday": 14414,
@@ -197,10 +230,35 @@
           "coordinateAddressConflictCount": 98,
           "quarantinedRouteCount": 3,
           "reviewedServiceEvents": {
-            "definedCount": 24,
-            "sourceValidCount": 24,
-            "appliedCount": 24,
+            "definedCount": 49,
+            "sourceValidCount": 49,
+            "appliedCount": 49,
             "appliedEventIds": [
+              "527-1-weekday-0545",
+              "527-1-weekday-0630",
+              "527-1-weekday-0830",
+              "527-1-weekday-0845",
+              "527-1-weekday-1030",
+              "527-1-weekday-1300",
+              "527-1-weekday-1530",
+              "527-1-weekday-1630",
+              "527-1-weekday-1645",
+              "527-1-weekday-1715",
+              "527-1-weekday-1845",
+              "527-1-saturday-0630",
+              "527-1-saturday-0700",
+              "527-1-saturday-0830",
+              "527-1-saturday-0930",
+              "527-1-saturday-1530",
+              "527-1-saturday-1630",
+              "527-1-saturday-1730",
+              "527-1-saturday-1830",
+              "527-1-sunday-0830",
+              "527-1-sunday-0930",
+              "527-1-sunday-1200",
+              "527-1-sunday-1730",
+              "527-1-sunday-1820",
+              "527-1-sunday-1930",
               "5608-weekday-0740",
               "5608-weekday-0800",
               "5608-weekday-1100",
@@ -228,7 +286,7 @@
             ],
             "invalidated": [],
             "notAppliedEventIds": [],
-            "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+            "scope": "49 narrowly reviewed event interpretations across 560-8,615 and527-1. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services including527-2 remain unresolved; no missing service is treated as confirmed absent.",
             "held": {
               "615ReturnEvents": 5,
               "5604DurationCandidates": 21,
@@ -238,9 +296,17 @@
                 "490",
                 "677"
               ],
-              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research.",
+              "5272FullDirectionCandidates": {
+                "count": 25,
+                "reason": "Ruzgarli-to-12485 exact origin/span unresolved. First12485 and second12488 share the published departure address. 7721 appended1..98 table belongs to527-1, not527-2. No reversed or inferred departure added."
+              }
             }
-          }
+          },
+          "additionalDirectionMatchedStops": 216,
+          "neighborWithheldStops": 477,
+          "originalFarProjectedStops": 3,
+          "projectionPolicyVersion": "direction-order-neighbor-lock-v1"
         },
         "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
       }
@@ -263,10 +329,10 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 169.99999999999986,
+        "minimumCountLowerBound": 170.0,
         "feasibleGeographicCount": 170,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 837,
+        "undominatedCandidateCount": 838,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -275,7 +341,7 @@
       "reason": "Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle 91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.",
       "transitEvidence": {
         "version": "ego-scheduled-v3-reviewed-events",
-        "packageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+        "packageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
         "profile": {
           "day": "saturday",
           "seconds": 36000,
@@ -284,12 +350,12 @@
         "quality": {
           "officialRouteCount": 665,
           "officialStopCount": 10811,
-          "routedRouteCount": 428,
+          "routedRouteCount": 430,
           "coordinateStopCount": 10811,
           "usedDepartures": {
-            "weekday": 10437,
-            "saturday": 8143,
-            "sunday": 7136
+            "weekday": 10449,
+            "saturday": 8153,
+            "sunday": 7144
           },
           "officialDepartures": {
             "weekday": 14414,
@@ -304,10 +370,35 @@
           "coordinateAddressConflictCount": 98,
           "quarantinedRouteCount": 3,
           "reviewedServiceEvents": {
-            "definedCount": 24,
-            "sourceValidCount": 24,
-            "appliedCount": 24,
+            "definedCount": 49,
+            "sourceValidCount": 49,
+            "appliedCount": 49,
             "appliedEventIds": [
+              "527-1-weekday-0545",
+              "527-1-weekday-0630",
+              "527-1-weekday-0830",
+              "527-1-weekday-0845",
+              "527-1-weekday-1030",
+              "527-1-weekday-1300",
+              "527-1-weekday-1530",
+              "527-1-weekday-1630",
+              "527-1-weekday-1645",
+              "527-1-weekday-1715",
+              "527-1-weekday-1845",
+              "527-1-saturday-0630",
+              "527-1-saturday-0700",
+              "527-1-saturday-0830",
+              "527-1-saturday-0930",
+              "527-1-saturday-1530",
+              "527-1-saturday-1630",
+              "527-1-saturday-1730",
+              "527-1-saturday-1830",
+              "527-1-sunday-0830",
+              "527-1-sunday-0930",
+              "527-1-sunday-1200",
+              "527-1-sunday-1730",
+              "527-1-sunday-1820",
+              "527-1-sunday-1930",
               "5608-weekday-0740",
               "5608-weekday-0800",
               "5608-weekday-1100",
@@ -335,7 +426,7 @@
             ],
             "invalidated": [],
             "notAppliedEventIds": [],
-            "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+            "scope": "49 narrowly reviewed event interpretations across 560-8,615 and527-1. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services including527-2 remain unresolved; no missing service is treated as confirmed absent.",
             "held": {
               "615ReturnEvents": 5,
               "5604DurationCandidates": 21,
@@ -345,9 +436,17 @@
                 "490",
                 "677"
               ],
-              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research.",
+              "5272FullDirectionCandidates": {
+                "count": 25,
+                "reason": "Ruzgarli-to-12485 exact origin/span unresolved. First12485 and second12488 share the published departure address. 7721 appended1..98 table belongs to527-1, not527-2. No reversed or inferred departure added."
+              }
             }
-          }
+          },
+          "additionalDirectionMatchedStops": 216,
+          "neighborWithheldStops": 477,
+          "originalFarProjectedStops": 3,
+          "projectionPolicyVersion": "direction-order-neighbor-lock-v1"
         },
         "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
       }
@@ -373,7 +472,7 @@
         "minimumCountLowerBound": 168.0,
         "feasibleGeographicCount": 168,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 837,
+        "undominatedCandidateCount": 835,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -382,7 +481,7 @@
       "reason": "Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle 91 tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.",
       "transitEvidence": {
         "version": "ego-scheduled-v3-reviewed-events",
-        "packageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+        "packageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
         "profile": {
           "day": "sunday",
           "seconds": 36000,
@@ -391,12 +490,12 @@
         "quality": {
           "officialRouteCount": 665,
           "officialStopCount": 10811,
-          "routedRouteCount": 428,
+          "routedRouteCount": 430,
           "coordinateStopCount": 10811,
           "usedDepartures": {
-            "weekday": 10437,
-            "saturday": 8143,
-            "sunday": 7136
+            "weekday": 10449,
+            "saturday": 8153,
+            "sunday": 7144
           },
           "officialDepartures": {
             "weekday": 14414,
@@ -411,10 +510,35 @@
           "coordinateAddressConflictCount": 98,
           "quarantinedRouteCount": 3,
           "reviewedServiceEvents": {
-            "definedCount": 24,
-            "sourceValidCount": 24,
-            "appliedCount": 24,
+            "definedCount": 49,
+            "sourceValidCount": 49,
+            "appliedCount": 49,
             "appliedEventIds": [
+              "527-1-weekday-0545",
+              "527-1-weekday-0630",
+              "527-1-weekday-0830",
+              "527-1-weekday-0845",
+              "527-1-weekday-1030",
+              "527-1-weekday-1300",
+              "527-1-weekday-1530",
+              "527-1-weekday-1630",
+              "527-1-weekday-1645",
+              "527-1-weekday-1715",
+              "527-1-weekday-1845",
+              "527-1-saturday-0630",
+              "527-1-saturday-0700",
+              "527-1-saturday-0830",
+              "527-1-saturday-0930",
+              "527-1-saturday-1530",
+              "527-1-saturday-1630",
+              "527-1-saturday-1730",
+              "527-1-saturday-1830",
+              "527-1-sunday-0830",
+              "527-1-sunday-0930",
+              "527-1-sunday-1200",
+              "527-1-sunday-1730",
+              "527-1-sunday-1820",
+              "527-1-sunday-1930",
               "5608-weekday-0740",
               "5608-weekday-0800",
               "5608-weekday-1100",
@@ -442,7 +566,7 @@
             ],
             "invalidated": [],
             "notAppliedEventIds": [],
-            "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+            "scope": "49 narrowly reviewed event interpretations across 560-8,615 and527-1. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services including527-2 remain unresolved; no missing service is treated as confirmed absent.",
             "held": {
               "615ReturnEvents": 5,
               "5604DurationCandidates": 21,
@@ -452,9 +576,17 @@
                 "490",
                 "677"
               ],
-              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+              "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research.",
+              "5272FullDirectionCandidates": {
+                "count": 25,
+                "reason": "Ruzgarli-to-12485 exact origin/span unresolved. First12485 and second12488 share the published departure address. 7721 appended1..98 table belongs to527-1, not527-2. No reversed or inferred departure added."
+              }
             }
-          }
+          },
+          "additionalDirectionMatchedStops": 216,
+          "neighborWithheldStops": 477,
+          "originalFarProjectedStops": 3,
+          "projectionPolicyVersion": "direction-order-neighbor-lock-v1"
         },
         "scope": "Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir."
       }
@@ -463,10 +595,10 @@
   "scope": "Bu test model kapsamı içindir; eksik hizmet ve tahmini zamanlar gerçek Ankara için kesin ihtiyaç sayısı çıkarılmasını engeller.",
   "withoutDistrictFloor": {
     "status": "optimal",
-    "minimumCountLowerBound": 31.0,
-    "feasibleGeographicCount": 31,
+    "minimumCountLowerBound": 32.0,
+    "feasibleGeographicCount": 32,
     "fullCandidateCount": 4701,
-    "undominatedCandidateCount": 851,
+    "undominatedCandidateCount": 850,
     "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
     "thresholdMinutes": 45,
     "coverageTargetPercent": 95.0,

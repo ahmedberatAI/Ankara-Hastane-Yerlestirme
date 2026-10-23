@@ -1,6 +1,45 @@
 # Bağımsız hakem döngüsü · 22–23 Ekim 2026
 
-**v0.6 kontrol noktası iç tutarlılık açısından doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Son çalışma saati 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Aşağıdaki v0.6 bölümü güncel karardır; v0.5 kayıtları tarihsel denetim izi olarak saklanmıştır.
+**v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
+
+## v0.7: giderilen hatalar ve kabul kapsamı
+
+216 ek durağın yol bağlantısı, resmî sıra ve tek yönlü yol kanıtıyla yeniden kuruldu. 477 aday değişiklik belirsiz komşular nedeniyle bekletildi; önceki üç uzak-durak bağlantısı kimlikleri korunarak ayrıca doğrulandı. İlk daha geniş prototipler, iki yönlü paralel yol ve aynı yolun başka kolu gibi karşıörnekler nedeniyle kabul edilmedi. Yeni eşleştirmeye dokunan her parçanın iki ucu ortak durak kaydına kilitleniyor; rota araması başka bir düğüme geri dönemiyor. 438 çiftin 437'si geçiyor, önceden de kullanılmayan bir çift mevcut geometri sınırında belirsiz kalıyor. [Yöntem ve sınırlar](bus-stop-matching.md).
+
+527-1'in 25 kalkışı, gerçek erişilebilir kaynak satırındaki gün/saat/not/1–98 aralığıyla eşleştirildi. Toplam 49 dar kural uygulanıyor ve dokuz gerçek HTTP arşivine bağlı. 85 dakikalık yayımlanmış alan fiziksel tabanla 108,492 dakikaya çıkıyor; bu ölçülmüş varış saati değil. Ekli saat tablosunun geçerlilik tarihi belirsiz. 527-2'nin başlangıç kimliği çözülmediği için bu yönde sefer türetilmedi.
+
+430 yön/varyant ve 545 örüntü kullanılabiliyor. Önceki 543 örüntünün durak, kesit ve kalkışları korundu; 147'nin beş kalkışı ile 527-1'in 25 kalkışı eklendi. Bağımsız ulaşım hakemi 33 paket dosyasını, 295.158 yol/ray çizgi parçasını, 34.855 fiziksel süre oluşumunu ve 154.400 bağımsız yönlendirme sonucunu doğruladı. En büyük matris farkı 0,00000381 dakika. Ham kaynak seçicisi üretim fonksiyonlarını çağırmadan aynı 693 ilk aday / 477 bekleyen / 216 kabul ve 1.781 eski komşu kararını yeniden üretti.
+
+Bu kabul, kaynak ve algoritma tutarlılığı kapsamındadır. 516/616'da incelenen iki bağlantı düzeldi; 615/560-8 örnekleri komşu belirsizliği nedeniyle bekliyor. Ara durak tahminleri, gerçek güzergâh ve peron girişleri sahada doğrulanmış değil.
+
+## v0.7: yeni deneyler
+
+91 sınırının coğrafi gevşetmesinde dört kesin minimum **165 / 167 / 170 / 168**. Bunlar aynı modelde gerekli koşulun alt sınırlarıdır; gerçek kent için ihtiyaç sayısı değildir. Yalnız ilçe tabanı kaldırılan hafta içi 10.00 tanısı 32, sekiz kırsal ilçenin birlikte coğrafi minimumu 135. Varsayılan hedefler değiştirilmedi.
+
+Hafta içi 10.00 maliyet aşaması 204 tesis / 24.950 yatak / 22.966 hekim buldu; yıllık maliyet 172,3245 milyar 2024 TL, ortalama süre 30,9294 dakika. Bütçe içinde süre azaltma ve kaynak temizliği sonrası **261 tesis / 27.800 yatak / 23.534 hekim**, 183,9269 milyar TL/yıl ve 29,0622 dakika elde edildi. İlk maliyet açıklığı %2,5416, son planın maliyet açıklığı %8,6895, süre açıklığı %82,0166. Açıklıklar daraltılmış atama araması kapsamındadır. Bu büyük süre açıklığı daha iyi çözümler bulunabileceğini açık bırakır; 261 minimum veya önerilen gerçek hastane ihtiyacı değildir. Araba planları sayısal olarak değiştirilmeden yeniden denetlendi.
+
+| Profil | Aynı 261 tesis/yatak/hekimle en çok talep | Aynı yapı izlerinde maliyetsiz fiziksel tavan |
+|---|---:|---:|
+| Hafta içi 08.00 | %92,5056 | %96,9630 |
+| Hafta içi 10.00 | %95,2058 | %96,5419 |
+| Cumartesi 10.00 | %85,7567 | %92,0937 |
+| Pazar 10.00 | %85,2515 | %91,0738 |
+
+Sabit kaynak testi aynı 189,5569 milyar TL yıllık tavanı koruyor; yalnız hafta içi 10.00 hedefi geçiyor. Ayrı fiziksel tavan maliyeti kaldırıp yapı izlerinin izin verdiği kaynakları kullanıyor; hafta sonu yine %95 altında. Dolayısıyla **aynı 261 yapı izinde** yalnız yatak/hekim artırmak dört profil için yetmiyor. Kanıt hakemi üretim model ve denetim fonksiyonlarını çağırmadan ayrı sparse LP'lerle sekiz yüzdeyi, kaynak/alan/akış denklemleriyle plan maliyetini ve süreyi yeniden doğruladı. Başka konumlar veya gerçek Ankara için olanaksızlık çıkarılamaz. Ortak konum seçimi üretim dışında ayrıca araştırılıyor.
+
+## v0.7: açık kritik sınırlamalar
+
+Terminal kalkışları korunurken 301 örüntünün tahmini ara ofsetleri değişti. Denetlenen bir 611 yolculuğunda 71,20 saniyelik daha erken ara varış, seferin 29,83 saniyeyle kaçırılmasına ve modelde 36,32 yerine 75,01 dakika bulunmasına yol açtı. Bu, gerçek hayatta ölçülmüş değişim değildir. Hafta içi coğrafi sınırın 166'dan 167'ye çıkması bu eşik hassasiyetiyle tutarlıdır; daha doğru kaynak eşleştirmesi mutlaka daha düşük hastane sayısı üretmez. [Deneyin kapsamı](transit-validation.md).
+
+Sekiz kırsal ilçede 45 dakikada yürüyüş dışı ek aday kazanan durum yine yalnız Ayaş'ta hafta içi 10.00 ve pazar profilleridir. 527-1 eklenmesi Kızılcahamam için bu dar eşikte yeni aday kazandırmadı; gerçek hizmet yokluğu sonucu çıkarılmaz. Eksik özel seferler, Başkentray/dolmuş kapsamı, tarihli istisnalar ve ara varış saatleri açık kalıyor.
+
+2025 Sağlık Bakanlığı bülteni görsel ve metin olarak incelendi. İlgili tablolar Türkiye/İBBS-1 düzeyinde; Ankara il satırı yok. Ankara 2024 katsayıları değiştirilmedi. Hekim temas oranı klinik kapasite standardı, kısmi işletme giderleri tam kamu bütçesi değil. [Sağlık kaynağı kapsam kontrolü](health-data-freshness.md).
+
+**339 Python testi ve üretim derlemesi geçti.** Kaynak hashleri, arşiv satırları, tam ve ham kaynak bulunmayan denetim yolları, sabit/ortak kapasite sonuçları ve 44 hazırlanmış çıktının bütünlüğü kontrol edildi. Ulaşım ve kanıt hakemlerinin kabulü bu sınırlı kapsamı aşmıyor; araştırma modeli genel olarak başarılı tamamlandı sayılmıyor.
+
+---
+
+## Tarihsel v0.6 kontrol noktası
 
 ## v0.6: yeni kaynaklar ve ağ
 
@@ -55,7 +94,7 @@ Yerel uygulama v0.6 olarak yeniden başlatıldı. Canlı arayüzde hafta içi 10
 
 ## v0.5 tarihsel denetim kaydı
 
-Aşağıdaki sayılar önceki c037950 kontrol noktasına aittir; güncel v0.6 sonuçları yukarıdadır.
+Aşağıdaki sayılar önceki c037950 kontrol noktasına aittir; güncel v0.7 ve tarihsel v0.6 sonuçları yukarıdadır.
 
 ## Değerlendirme yöntemi
 

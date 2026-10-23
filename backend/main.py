@@ -19,7 +19,7 @@ from backend.timetable import DEFAULT_PROFILE, PROFILES, journey, load_network
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.6.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.7.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -231,6 +231,8 @@ def route(request: RouteRequest):
                 if evidence:
                     timing_warning=('Bu yön için 2025 tarihli planın süre bütçesi kullanılır; güncel varış saati doğrulanmadı.'
                         if 'dated_planned_terminal_interval_with_unverified_current_validity' in evidence['timingConfidence']
+                        else '527-1 ekli tablosunun geçerlilik tarihi doğrulanmadı; yayımlı süre fiziksel alt sınıra göre artırılabilir, ara varışlar tahminidir.'
+                        if pattern['route']=='527-1'
                         else 'Yayımlı tek yön süresi duraklara dağıtılır; ara varışlar ölçülmüş değildir.')
                 boardings.append({'route':pattern['route'],'stop':stop['name'],'mode':pattern['mode'],
                     'departureTime':fmt(part['departureSeconds']),'arrivalTime':fmt(part['arrivalSeconds']),

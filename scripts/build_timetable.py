@@ -23,12 +23,13 @@ from scipy.sparse.csgraph import dijkstra, connected_components
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from backend.geo import normalize, project, permissions, speed, PROJECT
 from backend.bus_projection import attach_far_bus_stops, PROJECTION_POLICY
+from backend.bus_stop_matching import match_bus_stops, official_bus_pairs, requires_locked_endpoints, locked_pair_result
 from backend.service_evidence import reviewed_events, event_key
 from scripts.audit_service_evidence import validate_evidence_archive
 from backend.timetable import PROFILES, DEFAULT_PROFILE, route_batch
 
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'data/processed';RAW=ROOT/'data/raw';WORK=ROOT/'work/ego-build'
-GEOMETRY_ENGINE='bus-psv-geometry-v4-edge-projection'
+GEOMETRY_ENGINE='bus-psv-geometry-v5-direction-order-lock'
 GEOMETRY_POLICY={
     'coordinateDistrictToleranceMeters':3000,
     'straightStopChainMaxPublishedDistanceRatio':1.5,
@@ -325,9 +326,9 @@ def vehicle_mode(route):
     return 'rail-A' if route['id'].startswith('A') else ('rail-M4' if route['id'].startswith('M4') else 'rail-M123')
 
 
-def bus_graph(osm):
-    nodes={};coords=[];edges={}
-    for w in osm['ways'].values():
+def bus_graph(osm, include_roads=False):
+    nodes={};coords=[];edges={};roads=[]
+    for way_id,w in osm['ways'].items():
         t=w['tags']
         if 'highway' not in t or t['highway'] in ('proposed','construction') or len(w['nodes'])<2:continue
         allowed=permissions(t)[0]
@@ -340,6 +341,10 @@ def bus_graph(osm):
             if ref not in nodes:nodes[ref]=len(coords);coords.append(ll)
             ids.append(nodes[ref])
         one=t.get('oneway:bus',t.get('oneway:psv',t.get('oneway','yes' if t.get('junction')=='roundabout' or t['highway']=='motorway' else 'no')))
+        if include_roads:
+            roads.append({'id':str(way_id),'nodes':ids,'osmNodes':list(w['nodes']),
+                'xy':project(w['geometry']),'tags':t,
+                'direction':-1 if one in ('-1','reverse') else (1 if one in ('yes','1','true') else 0)})
         lengths=np.linalg.norm(np.diff(project(w['geometry']),axis=0),axis=1)
         for a,b,length in zip(ids[:-1],ids[1:],lengths):
             if a==b or length<=0:continue
@@ -347,7 +352,8 @@ def bus_graph(osm):
             if one not in ('-1','reverse'):edges[a,b]=min(edges.get((a,b),np.inf),seconds)
             if one not in ('yes','1','true'):edges[b,a]=min(edges.get((b,a),np.inf),seconds)
     row,col=np.asarray(list(edges)).T
-    return csr_matrix((list(edges.values()),(row,col)),shape=(len(coords),len(coords))),np.array(coords)
+    result=(csr_matrix((list(edges.values()),(row,col)),shape=(len(coords),len(coords))),np.array(coords))
+    return (*result,roads) if include_roads else result
 
 
 def reconstruct(pred,start,end):
@@ -374,7 +380,8 @@ def project_bus_stops(graph,coords,registry,bus_stop_ids):
     for code,record in attached.items():
         if record['changed']:
             a,b=record['edge']
-            record.update({'edgeCoordinates':coords[[a,b]].tolist(),
+            record.update({'method':'far_edge','originalNode':int(registry[code]['driveNode']),
+                           'edgeCoordinates':coords[[a,b]].tolist(),
                            'projectedCoordinates':new_coords[record['node']].tolist(),
                            'forwardSeconds':float(graph[a,b]) if graph[a,b]>0 else None,
                            'reverseSeconds':float(graph[b,a]) if graph[b,a]>0 else None})
@@ -410,7 +417,8 @@ def build():
     event_rules,invalidated_rules=reviewed_events(service_evidence,official)
     with gzip.open(RAW/'ankara-osm.json.gz','rt',encoding='utf-8') as f:osm=json.load(f)
     data=json.loads((OUT/'dataset.json').read_text(encoding='utf-8'));coords=np.load(OUT/'graph-coordinates.npy');xy=project(coords)
-    walk=load_npz(OUT/'walk-graph.npz');drive,drive_coords=bus_graph(osm)
+    walk=load_npz(OUT/'walk-graph.npz');drive,drive_coords,bus_roads=bus_graph(osm,include_roads=True)
+    original_drive,original_drive_coords=drive,drive_coords
     rails={family:rail_graph(osm,family) for family in ('rail-A','rail-M123','rail-M4')}
     official_coords_path=OUT/'ego-stop-coordinates.json'
     official_coords=json.loads(official_coords_path.read_text(encoding='utf-8')) if official_coords_path.exists() else None
@@ -431,12 +439,20 @@ def build():
         if mode=='drive':drive_valid,drive_tree=valid,tree
     bus_stop_ids={s['id'] for r in official['routes'] if r['mode']=='bus' for s in r['stops']}
     drive,drive_coords,bus_projection=project_bus_stops(drive,drive_coords,registry,bus_stop_ids)
+    direct_bus_pairs=official_bus_pairs(official,registry)
+    routed_bus_pairs=official_bus_pairs(official,registry,bridge_missing=True)
+    baseline={code:s['driveProjection'] for code,s in registry.items() if s.get('driveProjection')}
+    drive,drive_coords,bus_matching=match_bus_stops(original_drive,original_drive_coords,bus_roads,
+        registry,direct_bus_pairs,baseline,routing_pairs=routed_bus_pairs)
+    matched_ids=set(bus_matching['attachments'])
+    locked_pairs={(a,b):occurrences for (a,b),occurrences in routed_bus_pairs.items()
+                  if requires_locked_endpoints(a,b,matched_ids)}
     # Keep the original retry tree: existing stop snaps/candidates do not change.
     # Projected stops are restricted to their chosen edge in the retry below.
     print('Coordinates',len(registry),'missing',len(missing),Counter(s['coordinateSource'] for s in registry.values()),flush=True)
     # A cache is keyed by the actual source hash, so refreshed inputs cannot reuse stale geometry.
     digest=hashlib.sha256(GEOMETRY_ENGINE.encode())
-    for code_path in (Path(__file__),ROOT/'backend/geo.py',ROOT/'backend/bus_projection.py'):
+    for code_path in (Path(__file__),ROOT/'backend/geo.py',ROOT/'backend/bus_projection.py',ROOT/'backend/bus_stop_matching.py'):
         digest.update(hashlib.sha256(code_path.read_bytes()).digest())
     for path in (OUT/'ego-official.json',RAW/'ankara-osm.json.gz',RAW/'ego/community-ankara.zip',OUT/'graph-coordinates.npy',OUT/'districts.geojson'):
         digest.update(hashlib.sha256(path.read_bytes()).digest())
@@ -444,8 +460,9 @@ def build():
     fingerprint=digest.hexdigest()
     cachepath=WORK/('segments-'+fingerprint[:16]+'.json.gz')
     if cachepath.exists():
-        with gzip.open(cachepath,'rt',encoding='utf-8') as f:segments=json.load(f)
-    else:segments={}
+        with gzip.open(cachepath,'rt',encoding='utf-8') as f:cached=json.load(f)
+        segments=cached['segments'];locked_results=cached['lockedPairResults']
+    else:segments={};locked_results={}
     pairs=defaultdict(set)
     for r in official['routes']:
         known=[s['id'] for s in r['stops'] if s['id'] in registry]
@@ -458,6 +475,7 @@ def build():
         if s[mode+'SnapMeters']>maxsnap:continue
         lengths=np.linalg.norm(project([[registry[b]['lon'],registry[b]['lat']] for b in targets])-project([[s['lon'],s['lat']]])[0],axis=1)
         limit=max(300,float(lengths.max())/5) if mode=='drive' else max(3000,float(lengths.max())*4)
+        if mode=='drive' and any((a,b) in locked_pairs for b in targets):limit=max(limit,7200)
         distance,pred=dijkstra(g,indices=s[mode+'Node'],return_predecessors=True,limit=limit)
         if any(not np.isfinite(distance[registry[b][mode+'Node']]) and registry[b][mode+'SnapMeters']<=maxsnap for b in targets):
             distance,pred=dijkstra(g,indices=s[mode+'Node'],return_predecessors=True,limit=7200 if mode=='drive' else 100000)
@@ -468,7 +486,13 @@ def build():
             geometry=c[path] if path else np.empty((0,2))
             length=float(np.linalg.norm(np.diff(project(geometry),axis=0),axis=1).sum()) if path else np.inf
             euclid=float(np.linalg.norm(project([[s['lon'],s['lat']],[t['lon'],t['lat']]])[1]-project([[s['lon'],s['lat']]])[0]))
-            if (not path or length>max(4000,euclid*8)) and mode=='drive':
+            locked=mode=='drive' and requires_locked_endpoints(a,b,matched_ids)
+            if locked:
+                if value>7200:value=np.inf;length=np.inf
+                state=locked_pair_result(s['driveNode'],t['driveNode'],value,length,euclid)
+                locked_results[f'drive:{a}:{b}']=state
+                if state['status']!='accepted':continue
+            if (not path or length>max(4000,euclid*8)) and mode=='drive' and not locked:
                 # A point-to-nearest-vertex snap can pick the opposite carriageway.
                 # Retry nearby road vertices, still traversing directed OSM edges.
                 starts,_=bus_retry_vertices(drive_tree,drive_valid,s)
@@ -489,10 +513,26 @@ def build():
             segments[f'{mode}:{a}:{b}']={'secondsWeight':float(value if mode=='drive' else value/11.11),
                                        'meters':length,'endpointDistanceMeters':euclid,
                                        'coordinates':geometry.round(6).tolist(),'coLocated':length<.1}
+            if locked:
+                segments[f'drive:{a}:{b}'].update({key:state[key] for key in
+                    ('endpointPolicy','sourceNode','destinationNode','retryAttempted')})
         if i%200==0:print('Vehicle geometry',i,'/',len(pairs),flush=True)
         if i%1000==0:
-            with gzip.open(cachepath,'wt',encoding='utf-8') as f:json.dump(segments,f,ensure_ascii=False,separators=(',',':'))
-    with gzip.open(cachepath,'wt',encoding='utf-8') as f:json.dump(segments,f,ensure_ascii=False,separators=(',',':'))
+            with gzip.open(cachepath,'wt',encoding='utf-8') as f:json.dump({'segments':segments,'lockedPairResults':locked_results},f,ensure_ascii=False,separators=(',',':'))
+    with gzip.open(cachepath,'wt',encoding='utf-8') as f:json.dump({'segments':segments,'lockedPairResults':locked_results},f,ensure_ascii=False,separators=(',',':'))
+    for (a,b),occurrences in sorted(locked_pairs.items()):
+        key=f'drive:{a}:{b}'
+        # Snap/coordinate exclusions are explicit, even on a cache resume.
+        if key not in locked_results:
+            state=locked_pair_result(registry[a]['driveNode'],registry[b]['driveNode'],np.inf,np.inf,
+                np.linalg.norm(project([[registry[b]['lon'],registry[b]['lat']]])[0]-
+                               project([[registry[a]['lon'],registry[a]['lat']]])[0]))
+            state['reason']='fixed_anchor_exceeds_existing_snap_limit'
+            locked_results[key]=state
+        state=locked_results[key]
+        if (state['status']=='accepted')!=(key in segments):
+            raise RuntimeError(f'Locked pair cache/segment mismatch: {key}')
+        bus_matching['changedPairs'].append({'from':a,'to':b,'officialOccurrences':occurrences,**state})
     stops=list(registry.values());index={s['id']:i for i,s in enumerate(stops)}
     patterns=[];excluded=[];notes=[];accepted=[];duration_flags=[];geometry_checks=[];quarantined=[];applied_rules=[]
     for r in official['routes']:
@@ -564,7 +604,7 @@ def build():
             'coordinateSources':dict(Counter(s['coordinateSource'] for s in stops)),
             'missingCoordinates':missing,'coordinateDisagreements':conflicts,'excludedRoutes':excluded,
             'coordinateAddressAudit':address_quality,'geometryQualityPolicy':GEOMETRY_POLICY,
-            'busStopProjection':bus_projection,
+            'busStopProjection':bus_projection,'busStopMatching':bus_matching,
             'reviewedServiceEvents':{'definedCount':len(service_evidence['events']),
                 'sourceValidCount':len(event_rules),'appliedCount':len(applied_rules),
                 'appliedEventIds':applied_rules,'invalidated':invalidated_rules,
@@ -645,6 +685,11 @@ def build():
         'transitProfiles':PROFILES,'transitDataQuality':{k:report[k] for k in ('officialRouteCount','officialStopCount','routedRouteCount','coordinateStopCount',
             'usedDepartures','officialDepartures','coordinateSources','quarantinedCoordinateCount','coordinateAddressConflictCount','quarantinedRouteCount','reviewedServiceEvents')},
         'transitVersion':network['version']})
+    data['metadata']['transitDataQuality'].update({
+        'additionalDirectionMatchedStops':bus_matching['additionalDirectionMatchedStops'],
+        'neighborWithheldStops':bus_matching['neighborWithheldStops'],
+        'originalFarProjectedStops':bus_matching['originalFarProjectedStops'],
+        'projectionPolicyVersion':bus_matching['policyVersion']})
     write_json(OUT/'dataset.json',data)
 
 

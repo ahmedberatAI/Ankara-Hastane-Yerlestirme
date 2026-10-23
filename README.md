@@ -6,7 +6,7 @@ Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanı
 
 > **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu **resmî kalkış listelerini ve durak sırasını** kullanır; ara durak süreleri OSM ağıyla tahmin edilir. Hafta içi 08.00/10.00, cumartesi/pazar 10.00 ayrı değerlendirilir. Özel sefer notları, takvim ve yol bağlantısı eksikleri nedeniyle kapsam kısmidir; gerçek kent için kesin ihtiyaç sayısı vermez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
 
-![ERİŞİM uygulamasının harita görünümü](docs/screenshots/overview.png)
+![ERİŞİM uygulamasının ilk sürüm harita görünümü](docs/screenshots/overview.png)
 
 ## Kullanım
 
@@ -45,7 +45,7 @@ Tek komutla hazırlanmış yerel sürümü başlatmak için: `npm start` (önced
 | Nüfus              | [TÜİK ADNKS 2025](https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx), 31.12.2025 | 5.910.320 kişi; yayımlanan 1.427 mahalle                               |
 | Mahalle konumu     | OSM adları + ilçe poligonları                                                                            | 1.413 mahalle, 5.889.804 kişi konumlandırıldı                          |
 | Karayolu / yürüyüş | [Geofabrik Türkiye OSM kesiti](https://download.geofabrik.de/europe/turkey.html), 20.10.2026             | 1.303.779 düğüm, 1.864.240 yönlü sürüş kenarı                          |
-| Toplu taşıma | EGO resmî kalkış/durak listeleri + Başkentkart koordinatları + OSM yolları/rayları | 665 yön/varyant araştırıldı; 428 ağa bağlandı; 10.743 resmî otobüs koordinatı; ara durak süreleri tahmini |
+| Toplu taşıma | EGO resmî kalkış/durak listeleri + Başkentkart koordinatları + OSM yolları/rayları | 665 yön/varyant araştırıldı; 430 ağa bağlandı; 10.743 resmî otobüs koordinatı; ara durak süreleri tahmini |
 | Mevcut hastaneler  | OSM `hospital` kayıtları                                                                                 | 124 kayıt; resmî ve eksiksiz hastane listesi değildir                  |
 | Talep / kapasite   | Sağlık Bakanlığı 2024 yıllığı                                                                            | Ankara başvuru/yatış/yatak/hekim tabloları; mahalleye orantılı dağıtım |
 | Kalibrasyon / gider | Ankara Üniversitesi ve MLP 2024 faaliyet raporları, Etlik resmî tanıtımı, 2024 yapı tebliği | Gerçek ölçek ve hizmet örnekleri; bağımsız kadro, açık işletme proxy tutarları |
@@ -68,13 +68,13 @@ Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı *
 |---|---|---|
 | Araba, 30 dk, en fazla 91 | Sağlandı | 46 tesis · 18.550 yatak · 21.590 hekim · 17,32 dk |
 | Hafta içi 08.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **165** |
-| Hafta içi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **166** |
+| Hafta içi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **167** |
 | Cumartesi 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **170** |
 | Pazar 10.00 · 45 dk · en fazla 91 | Bu modelde sağlanmıyor | Coğrafi alt sınır **168** |
 
 Bunlar kaydedilmiş model sonuçlarıdır; minimum hastane ihtiyacı sayıları değildir. Araba/91 için ilk maliyet açıklığı %1,82, son plan maliyet açıklığı %1,77; her ikisi daraltılmış aday bağlantıları kapsamındadır. Eski 291 sınırı yalnız yürüyüş hatası düzeltilince 169'a iner. Yeni dört profilde coğrafi sınırlar 165–170 aralığında; eksik hizmet ve tahmini zamanlarla gerçek Ankara için kesin ihtiyaç çıkarılamaz. Resmî 2024 envanteri 85; 91 kullanıcı karşılaştırma eşiğidir. [Deney ve sınırlar](docs/transit-validation.md).
 
-Yeni arayüz ilk maliyet planı ile son planı ayrı gösterir. Ayrıca kayıtlı 209 tesisli EGO planını **aynı konum, yatak, hekim ve yıllık bütçeyle dört profilde** sınar; başarısız profil gizlenmez. Küçük tesis kullanımı, kırsal erişim ve 24 süre/ilçe duyarlılığı da sunulur. [Kapasite ve dayanıklılık sonuçları](docs/validation.md), [bağımsız hakem döngüsü](docs/nightly-review.md).
+Yeni arayüz ilk maliyet planı ile son planı ayrı gösterir. Ayrıca kayıtlı 261 tesisli EGO planını **aynı konum, yatak, hekim ve yıllık bütçeyle dört profilde** sınar; başarısız profil gizlenmez. Küçük tesis kullanımı, kırsal erişim ve 24 süre/ilçe duyarlılığı da sunulur. [Kapasite ve dayanıklılık sonuçları](docs/validation.md), [bağımsız hakem döngüsü](docs/nightly-review.md).
 
 Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısını dört profil için birlikte yeniden seçer. Ayrıca bütçeyi kaldırıp alanların izin verdiği en yüksek kapasiteyi hesaplar. Böylece yalnız kaynak satın almanın yeterli olup olmadığı ayrı sınanır; yeni hastane yerleşimiyle karıştırılmaz. [Dar sefer kanıtları ve kalan veri açıklıkları](docs/service-evidence.md).
 
@@ -82,10 +82,13 @@ Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısın�
 
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)
-- [Gün/saat seçimi ve biniş saatli rota ekranı](docs/screenshots/ego-tarife-v05.png)
-- [Aynı planın dört profilde kapasite ve bütçe testi](docs/screenshots/ego-dayaniklilik.png)
+- [Durak–yol yön eşleştirmesi ve bağımsız denetimi](docs/bus-stop-matching.md)
+- [v0.7: aynı yapı izlerinde kaynak artırımı ve dört profil kapasite tavanı](docs/screenshots/ego-ortak-kapasite-v07.png)
+- [Tarihsel v0.5: gün/saat seçimi ve biniş saatli rota ekranı](docs/screenshots/ego-tarife-v05.png)
+- [Tarihsel v0.5: aynı planın dört profilde kapasite ve bütçe testi](docs/screenshots/ego-dayaniklilik.png)
 - [Veri kaynakları araştırması ve eksik veri planı](docs/research.md)
 - [Yatak, hekim, talep ve maliyet araştırması](docs/capacity-research.md)
+- [2025 sağlık bülteninin kapsamı ve Ankara kalibrasyonu](docs/health-data-freshness.md)
 - [Matematiksel model, ulaşım varsayımları ve sınırlar](docs/methodology.md)
 - [Veri sözlüğü, köken ve yeniden üretim](data/README.md)
 - [Hesaplanmış örnek senaryolar ve doğrulama](docs/validation.md)

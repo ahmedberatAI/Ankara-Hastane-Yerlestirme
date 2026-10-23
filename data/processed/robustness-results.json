@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+  "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
   "sourcePlan": {
     "file": "data/processed/example-transit-result.json",
-    "sha256": "3cb914df1a55c705424484a18208555916f035fa73455b67aebaf24a30ba8063",
-    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+    "sha256": "86d213de7fa307cb5fe24b9e9f60e9ccff18a91f7737a13a9e488a7b8cdc2213",
+    "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
     "scenario": {
       "mode": "transit",
       "threshold": 45,
@@ -19,13 +19,13 @@
       "operatingCostMultiplier": 1.0,
       "transitProfile": "weekday-1000"
     },
-    "hospitalCount": 209,
-    "totalBeds": 24950,
-    "totalDoctors": 22966,
+    "hospitalCount": 261,
+    "totalBeds": 27800,
+    "totalDoctors": 23534,
     "healthPlanningSha256": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48",
-    "annualBudgetLimitTRY": 189950685628.6586
+    "annualBudgetLimitTRY": 189556939209.2935
   },
-  "builtAt": "2026-10-22T22:32:18.667407+00:00",
+  "builtAt": "2026-10-22T23:50:54.718865+00:00",
   "modelFiles": {
     "backend/robustness.py": "8553eae1c7b0eda76abd5e7e47c0402a112e75dafea0b17a5efd2423f9029271",
     "scripts/audit_robustness.py": "90636607653e2d711a3b1b887944d4865cc0d5a086c8a95753dc8d81e378c2aa",
@@ -41,16 +41,16 @@
       "thresholdMinutes": 45,
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
-      "fixedHospitalCount": 209,
-      "fixedBeds": 24950,
-      "fixedDoctors": 22966,
-      "allocationEdges": 3093,
+      "fixedHospitalCount": 261,
+      "fixedBeds": 27800,
+      "fixedDoctors": 23534,
+      "allocationEdges": 2777,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 189950685628.6586,
-        "fixedCostTRY": 139001058638.76965,
+        "limitTRY": 189556939209.2935,
+        "fixedCostTRY": 150258313881.85953,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -58,12 +58,12 @@
         {
           "id": "1872",
           "name": "AKYURT",
-          "maximumPercent": 81.6232217395008
+          "maximumPercent": 84.81770167816678
         },
         {
           "id": "1130",
           "name": "ALTINDAĞ",
-          "maximumPercent": 99.40584396945981
+          "maximumPercent": 99.70985858895118
         },
         {
           "id": "1157",
@@ -73,12 +73,12 @@
         {
           "id": "1167",
           "name": "BALA",
-          "maximumPercent": 80.87423541697747
+          "maximumPercent": 83.49992540653439
         },
         {
           "id": "1187",
           "name": "BEYPAZARI",
-          "maximumPercent": 80.9528733017639
+          "maximumPercent": 82.44380570317831
         },
         {
           "id": "1227",
@@ -88,22 +88,22 @@
         {
           "id": "1231",
           "name": "ÇANKAYA",
-          "maximumPercent": 98.61499394033594
+          "maximumPercent": 98.35716941224409
         },
         {
           "id": "1260",
           "name": "ÇUBUK",
-          "maximumPercent": 82.54483078166744
+          "maximumPercent": 87.36654278024784
         },
         {
           "id": "1302",
           "name": "ELMADAĞ",
-          "maximumPercent": 87.34992551047235
+          "maximumPercent": 92.03619314696346
         },
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 96.28876541999627
+          "maximumPercent": 99.54368511426846
         },
         {
           "id": "1924",
@@ -113,7 +113,7 @@
         {
           "id": "1744",
           "name": "GÖLBAŞI",
-          "maximumPercent": 82.64336554597534
+          "maximumPercent": 87.26346854927377
         },
         {
           "id": "1365",
@@ -123,12 +123,12 @@
         {
           "id": "1387",
           "name": "HAYMANA",
-          "maximumPercent": 80.91324908907667
+          "maximumPercent": 82.4986433056826
         },
         {
           "id": "1815",
           "name": "KAHRAMANKAZAN",
-          "maximumPercent": 87.0373596439827
+          "maximumPercent": 90.54051913909697
         },
         {
           "id": "1427",
@@ -143,59 +143,59 @@
         {
           "id": "1473",
           "name": "KIZILCAHAMAM",
-          "maximumPercent": 80.15875866527783
+          "maximumPercent": 80.76577709134011
         },
         {
           "id": "1746",
           "name": "MAMAK",
-          "maximumPercent": 97.97125718316919
+          "maximumPercent": 98.1969466732529
         },
         {
           "id": "1539",
           "name": "NALLIHAN",
-          "maximumPercent": 80.76524939615842
+          "maximumPercent": 80.91093815895411
         },
         {
           "id": "1578",
           "name": "POLATLI",
-          "maximumPercent": 85.33519341289218
+          "maximumPercent": 86.67566379061974
         },
         {
           "id": "2034",
           "name": "PURSAKLAR",
-          "maximumPercent": 94.77028203291074
+          "maximumPercent": 95.9604692061274
         },
         {
           "id": "1747",
           "name": "SİNCAN",
-          "maximumPercent": 96.58867528073925
+          "maximumPercent": 98.14789730510137
         },
         {
           "id": "1658",
           "name": "ŞEREFLİKOÇHİSAR",
-          "maximumPercent": 80.21382230209252
+          "maximumPercent": 81.52356004995279
         },
         {
           "id": "1723",
           "name": "YENİMAHALLE",
-          "maximumPercent": 98.01311378166704
+          "maximumPercent": 98.39438638118114
         }
       ],
-      "maximumCoveredPopulation": 5535325.414609047,
-      "maximumCoveragePercent": 93.65525749213319,
-      "populationShortfall": 79478.58539095335,
+      "maximumCoveredPopulation": 5467377.901325233,
+      "maximumCoveragePercent": 92.50561562360808,
+      "populationShortfall": 147426.09867476672,
       "districts": [
         {
           "id": "1872",
           "name": "AKYURT",
-          "coveredPopulation": 38321.57133578406,
-          "coveragePercent": 81.61166056687975
+          "coveredPopulation": 39300.189412848216,
+          "coveragePercent": 83.69577777674465
         },
         {
           "id": "1130",
           "name": "ALTINDAĞ",
-          "coveredPopulation": 415588.0,
-          "coveragePercent": 99.40584396945981
+          "coveredPopulation": 416859.0,
+          "coveragePercent": 99.70985858895118
         },
         {
           "id": "1157",
@@ -206,14 +206,14 @@
         {
           "id": "1167",
           "name": "BALA",
-          "coveredPopulation": 16263.0,
-          "coveragePercent": 80.87423541697747
+          "coveredPopulation": 16791.0,
+          "coveragePercent": 83.49992540653439
         },
         {
           "id": "1187",
           "name": "BEYPAZARI",
-          "coveredPopulation": 39148.0,
-          "coveragePercent": 80.9528733017639
+          "coveredPopulation": 39869.0,
+          "coveragePercent": 82.44380570317831
         },
         {
           "id": "1227",
@@ -224,26 +224,334 @@
         {
           "id": "1231",
           "name": "ÇANKAYA",
-          "coveredPopulation": 939010.0,
-          "coveragePercent": 98.61499394033594
+          "coveredPopulation": 913712.0,
+          "coveragePercent": 95.95819356898461
         },
         {
           "id": "1260",
           "name": "ÇUBUK",
-          "coveredPopulation": 82369.34744975646,
-          "coveragePercent": 81.20246798481467
+          "coveredPopulation": 87614.72083767466,
+          "coveragePercent": 86.3735331660781
         },
         {
           "id": "1302",
           "name": "ELMADAĞ",
-          "coveredPopulation": 39870.0,
-          "coveragePercent": 87.34992551047235
+          "coveredPopulation": 38688.69181381549,
+          "coveragePercent": 84.76183466351654
         },
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "coveredPopulation": 608986.0,
-          "coveragePercent": 96.28876541999627
+          "coveredPopulation": 629572.0,
+          "coveragePercent": 99.54368511426846
+        },
+        {
+          "id": "1924",
+          "name": "EVREN",
+          "coveredPopulation": 2388.0,
+          "coveragePercent": 81.58524086094978
+        },
+        {
+          "id": "1744",
+          "name": "GÖLBAŞI",
+          "coveredPopulation": 144852.02038165258,
+          "coveragePercent": 83.821549899689
+        },
+        {
+          "id": "1365",
+          "name": "GÜDÜL",
+          "coveredPopulation": 6646.0,
+          "coveragePercent": 82.78525161933233
+        },
+        {
+          "id": "1387",
+          "name": "HAYMANA",
+          "coveredPopulation": 21283.0,
+          "coveragePercent": 82.4986433056826
+        },
+        {
+          "id": "1815",
+          "name": "KAHRAMANKAZAN",
+          "coveredPopulation": 55512.617753371334,
+          "coveragePercent": 87.91571156481531
+        },
+        {
+          "id": "1427",
+          "name": "KALECİK",
+          "coveredPopulation": 10053.0,
+          "coveragePercent": 80.01432664756447
+        },
+        {
+          "id": "1745",
+          "name": "KEÇİÖREN",
+          "coveredPopulation": 898884.6311859705,
+          "coveragePercent": 96.47562590407553
+        },
+        {
+          "id": "1473",
+          "name": "KIZILCAHAMAM",
+          "coveredPopulation": 22486.0,
+          "coveragePercent": 80.76577709134011
+        },
+        {
+          "id": "1746",
+          "name": "MAMAK",
+          "coveredPopulation": 659288.8967953862,
+          "coveragePercent": 95.50357826418796
+        },
+        {
+          "id": "1539",
+          "name": "NALLIHAN",
+          "coveredPopulation": 21104.0,
+          "coveragePercent": 80.91093815895411
+        },
+        {
+          "id": "1578",
+          "name": "POLATLI",
+          "coveredPopulation": 112563.10809119979,
+          "coveragePercent": 85.3436153966062
+        },
+        {
+          "id": "2034",
+          "name": "PURSAKLAR",
+          "coveredPopulation": 162059.0,
+          "coveragePercent": 95.9604692061274
+        },
+        {
+          "id": "1747",
+          "name": "SİNCAN",
+          "coveredPopulation": 484292.79999999993,
+          "coveragePercent": 80.0
+        },
+        {
+          "id": "1658",
+          "name": "ŞEREFLİKOÇHİSAR",
+          "coveredPopulation": 26765.0,
+          "coveragePercent": 81.52356004995279
+        },
+        {
+          "id": "1723",
+          "name": "YENİMAHALLE",
+          "coveredPopulation": 637770.2250533144,
+          "coveragePercent": 88.39124376545351
+        }
+      ],
+      "annualContactsServed": 44881451.36660541,
+      "annualBedDaysServed": 5043237.297584445,
+      "annualEquivalentCostTRY": 183042899719.8033,
+      "status": "province_target_not_met",
+      "targetsMet": false,
+      "districtTargetsFeasible": true
+    },
+    {
+      "profile": "weekday-1000",
+      "label": "Hafta içi · 10.00",
+      "thresholdMinutes": 45,
+      "coverageTargetPercent": 95.0,
+      "districtFloorPercent": 80.0,
+      "fixedHospitalCount": 261,
+      "fixedBeds": 27800,
+      "fixedDoctors": 23534,
+      "allocationEdges": 2393,
+      "allSelectedSiteEdges": true,
+      "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
+      "annualBudget": {
+        "enforced": true,
+        "limitTRY": 189556939209.2935,
+        "fixedCostTRY": 150258313881.85953,
+        "variableCostPerResidentTRY": 5996.400181153962,
+        "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
+      },
+      "geographicDistrictCeilings": [
+        {
+          "id": "1872",
+          "name": "AKYURT",
+          "maximumPercent": 84.39390067297045
+        },
+        {
+          "id": "1130",
+          "name": "ALTINDAĞ",
+          "maximumPercent": 100.0
+        },
+        {
+          "id": "1157",
+          "name": "AYAŞ",
+          "maximumPercent": 82.58982947624848
+        },
+        {
+          "id": "1167",
+          "name": "BALA",
+          "maximumPercent": 83.49992540653439
+        },
+        {
+          "id": "1187",
+          "name": "BEYPAZARI",
+          "maximumPercent": 82.44380570317831
+        },
+        {
+          "id": "1227",
+          "name": "ÇAMLIDERE",
+          "maximumPercent": 81.72106243261786
+        },
+        {
+          "id": "1231",
+          "name": "ÇANKAYA",
+          "maximumPercent": 97.23124812276438
+        },
+        {
+          "id": "1260",
+          "name": "ÇUBUK",
+          "maximumPercent": 86.97220935161725
+        },
+        {
+          "id": "1302",
+          "name": "ELMADAĞ",
+          "maximumPercent": 92.03619314696346
+        },
+        {
+          "id": "1922",
+          "name": "ETİMESGUT",
+          "maximumPercent": 98.36732241508527
+        },
+        {
+          "id": "1924",
+          "name": "EVREN",
+          "maximumPercent": 81.58524086094978
+        },
+        {
+          "id": "1744",
+          "name": "GÖLBAŞI",
+          "maximumPercent": 87.26346854927377
+        },
+        {
+          "id": "1365",
+          "name": "GÜDÜL",
+          "maximumPercent": 82.78525161933233
+        },
+        {
+          "id": "1387",
+          "name": "HAYMANA",
+          "maximumPercent": 82.4986433056826
+        },
+        {
+          "id": "1815",
+          "name": "KAHRAMANKAZAN",
+          "maximumPercent": 89.3400693663589
+        },
+        {
+          "id": "1427",
+          "name": "KALECİK",
+          "maximumPercent": 80.01432664756447
+        },
+        {
+          "id": "1745",
+          "name": "KEÇİÖREN",
+          "maximumPercent": 99.41806676240338
+        },
+        {
+          "id": "1473",
+          "name": "KIZILCAHAMAM",
+          "maximumPercent": 80.76577709134011
+        },
+        {
+          "id": "1746",
+          "name": "MAMAK",
+          "maximumPercent": 98.1969466732529
+        },
+        {
+          "id": "1539",
+          "name": "NALLIHAN",
+          "maximumPercent": 80.91093815895411
+        },
+        {
+          "id": "1578",
+          "name": "POLATLI",
+          "maximumPercent": 86.67566379061974
+        },
+        {
+          "id": "2034",
+          "name": "PURSAKLAR",
+          "maximumPercent": 95.9604692061274
+        },
+        {
+          "id": "1747",
+          "name": "SİNCAN",
+          "maximumPercent": 97.0327041822633
+        },
+        {
+          "id": "1658",
+          "name": "ŞEREFLİKOÇHİSAR",
+          "maximumPercent": 81.52356004995279
+        },
+        {
+          "id": "1723",
+          "name": "YENİMAHALLE",
+          "maximumPercent": 98.39438638118114
+        }
+      ],
+      "maximumCoveredPopulation": 5626966.448260526,
+      "maximumCoveragePercent": 95.20578324457095,
+      "populationShortfall": 0.0,
+      "districts": [
+        {
+          "id": "1872",
+          "name": "AKYURT",
+          "coveredPopulation": 39300.189412848216,
+          "coveragePercent": 83.69577777674465
+        },
+        {
+          "id": "1130",
+          "name": "ALTINDAĞ",
+          "coveredPopulation": 418072.0,
+          "coveragePercent": 100.0
+        },
+        {
+          "id": "1157",
+          "name": "AYAŞ",
+          "coveredPopulation": 10849.0,
+          "coveragePercent": 82.58982947624848
+        },
+        {
+          "id": "1167",
+          "name": "BALA",
+          "coveredPopulation": 16791.0,
+          "coveragePercent": 83.49992540653439
+        },
+        {
+          "id": "1187",
+          "name": "BEYPAZARI",
+          "coveredPopulation": 39869.0,
+          "coveragePercent": 82.44380570317831
+        },
+        {
+          "id": "1227",
+          "name": "ÇAMLIDERE",
+          "coveredPopulation": 8338.0,
+          "coveragePercent": 81.72106243261786
+        },
+        {
+          "id": "1231",
+          "name": "ÇANKAYA",
+          "coveredPopulation": 902204.904169217,
+          "coveragePercent": 94.74971635828021
+        },
+        {
+          "id": "1260",
+          "name": "ÇUBUK",
+          "coveredPopulation": 87214.72083767467,
+          "coveragePercent": 85.97919973744756
+        },
+        {
+          "id": "1302",
+          "name": "ELMADAĞ",
+          "coveredPopulation": 38688.69181381549,
+          "coveragePercent": 84.76183466351654
+        },
+        {
+          "id": "1922",
+          "name": "ETİMESGUT",
+          "coveredPopulation": 622132.0,
+          "coveragePercent": 98.36732241508527
         },
         {
           "id": "1924",
@@ -266,322 +574,14 @@
         {
           "id": "1387",
           "name": "HAYMANA",
-          "coveredPopulation": 20874.0,
-          "coveragePercent": 80.91324908907667
+          "coveredPopulation": 21283.0,
+          "coveragePercent": 82.4986433056826
         },
         {
           "id": "1815",
           "name": "KAHRAMANKAZAN",
-          "coveredPopulation": 53086.617753371334,
-          "coveragePercent": 84.07363880932381
-        },
-        {
-          "id": "1427",
-          "name": "KALECİK",
-          "coveredPopulation": 10053.0,
-          "coveragePercent": 80.01432664756447
-        },
-        {
-          "id": "1745",
-          "name": "KEÇİÖREN",
-          "coveredPopulation": 908268.872584457,
-          "coveragePercent": 97.48281918688805
-        },
-        {
-          "id": "1473",
-          "name": "KIZILCAHAMAM",
-          "coveredPopulation": 22317.0,
-          "coveragePercent": 80.15875866527783
-        },
-        {
-          "id": "1746",
-          "name": "MAMAK",
-          "coveredPopulation": 672645.8168389462,
-          "coveragePercent": 97.43844121266036
-        },
-        {
-          "id": "1539",
-          "name": "NALLIHAN",
-          "coveredPopulation": 21066.0,
-          "coveragePercent": 80.76524939615842
-        },
-        {
-          "id": "1578",
-          "name": "POLATLI",
-          "coveredPopulation": 110795.10809119979,
-          "coveragePercent": 84.00314501887863
-        },
-        {
-          "id": "2034",
-          "name": "PURSAKLAR",
-          "coveredPopulation": 160049.0,
-          "coveragePercent": 94.77028203291074
-        },
-        {
-          "id": "1747",
-          "name": "SİNCAN",
-          "coveredPopulation": 504675.4903378284,
-          "coveragePercent": 83.36700282768248
-        },
-        {
-          "id": "1658",
-          "name": "ŞEREFLİKOÇHİSAR",
-          "coveredPopulation": 26335.0,
-          "coveragePercent": 80.21382230209252
-        },
-        {
-          "id": "1723",
-          "name": "YENİMAHALLE",
-          "coveredPopulation": 679298.5902177035,
-          "coveragePercent": 94.14683363815325
-        }
-      ],
-      "annualContactsServed": 45439229.348659664,
-      "annualBedDaysServed": 5105913.673619836,
-      "annualEquivalentCostTRY": 172193084957.67746,
-      "status": "province_target_not_met",
-      "targetsMet": false,
-      "districtTargetsFeasible": true
-    },
-    {
-      "profile": "weekday-1000",
-      "label": "Hafta içi · 10.00",
-      "thresholdMinutes": 45,
-      "coverageTargetPercent": 95.0,
-      "districtFloorPercent": 80.0,
-      "fixedHospitalCount": 209,
-      "fixedBeds": 24950,
-      "fixedDoctors": 22966,
-      "allocationEdges": 2622,
-      "allSelectedSiteEdges": true,
-      "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
-      "annualBudget": {
-        "enforced": true,
-        "limitTRY": 189950685628.6586,
-        "fixedCostTRY": 139001058638.76965,
-        "variableCostPerResidentTRY": 5996.400181153962,
-        "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
-      },
-      "geographicDistrictCeilings": [
-        {
-          "id": "1872",
-          "name": "AKYURT",
-          "maximumPercent": 81.19942073430445
-        },
-        {
-          "id": "1130",
-          "name": "ALTINDAĞ",
-          "maximumPercent": 99.40584396945981
-        },
-        {
-          "id": "1157",
-          "name": "AYAŞ",
-          "maximumPercent": 82.58982947624848
-        },
-        {
-          "id": "1167",
-          "name": "BALA",
-          "maximumPercent": 80.87423541697747
-        },
-        {
-          "id": "1187",
-          "name": "BEYPAZARI",
-          "maximumPercent": 80.9528733017639
-        },
-        {
-          "id": "1227",
-          "name": "ÇAMLIDERE",
-          "maximumPercent": 81.72106243261786
-        },
-        {
-          "id": "1231",
-          "name": "ÇANKAYA",
-          "maximumPercent": 98.22452893200784
-        },
-        {
-          "id": "1260",
-          "name": "ÇUBUK",
-          "maximumPercent": 82.54483078166744
-        },
-        {
-          "id": "1302",
-          "name": "ELMADAĞ",
-          "maximumPercent": 87.34992551047235
-        },
-        {
-          "id": "1922",
-          "name": "ETİMESGUT",
-          "maximumPercent": 98.03986984115942
-        },
-        {
-          "id": "1924",
-          "name": "EVREN",
-          "maximumPercent": 81.58524086094978
-        },
-        {
-          "id": "1744",
-          "name": "GÖLBAŞI",
-          "maximumPercent": 82.64336554597534
-        },
-        {
-          "id": "1365",
-          "name": "GÜDÜL",
-          "maximumPercent": 82.78525161933233
-        },
-        {
-          "id": "1387",
-          "name": "HAYMANA",
-          "maximumPercent": 80.91324908907667
-        },
-        {
-          "id": "1815",
-          "name": "KAHRAMANKAZAN",
-          "maximumPercent": 85.83690987124464
-        },
-        {
-          "id": "1427",
-          "name": "KALECİK",
-          "maximumPercent": 80.01432664756447
-        },
-        {
-          "id": "1745",
-          "name": "KEÇİÖREN",
-          "maximumPercent": 99.41806676240338
-        },
-        {
-          "id": "1473",
-          "name": "KIZILCAHAMAM",
-          "maximumPercent": 80.15875866527783
-        },
-        {
-          "id": "1746",
-          "name": "MAMAK",
-          "maximumPercent": 97.97125718316919
-        },
-        {
-          "id": "1539",
-          "name": "NALLIHAN",
-          "maximumPercent": 80.76524939615842
-        },
-        {
-          "id": "1578",
-          "name": "POLATLI",
-          "maximumPercent": 85.33519341289218
-        },
-        {
-          "id": "2034",
-          "name": "PURSAKLAR",
-          "maximumPercent": 94.77028203291074
-        },
-        {
-          "id": "1747",
-          "name": "SİNCAN",
-          "maximumPercent": 96.65541176742664
-        },
-        {
-          "id": "1658",
-          "name": "ŞEREFLİKOÇHİSAR",
-          "maximumPercent": 80.21382230209252
-        },
-        {
-          "id": "1723",
-          "name": "YENİMAHALLE",
-          "maximumPercent": 98.01311378166704
-        }
-      ],
-      "maximumCoveredPopulation": 5614941.433847433,
-      "maximumCoveragePercent": 95.0023253199054,
-      "populationShortfall": 0.0,
-      "districts": [
-        {
-          "id": "1872",
-          "name": "AKYURT",
-          "coveredPopulation": 38128.0,
-          "coveragePercent": 81.19942073430445
-        },
-        {
-          "id": "1130",
-          "name": "ALTINDAĞ",
-          "coveredPopulation": 411971.85728438996,
-          "coveragePercent": 98.54088704443014
-        },
-        {
-          "id": "1157",
-          "name": "AYAŞ",
-          "coveredPopulation": 10849.0,
-          "coveragePercent": 82.58982947624848
-        },
-        {
-          "id": "1167",
-          "name": "BALA",
-          "coveredPopulation": 16263.0,
-          "coveragePercent": 80.87423541697747
-        },
-        {
-          "id": "1187",
-          "name": "BEYPAZARI",
-          "coveredPopulation": 39148.0,
-          "coveragePercent": 80.9528733017639
-        },
-        {
-          "id": "1227",
-          "name": "ÇAMLIDERE",
-          "coveredPopulation": 8338.0,
-          "coveragePercent": 81.72106243261786
-        },
-        {
-          "id": "1231",
-          "name": "ÇANKAYA",
-          "coveredPopulation": 913526.6295407172,
-          "coveragePercent": 95.93872593102665
-        },
-        {
-          "id": "1260",
-          "name": "ÇUBUK",
-          "coveredPopulation": 82369.34744975646,
-          "coveragePercent": 81.20246798481467
-        },
-        {
-          "id": "1302",
-          "name": "ELMADAĞ",
-          "coveredPopulation": 39870.0,
-          "coveragePercent": 87.34992551047235
-        },
-        {
-          "id": "1922",
-          "name": "ETİMESGUT",
-          "coveredPopulation": 620061.0,
-          "coveragePercent": 98.03986984115942
-        },
-        {
-          "id": "1924",
-          "name": "EVREN",
-          "coveredPopulation": 2388.0,
-          "coveragePercent": 81.58524086094978
-        },
-        {
-          "id": "1744",
-          "name": "GÖLBAŞI",
-          "coveredPopulation": 141104.7656367978,
-          "coveragePercent": 81.65312518766147
-        },
-        {
-          "id": "1365",
-          "name": "GÜDÜL",
-          "coveredPopulation": 6646.0,
-          "coveragePercent": 82.78525161933233
-        },
-        {
-          "id": "1387",
-          "name": "HAYMANA",
-          "coveredPopulation": 20874.0,
-          "coveragePercent": 80.91324908907667
-        },
-        {
-          "id": "1815",
-          "name": "KAHRAMANKAZAN",
-          "coveredPopulation": 52328.617753371334,
-          "coveragePercent": 82.87318903658574
+          "coveredPopulation": 54754.617753371334,
+          "coveragePercent": 86.71526179207724
         },
         {
           "id": "1427",
@@ -598,55 +598,55 @@
         {
           "id": "1473",
           "name": "KIZILCAHAMAM",
-          "coveredPopulation": 22317.0,
-          "coveragePercent": 80.15875866527783
+          "coveredPopulation": 22486.0,
+          "coveragePercent": 80.76577709134011
         },
         {
           "id": "1746",
           "name": "MAMAK",
-          "coveredPopulation": 675334.872584457,
-          "coveragePercent": 97.82797370303972
+          "coveredPopulation": 677160.872584457,
+          "coveragePercent": 98.09248526202101
         },
         {
           "id": "1539",
           "name": "NALLIHAN",
-          "coveredPopulation": 21066.0,
-          "coveragePercent": 80.76524939615842
+          "coveredPopulation": 21104.0,
+          "coveragePercent": 80.91093815895411
         },
         {
           "id": "1578",
           "name": "POLATLI",
-          "coveredPopulation": 110795.10809119977,
-          "coveragePercent": 84.00314501887863
+          "coveredPopulation": 112563.1080911998,
+          "coveragePercent": 85.34361539660621
         },
         {
           "id": "2034",
           "name": "PURSAKLAR",
-          "coveredPopulation": 160049.0,
-          "coveragePercent": 94.77028203291074
+          "coveredPopulation": 162059.0,
+          "coveragePercent": 95.9604692061274
         },
         {
           "id": "1747",
           "name": "SİNCAN",
-          "coveredPopulation": 575827.4903378284,
-          "coveragePercent": 95.12055357219079
+          "coveredPopulation": 560119.7258445711,
+          "coveragePercent": 92.5257985821092
         },
         {
           "id": "1658",
           "name": "ŞEREFLİKOÇHİSAR",
-          "coveredPopulation": 26335.0,
-          "coveragePercent": 80.21382230209252
+          "coveredPopulation": 26765.0,
+          "coveragePercent": 81.52356004995279
         },
         {
           "id": "1723",
           "name": "YENİMAHALLE",
-          "coveredPopulation": 682997.7451689142,
-          "coveragePercent": 94.65951499920506
+          "coveredPopulation": 701576.6177533714,
+          "coveragePercent": 97.23443868016362
         }
       ],
-      "annualContactsServed": 46092793.554379605,
-      "annualBedDaysServed": 5179353.352558236,
-      "annualEquivalentCostTRY": 172670494469.8613,
+      "annualContactsServed": 46191506.33943021,
+      "annualBedDaysServed": 5190445.507204689,
+      "annualEquivalentCostTRY": 183999856511.5562,
       "status": "targets_met",
       "targetsMet": true,
       "districtTargetsFeasible": true
@@ -657,16 +657,16 @@
       "thresholdMinutes": 45,
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
-      "fixedHospitalCount": 209,
-      "fixedBeds": 24950,
-      "fixedDoctors": 22966,
-      "allocationEdges": 2403,
+      "fixedHospitalCount": 261,
+      "fixedBeds": 27800,
+      "fixedDoctors": 23534,
+      "allocationEdges": 2251,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 189950685628.6586,
-        "fixedCostTRY": 139001058638.76965,
+        "limitTRY": 189556939209.2935,
+        "fixedCostTRY": 150258313881.85953,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -674,12 +674,12 @@
         {
           "id": "1872",
           "name": "AKYURT",
-          "maximumPercent": 81.19942073430445
+          "maximumPercent": 84.39390067297045
         },
         {
           "id": "1130",
           "name": "ALTINDAĞ",
-          "maximumPercent": 99.40584396945981
+          "maximumPercent": 100.0
         },
         {
           "id": "1157",
@@ -689,12 +689,12 @@
         {
           "id": "1167",
           "name": "BALA",
-          "maximumPercent": 80.87423541697747
+          "maximumPercent": 83.49992540653439
         },
         {
           "id": "1187",
           "name": "BEYPAZARI",
-          "maximumPercent": 80.9528733017639
+          "maximumPercent": 82.44380570317831
         },
         {
           "id": "1227",
@@ -704,22 +704,22 @@
         {
           "id": "1231",
           "name": "ÇANKAYA",
-          "maximumPercent": 95.21475575458047
+          "maximumPercent": 97.23124812276438
         },
         {
           "id": "1260",
           "name": "ÇUBUK",
-          "maximumPercent": 82.54483078166744
+          "maximumPercent": 86.97220935161725
         },
         {
           "id": "1302",
           "name": "ELMADAĞ",
-          "maximumPercent": 87.34992551047235
+          "maximumPercent": 92.03619314696346
         },
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 93.4144243570324
+          "maximumPercent": 98.36732241508527
         },
         {
           "id": "1924",
@@ -729,7 +729,7 @@
         {
           "id": "1744",
           "name": "GÖLBAŞI",
-          "maximumPercent": 82.64336554597534
+          "maximumPercent": 87.26346854927377
         },
         {
           "id": "1365",
@@ -739,12 +739,12 @@
         {
           "id": "1387",
           "name": "HAYMANA",
-          "maximumPercent": 80.91324908907667
+          "maximumPercent": 82.4986433056826
         },
         {
           "id": "1815",
           "name": "KAHRAMANKAZAN",
-          "maximumPercent": 85.83690987124464
+          "maximumPercent": 89.3400693663589
         },
         {
           "id": "1427",
@@ -759,209 +759,205 @@
         {
           "id": "1473",
           "name": "KIZILCAHAMAM",
-          "maximumPercent": 80.15875866527783
+          "maximumPercent": 80.76577709134011
         },
         {
           "id": "1746",
           "name": "MAMAK",
-          "maximumPercent": 96.97854211542612
+          "maximumPercent": 97.20423160550983
         },
         {
           "id": "1539",
           "name": "NALLIHAN",
-          "maximumPercent": 80.76524939615842
+          "maximumPercent": 80.91093815895411
         },
         {
           "id": "1578",
           "name": "POLATLI",
-          "maximumPercent": 85.33519341289218
+          "maximumPercent": 86.67566379061974
         },
         {
           "id": "2034",
           "name": "PURSAKLAR",
-          "maximumPercent": 94.77028203291074
+          "maximumPercent": 95.9604692061274
         },
         {
           "id": "1747",
           "name": "SİNCAN",
-          "maximumPercent": 96.58867528073925
+          "maximumPercent": 97.0327041822633
         },
         {
           "id": "1658",
           "name": "ŞEREFLİKOÇHİSAR",
-          "maximumPercent": 80.21382230209252
+          "maximumPercent": 81.52356004995279
         },
         {
           "id": "1723",
           "name": "YENİMAHALLE",
-          "maximumPercent": 98.01311378166704
+          "maximumPercent": 98.39438638118114
         }
       ],
-      "status": "district_targets_infeasible",
+      "maximumCoveredPopulation": 5068494.649558887,
+      "maximumCoveragePercent": 85.75668744769973,
+      "populationShortfall": 546309.3504411131,
+      "districts": [
+        {
+          "id": "1872",
+          "name": "AKYURT",
+          "coveredPopulation": 39300.189412848216,
+          "coveragePercent": 83.69577777674465
+        },
+        {
+          "id": "1130",
+          "name": "ALTINDAĞ",
+          "coveredPopulation": 344632.61775337136,
+          "coveragePercent": 82.43379555516069
+        },
+        {
+          "id": "1157",
+          "name": "AYAŞ",
+          "coveredPopulation": 10685.0,
+          "coveragePercent": 81.34135200974421
+        },
+        {
+          "id": "1167",
+          "name": "BALA",
+          "coveredPopulation": 16791.0,
+          "coveragePercent": 83.49992540653439
+        },
+        {
+          "id": "1187",
+          "name": "BEYPAZARI",
+          "coveredPopulation": 39869.0,
+          "coveragePercent": 82.44380570317831
+        },
+        {
+          "id": "1227",
+          "name": "ÇAMLIDERE",
+          "coveredPopulation": 8338.0,
+          "coveragePercent": 81.72106243261786
+        },
+        {
+          "id": "1231",
+          "name": "ÇANKAYA",
+          "coveredPopulation": 840859.5382735918,
+          "coveragePercent": 88.30721533479296
+        },
+        {
+          "id": "1260",
+          "name": "ÇUBUK",
+          "coveredPopulation": 87214.72083767467,
+          "coveragePercent": 85.97919973744756
+        },
+        {
+          "id": "1302",
+          "name": "ELMADAĞ",
+          "coveredPopulation": 38688.69181381549,
+          "coveragePercent": 84.76183466351654
+        },
+        {
+          "id": "1922",
+          "name": "ETİMESGUT",
+          "coveredPopulation": 505966.4000000001,
+          "coveragePercent": 80.00000000000001
+        },
+        {
+          "id": "1924",
+          "name": "EVREN",
+          "coveredPopulation": 2388.0,
+          "coveragePercent": 81.58524086094978
+        },
+        {
+          "id": "1744",
+          "name": "GÖLBAŞI",
+          "coveredPopulation": 150800.0,
+          "coveragePercent": 87.26346854927377
+        },
+        {
+          "id": "1365",
+          "name": "GÜDÜL",
+          "coveredPopulation": 6646.0,
+          "coveragePercent": 82.78525161933233
+        },
+        {
+          "id": "1387",
+          "name": "HAYMANA",
+          "coveredPopulation": 21283.0,
+          "coveragePercent": 82.4986433056826
+        },
+        {
+          "id": "1815",
+          "name": "KAHRAMANKAZAN",
+          "coveredPopulation": 54754.617753371334,
+          "coveragePercent": 86.71526179207724
+        },
+        {
+          "id": "1427",
+          "name": "KALECİK",
+          "coveredPopulation": 10053.0,
+          "coveragePercent": 80.01432664756447
+        },
+        {
+          "id": "1745",
+          "name": "KEÇİÖREN",
+          "coveredPopulation": 845780.1021994558,
+          "coveragePercent": 90.77601497007217
+        },
+        {
+          "id": "1473",
+          "name": "KIZILCAHAMAM",
+          "coveredPopulation": 22486.0,
+          "coveragePercent": 80.76577709134011
+        },
+        {
+          "id": "1746",
+          "name": "MAMAK",
+          "coveredPopulation": 632863.872584457,
+          "coveragePercent": 91.67568979203496
+        },
+        {
+          "id": "1539",
+          "name": "NALLIHAN",
+          "coveredPopulation": 21104.0,
+          "coveragePercent": 80.91093815895411
+        },
+        {
+          "id": "1578",
+          "name": "POLATLI",
+          "coveredPopulation": 112563.1080911998,
+          "coveragePercent": 85.34361539660621
+        },
+        {
+          "id": "2034",
+          "name": "PURSAKLAR",
+          "coveredPopulation": 162059.0,
+          "coveragePercent": 95.9604692061274
+        },
+        {
+          "id": "1747",
+          "name": "SİNCAN",
+          "coveredPopulation": 484292.8000000001,
+          "coveragePercent": 80.00000000000001
+        },
+        {
+          "id": "1658",
+          "name": "ŞEREFLİKOÇHİSAR",
+          "coveredPopulation": 26765.0,
+          "coveragePercent": 81.52356004995279
+        },
+        {
+          "id": "1723",
+          "name": "YENİMAHALLE",
+          "coveredPopulation": 582310.9908391009,
+          "coveragePercent": 80.70491646777491
+        }
+      ],
+      "annualContactsServed": 41607037.2711822,
+      "annualBedDaysServed": 4675298.053399001,
+      "annualEquivalentCostTRY": 180651036116.6523,
+      "status": "province_target_not_met",
       "targetsMet": false,
-      "maximumCoveragePercent": null,
-      "districtTargetsFeasible": false,
-      "withoutDistrictTargets": {
-        "maximumCoveredPopulation": 5116492.6605662955,
-        "maximumCoveragePercent": 86.56879256226897,
-        "populationShortfall": 498311.3394337045,
-        "districts": [
-          {
-            "id": "1872",
-            "name": "AKYURT",
-            "coveredPopulation": 38128.0,
-            "coveragePercent": 81.19942073430445
-          },
-          {
-            "id": "1130",
-            "name": "ALTINDAĞ",
-            "coveredPopulation": 415588.0,
-            "coveragePercent": 99.40584396945981
-          },
-          {
-            "id": "1157",
-            "name": "AYAŞ",
-            "coveredPopulation": 10685.0,
-            "coveragePercent": 81.34135200974421
-          },
-          {
-            "id": "1167",
-            "name": "BALA",
-            "coveredPopulation": 16263.0,
-            "coveragePercent": 80.87423541697747
-          },
-          {
-            "id": "1187",
-            "name": "BEYPAZARI",
-            "coveredPopulation": 39148.0,
-            "coveragePercent": 80.9528733017639
-          },
-          {
-            "id": "1227",
-            "name": "ÇAMLIDERE",
-            "coveredPopulation": 8338.0,
-            "coveragePercent": 81.72106243261786
-          },
-          {
-            "id": "1231",
-            "name": "ÇANKAYA",
-            "coveredPopulation": 883101.872584457,
-            "coveragePercent": 92.74351265014809
-          },
-          {
-            "id": "1260",
-            "name": "ÇUBUK",
-            "coveredPopulation": 82369.34744975646,
-            "coveragePercent": 81.20246798481467
-          },
-          {
-            "id": "1302",
-            "name": "ELMADAĞ",
-            "coveredPopulation": 39870.0,
-            "coveragePercent": 87.34992551047235
-          },
-          {
-            "id": "1922",
-            "name": "ETİMESGUT",
-            "coveredPopulation": 426177.0,
-            "coveragePercent": 67.384237372284
-          },
-          {
-            "id": "1924",
-            "name": "EVREN",
-            "coveredPopulation": 2388.0,
-            "coveragePercent": 81.58524086094978
-          },
-          {
-            "id": "1744",
-            "name": "GÖLBAŞI",
-            "coveredPopulation": 142816.0,
-            "coveragePercent": 82.64336554597534
-          },
-          {
-            "id": "1365",
-            "name": "GÜDÜL",
-            "coveredPopulation": 6646.0,
-            "coveragePercent": 82.78525161933233
-          },
-          {
-            "id": "1387",
-            "name": "HAYMANA",
-            "coveredPopulation": 20874.0,
-            "coveragePercent": 80.91324908907667
-          },
-          {
-            "id": "1815",
-            "name": "KAHRAMANKAZAN",
-            "coveredPopulation": 52328.617753371334,
-            "coveragePercent": 82.87318903658574
-          },
-          {
-            "id": "1427",
-            "name": "KALECİK",
-            "coveredPopulation": 10053.0,
-            "coveragePercent": 80.01432664756447
-          },
-          {
-            "id": "1745",
-            "name": "KEÇİÖREN",
-            "coveredPopulation": 926300.0,
-            "coveragePercent": 99.41806676240338
-          },
-          {
-            "id": "1473",
-            "name": "KIZILCAHAMAM",
-            "coveredPopulation": 22317.0,
-            "coveragePercent": 80.15875866527783
-          },
-          {
-            "id": "1746",
-            "name": "MAMAK",
-            "coveredPopulation": 642546.4903378284,
-            "coveragePercent": 93.07829894699896
-          },
-          {
-            "id": "1539",
-            "name": "NALLIHAN",
-            "coveredPopulation": 21066.0,
-            "coveragePercent": 80.76524939615842
-          },
-          {
-            "id": "1578",
-            "name": "POLATLI",
-            "coveredPopulation": 110795.10809119979,
-            "coveragePercent": 84.00314501887863
-          },
-          {
-            "id": "2034",
-            "name": "PURSAKLAR",
-            "coveredPopulation": 160049.0,
-            "coveragePercent": 94.77028203291074
-          },
-          {
-            "id": "1747",
-            "name": "SİNCAN",
-            "coveredPopulation": 402401.60659631115,
-            "coveragePercent": 66.47244916237634
-          },
-          {
-            "id": "1658",
-            "name": "ŞEREFLİKOÇHİSAR",
-            "coveredPopulation": 26335.0,
-            "coveragePercent": 80.21382230209252
-          },
-          {
-            "id": "1723",
-            "name": "YENİMAHALLE",
-            "coveredPopulation": 609908.6177533714,
-            "coveragePercent": 84.5297870435742
-          }
-        ],
-        "annualContactsServed": 42001050.715213686,
-        "annualBedDaysServed": 4719572.541771893,
-        "annualEquivalentCostTRY": 169681596155.4623
-      },
-      "reason": "Fixed sites/resources and any enforced annual budget cannot simultaneously meet the district floors. The optional diagnostic removes only those floors."
+      "districtTargetsFeasible": true
     },
     {
       "profile": "sunday-1000",
@@ -969,16 +965,16 @@
       "thresholdMinutes": 45,
       "coverageTargetPercent": 95.0,
       "districtFloorPercent": 80.0,
-      "fixedHospitalCount": 209,
-      "fixedBeds": 24950,
-      "fixedDoctors": 22966,
-      "allocationEdges": 2261,
+      "fixedHospitalCount": 261,
+      "fixedBeds": 27800,
+      "fixedDoctors": 23534,
+      "allocationEdges": 2096,
       "allSelectedSiteEdges": true,
       "scope": "Fixed sites, beds and physicians; each time profile is evaluated independently. Annual demand is not summed across profiles.",
       "annualBudget": {
         "enforced": true,
-        "limitTRY": 189950685628.6586,
-        "fixedCostTRY": 139001058638.76965,
+        "limitTRY": 189556939209.2935,
+        "fixedCostTRY": 150258313881.85953,
         "variableCostPerResidentTRY": 5996.400181153962,
         "scope": "Equivalent annual cost in the original price base; the partial cost calibration is unchanged."
       },
@@ -986,12 +982,12 @@
         {
           "id": "1872",
           "name": "AKYURT",
-          "maximumPercent": 81.19942073430445
+          "maximumPercent": 84.39390067297045
         },
         {
           "id": "1130",
           "name": "ALTINDAĞ",
-          "maximumPercent": 99.40584396945981
+          "maximumPercent": 100.0
         },
         {
           "id": "1157",
@@ -1001,12 +997,12 @@
         {
           "id": "1167",
           "name": "BALA",
-          "maximumPercent": 80.87423541697747
+          "maximumPercent": 83.49992540653439
         },
         {
           "id": "1187",
           "name": "BEYPAZARI",
-          "maximumPercent": 80.9528733017639
+          "maximumPercent": 82.44380570317831
         },
         {
           "id": "1227",
@@ -1016,22 +1012,22 @@
         {
           "id": "1231",
           "name": "ÇANKAYA",
-          "maximumPercent": 98.22452893200784
+          "maximumPercent": 94.84970562845123
         },
         {
           "id": "1260",
           "name": "ÇUBUK",
-          "maximumPercent": 82.54483078166744
+          "maximumPercent": 86.97220935161725
         },
         {
           "id": "1302",
           "name": "ELMADAĞ",
-          "maximumPercent": 87.34992551047235
+          "maximumPercent": 92.03619314696346
         },
         {
           "id": "1922",
           "name": "ETİMESGUT",
-          "maximumPercent": 98.03986984115942
+          "maximumPercent": 96.66934405130459
         },
         {
           "id": "1924",
@@ -1041,7 +1037,7 @@
         {
           "id": "1744",
           "name": "GÖLBAŞI",
-          "maximumPercent": 82.64336554597534
+          "maximumPercent": 87.26346854927377
         },
         {
           "id": "1365",
@@ -1051,12 +1047,12 @@
         {
           "id": "1387",
           "name": "HAYMANA",
-          "maximumPercent": 80.91324908907667
+          "maximumPercent": 82.4986433056826
         },
         {
           "id": "1815",
           "name": "KAHRAMANKAZAN",
-          "maximumPercent": 87.0373596439827
+          "maximumPercent": 90.54051913909697
         },
         {
           "id": "1427",
@@ -1071,220 +1067,216 @@
         {
           "id": "1473",
           "name": "KIZILCAHAMAM",
-          "maximumPercent": 80.15875866527783
+          "maximumPercent": 80.76577709134011
         },
         {
           "id": "1746",
           "name": "MAMAK",
-          "maximumPercent": 97.97125718316919
+          "maximumPercent": 98.1969466732529
         },
         {
           "id": "1539",
           "name": "NALLIHAN",
-          "maximumPercent": 80.76524939615842
+          "maximumPercent": 80.91093815895411
         },
         {
           "id": "1578",
           "name": "POLATLI",
-          "maximumPercent": 85.33519341289218
+          "maximumPercent": 86.67566379061974
         },
         {
           "id": "2034",
           "name": "PURSAKLAR",
-          "maximumPercent": 94.77028203291074
+          "maximumPercent": 95.9604692061274
         },
         {
           "id": "1747",
           "name": "SİNCAN",
-          "maximumPercent": 96.58867528073925
+          "maximumPercent": 97.0327041822633
         },
         {
           "id": "1658",
           "name": "ŞEREFLİKOÇHİSAR",
-          "maximumPercent": 80.21382230209252
+          "maximumPercent": 81.52356004995279
         },
         {
           "id": "1723",
           "name": "YENİMAHALLE",
-          "maximumPercent": 98.01311378166704
+          "maximumPercent": 98.39438638118114
         }
       ],
-      "status": "district_targets_infeasible",
+      "maximumCoveredPopulation": 5038637.861598279,
+      "maximumCoveragePercent": 85.25152380240459,
+      "populationShortfall": 576166.1384017207,
+      "districts": [
+        {
+          "id": "1872",
+          "name": "AKYURT",
+          "coveredPopulation": 39300.189412848216,
+          "coveragePercent": 83.69577777674465
+        },
+        {
+          "id": "1130",
+          "name": "ALTINDAĞ",
+          "coveredPopulation": 380250.61775337136,
+          "coveragePercent": 90.9533806983896
+        },
+        {
+          "id": "1157",
+          "name": "AYAŞ",
+          "coveredPopulation": 10849.0,
+          "coveragePercent": 82.58982947624848
+        },
+        {
+          "id": "1167",
+          "name": "BALA",
+          "coveredPopulation": 16791.0,
+          "coveragePercent": 83.49992540653439
+        },
+        {
+          "id": "1187",
+          "name": "BEYPAZARI",
+          "coveredPopulation": 39869.0,
+          "coveragePercent": 82.44380570317831
+        },
+        {
+          "id": "1227",
+          "name": "ÇAMLIDERE",
+          "coveredPopulation": 8338.0,
+          "coveragePercent": 81.72106243261786
+        },
+        {
+          "id": "1231",
+          "name": "ÇANKAYA",
+          "coveredPopulation": 761758.4000000001,
+          "coveragePercent": 80.00000000000001
+        },
+        {
+          "id": "1260",
+          "name": "ÇUBUK",
+          "coveredPopulation": 87214.72083767466,
+          "coveragePercent": 85.97919973744753
+        },
+        {
+          "id": "1302",
+          "name": "ELMADAĞ",
+          "coveredPopulation": 38688.69181381549,
+          "coveragePercent": 84.76183466351654
+        },
+        {
+          "id": "1922",
+          "name": "ETİMESGUT",
+          "coveredPopulation": 505966.4,
+          "coveragePercent": 80.0
+        },
+        {
+          "id": "1924",
+          "name": "EVREN",
+          "coveredPopulation": 2388.0,
+          "coveragePercent": 81.58524086094978
+        },
+        {
+          "id": "1744",
+          "name": "GÖLBAŞI",
+          "coveredPopulation": 138248.0,
+          "coveragePercent": 80.0
+        },
+        {
+          "id": "1365",
+          "name": "GÜDÜL",
+          "coveredPopulation": 6646.0,
+          "coveragePercent": 82.78525161933233
+        },
+        {
+          "id": "1387",
+          "name": "HAYMANA",
+          "coveredPopulation": 21283.0,
+          "coveragePercent": 82.4986433056826
+        },
+        {
+          "id": "1815",
+          "name": "KAHRAMANKAZAN",
+          "coveredPopulation": 54862.74602126179,
+          "coveragePercent": 86.8865052678235
+        },
+        {
+          "id": "1427",
+          "name": "KALECİK",
+          "coveredPopulation": 10053.0,
+          "coveragePercent": 80.01432664756447
+        },
+        {
+          "id": "1745",
+          "name": "KEÇİÖREN",
+          "coveredPopulation": 880496.5098671335,
+          "coveragePercent": 94.5020628328121
+        },
+        {
+          "id": "1473",
+          "name": "KIZILCAHAMAM",
+          "coveredPopulation": 22486.0,
+          "coveragePercent": 80.76577709134011
+        },
+        {
+          "id": "1746",
+          "name": "MAMAK",
+          "coveredPopulation": 620978.4903378284,
+          "coveragePercent": 89.95399155153969
+        },
+        {
+          "id": "1539",
+          "name": "NALLIHAN",
+          "coveredPopulation": 21104.0,
+          "coveragePercent": 80.91093815895411
+        },
+        {
+          "id": "1578",
+          "name": "POLATLI",
+          "coveredPopulation": 112563.1080911998,
+          "coveragePercent": 85.34361539660621
+        },
+        {
+          "id": "2034",
+          "name": "PURSAKLAR",
+          "coveredPopulation": 162059.0,
+          "coveragePercent": 95.9604692061274
+        },
+        {
+          "id": "1747",
+          "name": "SİNCAN",
+          "coveredPopulation": 484292.79999999993,
+          "coveragePercent": 80.0
+        },
+        {
+          "id": "1658",
+          "name": "ŞEREFLİKOÇHİSAR",
+          "coveredPopulation": 26765.0,
+          "coveragePercent": 81.52356004995279
+        },
+        {
+          "id": "1723",
+          "name": "YENİMAHALLE",
+          "coveredPopulation": 585386.1874631459,
+          "coveragePercent": 81.13112083377511
+        }
+      ],
+      "annualContactsServed": 41361944.28492781,
+      "annualBedDaysServed": 4647757.453618527,
+      "annualEquivalentCostTRY": 180472002867.91666,
+      "status": "province_target_not_met",
       "targetsMet": false,
-      "maximumCoveragePercent": null,
-      "districtTargetsFeasible": false,
-      "withoutDistrictTargets": {
-        "maximumCoveredPopulation": 5118233.786152581,
-        "maximumCoveragePercent": 86.59825163701088,
-        "populationShortfall": 496570.21384741925,
-        "districts": [
-          {
-            "id": "1872",
-            "name": "AKYURT",
-            "coveredPopulation": 38128.0,
-            "coveragePercent": 81.19942073430445
-          },
-          {
-            "id": "1130",
-            "name": "ALTINDAĞ",
-            "coveredPopulation": 415588.0,
-            "coveragePercent": 99.40584396945981
-          },
-          {
-            "id": "1157",
-            "name": "AYAŞ",
-            "coveredPopulation": 10849.0,
-            "coveragePercent": 82.58982947624848
-          },
-          {
-            "id": "1167",
-            "name": "BALA",
-            "coveredPopulation": 16263.0,
-            "coveragePercent": 80.87423541697747
-          },
-          {
-            "id": "1187",
-            "name": "BEYPAZARI",
-            "coveredPopulation": 39148.0,
-            "coveragePercent": 80.9528733017639
-          },
-          {
-            "id": "1227",
-            "name": "ÇAMLIDERE",
-            "coveredPopulation": 8338.0,
-            "coveragePercent": 81.72106243261786
-          },
-          {
-            "id": "1231",
-            "name": "ÇANKAYA",
-            "coveredPopulation": 818341.5839275776,
-            "coveragePercent": 85.94237584279504
-          },
-          {
-            "id": "1260",
-            "name": "ÇUBUK",
-            "coveredPopulation": 82369.34744975646,
-            "coveragePercent": 81.20246798481467
-          },
-          {
-            "id": "1302",
-            "name": "ELMADAĞ",
-            "coveredPopulation": 39870.0,
-            "coveragePercent": 87.34992551047235
-          },
-          {
-            "id": "1922",
-            "name": "ETİMESGUT",
-            "coveredPopulation": 430006.559866573,
-            "coveragePercent": 67.9897415902041
-          },
-          {
-            "id": "1924",
-            "name": "EVREN",
-            "coveredPopulation": 2388.0,
-            "coveragePercent": 81.58524086094978
-          },
-          {
-            "id": "1744",
-            "name": "GÖLBAŞI",
-            "coveredPopulation": 136614.86990285222,
-            "coveragePercent": 79.05495625418219
-          },
-          {
-            "id": "1365",
-            "name": "GÜDÜL",
-            "coveredPopulation": 6646.0,
-            "coveragePercent": 82.78525161933233
-          },
-          {
-            "id": "1387",
-            "name": "HAYMANA",
-            "coveredPopulation": 20874.0,
-            "coveragePercent": 80.91324908907667
-          },
-          {
-            "id": "1815",
-            "name": "KAHRAMANKAZAN",
-            "coveredPopulation": 52436.74602126179,
-            "coveragePercent": 83.044432512332
-          },
-          {
-            "id": "1427",
-            "name": "KALECİK",
-            "coveredPopulation": 10053.0,
-            "coveragePercent": 80.01432664756447
-          },
-          {
-            "id": "1745",
-            "name": "KEÇİÖREN",
-            "coveredPopulation": 926300.0,
-            "coveragePercent": 99.41806676240338
-          },
-          {
-            "id": "1473",
-            "name": "KIZILCAHAMAM",
-            "coveredPopulation": 22317.0,
-            "coveragePercent": 80.15875866527783
-          },
-          {
-            "id": "1746",
-            "name": "MAMAK",
-            "coveredPopulation": 665459.4903378284,
-            "coveragePercent": 96.39744097927631
-          },
-          {
-            "id": "1539",
-            "name": "NALLIHAN",
-            "coveredPopulation": 21066.0,
-            "coveragePercent": 80.76524939615842
-          },
-          {
-            "id": "1578",
-            "name": "POLATLI",
-            "coveredPopulation": 110795.1080911998,
-            "coveragePercent": 84.00314501887864
-          },
-          {
-            "id": "2034",
-            "name": "PURSAKLAR",
-            "coveredPopulation": 160049.0,
-            "coveragePercent": 94.77028203291074
-          },
-          {
-            "id": "1747",
-            "name": "SİNCAN",
-            "coveredPopulation": 425497.4903378284,
-            "coveragePercent": 70.28764257289448
-          },
-          {
-            "id": "1658",
-            "name": "ŞEREFLİKOÇHİSAR",
-            "coveredPopulation": 26335.0,
-            "coveragePercent": 80.21382230209252
-          },
-          {
-            "id": "1723",
-            "name": "YENİMAHALLE",
-            "coveredPopulation": 632500.5902177035,
-            "coveragePercent": 87.66090302671728
-          }
-        ],
-        "annualContactsServed": 42015343.534319,
-        "annualBedDaysServed": 4721178.596750168,
-        "annualEquivalentCostTRY": 169692036641.24332
-      },
-      "reason": "Fixed sites/resources and any enforced annual budget cannot simultaneously meet the district floors. The optional diagnostic removes only those floors."
+      "districtTargetsFeasible": true
     }
   ],
   "utilization": {
-    "count50BedSites": 172,
-    "countAssignedBelow1000Residents": 125,
-    "countAssignedBelow5000Residents": 143,
-    "medianSitePhysicalOccupancyPercent": 2.6333292599871916,
+    "count50BedSites": 226,
+    "countAssignedBelow1000Residents": 177,
+    "countAssignedBelow5000Residents": 199,
+    "medianSitePhysicalOccupancyPercent": 2.3199580236739363,
     "sitePhysicalOccupancyQuartilesPercent": [
-      1.6123455545794898,
-      2.6333292599871916,
-      65.95622128597478
+      1.4657686859813541,
+      2.3199580236739363,
+      14.784046229294695
     ],
     "scope": "Original saved allocation; site-level percentiles, not a bed-weighted provincial occupancy statistic."
   },
@@ -1342,7 +1334,7 @@
           "minimumCountLowerBound": 77.0,
           "feasibleGeographicCount": 77,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 822,
+          "undominatedCandidateCount": 824,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1359,7 +1351,7 @@
           "minimumCountLowerBound": 165.0,
           "feasibleGeographicCount": 165,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 822,
+          "undominatedCandidateCount": 824,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1373,10 +1365,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 54.9999999999999,
+          "minimumCountLowerBound": 54.99999999999994,
           "feasibleGeographicCount": 55,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 681,
+          "undominatedCandidateCount": 682,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1390,10 +1382,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 121.0,
-          "feasibleGeographicCount": 121,
+          "minimumCountLowerBound": 120.0,
+          "feasibleGeographicCount": 120,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 681,
+          "undominatedCandidateCount": 682,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1406,11 +1398,11 @@
         "districtFloorPercent": 60,
         "coverageTargetPercent": 95.0,
         "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 41.0,
-          "feasibleGeographicCount": 41,
+          "status": "bounded",
+          "minimumCountLowerBound": 39.0,
+          "feasibleGeographicCount": 40,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 594,
+          "undominatedCandidateCount": 593,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1424,112 +1416,112 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "bounded",
-          "minimumCountLowerBound": 79.0,
-          "feasibleGeographicCount": 81,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 594,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 90,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 45,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
           "minimumCountLowerBound": 78.0,
-          "feasibleGeographicCount": 78,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 851,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 45,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 45,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 166.0,
-          "feasibleGeographicCount": 166,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 851,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 45,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 60,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 57.999999999998316,
-          "feasibleGeographicCount": 58,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 689,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 60,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 60,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "optimal",
-          "minimumCountLowerBound": 122.0,
-          "feasibleGeographicCount": 122,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 689,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 60,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 80.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 90,
-        "districtFloorPercent": 60,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 41.0,
-          "feasibleGeographicCount": 42,
-          "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 601,
-          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
-          "thresholdMinutes": 90,
-          "coverageTargetPercent": 95.0,
-          "districtFloorPercent": 60.0
-        }
-      },
-      {
-        "profile": "weekday-1000",
-        "thresholdMinutes": 90,
-        "districtFloorPercent": 80,
-        "coverageTargetPercent": 95.0,
-        "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 79.0,
           "feasibleGeographicCount": 80,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 601,
+          "undominatedCandidateCount": 593,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 90,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 45,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 78.99999999999999,
+          "feasibleGeographicCount": 79,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 850,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 45,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 45,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 167.0,
+          "feasibleGeographicCount": 167,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 850,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 45,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 60,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 57.99999999999967,
+          "feasibleGeographicCount": 58,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 693,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 60,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 60,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "optimal",
+          "minimumCountLowerBound": 122.99999999999805,
+          "feasibleGeographicCount": 123,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 693,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 60,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 80.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 90,
+        "districtFloorPercent": 60,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "bounded",
+          "minimumCountLowerBound": 40.0,
+          "feasibleGeographicCount": 41,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 600,
+          "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
+          "thresholdMinutes": 90,
+          "coverageTargetPercent": 95.0,
+          "districtFloorPercent": 60.0
+        }
+      },
+      {
+        "profile": "weekday-1000",
+        "thresholdMinutes": 90,
+        "districtFloorPercent": 80,
+        "coverageTargetPercent": 95.0,
+        "certificate": {
+          "status": "bounded",
+          "minimumCountLowerBound": 78.0,
+          "feasibleGeographicCount": 79,
+          "fullCandidateCount": 4701,
+          "undominatedCandidateCount": 600,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1543,10 +1535,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 80.99999999999997,
+          "minimumCountLowerBound": 81.0,
           "feasibleGeographicCount": 81,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 837,
+          "undominatedCandidateCount": 838,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1560,10 +1552,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 169.99999999999986,
+          "minimumCountLowerBound": 170.0,
           "feasibleGeographicCount": 170,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 837,
+          "undominatedCandidateCount": 838,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1577,10 +1569,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 61.9999999999025,
-          "feasibleGeographicCount": 62,
+          "minimumCountLowerBound": 60.99999999999993,
+          "feasibleGeographicCount": 61,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 705,
+          "undominatedCandidateCount": 698,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1597,7 +1589,7 @@
           "minimumCountLowerBound": 125.99999999999999,
           "feasibleGeographicCount": 126,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 705,
+          "undominatedCandidateCount": 698,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1645,10 +1637,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 79.99999999999999,
-          "feasibleGeographicCount": 80,
+          "minimumCountLowerBound": 80.99999999999999,
+          "feasibleGeographicCount": 81,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 837,
+          "undominatedCandidateCount": 835,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1665,7 +1657,7 @@
           "minimumCountLowerBound": 168.0,
           "feasibleGeographicCount": 168,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 837,
+          "undominatedCandidateCount": 835,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 45,
           "coverageTargetPercent": 95.0,
@@ -1679,10 +1671,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "optimal",
-          "minimumCountLowerBound": 59.99999999999627,
+          "minimumCountLowerBound": 59.99999999999993,
           "feasibleGeographicCount": 60,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 708,
+          "undominatedCandidateCount": 707,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1695,11 +1687,11 @@
         "districtFloorPercent": 80,
         "coverageTargetPercent": 95.0,
         "certificate": {
-          "status": "bounded",
-          "minimumCountLowerBound": 125.0,
+          "status": "optimal",
+          "minimumCountLowerBound": 125.99999999990764,
           "feasibleGeographicCount": 126,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 708,
+          "undominatedCandidateCount": 707,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 60,
           "coverageTargetPercent": 95.0,
@@ -1713,10 +1705,10 @@
         "coverageTargetPercent": 95.0,
         "certificate": {
           "status": "bounded",
-          "minimumCountLowerBound": 40.0,
+          "minimumCountLowerBound": 41.0,
           "feasibleGeographicCount": 42,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 597,
+          "undominatedCandidateCount": 594,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1733,7 +1725,7 @@
           "minimumCountLowerBound": 79.0,
           "feasibleGeographicCount": 81,
           "fullCandidateCount": 4701,
-          "undominatedCandidateCount": 597,
+          "undominatedCandidateCount": 594,
           "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
           "thresholdMinutes": 90,
           "coverageTargetPercent": 95.0,
@@ -1747,7 +1739,7 @@
       "minimumCountLowerBound": 135.0,
       "feasibleGeographicCount": 135,
       "fullCandidateCount": 4701,
-      "undominatedCandidateCount": 851,
+      "undominatedCandidateCount": 850,
       "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
       "thresholdMinutes": 45,
       "coverageTargetPercent": 0,

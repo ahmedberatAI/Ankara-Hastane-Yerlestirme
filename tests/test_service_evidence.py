@@ -20,8 +20,12 @@ def inputs():
 def test_reviewed_catalog_matches_exact_sources_and_only_selected_events():
     evidence, official = inputs()
     active, withheld = reviewed_events(evidence, official)
-    assert not withheld and len(active) == 24
-    assert {key[0] for key in active} == {'560-8','615'}
+    assert not withheld and len(active) == 49
+    assert {key[0] for key in active} == {'560-8','615','527-1'}
+    kizilcahamam = [v for k,v in active.items() if k[0] == '527-1']
+    assert len(kizilcahamam) == 25
+    assert all(v['span']['indicesZeroBasedInclusive'] == [0,97] for v in kizilcahamam)
+    assert all(v['durationBudgetSeconds'] == 5100 for v in kizilcahamam)
     gudul = [v for k,v in active.items() if k[0] == '615']
     assert len(gudul) == 4
     assert {v['calendar'] for v in gudul} == {'weekday'}
@@ -141,7 +145,58 @@ def test_independent_audit_rejects_wrong_applied_events(change):
 
 def test_real_source_archives_and_planned_column_match():
     evidence,_=inputs()
-    assert validate_evidence_archive(evidence,ROOT)=={'verifiedSourceArchives':6,'verifiedEventSources':24}
+    assert validate_evidence_archive(evidence,ROOT)=={'verifiedSourceArchives':9,'verifiedEventSources':49}
+
+
+@pytest.mark.parametrize('change',['calendar','span','note','source','date','missing'])
+def test_accessible_exact_row_cannot_migrate_across_evidence(change):
+    evidence,official=inputs()
+    e=next(e for e in evidence['events'] if e['routeId']=='527-1')
+    evidence['events']=[e]
+    if change=='calendar':e['spanEvidence']['calendarLabel']='Pazar:'
+    elif change=='span':e['spanEvidence']['indicesOneBasedInclusive']=[2,98]
+    elif change=='note':e['spanEvidence']['exactEntry']=e['spanEvidence']['exactEntry'].replace('KIZILCAHAMAM DAN','RÜZGARLI DAN')
+    elif change=='source':e['spanEvidence']['sourceId']='ego-527-directions-7333'
+    elif change=='date':e['spanEvidence']['tableEffectiveDateConfirmed']=True
+    else:del e['spanEvidence']
+    with pytest.raises(ValueError,match='Accessible span'):reviewed_events(evidence,official)
+    with pytest.raises(AssertionError):validate_evidence_archive(evidence,ROOT)
+
+
+def test_accessible_exact_row_checks_actual_archive_heading():
+    evidence,_=inputs()
+    e=next(e for e in evidence['events'] if e['routeId']=='527-1')
+    evidence['events']=[e]
+    e['spanEvidence']['exactHeading']='527-2 Ankara Kızılcahamam'
+    with pytest.raises(AssertionError):validate_evidence_archive(evidence,ROOT)
+
+
+def test_accessible_exact_row_does_not_round_seconds_into_a_published_minute():
+    evidence,official=inputs()
+    e=next(e for e in evidence['events'] if e['routeId']=='527-1')
+    evidence['events']=[e]
+    route=next(r for r in official['routes'] if r['id']==e['routeId'])
+    record=next(r for r in route['departures'][e['calendar']] if r['seconds']==e['departureSeconds'])
+    record['seconds']+=1;e['departureSeconds']+=1
+    e['recordSha256']=digest({key:e[key] for key in ('routeId','calendar','departureSeconds','exactNote')})
+    with pytest.raises(ValueError,match='Accessible span'):reviewed_events(evidence,official)
+    with pytest.raises(AssertionError,match='minute precision'):validate_evidence_archive(evidence,ROOT)
+
+
+@pytest.mark.parametrize('clock',['105:45','x05:45','05:450','05:45:30'])
+def test_accessible_exact_row_never_accepts_substring_of_invalid_clock(tmp_path,clock):
+    import gzip,hashlib,shutil
+    evidence,_=inputs()
+    e=next(e for e in evidence['events'] if e['routeId']=='527-1')
+    evidence['events']=[e]
+    for source in evidence['sources'].values():
+        target=tmp_path/source['archiveFile'];target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copyfile(ROOT/source['archiveFile'],target)
+    source=evidence['sources']['ego-527-accessible-7721'];target=tmp_path/source['archiveFile']
+    body=gzip.decompress(target.read_bytes()).replace(b'05:45;',clock.encode()+b';')
+    target.write_bytes(gzip.compress(body,mtime=0))
+    source.update(sha256=hashlib.sha256(body).hexdigest(),bytes=len(body))
+    with pytest.raises(AssertionError,match='unparsed entry'):validate_evidence_archive(evidence,tmp_path)
 
 
 def test_same_clock_opposite_direction_planned_row_is_rejected():

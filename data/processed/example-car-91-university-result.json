@@ -20323,7 +20323,7 @@
         210
       ]
     },
-    "transitRoutes": 428,
+    "transitRoutes": 430,
     "transitStops": 10811,
     "transitAssumptions": {
       "scheduleAvailable": true,
@@ -20364,12 +20364,12 @@
     "transitDataQuality": {
       "officialRouteCount": 665,
       "officialStopCount": 10811,
-      "routedRouteCount": 428,
+      "routedRouteCount": 430,
       "coordinateStopCount": 10811,
       "usedDepartures": {
-        "weekday": 10437,
-        "saturday": 8143,
-        "sunday": 7136
+        "weekday": 10449,
+        "saturday": 8153,
+        "sunday": 7144
       },
       "officialDepartures": {
         "weekday": 14414,
@@ -20384,10 +20384,35 @@
       "coordinateAddressConflictCount": 98,
       "quarantinedRouteCount": 3,
       "reviewedServiceEvents": {
-        "definedCount": 24,
-        "sourceValidCount": 24,
-        "appliedCount": 24,
+        "definedCount": 49,
+        "sourceValidCount": 49,
+        "appliedCount": 49,
         "appliedEventIds": [
+          "527-1-weekday-0545",
+          "527-1-weekday-0630",
+          "527-1-weekday-0830",
+          "527-1-weekday-0845",
+          "527-1-weekday-1030",
+          "527-1-weekday-1300",
+          "527-1-weekday-1530",
+          "527-1-weekday-1630",
+          "527-1-weekday-1645",
+          "527-1-weekday-1715",
+          "527-1-weekday-1845",
+          "527-1-saturday-0630",
+          "527-1-saturday-0700",
+          "527-1-saturday-0830",
+          "527-1-saturday-0930",
+          "527-1-saturday-1530",
+          "527-1-saturday-1630",
+          "527-1-saturday-1730",
+          "527-1-saturday-1830",
+          "527-1-sunday-0830",
+          "527-1-sunday-0930",
+          "527-1-sunday-1200",
+          "527-1-sunday-1730",
+          "527-1-sunday-1820",
+          "527-1-sunday-1930",
           "5608-weekday-0740",
           "5608-weekday-0800",
           "5608-weekday-1100",
@@ -20415,7 +20440,7 @@
         ],
         "invalidated": [],
         "notAppliedEventIds": [],
-        "scope": "24 narrowly reviewed event interpretations. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services remain unresolved; no missing service is treated as confirmed absent.",
+        "scope": "49 narrowly reviewed event interpretations across 560-8,615 and527-1. Estimated times, not current GTFS or operator-certified stop times. Other named/ambiguous services including527-2 remain unresolved; no missing service is treated as confirmed absent.",
         "held": {
           "615ReturnEvents": 5,
           "5604DurationCandidates": 21,
@@ -20425,12 +20450,20 @@
             "490",
             "677"
           ],
-          "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research."
+          "reason": "Unresolved terminal occurrence, direction duration or multiple-clock role; see rural-service-evidence research.",
+          "5272FullDirectionCandidates": {
+            "count": 25,
+            "reason": "Ruzgarli-to-12485 exact origin/span unresolved. First12485 and second12488 share the published departure address. 7721 appended1..98 table belongs to527-1, not527-2. No reversed or inferred departure added."
+          }
         }
-      }
+      },
+      "additionalDirectionMatchedStops": 216,
+      "neighborWithheldStops": 477,
+      "originalFarProjectedStops": 3,
+      "projectionPolicyVersion": "direction-order-neighbor-lock-v1"
     },
     "transitVersion": "ego-scheduled-v3-reviewed-events",
-    "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d"
+    "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997"
   },
   "modelLabel": "OSM yol ağı · tahmini sürüş süresi",
   "selected": [

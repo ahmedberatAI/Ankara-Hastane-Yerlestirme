@@ -84,6 +84,24 @@ def reviewed_events(evidence, official):
             if (stop_ids[pos] != endpoint['stopId'] or endpoint['sequenceOneBased'] != pos + 1
                     or stop_ids[:pos + 1].count(stop_ids[pos]) != endpoint['occurrenceOrdinalOfSameStopId']):
                 raise ValueError('Reviewed endpoint identity/occurrence mismatch')
+        span_evidence = rule.get('spanEvidence')
+        if (any(sources[sid]['kind']=='accessible_notice' for sid in rule['evidenceSourceIds'])
+                and span_evidence is None):
+            raise ValueError('Accessible span evidence is required for this event')
+        if span_evidence is not None:
+            source_id = span_evidence['sourceId']
+            source = sources[source_id]
+            clock = f'{seconds // 3600:02d}:{seconds % 3600 // 60:02d}'
+            labels = {'weekday': 'Hafta İçi:', 'saturday': 'Cumartesi:', 'sunday': 'Pazar:'}
+            if (span_evidence['type'] != 'reviewed_accessible_exact_row'
+                    or seconds % 60 != 0
+                    or source_id not in rule['evidenceSourceIds'] or rid not in source['routeIds']
+                    or source['kind'] != 'accessible_notice'
+                    or span_evidence['calendarLabel'] != labels[day]
+                    or span_evidence['indicesOneBasedInclusive'] != [a + 1, b + 1]
+                    or span_evidence['exactEntry'] != f'{clock};{note};{a + 1};{b + 1}'
+                    or span_evidence.get('tableEffectiveDateConfirmed') is not False):
+                raise ValueError('Accessible span evidence identity/calendar mismatch')
         duration = rule['durationEvidence']
         duration_source=sources[duration['sourceId']]
         if duration['sourceId'] not in rule['evidenceSourceIds'] or rid not in duration_source['routeIds']:

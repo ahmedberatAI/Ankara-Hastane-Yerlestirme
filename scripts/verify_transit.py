@@ -22,6 +22,7 @@ from backend.feasibility import geographic_bound
 from scripts.transit_provenance import check_package
 from scripts.audit_service_evidence import validate_reviewed_services, validate_evidence_archive
 from scripts.audit_bus_projection import validate_bus_projections
+from scripts.audit_bus_stop_matching import validate_bus_stop_matching
 from scripts.verify_release import (verify_certificate, verify_result_package,
                                     verify_report_records, same_values, summarize, TRANSIT_REPORT_KEYS)
 
@@ -152,6 +153,17 @@ def validate_network():
     else:raw_osm=None
     projection_audit=validate_bus_projections(network,q,raw_osm)
     print('Bus edge projection audit:',json.dumps(projection_audit,ensure_ascii=True),flush=True)
+    matching_audit=validate_bus_stop_matching(network,q,official,raw_osm)
+    print('Bus stop matching audit:',json.dumps(matching_audit,ensure_ascii=True),flush=True)
+    # The UI receives only these compact counts. They must refer to the same
+    # independently audited package, never a previous build or missing-as-zero.
+    for summary_key, report_key in (
+        ('additionalDirectionMatchedStops','additionalDirectionMatchedStops'),
+        ('neighborWithheldStops','neighborWithheldStops'),
+        ('originalFarProjectedStops','originalFarProjectedStops'),
+        ('projectionPolicyVersion','policyVersion')):
+        same_values(d['metadata']['transitDataQuality'][summary_key],
+                    q['busStopMatching'][report_key],'busStopMatching.summary.'+summary_key)
     del raw_osm
     assert len(official['routes'])==official['directoryCount']==q['officialRouteCount']
     assert not official['errors']

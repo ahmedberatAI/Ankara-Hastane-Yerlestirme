@@ -775,7 +775,7 @@ export default function App() {
           <div className="stats-grid">
             <div className="stat-card primary-stat">
               <div className="stat-label">
-                Önerilen hastane <Cross size={17} />
+                Seçilen hastane <Cross size={17} />
               </div>
               <div className="stat-number">
                 {busy ? (
@@ -839,6 +839,7 @@ export default function App() {
                 ? `EGO · ${displayedProfile}`
                 : "Araba"}
               {` · ${result.scenario.threshold} dk · il %${result.scenario.coverageTarget} · ilçe %${result.scenario.districtFloor}.`}
+              {capacity && " Bu tesis sayısı, kanıtlanmış asgari ihtiyaç değildir."}
               {dirty && " Girdi değişiklikleri henüz bu sonuçlara uygulanmadı."}
               {capacity?.optimalityScope === "all_candidate_allocation_edges"
                 ? " Maliyet açığı, örneklenen adayların bütün talep bağlantılarının bulunduğu probleme aittir; Ankara'nın her olası konumu için kanıt değildir."

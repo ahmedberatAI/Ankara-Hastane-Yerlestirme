@@ -1,7 +1,7 @@
 {
   "date": "2026-10-23",
   "planningVersion": "independent-capacity-2026-10-v2",
-  "transitPackageId": "ego-8297ffca9c531ee03425b369b2141a6ba94528fa5ad2529b8c2da70c02fac01d",
+  "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
   "note": "91 kullanıcı karşılaştırma sınırıdır; resmî 2024 envanteri 85. EGO: resmi kalkışlar, tahmini ara durak süreleri ve kısmi hizmet kapsamı; gerçek kent için kesin ihtiyaç sayısı değildir.",
   "cases": [
     {
@@ -126,7 +126,7 @@
         "minimumCountLowerBound": 165.0,
         "feasibleGeographicCount": 165,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 822,
+        "undominatedCandidateCount": 824,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -151,10 +151,10 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 166.0,
-        "feasibleGeographicCount": 166,
+        "minimumCountLowerBound": 167.0,
+        "feasibleGeographicCount": 167,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 851,
+        "undominatedCandidateCount": 850,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -179,10 +179,10 @@
       "status": "infeasible",
       "geographicCertificate": {
         "status": "optimal",
-        "minimumCountLowerBound": 169.99999999999986,
+        "minimumCountLowerBound": 170.0,
         "feasibleGeographicCount": 170,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 837,
+        "undominatedCandidateCount": 838,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -210,7 +210,7 @@
         "minimumCountLowerBound": 168.0,
         "feasibleGeographicCount": 168,
         "fullCandidateCount": 4701,
-        "undominatedCandidateCount": 837,
+        "undominatedCandidateCount": 835,
         "scope": "Tüm adaylar ve süre içindeki tüm bağlantılar; kapasite, maliyet ve yapı-izi çakışması gevşetildi. Sadece gerekli koşul.",
         "thresholdMinutes": 45,
         "coverageTargetPercent": 95.0,
@@ -254,9 +254,9 @@
   "transitAudit": {
     "legacyLowerBound": 291.0,
     "walkingCorrectionLowerBound": 168.99999999999986,
-    "withoutDistrictFloorLowerBound": 31.0,
+    "withoutDistrictFloorLowerBound": 32.0,
     "officialRoutes": 665,
-    "modeledRoutes": 428,
-    "note": "428/665 yön/varyant modele bağlandı; eksik seferler erişimi olduğundan düşük gösterebilir."
+    "modeledRoutes": 430,
+    "note": "430/665 yön/varyant modele bağlandı; eksik seferler erişimi olduğundan düşük gösterebilir."
   }
 }

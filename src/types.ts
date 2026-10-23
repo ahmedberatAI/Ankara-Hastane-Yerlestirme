@@ -241,6 +241,10 @@ export interface Dataset {
       usedDepartures: Record<string, number>;
       officialDepartures: Record<string, number>;
       reviewedServiceEvents?: { appliedCount: number; definedCount: number };
+      additionalDirectionMatchedStops?: number;
+      neighborWithheldStops?: number;
+      originalFarProjectedStops?: number;
+      projectionPolicyVersion?: string;
     };
   };
 }
