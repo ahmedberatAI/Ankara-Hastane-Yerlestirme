@@ -2,6 +2,23 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
+## Kapanış değerlendirmesi
+
+**Genel model başarısı kabul edilmedi.** Üç bağımsız bakış açısı, araştırma hesaplarının ve kaynak bağlarının belirtilen kapsamda tutarlılığını kabul ediyor; gerçek Ankara'nın hastane ihtiyacını, klinik kapasite yeterliğini veya kamu bütçesini doğrulamıyor.
+
+Dört kayıtlı EGO başlangıcı için ortak örnek **209 konum / 26.400 yatak / 23.035 hekim**, yıllık eşdeğer model maliyeti **175,868 milyar TL**. Aynı kaynaklarla süre ataması dört ortalamayı **28,14 / 29,12 / 30,40 / 31,08 dakika** olarak iyileştirdi. Ancak hafta içi **08.00→08.05** kaymasında aynı kaynak düzeninin %95 hedefini sağlayamadığı ayrı kanıtla gösterildi. Böylece dört başlangıçtaki başarı gün boyu dayanıklılık diye sunulmuyor. [Süre kanıtı](joint-travel.md) · [08.05 karşı örneği](departure-sensitivity.md).
+
+Kritik açıklar:
+
+- **Ulaşım kanıtı:** 430/665 EGO yön/varyantı ağa bağlandı; ara durak süreleri tahmini, peron/giriş bağlantılarında açıklar var. Araba modelinde canlı trafik ve dönüş yasakları modellenmiyor.
+- **Sağlık kapasitesi:** 2.140 temas/hekim oranı klinik FTE ölçümü değil. Branş, aktif çalışma süresi, sevk/il dışı talep ve vaka yükü için gerçek kalibrasyon eksik.
+- **Kamu maliyetleri:** MLP gider aktarımı kamu hastanesi gider defteri değil; cihaz, arsa ve dış altyapı yatırımları tam kapsanmıyor.
+- **Başlangıç saatine dayanıklılık:** 209 düzeni hafta içi 08.05 karşı örneğini geçmiyor. Başka kaynak dağılımı veya konumların da başarısız olacağı kanıtlanmış değil.
+
+Son tam üretim koşusu **807 geçen test / dört Windows izin atlaması**; ek saat araştırması **42 geçen test**. Son süre arayüzü regresyonu, üretim derlemesi ve gerçek tarayıcı kontrolü geçti. Tam üretim testleri her belge değişikliğinde yeniden koşulmuş gibi sunulmuyor; GitHub CI sonucu gözlenmedi. Üretim girdileri değişmeyen son araştırmada eski 91 deneyleri tekrarlanmadı. Araba/91 ve dört EGO/91 sonuçları kendi süre, kaynak ve eksik hizmet kapsamlarında kalıyor.
+
+Sonraki çalışma, daha iyi hizmet/zaman kanıtı ile birden fazla yakın başlangıç saatini aynı konum, yatak ve hekim kararlarında birlikte sınamalı. %95/%80/45 dakika hedefleri korunmalı; yeni hastane sayısı gerçek ihtiyaç sayısı olarak sunulmamalı. Klinik FTE ve tam kamu gideri verileri olmadan bu başlıklarda tamamlanmış kalibrasyon iddiası yapılamaz.
+
 ## 23 Ekim 07.36 TSİ: aynı kaynaklarla 08.05 deneyi
 
 Yeni araştırma yolculuk başlangıcını beş dakika kaydırdı; 209 konum, 26.400 yatak, 23.035 hekim ve %95/%80/45 dakika hedefleri korundu. Tam 1.413×209 matrisin 08.00 başlangıcı üretimle birebir; 16 mahalle × iki başlangıç ayrıca bağımsız olay aramasıyla doğrulandı. Kapasitesiz 45 dakika erişim üst sınırı 18.723 kişi azaldı. Eski atamanın 32 pozitif akışı yeni eşik dışında kaldığı için geçerli yedek çözüm olarak kullanılmadı.
