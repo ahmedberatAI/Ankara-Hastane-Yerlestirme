@@ -24,3 +24,4 @@ jobs:
       - run: python scripts/audit_robustness.py
       - run: python scripts/audit_shared_capacity.py
       - run: python scripts/audit_transport_relaxation.py
+      - run: python scripts/audit_joint_plan.py

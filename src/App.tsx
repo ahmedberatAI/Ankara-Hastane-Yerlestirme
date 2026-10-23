@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -41,6 +41,7 @@ import type {
   Mode,
 } from "./types";
 
+const JointPlan = lazy(() => import("./JointPlan"));
 const initial: Scenario = {
   mode: "car",
   threshold: 30,
@@ -1251,6 +1252,7 @@ export default function App() {
             }}
           />
           <Robustness packageId={data?.metadata.transitPackageId} />
+          {data && <Suspense fallback={<p>Ortak plan yükleniyor…</p>}><JointPlan data={data} /></Suspense>}
           {districtPanel && result?.districts && (
             <section className="district-results">
               <div className="results-intro">
