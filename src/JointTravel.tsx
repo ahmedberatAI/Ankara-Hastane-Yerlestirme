@@ -2,6 +2,10 @@ import { ArrowDownRight, ChevronDown } from "lucide-react";
 import { transitProfileLabels } from "./types";
 import type { TransitProfile } from "./types";
 import type { JointPlanReport } from "./JointPlan";
+import AccessConnectors from "./AccessConnectors";
+import type { AccessConnectorReport } from "./AccessConnectors";
+import savedConnectors from "../data/processed/access-connector-summary.json";
+import manifest from "../data/processed/manifest.json";
 
 const fmt = (n: number, digits = 2) => n.toLocaleString("tr-TR", { maximumFractionDigits: digits });
 export type JointTravelReport = {
@@ -113,6 +117,8 @@ export function JointTravelContent({ report, source }: { report: JointTravelRepo
       <p>Yeni atamaların aynı kişileri kapsama aralığı koşullu olarak %{fmt(overlap.lowerPercent)}–%{fmt(overlap.upperPercent)}.
         Aynı kişilerin dört profilde %95 kapsanması garanti edilmez. Yukarıdaki harita yükleri ve ortak kapsam açıklaması maliyet aşamasına aittir.</p>
     </details>
+    <AccessConnectors report={savedConnectors as unknown as AccessConnectorReport} travel={report}
+      expectedSummarySHA={manifest.files.find(f => f.file === "data/processed/travel-summary.json")?.sha256 || ""} />
     <a className="text-link" href="https://github.com/ahmedberatAI/Ankara-Hastane-Yerlestirme/blob/main/docs/joint-travel.md"
       target="_blank" rel="noreferrer">Süre aşaması: formül, bağımsız denetim ve sınırlar</a>
   </section>;

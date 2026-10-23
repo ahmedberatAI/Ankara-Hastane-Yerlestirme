@@ -92,6 +92,7 @@ Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin orta
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)
 - [Dört profil için aynı konum, yatak ve hekim: doğrulanmış ortak plan](docs/joint-plan.md)
 - [Aynı kaynak ve maliyetle daha kısa yolculuk: bağımsız süre kanıtı](docs/joint-travel.md)
+- [Varsayılan giriş bağlantıları: süre içindeki payları ve hesabın sınırları](docs/access-connectors.md)
 - [Ulaşım kaldırıldığında 91 sınırı: bağımsız kaynak ve bütçe tanığı](docs/transport-relaxation.md)
 - [Kapasite ve ulaşım tanısı: arayüz kontrolü](docs/screenshots/kapasite-ulasim-tanisi.png)
 - [Durak–yol yön eşleştirmesi ve bağımsız denetimi](docs/bus-stop-matching.md)

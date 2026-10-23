@@ -2,6 +2,16 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
+## 23 Ekim 07.10 TSİ: varsayılan giriş bağlantılarının payı
+
+Kayıtlı 209 tesisli süre planının iki uç bağlantısı bağımsız üç hesapla ayrıştırıldı. Dört profilde atanan kişi eşdeğeriyle ağırlıklı ortalama **6,19 dakika**, toplam kişi-dakika içindeki pay **%22,01 / %21,26 / %20,37 / %19,92**. Ortalama ve yüzde farklı paydaları kullanır; profiller toplanmaz. Bu, kaldırılabilir gecikme veya ölçülmüş hata oranı değildir. Durak/peron bağlantıları ve diğer ağ belirsizlikleri kapsam dışındadır; kalan süre saha ölçümü olarak doğrulanmış sayılmaz. [Hesap ve sınırlar](access-connectors.md).
+
+Yeni bağımsız denetçi mevcut tam süre atamalarını, kanıtı, kaynakları ve kod kimliklerini doğrulayarak özeti üretir; yeni optimizasyon çalıştırmaz. Ulaşım ve kanıt hakemleri gerçek dört profil değerlerini kendi hesaplarıyla karşılaştırdı, üretim özeti–manifest–üst arayüz zincirini kabul etti. Eski ya da bozuk kaynakta sayılar gizlenir. Bu kabul hesap tutarlılığı içindir; gerçek bağlantıların yürünebilirliğini veya genel model başarısını kanıtlamaz.
+
+Haritada yalnız varsayılan giriş bağlantıları kesikli çiziliyor; OSM yürüyüş yolları kesintisiz turuncu. API açıklaması ve arayüz aynı ayrımı kullanıyor. Gerçek tarayıcıda yeni tablo, paydalar ve sınırlamalar görüldü; hata günlüğü boş. Canlı bir EGO doğrudan yürüyüş rotası 30,7831745148 dakika ile kayıtlı matrisle birebir eşleşti. [Ekran görüntüsü](screenshots/giris-baglantilari.png).
+
+**807 test geçti; dört Windows sembolik bağlantı izin testi atlandı, üretim derlemesi geçti.** 51 çıktı manifestosu ve yeni özet salt okunur doğrulandı. İlk kapsam belirtilmeyen yerel test çağrısı, Git dışında tutulan eski araştırma testlerini de toplayıp çakıştı; `pytest tests -q` ile sürümlenen tam test paketi doğrulandı. Uzak CI bu kabulün parçası değildir. Model girdileri, atamalar ve hedefler değişmediğinden 91 hastane deneyleri etkilenmedi ve yeniden çözülmedi. Ulaşım, klinik çalışma süresi ve kamu giderlerine ilişkin kritik veri açıkları sürüyor.
+
 ## 23 Ekim 06.40 TSİ: hekim çalışma zamanı ve hedeflerin kaynağı
 
 Yeni [hekim çalışma zamanı araştırması](physician-time-evidence.md), resmî gösterge tanımı ile gerçekleşmiş yıllık klinik kapasiteyi ayırdı. İki farklı Bilkent başlığı altındaki aynı çizelge bağımsız hücre/XML karşılaştırmasıyla yakalandı ve ayrı kapasite olarak toplanmadı. Sağlık ve kanıt hakemleri kaynak açıklamasını dar kapsamda kabul etti; 2.140 katsayısı için klinik kalibrasyon onayı verilmedi.

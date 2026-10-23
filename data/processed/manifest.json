@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-23T03:14:31.605158+00:00",
+  "createdAt": "2026-10-23T04:05:33.756563+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -50,6 +50,11 @@
     }
   ],
   "files": [
+    {
+      "file": "data/processed/access-connector-summary.json",
+      "bytes": 4587,
+      "sha256": "0c2873bea0faff34a94bd3b21462bfd0700c6d13de02354f2398694551093aaf"
+    },
     {
       "file": "data/processed/benchmark-91.json",
       "bytes": 9726,

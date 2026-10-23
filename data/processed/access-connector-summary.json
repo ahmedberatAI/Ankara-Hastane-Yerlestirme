@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "status": "descriptive_explicit_connectors",
+  "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
+  "planningVersion": "independent-capacity-2026-10-v2",
+  "hospitalCount": 209,
+  "walkingSpeedMetersPerSecond": 1.25,
+  "population": {
+    "provincePopulation": 5910320.0,
+    "locatedPopulation": 5889804.0,
+    "unlocatedPopulation": 20516.0,
+    "targetServedPopulationEquivalentPerProfile": 5614804.0
+  },
+  "definitions": {
+    "weight": "Positive assigned population-equivalent per allocation, independently in each profile; not unique people or annual trip counts.",
+    "meanDenominator": "Sum of assigned population-equivalents in this profile: 95% of full province population, including unlocated population in the target denominator.",
+    "ratioNumerator": "Sum of assigned population-equivalent times the two connector minutes.",
+    "ratioDenominator": "Sum of assigned population-equivalent times full modeled travel minutes; ratio of sums, not mean of individual ratios.",
+    "scope": "Only demand.snapMeters and selected candidate.accessMeters, divided by 1.25 m/s and 60 s/min. These geometric connectors are not independently verified walkable paths. Stop snapping, transfers, network walking, waits and vehicle time are not attributed here. Their remainder is not validated travel, and subtracting the connectors is not a counterfactual reroute or new feasible plan."
+  },
+  "profiles": [
+    {
+      "profile": "weekday-0800",
+      "servedEquivalent": 5614803.999999999,
+      "meanOriginMinutes": 0.12119484614719096,
+      "meanHospitalMinutes": 6.072071128149691,
+      "meanEndpointMinutes": 6.193265974296882,
+      "shareOfPersonMinutesPercent": 22.011573305407026,
+      "totalMeanMinutes": 28.13640755418214
+    },
+    {
+      "profile": "weekday-1000",
+      "servedEquivalent": 5614803.999999999,
+      "meanOriginMinutes": 0.12090972427439134,
+      "meanHospitalMinutes": 6.072010604481489,
+      "meanEndpointMinutes": 6.192920328755881,
+      "shareOfPersonMinutesPercent": 21.263457289432623,
+      "totalMeanMinutes": 29.124710269169633
+    },
+    {
+      "profile": "saturday-1000",
+      "servedEquivalent": 5614803.999999999,
+      "meanOriginMinutes": 0.12086408212106918,
+      "meanHospitalMinutes": 6.071416933614656,
+      "meanEndpointMinutes": 6.192281015735724,
+      "shareOfPersonMinutesPercent": 20.370094228388684,
+      "totalMeanMinutes": 30.39888252998792
+    },
+    {
+      "profile": "sunday-1000",
+      "servedEquivalent": 5614803.999999997,
+      "meanOriginMinutes": 0.12054915346924021,
+      "meanHospitalMinutes": 6.07086528964713,
+      "meanEndpointMinutes": 6.19141444311637,
+      "shareOfPersonMinutesPercent": 19.922675873965986,
+      "totalMeanMinutes": 31.077223171647432
+    }
+  ],
+  "travelPlanSHA256": "bf3ca3470d633530c1380367f9b8968242bbf173f9739c8c054f3c432189410a",
+  "sourceCostCertificateSHA256": "ac9c4e1031aa15d3ad1bc1b2d6b78b6094fa16ddb1ca035ee09bb31ae7bf9a93",
+  "sourceTravelSummarySHA256": "6dc476ceaf9ff97ee365058fc939538a30a40c36c45ff672e17d0a837b15c87c",
+  "sourceSHA256": {
+    "dataset.json": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
+    "health-planning.json": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48",
+    "example-transit-result.json": "86d213de7fa307cb5fe24b9e9f60e9ccff18a91f7737a13a9e488a7b8cdc2213",
+    "transit-package.json": "8763989716190fe728914e99d3ea09ba608098f109813651a81ecdeac910f572",
+    "transit-weekday-0800-matrix.npz": "d5c49abd049401aa0d3d8f78cc66e46519fb4c4aaf9850fd60c2973701407ff5",
+    "transit-weekday-1000-matrix.npz": "32c1f46a471b5225fb89327498195c345d77eeb1b65c6a18d6dcbc7451400ad9",
+    "transit-saturday-1000-matrix.npz": "d2a263ec748aed403ff96323572c5d3208b01ced38881c5cbf4057e13cc65bb5",
+    "transit-sunday-1000-matrix.npz": "8569790d726a140e1b3b2138c12b50781f2001a94fd60af197a51bec10afa101",
+    "joint-plan.json": "ac9c4e1031aa15d3ad1bc1b2d6b78b6094fa16ddb1ca035ee09bb31ae7bf9a93",
+    "travel-plan.json": "bf3ca3470d633530c1380367f9b8968242bbf173f9739c8c054f3c432189410a",
+    "travel-proof.json": "6ec75b5cc02d0573136666cb04f26769063e519db6a56764f6558ac1e3c81c1c"
+  },
+  "analysisCodeSHA256": {
+    "scripts/audit_access_connectors.py": "c93319d50341b1661c2f173b2bf698e666d2e6809e28a116c49a99a51704dad5"
+  },
+  "semanticCodeSHA256": {
+    "scripts/build_timetable.py": "113780fd9f49e239baf6bfe9ded68327f4de5c2c6b034540fed226ec3177c558",
+    "backend/timetable.py": "ca4dee6c579a8e8be0372200be0e7c4d5221400383de325e8c239c70259b9c35"
+  }
+}

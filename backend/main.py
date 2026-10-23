@@ -212,7 +212,7 @@ def route(request: RouteRequest):
         legs.append({'kind': 'drive', 'label': 'Yol ağı üzerinden sürüş', 'coordinates': path})
         legs.append({'kind': 'connector', 'label': 'Temsil noktası / varsayılan giriş bağlantısı',
                      'coordinates': [[demand['lon'], demand['lat']], coordinates()[demand['node']].tolist()]})
-        legs.append({'kind': 'connector', 'label': 'Hastane giriş bağlantısı',
+        legs.append({'kind': 'connector', 'label': 'Varsayılan hastane giriş bağlantısı',
                      'coordinates': [coordinates()[candidate['node']].tolist(), [candidate['lon'], candidate['lat']]]})
     else:
         network=load_network()[0]
@@ -255,7 +255,7 @@ def route(request: RouteRequest):
                 clock+=part['seconds']
     return {'minutes': float(minutes), 'legs': legs, 'boardings': boardings,
             'demand': demand['name'], 'candidate': candidate['name'], 'scenario': request.model_dump(),
-            'note': 'Kesikli çizgiler varsayılan kısa erişim bağlantılarıdır; gerçek yol geometrisi değildir.'}
+            'note': 'Kesikli çizgiler varsayılan giriş bağlantılarıdır; arazide doğrulanmış yollar değildir. Kesintisiz çizgiler OSM yol/yürüyüş/ray ağını izler.'}
 
 app.mount('/assets', StaticFiles(directory=ROOT / 'dist/assets', check_dir=False), name='assets')
 

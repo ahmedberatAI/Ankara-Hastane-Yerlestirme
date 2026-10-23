@@ -408,9 +408,7 @@ export default function AnkaraMap({
                       ? "#164f43"
                       : "#dd8350",
                 weight: leg.kind === "connector" ? 2 : 4,
-                dashArray: ["walk", "connector"].includes(leg.kind)
-                  ? "5 7"
-                  : undefined,
+                dashArray: leg.kind === "connector" ? "5 7" : undefined,
                 opacity: 0.95,
               }}
             >

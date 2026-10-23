@@ -1144,8 +1144,7 @@ export default function App() {
                     <small className="route-footnote">
                       {result?.scenario.mode === "transit" &&
                         `Bu rota: ${transitProfileLabels[result.scenario.transitProfile]}. `}
-                      Kesikli çizgiler yürüyüş veya varsayılan giriş
-                      bağlantısıdır.{" "}
+                      {route.note}{" "}
                       {result?.scenario.mode === "transit"
                         ? "Bekleme seçilen saate göre hesaplanır; ara durak geçişleri tahminidir."
                         : "Canlı trafik kullanılmaz."}
