@@ -1,6 +1,9 @@
 import { lazy, Suspense, useState } from "react";
 import { MapPin, ChevronDown, ExternalLink } from "lucide-react";
 import saved from "../data/processed/joint-plan-summary.json";
+import savedTravel from "../data/processed/travel-summary.json";
+import { JointTravelContent } from "./JointTravel";
+import type { JointTravelReport } from "./JointTravel";
 import { transitProfileLabels } from "./types";
 import type { Dataset, Scenario, TransitProfile } from "./types";
 import "./joint-plan.css";
@@ -13,6 +16,7 @@ export type JointSite = {
   maximumAssignedPopulationAcrossProfiles: number;
 };
 export type JointPlanReport = {
+  sourceSHA256?: Record<string, string>;
   status: string; transitPackageId: string; planningVersion: string; scenario: Scenario;
   hospitalCount: number; beds: number; doctors: number;
   resourcesSharedAcrossProfiles: boolean; annualDemandCountedOnce: boolean;
@@ -57,7 +61,8 @@ export function jointPlanState(report: JointPlanReport, packageId?: string, plan
         current.candidates[s.candidateIndex].lon !== s.lon || current.candidates[s.candidateIndex].lat !== s.lat))) ||
     report.selected.reduce((n, s) => n + s.beds, 0) !== report.beds ||
     report.selected.reduce((n, s) => n + s.doctors, 0) !== report.doctors ||
-    ![overlap.lowerPercent, overlap.upperPercent].every(finite) || overlap.lowerPercent > overlap.upperPercent || overlap.upperPercent > 100 ||
+    ![overlap.lowerPercent, overlap.upperPercent].every(finite) || overlap.lowerPercent > overlap.upperPercent ||
+    overlap.upperPercent > 95 + 1e-6 || overlap.lowerPercent < 80 - 1e-6 ||
     report.profiles.length !== profiles.length || profiles.some(p => report.profiles.filter(row => row.profile === p).length !== 1) ||
     report.profiles.some(row => ![row.coveragePercent, row.minimumDistrictCoveragePercent, row.meanMinutes, row.maxMinutes].every(finite) ||
       Math.abs(row.coveragePercent - 95) > 1e-6 || row.minimumDistrictCoveragePercent < 80 - 1e-6 || row.maxMinutes > 45 ||
@@ -73,14 +78,18 @@ export function jointPlanState(report: JointPlanReport, packageId?: string, plan
   return within ? "within" : "above";
 }
 
-export function JointPlanContent({ report, packageId, planningVersion, map, current }: {
+export function JointPlanContent({ report, packageId, planningVersion, map, current, travel }: {
   report: JointPlanReport; packageId?: string; planningVersion?: string; map?: React.ReactNode;
   current?: Pick<Dataset, "candidates" | "districts">;
+  travel?: React.ReactNode;
 }) {
   const state = jointPlanState(report, packageId, planningVersion, current);
   if (state === "stale") return <section className="joint-plan"><p role="status">Ortak plan güncel veriyle eşleştiriliyor; önceki hesap gösterilmiyor.</p></section>;
   if (state === "invalid") return <section className="joint-plan"><p role="status">Ortak planın doğrulaması tamamlanmamış. Bu, uygun plan bulunamayacağı anlamına gelmez.</p></section>;
   const overlap = report.conditionalOverlap.province;
+  const sizes = new Map<number, number>();
+  report.selected.forEach(site => sizes.set(site.beds, (sizes.get(site.beds) || 0) + 1));
+  const mostCommon = [...sizes.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0];
   return <section className="joint-plan" aria-labelledby="joint-title">
     <div className="joint-heading"><div><span className="eyebrow">DÖRT BAŞLANGIÇ SAATİ · AYNI KAYNAKLAR</span>
       <h3 id="joint-title">Konumlar da birlikte seçilirse?</h3>
@@ -100,14 +109,20 @@ export function JointPlanContent({ report, packageId, planningVersion, map, curr
           Tavanın altında başka bir çözüm bulunamayacağı sonucu çıkarılamaz.</>}
     </p>
     <div className="table-scroll"><table className="capacity-table joint-table">
-      <caption>Aynı tesisler, ayrı atamalar · 45 dakika sınırı · süreler atanan taleple ağırlıklı</caption>
+      <caption>Maliyet aşaması · aynı tesisler, ayrı atamalar · 45 dakika sınırı</caption>
       <thead><tr><th>Başlangıç</th><th>İl kapsamı</th><th>En düşük ilçe</th><th>Ortalama süre</th></tr></thead>
       <tbody>{report.profiles.map(row => <tr key={row.profile}><td>{transitProfileLabels[row.profile]}</td>
         <td>%{fmt(row.coveragePercent, 2)}</td><td>%{fmt(row.minimumDistrictCoveragePercent, 2)}</td>
         <td>{fmt(row.meanMinutes, 2)} dk</td></tr>)}</tbody>
     </table></div>
     <p className="joint-note">Bu sayı minimum hastane ihtiyacı değildir. 91 hastanenin yeterliliğini veya gerçek EGO hizmetini kanıtlamaz.
-      Yıllık talep dört kez toplanmaz. Ulaşım süresi bir sınırdır; bu aramada ayrıca en aza indirilmedi.</p>
+      Yıllık talep dört kez toplanmaz. Ulaşım süresi bu maliyet aşamasında bir sınırdır; ayrıca en aza indirilmedi.</p>
+    <details className="joint-details"><summary>{fmt(report.hospitalCount, 0)} sayısı hangi büyüklükteki tesisleri içeriyor? <ChevronDown size={16} /></summary>
+      <p>Seçilenlerin {fmt(mostCommon[1], 0)} tanesi (%{fmt(mostCommon[1] / report.hospitalCount * 100)}) {fmt(mostCommon[0], 0)} yataklı şablonda.
+        Yatak şablonları ve asgari hekim sınırı tasarım varsayımlarıdır; ayrı poliklinik veya sağlık merkezi türleri modellenmiyor.</p>
+      <p>Arama yıllık maliyeti azaltır; hastane sayısını en aza indirdiği kanıtlanmadı. Bu dağılım her konumun zorunlu olduğunu göstermez.
+        Eksik ulaşım kapsamı ve doğrulanmamış klinik ölçek varsayımları nedeniyle gerçek Ankara'nın ihtiyaç envanteri sayılamaz.</p>
+    </details>
     {map}
     <details className="joint-details"><summary>Aynı kişiler mi kapsanıyor? <ChevronDown size={16} /></summary>
       <p>Her profilde %95 hedefi ayrı sağlanıyor. Mahalle içindeki kişi kimlikleri izlenmediğinden aynı %95 kişinin dört profilde de
@@ -118,6 +133,7 @@ export function JointPlanContent({ report, packageId, planningVersion, map, curr
     </details>
     <p className="joint-note">Kayıtlı deney canlı ayarlarla değişmez. Hekim verimliliği, hasta talebi, işletme giderleri ve ara durak süreleri
       kısmi kalibrasyon içerir. Maliyetler Aralık 2024 TL; arsa, tıbbi cihaz ve dış altyapı yatırımı hariç.</p>
+    {travel}
     <a className="text-link" href="https://github.com/ahmedberatAI/Ankara-Hastane-Yerlestirme/blob/main/docs/joint-plan.md" target="_blank" rel="noreferrer">Hesap, kanıt ve yeniden çalıştırma <ExternalLink size={14} /></a>
   </section>;
 }
@@ -126,6 +142,7 @@ export default function JointPlan({ data }: { data: Dataset }) {
   const [showMap, setShowMap] = useState(false);
   const report = saved as unknown as JointPlanReport;
   return <JointPlanContent report={report} packageId={data.metadata.transitPackageId} planningVersion={data.healthPlanning.version} current={data}
+    travel={<JointTravelContent report={savedTravel as unknown as JointTravelReport} source={report} />}
     map={<div className="joint-map-area"><button className="joint-map-toggle" onClick={() => setShowMap(!showMap)} aria-expanded={showMap}>
       <MapPin size={18} /> {showMap ? "Ortak plan haritasını kapat" : "Ortak konumları haritada incele"}</button>
       {showMap && <Suspense fallback={<p>Ortak plan haritası yükleniyor…</p>}><JointPlanMap data={data} sites={report.selected} /></Suspense>}

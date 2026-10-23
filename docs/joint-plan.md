@@ -31,7 +31,11 @@ Sonraki maliyet araması yalnız bu 239 konumu aday tuttu; yatak ve hekim kaynak
 
 Yıllık maliyet alt sınırı **173,211849311 milyar TL**, son planla açıklığı **%1,510457**; bunlar **yalnız başlangıçtaki 239 konum havuzuna** aittir. 4.701 adayın tamamı için alt sınır veya optimalite açıklığı değildir. Yerel çözücünün malzeme sabiti hariç, kaynak temizliği öncesi ham amaç açıklığı %2,120819'dur; iki oran farklı hesapları anlatır. Arama 300,328 saniyede tamamlandı; 0,328 saniyelik kooperatif süre aşımı saklanmadı.
 
-209 minimum sayı değildir; genel maliyet optimumu kanıtlanmadı. Ortalama süre ayrıca optimize edilmedi: önceki 239 planına göre hafta içi 08.00 kısalırken diğer üç profil 0,11–0,45 dakika uzadı. Daha az konum, daha ucuz kaynak veya farklı ulaşım dengesi bulunabilir.
+209 minimum sayı değildir; genel maliyet optimumu kanıtlanmadı. Bu maliyet aşamasında ortalama süre ayrıca optimize edilmedi: önceki 239 planına göre hafta içi 08.00 kısalırken diğer üç profil 0,11–0,45 dakika uzadı. Daha az konum, daha ucuz kaynak veya farklı ulaşım dengesi bulunabilir.
+
+Sonraki [sabit kaynaklı süre aşaması](joint-travel.md), bu 209 tesisin kaynaklarını ve yıllık giderini aynen koruyarak ortalamaları **28,14 / 29,12 / 30,40 / 31,08 dakikaya** indirir. Yeni atamalar ve süre kanıtı ayrı dosya ve arayüz panelindedir; bu sayfanın maliyet tablosu, harita yükleri ve aşağıdaki ortak kişi aralığı maliyet aşamasına aittir.
+
+Seçilmiş 209 tesisin 166'sı **50 yataklı şablondadır (%79,4)**. Tesis şablonları ve asgari hekim kadroları tasarım varsayımlarıdır; ayrı poliklinik veya sağlık merkezi seçenekleri bu modelde yoktur. Bu dağılım her konumun zorunlu olduğunu veya gerçek Ankara'nın bu sayıda hastaneye ihtiyacı olduğunu göstermez.
 
 ## Aynı kişiler hakkında söylenebilecekler
 

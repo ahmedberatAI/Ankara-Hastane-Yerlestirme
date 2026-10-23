@@ -34,6 +34,10 @@ assert.match(html, /Yıllık talep dört kez toplanmaz/);
 assert.match(html, /aynı %95 kişinin dört profilde de/);
 assert.match(html, /ayrıca en aza indirilmedi/);
 assert.match(html, /canlı ayarlarla değişmez/);
+assert.match(html, /2 sayısı hangi büyüklükteki tesisleri içeriyor/);
+assert.match(html, /2 tanesi \(%100\) 100 yataklı şablonda/);
+assert.match(html, /ayrı poliklinik veya sağlık merkezi türleri modellenmiyor/);
+assert.match(html, /her konumun zorunlu olduğunu göstermez/);
 assert.doesNotMatch(html, /239/);
 for (const change of [r => r.transitPackageId = "old", r => r.planningVersion = "old-health", r => r.scenario.threshold = 60,
   r => r.scenario.coverageTarget = 90, r => r.scenario.districtFloor = 0, r => r.scenario.hospitalLimit = 91]) {
@@ -45,7 +49,9 @@ for (const change of [r => r.status = "infeasible", r => r.resourcesSharedAcross
   r => r.selected[1].lon = Infinity, r => r.withinOriginalTransitBudget = false, r => r.profiles.pop(),
   r => r.profiles[1] = r.profiles[0], r => r.profiles[0].coveragePercent = 94.9, r => r.profiles[0].minimumDistrictCoveragePercent = 81,
   r => r.profiles[0].maxMinutes = 46, r => r.profiles[0].districts.pop(), r => r.profiles[0].districts[0].coveragePercent = 79.9,
-  r => r.conditionalOverlap.province.upperPercent = NaN, r => r.conditionalOverlap.province.lowerPercent = 99]) {
+  r => r.conditionalOverlap.province.upperPercent = NaN, r => r.conditionalOverlap.province.lowerPercent = 99,
+  r => r.conditionalOverlap.province = { lowerPercent: 100, upperPercent: 100 },
+  r => r.conditionalOverlap.province.lowerPercent = 79]) {
   const r = fixture(); change(r);
   html = render(r); assert.doesNotMatch(html, success); assert.match(html, /doğrulaması tamamlanmamış/);
 }

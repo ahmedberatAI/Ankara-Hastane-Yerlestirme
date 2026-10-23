@@ -82,11 +82,14 @@ Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısın�
 
 **Konumlar da dört profil için birlikte seçildiğinde**, doğrulanmış yeni örnek 209 konum / 26.400 yatak / 23.035 hekimle aynı %95/%80/45 dakika hedeflerini sağlıyor. Yıllık eşdeğer maliyet 175,868 milyar TL; önceki model tavanının %7,22 altında. Yıllık talep bir kez sayılıyor. Bu, mevcut modelde uygun bir ortak plan bulunduğunu gösterir; minimum sayı, aynı kişilerin dört profilde %95 kapsamı veya gerçek EGO yeterliliği değildir. Arayüzde ayrı haritası ve bağımsız yeniden hesaplanan kanıtı bulunur. [Ortak yerleşim: hesap ve sınırlar](docs/joint-plan.md).
 
+Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin ortalamasını **31,69→28,14 / 32,37→29,12 / 32,43→30,40 / 32,82→31,08 dakika** olarak iyileştiriyor. Aynı yatak, hekim, maliyet ve %95/%80/45 dakika hedefleri korunuyor. Hizmet alan mahalle payları değişebilir; herkesin yolculuğunun kısaldığı iddia edilmiyor. Sabit kaynaklara ait süre alt sınırları bağımsız kesir hesabıyla doğrulanıyor. [Süre aşaması ve kanıtın kapsamı](docs/joint-travel.md).
+
 ## Araştırma ve teknik belgeler
 
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)
 - [Dört profil için aynı konum, yatak ve hekim: doğrulanmış ortak plan](docs/joint-plan.md)
+- [Aynı kaynak ve maliyetle daha kısa yolculuk: bağımsız süre kanıtı](docs/joint-travel.md)
 - [Ulaşım kaldırıldığında 91 sınırı: bağımsız kaynak ve bütçe tanığı](docs/transport-relaxation.md)
 - [Kapasite ve ulaşım tanısı: arayüz kontrolü](docs/screenshots/kapasite-ulasim-tanisi.png)
 - [Durak–yol yön eşleştirmesi ve bağımsız denetimi](docs/bus-stop-matching.md)

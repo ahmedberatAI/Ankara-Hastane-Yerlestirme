@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-23T02:33:45.675029+00:00",
+  "createdAt": "2026-10-23T03:14:31.605158+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -269,6 +269,21 @@
       "file": "data/processed/transport-relaxation-results.json",
       "bytes": 3557,
       "sha256": "cdcd0c330860e5c37311bce36d5a761f1dcd06e97996bb86b097b000de7fefed"
+    },
+    {
+      "file": "data/processed/travel-plan.json",
+      "bytes": 582031,
+      "sha256": "bf3ca3470d633530c1380367f9b8968242bbf173f9739c8c054f3c432189410a"
+    },
+    {
+      "file": "data/processed/travel-proof.json",
+      "bytes": 134306,
+      "sha256": "6ec75b5cc02d0573136666cb04f26769063e519db6a56764f6558ac1e3c81c1c"
+    },
+    {
+      "file": "data/processed/travel-summary.json",
+      "bytes": 102992,
+      "sha256": "6dc476ceaf9ff97ee365058fc939538a30a40c36c45ff672e17d0a837b15c87c"
     },
     {
       "file": "data/processed/unmatched-neighborhoods.json",

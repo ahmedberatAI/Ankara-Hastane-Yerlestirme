@@ -2,7 +2,21 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
-## 23 Ekim 05.35 TSİ: ortak maliyet aramasında 209 konum
+## 23 Ekim 06.00 TSİ: aynı kaynaklarla süre ataması
+
+Sabit **209 konum / 26.400 yatak / 23.035 hekim** üzerinde dört ayrı atama problemi çözüldü. İl %95, her ilçe %80 ve her atamada 45 dakika hedefi korunarak ortalamalar **28,14 / 29,12 / 30,40 / 31,08 dakikaya** indi. Yıllık eşdeğer maliyet **175,868263289 milyar TL** olarak aynı kaldı. Malzeme gideri bir kez sayıldı; kaynak temizliği veya ek bütçe yok. Hizmet alan mahalle payları değişebilir, herkesin süresinin kısaldığı sonucu çıkarılmaz.
+
+Ulaşım hakemi 4.701 adaylı özgün modelde bütün son akışları, sabit kaynak önekini ve dört LP'nin katsayılarını bağımsız doğruladı. Kanıt hakemi kaynak kimliklerini, maliyeti ondalık hesapla ve dört alt sınırı ayrı kesir hesabıyla yeniden üretti. İki bağımsız inceleme gerçek sonucu **yalnız bu sabit kaynaklı model kapsamında** kabul etti. İmzalı primal–alt sınır farkları yaklaşık −2,84×10⁻¹⁴ ile +1,03×10⁻⁹ dakika; 10⁻⁷ dakika sayısal tolerans içinde, küçük negatif değerler korunuyor. Bu tam rasyonel primal optimum veya genel yerleşim optimumu değildir.
+
+Süre sonucu ayrı tam plan, çarpan kanıtı ve bağımsız özet olarak taşınıyor; maliyet sertifikası korunuyor. Arayüz her iki aşamayı ve kendi ortak kişi aralığını ayırıyor. Yeni atamaların koşullu ortak kapsamı **%93,092628–%93,237940**; aynı %95 kişinin tüm profillerde kapsanması garantisi yok. Ortak kapsamın, dört profilin matematiksel sınırlarını aşabildiği bozuk özet örneği UI denetiminde yakalandı ve regresyonla reddedildi.
+
+Yeni genel yordam/CLI 56 odaklı testten, gerçek 209 tesis için özgün modelle katsayı eşitliği ve 1.000 bağımsız kesir kontrolünden geçti. Yeni üretim denetçisi 80 karşıörnek regresyonuyla sınandı. Taşınabilir kayıtta tarihsel koşudan aktarma ile yeni komut çalıştırması açıkça ayrılır; eski kayıtları yeniden çalıştırdığı iddia edilmez. Yayımlanan atamalardan bağımsız hesapta ilk imzalı fark −2,49×10⁻¹⁴ dakikadır; ham çözümdeki −2,84×10⁻¹⁴ farkından çok küçük ayrım, atama serileştirmesi/aritmetik sırasından gelir.
+
+**760 test geçti, üç Windows sembolik bağlantı izin testi atlandı; üretim derlemesi geçti.** Yeni süre denetçisi ve önceki maliyet denetçisi salt okunur doğrulandı, 50 çıktı manifestosu eşleşti. Gerçek özetle arayüzde kaynak eşleşmesi, dört ortalama, negatif imzalı farklar ve ayrı ortak kişi aralığı yeniden denetlendi. Tarayıcıda aynı kaynak ve maliyet, önce/sonra tablosu, 166 adet 50 yataklı tesis açıklaması ve kanıt ayrıntıları görüldü; hata kaydı boş. [Süre karşılaştırması](screenshots/ortak-sure-209.png) · [Kanıt açıklaması](screenshots/ortak-sure-kaniti.png). Yerel kabul GitHub CI sonucu değildir; uzak CI ayrıca gözlenmedi. [Ayrıntılı süre hesabı ve yeniden çalıştırma](joint-travel.md).
+
+Ulaşım/sağlık girdileri değişmediğinden aynı 91 ağır deneyleri tekrarlanmadı. EGO kapsamı ve ara durak saatleri, klinik FTE, il dışı talep ve kamu giderleri açık kritik sınırlamalardır; bu ilerleme genel başarı kabulü değildir.
+
+## Önceki kontrol noktası · 23 Ekim 05.35 TSİ: ortak maliyet aramasında 209 konum
 
 Yeni arama önceki 239 konum havuzunda yatak ve hekimleri yeniden seçti: **209 konum / 26.400 yatak / 23.035 hekim**. Dört profilde il %95, her ilçe en az %80 ve 45 dakika hedefleri korundu. Yıllık eşdeğer maliyet **175,868263289 milyar TL**; 239 planına göre **%7,035719** düşük, değişmeyen önceki model tavanının **%7,221406** altında. Yıllık malzeme gideri bir kez sayıldı. İki bağımsız hakem kaynakları, tam atamaları, maliyetleri ve bütün özgün model koşullarını doğruladı.
 

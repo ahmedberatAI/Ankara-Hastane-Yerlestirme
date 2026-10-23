@@ -27,7 +27,7 @@ export default function JointPlanMap({ data, sites }: { data: Dataset; sites: Jo
     return () => controller.abort();
   }, []);
   return <div className="joint-map-content">
-    <div className="joint-map-legend"><span><i />Ortak hastane konumu · dört profilde aynı</span>
+    <div className="joint-map-legend"><span><i />Maliyet aşamasının haritası · dört profilde aynı konumlar</span>
       <label><input type="checkbox" checked={population} onChange={e => setPopulation(e.target.checked)} /> Nüfus arka planı</label></div>
     <MapContainer center={[39.86, 32.66]} zoom={8} scrollWheelZoom={false} className="joint-map" preferCanvas>
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>' eventHandlers={{ tileerror: () => setTileFailed(true) }} />
@@ -40,7 +40,7 @@ export default function JointPlanMap({ data, sites }: { data: Dataset; sites: Jo
         pathOptions={{ color: "#ffffff", fillColor: "#64429a", fillOpacity: .95, weight: 1.5 }}>
         <Tooltip><b>{data.candidates[s.candidateIndex]?.district} · {s.id}</b><br />
           {fmt(s.beds)} yatak · {fmt(s.doctors)} hekim<br />
-          Dört profilde en yüksek atama: {fmt(s.maximumAssignedPopulationAcrossProfiles)} kişi eşdeğeri</Tooltip>
+          Maliyet aşamasında en yüksek atama: {fmt(s.maximumAssignedPopulationAcrossProfiles)} kişi eşdeğeri</Tooltip>
       </CircleMarker>)}
       <Fit sites={sites} />
     </MapContainer>
