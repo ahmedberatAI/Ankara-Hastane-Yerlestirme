@@ -455,6 +455,10 @@ export default function App() {
               <label>Hedeflerinizi belirleyin</label>
               <span>02</span>
             </div>
+            <p className="field-help">
+              Süre ve kapsam hedefleri değiştirilebilir planlama tercihleridir;
+              resmî veya klinik standart değildir.
+            </p>
             <div className="slider-field">
               <label htmlFor="threshold">
                 En fazla yolculuk süresi{" "}

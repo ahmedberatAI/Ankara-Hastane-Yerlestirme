@@ -143,6 +143,24 @@ export default function HealthMethod({ data }: { data: Dataset }) {
         bir yatışın süreleri eşit varsayılmış bir zaman etüdü yapılmaz; yalnızca
         gözlenen hizmet karışımı aktarılır.
       </p>
+      <div className="note-block">
+        <Info size={20} />
+        <div>
+          <b>Hekim sayısı, kullanılabilir klinik zaman değildir.</b>
+          <p>
+            Bakanlığın{" "}
+            <a href="https://sina.saglik.gov.tr/media/sina_files/GOREN_KILAVUZ.pdf#page=37" target="_blank" rel="noreferrer">
+              2026 GÖREN kılavuzu, s. 36
+            </a>{" "}
+            uzman hekim muayene göstergesinin paydasında aktif çalışma gününü
+            dikkate alır. Bu aylık poliklinik göstergesi, modeldeki yıllık
+            başvuru + yatış oranından farklıdır; Ankara için sayısal çalışma
+            süresi verisi sağlamaz. Gerçek kapasite kalibrasyonu için branş,
+            klinik çalışma saati ve işlem süreleri gerekiyor. 2.140 varsayımı
+            bu yeni kaynakla doğrulanmış sayılmıyor.
+          </p>
+        </div>
+      </div>
       <h3>İşletme gideri nasıl kuruldu?</h3>
       <p>
         MLP’nin denetlenmiş 2024 konsolide giderleri, yaklaşık bir maliyet

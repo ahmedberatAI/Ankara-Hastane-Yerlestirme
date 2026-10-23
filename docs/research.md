@@ -43,7 +43,7 @@ Karayolu çizgileri ortak OSM düğüm kimlikleriyle bağlandı. Böylece farkl�
 
 ## 4. EGO ve raylı sistem: resmî kalkışlar ve koordinatlar, kısmi hizmet kapsamı
 
-22–23 Ekim 2026 araştırmasında [EGO hareket saatleri](https://www.ego.gov.tr/hareketsaatleri) kataloğundaki **665 yön/varyant ve 10.811 durak kimliği** işlendi. Hafta içi, cumartesi ve pazar kalkışları ile hat süreleri kullanıldı; **424 yön/varyant** zaman bağımlı ağa bağlandı. Ara durak varışları resmî tarifede bulunmadığından ağ mesafeleriyle tahmin edilir. Çözülemeyen özel sefer notları varsayılan tam-hat seferi yapılmaz. “Süresi” alanının her hatta tek yön mü bütün durak zinciri mi olduğu doğrulanmadı; zincire dağıtılması model varsayımıdır.
+22–23 Ekim 2026 araştırmasında [EGO hareket saatleri](https://www.ego.gov.tr/hareketsaatleri) kataloğundaki **665 yön/varyant ve 10.811 durak kimliği** işlendi. Hafta içi, cumartesi ve pazar kalkışları ile hat süreleri kullanıldı; **430 yön/varyant** zaman bağımlı ağa bağlandı. Ara durak varışları resmî tarifede bulunmadığından ağ mesafeleriyle tahmin edilir. Çözülemeyen özel sefer notları varsayılan tam-hat seferi yapılmaz. “Süresi” alanının her hatta tek yön mü bütün durak zinciri mi olduğu doğrulanmadı; zincire dağıtılması model varsayımıdır.
 
 [Resmî Başkentkart](https://baskentkart.ego.gov.tr/) durak sorgusu artık 10.743 otobüs durağının tamamına güncel kaynak koordinatı sağlıyor; 68 ray istasyonu OSM ile eşleştiriliyor. Yeni kesitte eksik durak koordinatı ve kullanılan tarihsel ek koordinat yok. Gerçek HTTP gözlem zamanı bilinen 10.740 kayıt ile zamanı bilinmeyen üç eski yanıt ayrılıyor. Tarife HTML önbelleğinin bilinmeyen gözlem zamanı işleme tarihiyle doldurulmadı. Gün türüne göre yayımlanmış kalkışların yaklaşık %72–75'i modele bağlanır; bu nüfus kapsamı değildir. Adla başlangıç notları ve yol kesiti eşleştirmeleri bazı kırsal hizmetleri dışarıda bırakıyor. Eksik veri gerçek hizmet yokluğu sayılmaz.
 
@@ -57,7 +57,7 @@ OSM'deki 124 hastane kaydı resmî envanter değildir. Sağlık Bakanlığı yı
 
 ## 6. Model seçimi
 
-Kapasiteli yer seçimi kullanılır: il/ilçe talep hedefleri altında düşük yapım maliyeti; ardından belirlenmiş ek bütçeyle sabit toplam talep için daha kısa yol. [Matematiksel yöntem](methodology.md), nüfus eşdeğeri akışlarını, iki kapasite kısıtını ve optimum iddiasının kapsamını açıklar. Eşikler ve kaynak varsayımları kullanıcı tarafından değiştirilebilir.
+Kapasiteli yer seçimi kullanılır: il/ilçe talep hedefleri altında düşük yıllık eşdeğer maliyet (yıllıklaştırılmış bina yatırımı + işletme); ardından belirlenmiş ek bütçeyle sabit toplam talep için daha kısa yol. [Matematiksel yöntem](methodology.md), nüfus eşdeğeri akışlarını, iki kapasite kısıtını ve optimum iddiasının kapsamını açıklar. Eşikler ve kaynak varsayımları kullanıcı tarafından değiştirilebilir. Süre ve kapsam eşikleri resmî veya klinik standart değildir; [WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care) yönteminin desteklediği kapsam hesabı, bu projenin hedef sayılarını doğrulamaz.
 
 ## 8. Öncelikli sonraki veri işleri
 

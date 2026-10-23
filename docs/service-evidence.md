@@ -61,6 +61,10 @@ Bu 25 kuralda erişilebilir sayfanın başlığı, gün etiketi ve tam `saat;not
 
 Erişilebilir sayfalardaki iki sayısal alanın bütün hatlarda güvenilir başlangıç/bitiş şeması olduğu doğrulanmadı. `1;0`, ters sıralar ve çelişen kayıtlar bulunduğundan bu alanlardan genel bir yön çözümleyici üretilmez. 615-1 burada terminal kimliğinin destekleyici kaynağıdır; bu inceleme onun için yeni sefer kuralı eklemez.
 
+### 527-2 için ek kaynak kontrolü
+
+23 Ekim 2026 takip kontrolünde, [27 Ağustos 2025 tarihli 7620 duyurusu](https://www.ego.gov.tr/tr/duyuru/7620/5271-kizilcahamamulus-ve-5272-uluskizilcahamam-hatlarinin-servis-saatlerinde-duzenleme-yapilmistir/) da incelendi. 1 Eylül 2025'te başlayacak 527-2 düzenlemesini Rüzgarlı kalkışıyla ilişkilendiriyor; ancak başlangıç durak/peron kodunu vermiyor. Erişilebilir sayfanın sonundaki `1;98` kayıtları yine Kızılcahamam başlangıçlı 527-1 tablosudur. 12485/12488 belirsizliği çözülmediği için üretime yeni 527-2 seferi eklenmedi. Yeni gözlenen tarife yanıtı eski kesitle bayt düzeyinde aynı; araştırma model girdisini değiştirmedi. Bu ek araştırma, aşağıda belgelenen dokuz üretim arşivine yeni bir paket girdisi olarak dahil edilmedi.
+
 ## İki ayrı otobüs bağlantısı politikası
 
 OSM’de uzun bir yol kenarının ortasındaki durak, yola birkaç metre uzak olduğu halde iki uç düğüme 300 metreden uzak kalabilir. Önceki v0.6’da eklenen uzak-durak politikası bu durumu, mevcut yönlü yol kenarına nokta ekleyerek ele alır. Bu ilk politika, en yakın eski çıkış düğümüne zaten 300 metre içinde ulaşan durağı değiştirmez; kenara uzaklık da 300 metreyi aşamaz. Eşit yakınlıktaki farklı kenarlar birleştirilmez. Güncel ağda `50253`, `51270` ve `51271` olmak üzere aynı üç uzak-durak bağlantısı korunmuştur; kayıtları `ego-quality.json` içindeki `busStopProjection` izler.

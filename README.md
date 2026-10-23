@@ -58,7 +58,9 @@ Her adayda bir **50 / 150 / 300 / 600 / 1.000 / 2.000 / 4.050 yataklı** tesis s
 
 Önce **yıllıklaştırılmış bina yatırımı + yıllık işletme gideri** azaltılır. Sonra aynı toplam talep, seçilen **%0–30 ek yıllık maliyet** içinde daha kısa yolculuğa atanır. 25 yıl ve %3 reel iskonto birer planlama varsayımıdır. Hastane sayısı bu maliyet hesabının sonucudur; minimum sayı iddiası değildir.
 
-Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı **%80**, doluluk tavanı **%80**, hekim başına **2.140 yıllık temas**. Son değer MLP 2024 portföyünün 7,0 milyon ziyareti / 3.272 yıl sonu hekiminden türetilen proxy orandır. **Klinik kapasite standardı, FTE ölçümü veya Ankara’ya tam kalibrasyon değildir.** Ankara Üniversitesi örneklerinin 835 oranı ve işletme maliyeti çarpanı duyarlılık seçenekleridir. [Kaynak, hesap ve sınırlar](docs/capacity-research.md).
+Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı **%80**, doluluk tavanı **%80**, hekim başına **2.140 yıllık temas**. Süre ve kapsam hedefleri değiştirilebilir planlama tercihleridir; resmî veya klinik standart değildir. [WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care), süre ve kapasiteye bağlı kapsam ölçümüne yöntem dayanağı sağlar; bu hedef sayılarını belirlemez.
+
+2.140 değeri MLP 2024 portföyünün 7,0 milyon ziyareti / 3.272 yıl sonu hekiminden türetilen proxy orandır. **Klinik kapasite standardı, FTE ölçümü veya Ankara’ya tam kalibrasyon değildir.** Ankara Üniversitesi örneklerinin 835 oranı ve işletme maliyeti çarpanı duyarlılık seçenekleridir. [Kaynak, hesap ve sınırlar](docs/capacity-research.md).
 
 4.701 adayın 45/80/120/210 m yapı izleri yol/ray koridorları dışında doğrulanır. Hızlı kaynak modeli her mahallede her iz sınıfından en yakın 12 adayı kullanır. **91 testi için gerekli coğrafi alt sınır tüm adaylar ve tüm bağlantılarla** ayrıca hesaplanır; daraltılmış aramanın başarısızlığı imkânsızlık sayılmaz.
 
@@ -99,6 +101,7 @@ Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin orta
 - [Tarihsel v0.5: aynı planın dört profilde kapasite ve bütçe testi](docs/screenshots/ego-dayaniklilik.png)
 - [Veri kaynakları araştırması ve eksik veri planı](docs/research.md)
 - [Yatak, hekim, talep ve maliyet araştırması](docs/capacity-research.md)
+- [Hekim çalışma zamanı: resmî gösterge, çizelgeler ve kalibrasyon sınırı](docs/physician-time-evidence.md)
 - [2025 sağlık bülteninin kapsamı ve Ankara kalibrasyonu](docs/health-data-freshness.md)
 - [Matematiksel model, ulaşım varsayımları ve sınırlar](docs/methodology.md)
 - [Veri sözlüğü, köken ve yeniden üretim](data/README.md)

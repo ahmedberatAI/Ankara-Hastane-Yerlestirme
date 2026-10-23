@@ -47,4 +47,6 @@ Ek [Hacettepe 2024 mali bölüm kontrolü](hacettepe-finance-check.md), yıllık
 
 ## Tam kalibrasyon için sonraki veri
 
+23 Ekim takip araştırmasında [resmî aktif gün göstergesi ve Bilkent çalışma çizelgeleri](physician-time-evidence.md) ayrıca incelendi. Yöntem tanımı ve plan çizelgesi, Ankara'nın gerçekleşmiş yıllık klinik çalışma süresini sağlamadı; iki farklı başlıktaki aynı çizelge çift sayılmadı. Mevcut katsayılar değiştirilmedi.
+
 Hastane bazında aynı yıl/kapsamla yatak türü, branş, ortalama aktif hekim FTE, poliklinik/acil/yatış/ameliyat iş yükü; merkezi bütçe+döner sermaye ücret ve işletme giderleri; yatırım ve cihaz yenileme; hastanın ikamet kökeni ve sevk matrisi gerekir. EGO için resmî sefer takvimi/GTFS, gerçek yol trafik profili ve nüfusun mahalle içi dağılımı da erişim sonucunu değiştirebilir. Bu veri eksikleri uydurma kesinlik ile kapatılmamıştır.
