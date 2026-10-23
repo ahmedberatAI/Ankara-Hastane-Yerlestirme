@@ -35,6 +35,8 @@ const render = (report, base = source) => renderToStaticMarkup(React.createEleme
 const success = /Aynı hastanelerle yolculuk süresini azaltmak/;
 let html = render(fixture());
 assert.match(html, success);
+assert.match(html, /KAYITLI EGO DENEYİ/);
+assert.match(html, /Bu kayıtlı EGO deneyi canlı ayarlarla değişmez/);
 assert.match(html, /2 konum, 200 yatak ve 40 hekim sabit tutuldu/);
 assert.match(html, /ek kaynak alınmadı/);
 assert.match(html, /herkesin yolculuğunun kısaldığı anlamına gelmez/);

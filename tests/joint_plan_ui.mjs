@@ -27,6 +27,7 @@ const render = (report, packageId = "current", planningVersion = "health-current
 const success = /Doğrulanmış model örneği/;
 let html = render(fixture());
 assert.match(html, success);
+assert.match(html, /KAYITLI EGO DENEYİ/);
 assert.match(html, /minimum hastane ihtiyacı değildir/);
 assert.match(html, /91 hastanenin yeterliliğini/);
 assert.match(html, /gerçek bir kamu bütçesi değil/);

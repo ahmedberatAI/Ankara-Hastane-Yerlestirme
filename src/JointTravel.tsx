@@ -77,7 +77,7 @@ export function JointTravelContent({ report, source }: { report: JointTravelRepo
     : "Süre deneyinin doğrulaması tamamlanmamış. Yukarıdaki maliyet planı ayrı değerlendirilir."}</p></section>;
   const overlap = report.conditionalOverlap.province;
   return <section className="joint-travel" aria-labelledby="joint-travel-title">
-    <span className="eyebrow">İKİNCİ AŞAMA · AYNI KONUMLAR VE KAYNAKLAR</span>
+    <span className="eyebrow">KAYITLI EGO DENEYİ · İKİNCİ AŞAMA</span>
     <h4 id="joint-travel-title">Aynı hastanelerle yolculuk süresini azaltmak</h4>
     <p>{fmt(report.hospitalCount, 0)} konum, {fmt(report.beds, 0)} yatak ve {fmt(report.doctors, 0)} hekim sabit tutuldu.
       Yalnız mahalle talebinin bu tesislere dağılımı yeniden seçildi. Yıllık eşdeğer maliyet
@@ -91,7 +91,7 @@ export function JointTravelContent({ report, source }: { report: JointTravelRepo
           : <span>Başlangıç korundu</span>}</td></tr>)}</tbody>
     </table></div>
     <p className="joint-travel-targets">Dört profilde de il kapsamı %95, her ilçede en az %80 ve her atamada en fazla 45 dakika korunuyor.</p>
-    <p className="joint-note">Ortalama, her senaryoda hizmet verilen nüfus için hesaplanır. Hizmet alan mahalle payları değişebilir;
+    <p className="joint-note">Bu kayıtlı EGO deneyi canlı ayarlarla değişmez. Ortalama, her senaryoda hizmet verilen nüfus için hesaplanır. Hizmet alan mahalle payları değişebilir;
       herkesin yolculuğunun kısaldığı anlamına gelmez.</p>
     {!report.allProfilesAccepted && <p className="joint-note">{report.acceptedProfileCount}/4 profil için süre iyileştirmesi doğrulandı.
       Diğer profillerin eski atamaları korundu; iyileştirme bulunmaması olanaksızlık kanıtı değildir.</p>}

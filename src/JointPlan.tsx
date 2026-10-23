@@ -91,7 +91,7 @@ export function JointPlanContent({ report, packageId, planningVersion, map, curr
   report.selected.forEach(site => sizes.set(site.beds, (sizes.get(site.beds) || 0) + 1));
   const mostCommon = [...sizes.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0];
   return <section className="joint-plan" aria-labelledby="joint-title">
-    <div className="joint-heading"><div><span className="eyebrow">DÖRT BAŞLANGIÇ SAATİ · AYNI KAYNAKLAR</span>
+    <div className="joint-heading"><div><span className="eyebrow">KAYITLI EGO DENEYİ · DÖRT BAŞLANGIÇ SAATİ</span>
       <h3 id="joint-title">Konumlar da birlikte seçilirse?</h3>
       <p>Her saat için ayrı hastaneler kurmak yerine, konumlar, yataklar ve hekimler ortak seçildi.
         Her profil kendi ulaşım bağlantılarıyla talep atıyor.</p></div><span className="joint-tag">Doğrulanmış model örneği</span></div>
