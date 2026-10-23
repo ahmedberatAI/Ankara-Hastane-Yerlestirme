@@ -2,7 +2,9 @@
 
 23 Ekim 2026 TSİ. İl genelinde %95, her ilçede %80 talep; talep çarpanı 1, %80 yatak doluluğu, 2.140 temas/hekim/yıl ve %10 ek yıllık maliyet. Tutarlar yaklaşık Aralık 2024 TL; kısmi gider kalibrasyonu, saha ölçümü değildir. EGO örnekleri yeni ağla yeniden çözüldü. Araba modelinin sayısal planları korunup tekrar denetlendi; yeniden çözülmüş gibi sunulmaz.
 
-## Kaydedilmiş kapasite çözümleri
+## Kaydedilmiş tek profil kapasite çözümleri
+
+Bu bölümdeki 261 tesis yalnız hafta içi 10.00 için bulunan önceki plandır. Daha sonra konumlar dört profil için birlikte seçildi: **209 konum / 26.400 yatak / 23.035 hekim**. Güncel ortak planın maliyet ve sabit kaynaklı süre aşamaları [ortak yerleşim](joint-plan.md) ve [süre denetimi](joint-travel.md) belgelerindedir; aşağıdaki tek profil kayıtları bu ayrı deneylerin yerine geçmez.
 
 | Senaryo | Tesis | Yatak | Hekim | Ortalama süre | Yıllık eşdeğer maliyet |
 |---|---:|---:|---:|---:|---:|

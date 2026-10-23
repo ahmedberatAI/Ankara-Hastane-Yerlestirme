@@ -39,6 +39,12 @@ Ek [Hacettepe 2024 mali bölüm kontrolü](hacettepe-finance-check.md), yıllık
 - %80 yatak doluluğu tercih edilen planlama tavanı; Ankara 2024 gözlemi %59,5. Daha yüksek tavan, mevcut yatak sayısına göre daha az yatakla aynı yıllık günü karşılayabilir. Pik talep, yoğun bakım, hemşire, branş, ameliyathane ve kuyruk garantisi sağlamaz.
 - Kapasiteyi sürekli tek tipe bağlayan eski 0,6 hekim/yatak ve 300 yatak üst sınırı kaldırıldı. Eski 24 ve 172 sonuçları farklı modellerin çıktılarıdır; yeni sonuçla doğrudan aynı problem gibi karşılaştırılamaz.
 
+## Hekim sayısında aktarılmış oranın etkisi
+
+Yalnız toplulaştırılmış bir model hesabı yapılırsa, 2024'teki `(47.073.855 başvuru + 1.063.851 yatış) / 5.864.049 nüfus` oranı, 2025 Ankara nüfusunun %95'i olan **5.614.804 kişi eşdeğerine** uygulandığında yaklaşık **46.091.665 yıllık temas** verir. Varsayılan 2.140'a bölüp yukarı yuvarlamak **21.539 hekim** eder. Kayıtlı araba planı 21.590, dört profilli ortak plan 23.035 hekim seçer. Hesap talep çarpanı 1 içindir; dört alternatif profil aynı yıllık talebi dört kez üretmez.
+
+21.539 yalnız bu aktarılmış temas oranıyla, mekânsal ve diğer tesis kısıtları uygulanmadan elde edilen sayısal tabandır; gerçek klinik minimum değildir. Seçilen diğer sayılar da bulunabilir kadro değildir. Model, 26.798 tüm sektörler hekim toplamını arz üst sınırı olarak kullanmaz. Planların bu toplamdan küçük çıkması, mevcut hekim arzının yeterli olduğunu kanıtlamaz; branş, görev, çalışma süresi ve hastaneye ayrılabilirlik kapsamları eşleşmemiştir.
+
 ## Ortak fiyat tabanı
 
 2026 bina bedelleriyle 2024 giderlerini toplamak yerine yaklaşık **Aralık 2024 TL** kullanılır. 2024 tebliği 1 Ocak’tan geçerlidir; tutarın Ocak fiyat düzeyini temsil ettiği varsayılır. [TCMB/TÜİK](https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari) yayımlı Aralık yıllık %44,38 ve Ocak aylık %6,70 değişimiyle `1,4438 / 1,067` dönüşümü uygulanır. Bu yaklaşık genel satın alma gücü düzeltmesidir, inşaat maliyet endeksi değildir.

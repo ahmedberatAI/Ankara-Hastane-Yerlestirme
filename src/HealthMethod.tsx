@@ -102,7 +102,9 @@ export default function HealthMethod({ data }: { data: Dataset }) {
       </div>
       <p>
         Sağlık Bakanlığı 2024 Yıllığı, tablolar 7.20, 8.26 ve 10.12. 26.798
-        hekim, hastanelere ayrılabilir bir kadro bütçesi değildir. Kullanıcının
+        hekim, hastanelere ayrılabilir bir kadro bütçesi değildir. Model bu
+        toplamı hekim arzı için üst sınır olarak kullanmaz; daha az hekim
+        seçilmesi mevcut kadronun yeterli olduğunu göstermez. Kullanıcının
         91 karşılaştırma sınırı ile tarihli resmî envanter farklı şeylerdir.
       </p>
       <p>

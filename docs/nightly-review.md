@@ -2,6 +2,14 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
+## 23 Ekim 07.19 TSİ: sonuçların ve hekim arzının kapsamı
+
+Son üç hakem kontrolü 91 karşılaştırması, eski tek profilli 261 tesis ve güncel dört profilli 209 tesisin ayrı deneyler olduğunu doğruladı. Eski araştırma aşamasını hâlâ güncel gösteren cümle ve iki başlık netleştirildi. Üretim yönlendirme denetiminin yedi farklı başlangıcı belgede düzeltildi; ayrı bağımsız hakemin sekiz başlangıç / 154.400 karşılaştırması kendi kaydından doğrulandığı için korundu.
+
+Sağlık ve kanıt hakemleri, 2.140 oranının [toplulaştırılmış hekim hesabını](capacity-research.md#hekim-sayısında-aktarılmış-oranın-etkisi) ayrı kesir hesaplarıyla doğruladı: mevcut %95 talep varsayımı 21.539 sayısal taban verir. Bu klinik minimum değildir. Arayüz, gözlenen 26.798 tüm sektörler hekim toplamının modelde arz tavanı olmadığını ve planın bu toplamın altında kalmasının kadro yeterliğini kanıtlamadığını açıkça söylüyor. [Görünür açıklama](screenshots/hekim-arzi.png). Üretim derlemesi ve gerçek tarayıcı kontrolü geçti, hata günlüğü boş; metin değişikliği önceki 807 testlik model kabulünü yeni bir koşu gibi sunmaz.
+
+Üç hakemin genel düzeyi **araştırma yazılımının hesap ve kaynak tutarlılığı için koşullu kabul**. Gerçek ulaşım süresi/hizmet kapsamı, klinik çalışma süresi ve branş bazlı talep, tam kamu işletme giderleri açıklıkları nedeniyle gerçek Ankara ihtiyaç sayısı veya genel model başarısı kabul edilmedi. Sayısal model ve 91 deneyleri değişmedi.
+
 ## 23 Ekim 07.10 TSİ: varsayılan giriş bağlantılarının payı
 
 Kayıtlı 209 tesisli süre planının iki uç bağlantısı bağımsız üç hesapla ayrıştırıldı. Dört profilde atanan kişi eşdeğeriyle ağırlıklı ortalama **6,19 dakika**, toplam kişi-dakika içindeki pay **%22,01 / %21,26 / %20,37 / %19,92**. Ortalama ve yüzde farklı paydaları kullanır; profiller toplanmaz. Bu, kaldırılabilir gecikme veya ölçülmüş hata oranı değildir. Durak/peron bağlantıları ve diğer ağ belirsizlikleri kapsam dışındadır; kalan süre saha ölçümü olarak doğrulanmış sayılmaz. [Hesap ve sınırlar](access-connectors.md).
@@ -70,7 +78,7 @@ Başkentray için iki resmî tabloda 146 tren / 24 istasyon / 3.504 saat hücres
 
 **432 test geçti, iki test Windows sembolik bağlantı oluşturma izni nedeniyle atlandı; üretim derlemesi geçti.** Yeni rapor salt okunur yeniden üretimle ve 45 çıktı manifestosuyla doğrulandı. Yerel arayüzde yeni panelin sayıları, açıklamaları ve kaynak bağlantısı kontrol edildi; tarayıcı hata günlüğü boş. Matematik, ulaşım paketi ve önceki 91 deney girdileri değişmediği için aynı deneyler yeniden çözülmedi. [Ekran kontrolü](screenshots/kapasite-ulasim-tanisi.png). Ulaşım süreleri, eksik hizmetler, klinik kapasite ve tam maliyet kalibrasyonu açık; genel başarı kabulü yok.
 
-## v0.7: giderilen hatalar ve kabul kapsamı
+## İlk v0.7 kontrol noktası: giderilen hatalar ve kabul kapsamı
 
 216 ek durağın yol bağlantısı, resmî sıra ve tek yönlü yol kanıtıyla yeniden kuruldu. 477 aday değişiklik belirsiz komşular nedeniyle bekletildi; önceki üç uzak-durak bağlantısı kimlikleri korunarak ayrıca doğrulandı. İlk daha geniş prototipler, iki yönlü paralel yol ve aynı yolun başka kolu gibi karşıörnekler nedeniyle kabul edilmedi. Yeni eşleştirmeye dokunan her parçanın iki ucu ortak durak kaydına kilitleniyor; rota araması başka bir düğüme geri dönemiyor. 438 çiftin 437'si geçiyor, önceden de kullanılmayan bir çift mevcut geometri sınırında belirsiz kalıyor. [Yöntem ve sınırlar](bus-stop-matching.md).
 
@@ -80,7 +88,7 @@ Başkentray için iki resmî tabloda 146 tren / 24 istasyon / 3.504 saat hücres
 
 Bu kabul, kaynak ve algoritma tutarlılığı kapsamındadır. 516/616'da incelenen iki bağlantı düzeldi; 615/560-8 örnekleri komşu belirsizliği nedeniyle bekliyor. Ara durak tahminleri, gerçek güzergâh ve peron girişleri sahada doğrulanmış değil.
 
-## v0.7: yeni deneyler
+## İlk v0.7 kontrol noktası: tek profil ve sabit konum deneyleri
 
 91 sınırının coğrafi gevşetmesinde dört kesin minimum **165 / 167 / 170 / 168**. Bunlar aynı modelde gerekli koşulun alt sınırlarıdır; gerçek kent için ihtiyaç sayısı değildir. Yalnız ilçe tabanı kaldırılan hafta içi 10.00 tanısı 32, sekiz kırsal ilçenin birlikte coğrafi minimumu 135. Varsayılan hedefler değiştirilmedi.
 
@@ -93,7 +101,7 @@ Hafta içi 10.00 maliyet aşaması 204 tesis / 24.950 yatak / 22.966 hekim buldu
 | Cumartesi 10.00 | %85,7567 | %92,0937 |
 | Pazar 10.00 | %85,2515 | %91,0738 |
 
-Sabit kaynak testi aynı 189,5569 milyar TL yıllık tavanı koruyor; yalnız hafta içi 10.00 hedefi geçiyor. Ayrı fiziksel tavan maliyeti kaldırıp yapı izlerinin izin verdiği kaynakları kullanıyor; hafta sonu yine %95 altında. Dolayısıyla **aynı 261 yapı izinde** yalnız yatak/hekim artırmak dört profil için yetmiyor. Kanıt hakemi üretim model ve denetim fonksiyonlarını çağırmadan ayrı sparse LP'lerle sekiz yüzdeyi, kaynak/alan/akış denklemleriyle plan maliyetini ve süreyi yeniden doğruladı. Başka konumlar veya gerçek Ankara için olanaksızlık çıkarılamaz. Ortak konum seçimi üretim dışında ayrıca araştırılıyor.
+Sabit kaynak testi aynı 189,5569 milyar TL yıllık tavanı koruyor; yalnız hafta içi 10.00 hedefi geçiyor. Ayrı fiziksel tavan maliyeti kaldırıp yapı izlerinin izin verdiği kaynakları kullanıyor; hafta sonu yine %95 altında. Dolayısıyla **aynı 261 yapı izinde** yalnız yatak/hekim artırmak dört profil için yetmiyor. Kanıt hakemi üretim model ve denetim fonksiyonlarını çağırmadan ayrı sparse LP'lerle sekiz yüzdeyi, kaynak/alan/akış denklemleriyle plan maliyetini ve süreyi yeniden doğruladı. Başka konumlar veya gerçek Ankara için olanaksızlık çıkarılamaz. Bu ilk kontrol noktasında ortak konum seçimi henüz araştırılıyordu; daha sonra üretime alınan 209 konumlu ortak sonuç yukarıdaki güncel bölümlerde yer alıyor.
 
 ## v0.7: açık kritik sınırlamalar
 

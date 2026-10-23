@@ -51,6 +51,6 @@ Denetlenen bir örnekte 611'in 50351 durağındaki tahmini varış 71,20 saniye 
 
 Hafta içi 10.00, sayı serbest: **261 tesis, 27.800 yatak, 23.534 hekim**; ortalama 29,06 dakika, yıllık eşdeğer maliyet 183,93 milyar Aralık 2024 TL. İlk maliyet açıklığı %2,54; son plan maliyet açıklığı %8,69; süre açıklığı %82,02. Maliyet açıklıkları daraltılmış aday bağlantılarına aittir; minimum tesis sayısı değildir. [İlk/son plan ve bütçeli dayanıklılık](validation.md).
 
-Bütün kullanılan kesitlerin fiziksel süre sınırları ve geometri kalite kararları bağımsız tekrar hesaplanır. Dört profil × sekiz başlangıç × 4.825 hedef için toplu matris tek-başlangıç yönlendirmesiyle karşılaştırılır. Paket dosyalarının, kodun ve satır/sütun indekslerinin içerik kimlikleri doğrulanır. Bu algoritma/veri tutarlılığı denetimidir; saha ölçümü değildir.
+Bütün kullanılan kesitlerin fiziksel süre sınırları ve geometri kalite kararları bağımsız tekrar hesaplanır. Dört profil × yedi farklı başlangıç × 4.825 hedef için toplu matris tek-başlangıç yönlendirmesiyle karşılaştırılır. Paket dosyalarının, kodun ve satır/sütun indekslerinin içerik kimlikleri doğrulanır. Bu algoritma/veri tutarlılığı denetimidir; saha ölçümü değildir.
 
 Okuma amaçlı kontroller: `verify_transit.py`, `verify_release.py`, `audit_robustness.py`, `audit_shared_capacity.py`. Tam yeniden üretim sırası [veri sözlüğünde](../data/README.md). [Makine raporu](../data/processed/transit-validation.json), [bağımsız hakem kaydı](nightly-review.md).
