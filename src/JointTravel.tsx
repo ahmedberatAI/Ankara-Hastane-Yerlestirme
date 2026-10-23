@@ -95,6 +95,9 @@ export function JointTravelContent({ report, source }: { report: JointTravelRepo
           : <span>Başlangıç korundu</span>}</td></tr>)}</tbody>
     </table></div>
     <p className="joint-travel-targets">Dört profilde de il kapsamı %95, her ilçede en az %80 ve her atamada en fazla 45 dakika korunuyor.</p>
+    <p className="joint-note">Bu dört başlangıç, gün boyu erişimi garanti etmez.{" "}
+      <a href="https://github.com/ahmedberatAI/Ankara-Hastane-Yerlestirme/blob/main/docs/departure-sensitivity.md"
+        target="_blank" rel="noreferrer">08.05 ek deneyi ve kapasite sınırı</a></p>
     <p className="joint-note">Bu kayıtlı EGO deneyi canlı ayarlarla değişmez. Ortalama, her senaryoda hizmet verilen nüfus için hesaplanır. Hizmet alan mahalle payları değişebilir;
       herkesin yolculuğunun kısaldığı anlamına gelmez.</p>
     {!report.allProfilesAccepted && <p className="joint-note">{report.acceptedProfileCount}/4 profil için süre iyileştirmesi doğrulandı.

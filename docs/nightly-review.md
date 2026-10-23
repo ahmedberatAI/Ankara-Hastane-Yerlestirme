@@ -2,6 +2,14 @@
 
 **v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
 
+## 23 Ekim 07.36 TSİ: aynı kaynaklarla 08.05 deneyi
+
+Yeni araştırma yolculuk başlangıcını beş dakika kaydırdı; 209 konum, 26.400 yatak, 23.035 hekim ve %95/%80/45 dakika hedefleri korundu. Tam 1.413×209 matrisin 08.00 başlangıcı üretimle birebir; 16 mahalle × iki başlangıç ayrıca bağımsız olay aramasıyla doğrulandı. Kapasitesiz 45 dakika erişim üst sınırı 18.723 kişi azaldı. Eski atamanın 32 pozitif akışı yeni eşik dışında kaldığı için geçerli yedek çözüm olarak kullanılmadı.
+
+Tek gerçek atama çağrısı uygulanamazlık bildirdi. Bağımsız kanıt olmadan ham kayıt `inconclusive_without_validated_primal` durumunda tutuldu; atama, ortalama ve kanıt alanları boş. Sonraki ayrı ağ kesiti, ilçe tabanları kaldırılıp sayısal toleranslar eklenince bile yalnız bu 209 kaynak ve türetilmiş 08.05 matrisi için üst kapsamı 5.595.511,2325 kişiyle sınırladı; %95 hedefin yaklaşık 19.292,77 kişi altında. Ham LP kaydı geriye dönük değiştirilmedi. Dört üretim profili ve 91 deney girdileri değişmedi; bu beşinci başlangıçta 91 testi yapılmadı. [Araştırma, kapsam ve tam kayıt arşivi](departure-sensitivity.md).
+
+42 odaklı araştırma testi ve gerçek kaynak/katsayı ön denetimi geçti. Ulaşım ve veri hakemleri kesiti bütün yasal kenarlar ve ayrı tam kesir hesaplarıyla doğruladı; kaynak satırları ayrıca yeniden kurulan LP ile eşleştirildi. Hesap/model kodu değişmedi; arayüze gün boyu garanti olmadığı açıklaması ve araştırma bağlantısı eklendi. Mevcut süre arayüzü regresyonu ve üretim derlemesi geçti; gerçek tarayıcıda yeni açıklama görüldü, hata kaydı boş. [Arayüz kontrolü](screenshots/saat-duyarliligi.png). Daha önceki 807 testlik tam üretim koşusu yeni çalıştırılmış gibi sunulmuyor. Gün boyu güvenilirlik ve gerçek Ankara kalibrasyonu kabul edilmedi.
+
 ## 23 Ekim 07.19 TSİ: sonuçların ve hekim arzının kapsamı
 
 Son üç hakem kontrolü 91 karşılaştırması, eski tek profilli 261 tesis ve güncel dört profilli 209 tesisin ayrı deneyler olduğunu doğruladı. Eski araştırma aşamasını hâlâ güncel gösteren cümle ve iki başlık netleştirildi. Üretim yönlendirme denetiminin yedi farklı başlangıcı belgede düzeltildi; ayrı bağımsız hakemin sekiz başlangıç / 154.400 karşılaştırması kendi kaydından doğrulandığı için korundu.

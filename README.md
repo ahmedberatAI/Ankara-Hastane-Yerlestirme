@@ -86,6 +86,8 @@ Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısın�
 
 Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin ortalamasını **31,69→28,14 / 32,37→29,12 / 32,43→30,40 / 32,82→31,08 dakika** olarak iyileştiriyor. Aynı yatak, hekim, maliyet ve %95/%80/45 dakika hedefleri korunuyor. Hizmet alan mahalle payları değişebilir; herkesin yolculuğunun kısaldığı iddia edilmiyor. Sabit kaynaklara ait süre alt sınırları bağımsız kesir hesabıyla doğrulanıyor. [Süre aşaması ve kanıtın kapsamı](docs/joint-travel.md).
 
+**Başlangıç saati duyarlılığı:** aynı 209 konum ve kaynakla türetilmiş 08.05 matrisinde %95 il hedefi sağlanamıyor; ayrı kesir hesabıyla doğrulanan kapasite üst sınırı yaklaşık %94,674. Dört belirli saati geçmek, beş dakika sonraki veya gün boyu erişimi garanti etmiyor. Bu sabit düzenin model içindeki sınırıdır; gerçek hastane ihtiyacı veya başka düzenlerin olanaksızlığı değildir. [Tam matris, bağımsız kapasite kanıtı ve kayıtlar](docs/departure-sensitivity.md).
+
 ## Araştırma ve teknik belgeler
 
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)

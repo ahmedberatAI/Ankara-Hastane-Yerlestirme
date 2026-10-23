@@ -1,0 +1,154 @@
+{
+  "format": 1,
+  "artifactType": "frozen-research-archive",
+  "scope": "Exact historical work-only source and results; no production profile or new solve.",
+  "archiveFile": "departure-0805-evidence.zip",
+  "archiveSHA256": "acbd20e3e1ffefc8bd35c4352bef2efd65c82e775aa91998e1d598e73993291a",
+  "files": {
+    "work/referees/audit_departure_cut.py": {
+      "bytes": 3003,
+      "sha256": "634f6f81d32a419c0827bf140c425adde25b14a0d2164173d76fe2030d4e2cd8",
+      "lfSHA256": "634f6f81d32a419c0827bf140c425adde25b14a0d2164173d76fe2030d4e2cd8"
+    },
+    "work/referees/check_departure_capacity_cut_evidence.py": {
+      "bytes": 5117,
+      "sha256": "df3993c3a24c003ebe703dde4aa42e08a349641e6041f39f661e3cd6ec84497c",
+      "lfSHA256": "1b3b607f914d642174a6118b41d7db01b6742f4d6229a32207c9fc37e3e3c4c4"
+    },
+    "work/referees/departure-capacity-cut-evidence-audit.json": {
+      "bytes": 935,
+      "sha256": "e3e0beb2c0576a687fa70a18fa6d82ca58f785e0768678f1190a64fb826ff866",
+      "lfSHA256": null
+    },
+    "work/referees/departure-capacity-cut-transport-audit.json": {
+      "bytes": 2012,
+      "sha256": "30da79b8be81fb0158299711ec2a985e443610548b2d1f7cc2dad7b09bf14be5",
+      "lfSHA256": null
+    },
+    "work/referees/departure-capacity-cut-v07.json": {
+      "bytes": 135048,
+      "sha256": "a33d3e0d93df8efa367fe15189220d43ae38e08bbac638ce0f4be68e718fa9d7",
+      "lfSHA256": null
+    },
+    "work/referees/departure-sensitivity-design.md": {
+      "bytes": 3423,
+      "sha256": "a8947bcac5fd1d6320a902a2e0616b4bd718f4fddf9bb34d5be931c3a2fe6715",
+      "lfSHA256": null
+    },
+    "work/referees/departure-sensitivity-final-review.md": {
+      "bytes": 4411,
+      "sha256": "3b23d2744d6f60da77cb15d5ee05f2db0fbc548d1e2bddcef5067282b6b4b4a4",
+      "lfSHA256": null
+    },
+    "work/referees/departure-sensitivity-freeze.json": {
+      "bytes": 1152,
+      "sha256": "17f592a5799af972741ee61836bcefe5d64ecba369648a9cd23d396c0fddb5f8",
+      "lfSHA256": null
+    },
+    "work/referees/departure-sensitivity-preflight.json": {
+      "bytes": 4148,
+      "sha256": "c74e8540fc2a9c1ebb1f304c926f76b0baa604867f3abee7018e248431ce71f0",
+      "lfSHA256": null
+    },
+    "work/referees/departure-sensitivity-result-audit.json": {
+      "bytes": 90985,
+      "sha256": "5c822070038c33cd6d1fdea5c7060a32cddfe1ef2fc4e9bbbc76226262429300",
+      "lfSHA256": null
+    },
+    "work/referees/departure-sensitivity-v07.json": {
+      "bytes": 60827,
+      "sha256": "2c550293f1121c3cbbdf3b5dd03698b9404a6c7f8b26b8c75646d0a37827b131",
+      "lfSHA256": null
+    },
+    "work/referees/departure_sensitivity_lp.py": {
+      "bytes": 10260,
+      "sha256": "72457b45fe6e2a7782565d2afe5b5b7519bde719009fa87f0599e7cdeaf89c42",
+      "lfSHA256": "72457b45fe6e2a7782565d2afe5b5b7519bde719009fa87f0599e7cdeaf89c42"
+    },
+    "work/referees/find_departure_capacity_cut.py": {
+      "bytes": 7294,
+      "sha256": "e91477e0e02013917012d3238cf721f06d7c43ecd075dbf51a72ce01b07b62d9",
+      "lfSHA256": "e91477e0e02013917012d3238cf721f06d7c43ecd075dbf51a72ce01b07b62d9"
+    },
+    "work/referees/profile-shift-design-evidence-review.md": {
+      "bytes": 9658,
+      "sha256": "7b50c48837b4721f2d2631c64c2b7d616c07a836839c69035b6c107da9afef3f",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-district-upper-bound-review.md": {
+      "bytes": 2168,
+      "sha256": "7d0934b50077d600f18242a947cb75d1bb08f25b8909197cef7390277a246464",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-full-evidence-audit.json": {
+      "bytes": 1071,
+      "sha256": "ee2b987a9bedc2164a29044c26a532dd2bd198b67274e7b8137d58ce72291b0b",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-full-review.md": {
+      "bytes": 4509,
+      "sha256": "07db967188696d24a35d5d687aefffe2308c100be0daeaaed43787fc95f6f11b",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-full-v07.json": {
+      "bytes": 202297,
+      "sha256": "b9f60e61b3bbee0c3aadf670e8f400338fa95dae015bdd590d3d5243096e4eb0",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-full-v07.npz": {
+      "bytes": 63608,
+      "sha256": "51b24496428a2d84f614c6809779aea5576512a8867bf7d6b0a519179070faab",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-pilot-review.md": {
+      "bytes": 5032,
+      "sha256": "458b56da9f79f200c662f09389f9da17de6af1433d5d07bc77c251d40fce4e9d",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-pilot-v07.json": {
+      "bytes": 10808,
+      "sha256": "18a8942f030b7dbcb4bdd9ab0f4a0c3f34cb909bc66342d87843cc9b9468990f",
+      "lfSHA256": null
+    },
+    "work/referees/profile-shift-pilot-v07.npz": {
+      "bytes": 2724,
+      "sha256": "10e697fcde440251e74b70e14f1b8a4df23fb3d6eac42d47043943f3a19c14ab",
+      "lfSHA256": null
+    },
+    "work/referees/profile_shift_full.py": {
+      "bytes": 11845,
+      "sha256": "17682df86fd1209dc3f33e37e7904e68b0d33cc0edb8dfcd865fd678fbad1ea1",
+      "lfSHA256": "17682df86fd1209dc3f33e37e7904e68b0d33cc0edb8dfcd865fd678fbad1ea1"
+    },
+    "work/referees/profile_shift_pilot.py": {
+      "bytes": 10892,
+      "sha256": "64810b8f7bba95d5770733070e5b006c3d7db3eb7c1cce2fff156e8791d9eac0",
+      "lfSHA256": "64810b8f7bba95d5770733070e5b006c3d7db3eb7c1cce2fff156e8791d9eac0"
+    },
+    "work/referees/run_departure_sensitivity.py": {
+      "bytes": 9814,
+      "sha256": "594b7a89238d0a2fbb06fc0fe289865871ad555a28a43e59f9fbfb441b1559ae",
+      "lfSHA256": "594b7a89238d0a2fbb06fc0fe289865871ad555a28a43e59f9fbfb441b1559ae"
+    },
+    "work/referees/test_departure_sensitivity_lp.py": {
+      "bytes": 5082,
+      "sha256": "a726be598aa6a88dbb213894ecfdb8e6f3613bb51a84e7d156f9ef29fc44f934",
+      "lfSHA256": "a726be598aa6a88dbb213894ecfdb8e6f3613bb51a84e7d156f9ef29fc44f934"
+    },
+    "work/referees/test_profile_shift_full.py": {
+      "bytes": 1416,
+      "sha256": "8f66dce48ae88599f78ba3c16a350ca64ef2b67a7bd4f56205da96a102363fd9",
+      "lfSHA256": "8f66dce48ae88599f78ba3c16a350ca64ef2b67a7bd4f56205da96a102363fd9"
+    },
+    "work/referees/test_profile_shift_pilot.py": {
+      "bytes": 1919,
+      "sha256": "19dd0ee988bac4874d5f348b9bbee93b57f4b8d75483a5aa1a086c9edfa75a8d",
+      "lfSHA256": "19dd0ee988bac4874d5f348b9bbee93b57f4b8d75483a5aa1a086c9edfa75a8d"
+    },
+    "work/referees/test_run_departure_sensitivity.py": {
+      "bytes": 2727,
+      "sha256": "cb2a8dc8daf6a81e98ea919970a29412cd99b33d1ec4d8d0c31602dc4ebe4b6a",
+      "lfSHA256": "cb2a8dc8daf6a81e98ea919970a29412cd99b33d1ec4d8d0c31602dc4ebe4b6a"
+    }
+  }
+}
