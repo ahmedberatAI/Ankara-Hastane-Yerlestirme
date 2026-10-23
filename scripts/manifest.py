@@ -20,7 +20,7 @@ def run():
     output = {'createdAt':datetime.now(timezone.utc).isoformat(),
               'populationReferenceDate':data['metadata']['referenceDate'], 'osmSnapshotDate':data['metadata']['osmDate'],
               'sources':[record(RAW/name) for name in source_names if (RAW/name).exists()],
-              'files':[record(p) for p in sorted(OUT.iterdir()) if p.is_file() and p.name != 'manifest.json']}
+              'files':[record(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p != OUT/'manifest.json']}
     (OUT/'manifest.json').write_text(json.dumps(output,ensure_ascii=False,indent=2),encoding='utf-8', newline='\n')
     print(f'Manifest: {len(output["sources"])} source identities, {len(output["files"])} output identities.')
 

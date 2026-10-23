@@ -17,7 +17,7 @@ function Fit({ sites }: { sites: JointSite[] }) {
   return null;
 }
 
-export default function JointPlanMap({ data, sites }: { data: Dataset; sites: JointSite[] }) {
+export default function JointPlanMap({ data, sites, profileCount = 4 }: { data: Dataset; sites: JointSite[]; profileCount?: number }) {
   const [districts, setDistricts] = useState<FeatureCollection | null>(null);
   const [population, setPopulation] = useState(true);
   const [tileFailed, setTileFailed] = useState(false);
@@ -27,7 +27,7 @@ export default function JointPlanMap({ data, sites }: { data: Dataset; sites: Jo
     return () => controller.abort();
   }, []);
   return <div className="joint-map-content">
-    <div className="joint-map-legend"><span><i />Maliyet aşamasının haritası · dört profilde aynı konumlar</span>
+    <div className="joint-map-legend"><span><i />Ortak plan haritası · {profileCount} başlangıçta aynı konumlar</span>
       <label><input type="checkbox" checked={population} onChange={e => setPopulation(e.target.checked)} /> Nüfus arka planı</label></div>
     <MapContainer center={[39.86, 32.66]} zoom={8} scrollWheelZoom={false} className="joint-map" preferCanvas>
       <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>' eventHandlers={{ tileerror: () => setTileFailed(true) }} />
@@ -40,12 +40,12 @@ export default function JointPlanMap({ data, sites }: { data: Dataset; sites: Jo
         pathOptions={{ color: "#ffffff", fillColor: "#64429a", fillOpacity: .95, weight: 1.5 }}>
         <Tooltip><b>{data.candidates[s.candidateIndex]?.district} · {s.id}</b><br />
           {fmt(s.beds)} yatak · {fmt(s.doctors)} hekim<br />
-          Maliyet aşamasında en yüksek atama: {fmt(s.maximumAssignedPopulationAcrossProfiles)} kişi eşdeğeri</Tooltip>
+          {profileCount} başlangıçtaki en yüksek atama: {fmt(s.maximumAssignedPopulationAcrossProfiles)} kişi eşdeğeri</Tooltip>
       </CircleMarker>)}
       <Fit sites={sites} />
     </MapContainer>
     {tileFailed && <p>Altlık haritası yüklenemedi; doğrulanmış konumlar gösteriliyor.</p>}
     <p className="joint-note">Gri halkalar nüfusu, mor noktalar ortak planı gösterir. Nüfus halkaları kapsama haritası değildir.
-      Ayrıntı için yakınlaştırın veya konumun üzerine gelin. Konumlar dört profilde değişmez.</p>
+      Ayrıntı için yakınlaştırın veya konumun üzerine gelin. Konumlar {profileCount} başlangıçta değişmez.</p>
   </div>;
 }

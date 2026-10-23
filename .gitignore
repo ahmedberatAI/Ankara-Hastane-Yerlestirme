@@ -6,5 +6,6 @@ __pycache__/
 dist/
 data/raw/
 *.log
+!data/processed/departure-window-plan/solver.log
 .env
 work/

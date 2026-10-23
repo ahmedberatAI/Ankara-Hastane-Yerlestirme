@@ -42,6 +42,7 @@ import type {
 } from "./types";
 
 const JointPlan = lazy(() => import("./JointPlan"));
+const WindowPlan = lazy(() => import("./WindowPlan"));
 const initial: Scenario = {
   mode: "car",
   threshold: 30,
@@ -1245,6 +1246,7 @@ export default function App() {
             </section>
           )}
           <StageComparison result={result} />
+          {data && <Suspense fallback={<p>Yakın saatler planı yükleniyor…</p>}><WindowPlan data={data} /></Suspense>}
           {data && (
             <>
               <Benchmark
@@ -1259,7 +1261,8 @@ export default function App() {
               <Robustness packageId={data.metadata.transitPackageId} />
             </>
           )}
-          {data && <Suspense fallback={<p>Ortak plan yükleniyor…</p>}><JointPlan data={data} /></Suspense>}
+          {data && <details className="joint-details"><summary>Önceki dört başlangıç deneyi ve karşılaştırmalar</summary>
+            <Suspense fallback={<p>Ortak plan yükleniyor…</p>}><JointPlan data={data} /></Suspense></details>}
           {districtPanel && result?.districts && (
             <section className="district-results">
               <div className="results-intro">

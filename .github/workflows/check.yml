@@ -17,7 +17,7 @@ jobs:
           cache: npm
       - run: pip install -r requirements.txt
       - run: npm ci
-      - run: python -m pytest -q
+      - run: python -m pytest -q tests
       - run: npm run build
       - run: python scripts/verify_release.py
       - run: python scripts/verify_transit.py
@@ -27,3 +27,6 @@ jobs:
       - run: python scripts/audit_joint_plan.py
       - run: python scripts/audit_joint_travel.py
       - run: python scripts/audit_access_connectors.py
+      - run: python scripts/audit_window_plan.py --certificate data/processed/departure-window-plan/window-plan.json --manifest data/processed/departure-window/manifest.json --summary data/processed/window-plan-summary.json --quiet
+      - run: python scripts/manifest.py --check
+      - run: node tests/window_plan_ui.mjs

@@ -4,7 +4,7 @@ Ankara’nın **25 ilçesinde**, **yatak, hekim, yıllık hasta talebi, bina yat
 
 Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanılır. Mevcut binalar aday konumları engellemez; örnek yapı alanları karayolu ve yüzey demiryolu koridorlarının dışında seçilir. Mevcut hastaneler yeni yerleşimi kısıtlamaz; yalnızca ayrı bir erişim karşılaştırması sağlar.
 
-> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu **resmî kalkış listelerini ve durak sırasını** kullanır; ara durak süreleri OSM ağıyla tahmin edilir. Hafta içi 08.00/10.00, cumartesi/pazar 10.00 ayrı değerlendirilir. Özel sefer notları, takvim ve yol bağlantısı eksikleri nedeniyle kapsam kısmidir; gerçek kent için kesin ihtiyaç sayısı vermez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
+> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu **resmî kalkış listelerini ve durak sırasını** kullanır; ara durak süreleri OSM ağıyla tahmin edilir. Canlı hesapta hafta içi 08.00/10.00, cumartesi/pazar 10.00 ayrı değerlendirilir. Yakın saatler araştırması ayrıca birer dakika arayla 44 başlangıcı birlikte ele alır. Özel sefer notları, takvim ve yol bağlantısı eksikleri nedeniyle kapsam kısmidir; gerçek kent için kesin ihtiyaç sayısı vermez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
 
 ![ERİŞİM uygulamasının ilk sürüm harita görünümü](docs/screenshots/overview.png)
 
@@ -82,17 +82,20 @@ Yeni arayüz ilk maliyet planı ile son planı ayrı gösterir. Ayrıca kayıtl�
 
 Yeni ortak kapasite deneyi aynı konum ve yapı izlerinde yatak/hekim sayısını dört profil için birlikte yeniden seçer. Ayrıca bütçeyi kaldırıp alanların izin verdiği en yüksek kapasiteyi hesaplar. Böylece yalnız kaynak satın almanın yeterli olup olmadığı ayrı sınanır; yeni hastane yerleşimiyle karıştırılmaz. [Dar sefer kanıtları ve kalan veri açıklıkları](docs/service-evidence.md).
 
-**Konumlar da dört profil için birlikte seçildiğinde**, doğrulanmış yeni örnek 209 konum / 26.400 yatak / 23.035 hekimle aynı %95/%80/45 dakika hedeflerini sağlıyor. Yıllık eşdeğer maliyet 175,868 milyar TL; önceki model tavanının %7,22 altında. Yıllık talep bir kez sayılıyor. Bu, mevcut modelde uygun bir ortak plan bulunduğunu gösterir; minimum sayı, aynı kişilerin dört profilde %95 kapsamı veya gerçek EGO yeterliliği değildir. Arayüzde ayrı haritası ve bağımsız yeniden hesaplanan kanıtı bulunur. [Ortak yerleşim: hesap ve sınırlar](docs/joint-plan.md).
+**Önceki dört profil ortak yerleşiminde**, doğrulanmış örnek 209 konum / 26.400 yatak / 23.035 hekimle aynı %95/%80/45 dakika hedeflerini sağlıyor. Yıllık eşdeğer maliyet 175,868 milyar TL; önceki model tavanının %7,22 altında. Yıllık talep bir kez sayılıyor. Bu, mevcut modelde uygun bir ortak plan bulunduğunu gösterir; minimum sayı, aynı kişilerin dört profilde %95 kapsamı veya gerçek EGO yeterliliği değildir. Arayüzde ayrı haritası ve bağımsız yeniden hesaplanan kanıtı bulunur. [Ortak yerleşim: hesap ve sınırlar](docs/joint-plan.md).
 
 Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin ortalamasını **31,69→28,14 / 32,37→29,12 / 32,43→30,40 / 32,82→31,08 dakika** olarak iyileştiriyor. Aynı yatak, hekim, maliyet ve %95/%80/45 dakika hedefleri korunuyor. Hizmet alan mahalle payları değişebilir; herkesin yolculuğunun kısaldığı iddia edilmiyor. Sabit kaynaklara ait süre alt sınırları bağımsız kesir hesabıyla doğrulanıyor. [Süre aşaması ve kanıtın kapsamı](docs/joint-travel.md).
 
 **Başlangıç saati duyarlılığı:** aynı 209 konum ve kaynakla türetilmiş 08.05 matrisinde %95 il hedefi sağlanamıyor; ayrı kesir hesabıyla doğrulanan kapasite üst sınırı yaklaşık %94,674. Dört belirli saati geçmek, beş dakika sonraki veya gün boyu erişimi garanti etmiyor. Bu sabit düzenin model içindeki sınırıdır; gerçek hastane ihtiyacı veya başka düzenlerin olanaksızlığı değildir. [Tam matris, bağımsız kapasite kanıtı ve kayıtlar](docs/departure-sensitivity.md).
 
+**Yakın saatler birlikte yeniden optimize edildi:** aynı hedefleri 44 ayrı tam dakika başlangıcında sağlayan yeni plan **226 konum / 30.900 yatak / 23.066 hekim** içeriyor. 08.05'te il kapsamı %95, her ilçe en az %80; ortalama yolculuk 26,64 dakika. Yıllık maliyet **186,384 milyar TL**, önceki dört saatlik plana göre +%5,98 ve değişmeyen tavanın 3,173 milyar TL altında. 312 adaylı süre sınırlı aramanın maliyet açıklığı %8,22; optimumluk kanıtlanmadı. 44 örnek arasındaki saniyeler ve günün tamamı için garanti verilmez; gerçek hizmet/klinik kapasite/kamu maliyeti veri açıkları sürüyor. [Sonuç, ham kayıtlar, kaynak zinciri ve denetim](docs/departure-window-plan.md).
+
 ## Araştırma ve teknik belgeler
 
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)
-- [Dört profil için aynı konum, yatak ve hekim: doğrulanmış ortak plan](docs/joint-plan.md)
+- [Yakın 44 başlangıç için ortak yerleşim: yöntem ve denetim](docs/departure-window-plan.md)
+- [Önceki dört profil için aynı konum, yatak ve hekim](docs/joint-plan.md)
 - [Aynı kaynak ve maliyetle daha kısa yolculuk: bağımsız süre kanıtı](docs/joint-travel.md)
 - [Varsayılan giriş bağlantıları: süre içindeki payları ve hesabın sınırları](docs/access-connectors.md)
 - [Ulaşım kaldırıldığında 91 sınırı: bağımsız kaynak ve bütçe tanığı](docs/transport-relaxation.md)
@@ -116,7 +119,7 @@ Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin orta
 ## Kontroller
 
 ```powershell
-.venv\Scripts\python.exe -m pytest -q
+.venv\Scripts\python.exe -m pytest -q tests
 npm run build
 .venv\Scripts\python.exe scripts/verify_release.py
 .venv\Scripts\python.exe scripts/verify_transit.py

@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "builtAt": "2026-10-22T23:54:58.692460+00:00",
+  "builtAt": "2026-10-23T11:15:44.036930+00:00",
   "transitPackageId": "ego-da0980e2b9057e21065f4b018a9e935d994f89f52572e08db4546710cf3eb997",
   "scope": "Static saved-plan diagnosis: preserve every current selected location and footprint, share bed modules/physicians across four profiles with separate assignments. Not a new location plan, minimum hospital count, real-city infeasibility proof or clinical staffing standard. Recompute after any package/plan/calibration change.",
   "sourcePlan": {
@@ -41,7 +41,7 @@
     "backend/shared_capacity.py": "60f4839385f844a58dc5b4aa52545735f3b92f81544776af823f3c17a440709a",
     "backend/capacity.py": "976dfd7e9b2d7a007b6dbdd0e5e185b4faada06f4df4e85a7be94ecf2c56f073",
     "backend/optimizer.py": "1c7743e7e51184ef0a21f38cf0792ae77177d9884c90bdff5599c1020ac87511",
-    "backend/main.py": "e1e0986dbec32899870665bc214e579e4c7b681ff686c36ee4870673268c4a1a",
+    "backend/main.py": "3be6a24d4180ab4cb7df8fe21ab07f0b215de208c738d34274ee8698f86cf751",
     "backend/timetable.py": "ca4dee6c579a8e8be0372200be0e7c4d5221400383de325e8c239c70259b9c35",
     "scripts/verify_release.py": "0fdf91201bd28fd90155fd58706e7beb2b70b92184884fe4d58aff82b3966057",
     "scripts/audit_shared_capacity.py": "168c7a74a7b70dc4fae809795e4e28123d75a04f80f898834d6dcb189cd0ca45",

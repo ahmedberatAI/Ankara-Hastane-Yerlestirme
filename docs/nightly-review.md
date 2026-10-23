@@ -1,8 +1,10 @@
 # Bağımsız hakem döngüsü · 22–23 Ekim 2026
 
-**v0.7 kontrol noktasında kaynak, yönlendirme ve kapasite hesapları doğrulandı; genel model başarısı veya gerçek Ankara kalibrasyonu kabul edilmedi.** Geliştirme döngüsünün bitişi 23 Ekim 2026 08.00 TSİ. Ana %95 il, %80 ilçe ve 45 dakika EGO hedefleri korunuyor. Önceki sürümler aşağıda tarihsel denetim izi olarak saklanmıştır.
+**Son güncelleme · 23 Ekim 2026:** Kullanıcının 08.05 açığını giderme isteğiyle, gece döngüsünden sonra yakın başlangıçları birlikte ele alan ayrı çalışma tamamlandı. **226 konum / 30.900 yatak / 23.066 hekim**, 44 tam dakika başlangıcında aynı %95 il / %80 ilçe / 45 dakika hedeflerini sağlıyor; yıllık model maliyeti **186,384 milyar TL**, tavan altında **3,173 milyar TL**. Üç hakem bu kayıtlı planı ve kaynak zincirini dar kapsamda kabul etti; gerçek EGO hizmeti, klinik kapasite ve tam kamu maliyetleri için genel kabul vermedi. [Yeni çalışma, sınırlar ve hakem kayıtları](departure-window-plan.md).
 
-## Kapanış değerlendirmesi
+Yeni çalışmada **1.139 test geçti, beş Windows izin testi atlandı**; dokuz arayüz kontrolü ve üretim derlemesi geçti. Önceki 209 konumlu planın 08.05 karşı örneği tarihsel olarak geçerlidir; yeni kaynak düzeni bu açığı modelde kapatır. Asgari sayı veya küresel optimum kanıtı yoktur. 08.00 TSİ bitişi yalnız aşağıdaki gece döngüsüne aittir; yeni çalışma kullanıcının sonraki talebiyle yürütüldü.
+
+## Tarihsel kapanış · 23 Ekim 2026 08.00 TSİ
 
 **Genel model başarısı kabul edilmedi.** Üç bağımsız bakış açısı, araştırma hesaplarının ve kaynak bağlarının belirtilen kapsamda tutarlılığını kabul ediyor; gerçek Ankara'nın hastane ihtiyacını, klinik kapasite yeterliğini veya kamu bütçesini doğrulamıyor.
 
