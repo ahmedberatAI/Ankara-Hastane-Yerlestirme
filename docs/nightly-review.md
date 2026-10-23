@@ -12,6 +12,8 @@ Yeni EGO 7620 duyurusu 527-2'nin Rüzgarlı yönünü destekliyor; kesin başlan
 
 Bu tur yalnız kaynak ve arayüz açıklamalarını değiştirdi. Üretim derlemesi geçti; gerçek tarayıcıda yeni [hekim notu](screenshots/hekim-calisma-zamani.png) ve [hedef açıklaması](screenshots/hedef-tercihleri.png) görüldü, hata günlüğü boştu. Model, katsayılar ve matrisler aynı kaldı; önceki 760 testlik model kabulünü yeni bir test koşusu gibi sunmuyoruz. 91 deneyleri etkilenmediği için tekrar çözülmedi. Gerçek ulaşım, klinik çalışma süresi ve kamu işletme gideri açıklıkları sürüyor; genel başarı kabulü yok.
 
+Son ekran kontrolünde ana veri yüklenmeden gelen iki kayıt kartının geçici olarak yanlış sürüm uyuşmazlığı uyarısı verdiği görüldü. Kartlar artık ana veri geldikten sonra açılıyor; gerçek eksik/uyuşmayan sürüm denetimleri korunuyor. Kanıt hakemi bu ayrımı kabul etti. Yedi mevcut UI denetimi ve derleme geçti; tarayıcıda ilk yükleme uyarısız, sonrasında kayıtlı kartlar ve aynı sayılar görünür, hata günlüğü boş.
+
 ## 23 Ekim 06.00 TSİ: aynı kaynaklarla süre ataması
 
 Sabit **209 konum / 26.400 yatak / 23.035 hekim** üzerinde dört ayrı atama problemi çözüldü. İl %95, her ilçe %80 ve her atamada 45 dakika hedefi korunarak ortalamalar **28,14 / 29,12 / 30,40 / 31,08 dakikaya** indi. Yıllık eşdeğer maliyet **175,868263289 milyar TL** olarak aynı kaldı. Malzeme gideri bir kez sayıldı; kaynak temizliği veya ek bütçe yok. Hizmet alan mahalle payları değişebilir, herkesin süresinin kısaldığı sonucu çıkarılmaz.

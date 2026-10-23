@@ -1246,16 +1246,20 @@ export default function App() {
             </section>
           )}
           <StageComparison result={result} />
-          <Benchmark
-            busy={busy}
-            packageId={data?.metadata.transitPackageId}
-            planningVersion={data?.healthPlanning.version}
-            run={(s) => {
-              setScenario(s);
-              void solve(s);
-            }}
-          />
-          <Robustness packageId={data?.metadata.transitPackageId} />
+          {data && (
+            <>
+              <Benchmark
+                busy={busy}
+                packageId={data.metadata.transitPackageId}
+                planningVersion={data.healthPlanning.version}
+                run={(s) => {
+                  setScenario(s);
+                  void solve(s);
+                }}
+              />
+              <Robustness packageId={data.metadata.transitPackageId} />
+            </>
+          )}
           {data && <Suspense fallback={<p>Ortak plan yükleniyor…</p>}><JointPlan data={data} /></Suspense>}
           {districtPanel && result?.districts && (
             <section className="district-results">
