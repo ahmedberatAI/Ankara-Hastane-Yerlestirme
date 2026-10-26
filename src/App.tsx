@@ -25,12 +25,15 @@ import AnkaraMap from "./Map";
 import HealthMethod from "./HealthMethod";
 import Benchmark from "./Benchmark";
 import Robustness from "./Robustness";
+import { engineFor, providerLabel, departureLabel, scenarioKey, scenarioLabel, routingAvailability,
+  responseProblem, resultForView, routeRequest, routeResponseProblem, ProviderStatus, HybridOverview, HybridCostCaption,
+  HybridPlanningNote, TransitEvidenceNote } from "./Hybrid";
 import StageComparison, {
   CostGapCaption,
   allocationScopeLabel,
 } from "./StageComparison";
 import { transitProfileLabels } from "./types";
-import type { TransitProfile } from "./types";
+import type { TransitProfile, TransitEngine, TravelMode, RoutingStatus } from "./types";
 import type {
   Dataset,
   Scenario,
@@ -56,6 +59,9 @@ const initial: Scenario = {
   operatingCostMultiplier: 1,
   costTolerance: 10,
   transitProfile: "weekday-1000",
+  transitEngine: "motis",
+  carWeight: 70,
+  transitThreshold: 45,
 };
 const number = (n: number) =>
   n.toLocaleString("tr-TR", { maximumFractionDigits: 0 });
@@ -117,7 +123,7 @@ function Modal({
         </button>
       </div>
       {kind === "method" ? (
-        <HealthMethod data={data} />
+        <><div className="method-provider-note"><b>Ulaşım sağlayıcıları ayrı değerlendirilir.</b><p>MOTIS tarihsel topluluk GTFS senaryosudur. Aşağıdaki özgün EGO ağının sayıları ve geçmiş deneyler MOTIS veya hibrit planı doğrulamaz. Sağlık talebi ve maliyet katsayıları ortak planlama varsayımlarıdır.</p><HybridPlanningNote /></div><HealthMethod data={data} /></>
       ) : (
         <div className="sources-content">
           <div className="source-overview">
@@ -194,17 +200,19 @@ export default function App() {
   const [routeBusy, setRouteBusy] = useState(false);
   const [routeError, setRouteError] = useState("");
   const [districtPanel, setDistrictPanel] = useState(false);
+  const [viewMode, setViewMode] = useState<TravelMode>("car");
+  const [routingStatus, setRoutingStatus] = useState<RoutingStatus | null>(null);
+  const [routingError, setRoutingError] = useState("");
+  const statusVersion = useRef(0);
   const autoRun = useRef(false);
   const routeVersion = useRef(0);
   const solveVersion = useRef(0);
-  const dirty =
-    !!result &&
-    Object.entries(scenario).some(
-      ([key, value]) => result.scenario[key as keyof Scenario] !== value,
-    );
+  const dirty = !!result && scenarioKey(scenario) !== scenarioKey(result.scenario);
+  const viewedResult = resultForView(result, viewMode);
+  const availability = routingAvailability(routingStatus, scenario);
   const displayedScenario = result?.scenario ?? scenario;
-  const displayedProfile =
-    transitProfileLabels[displayedScenario.transitProfile];
+  const displayedMode = displayedScenario.mode === "hybrid" ? viewMode : displayedScenario.mode;
+  const displayedEngine = engineFor(displayedScenario);
   const searchMatches = useMemo(
     () =>
       search.length > 1
@@ -231,7 +239,29 @@ export default function App() {
         setBusy(false);
       });
   }, []);
+  async function refreshRoutingStatus() {
+    const version = ++statusVersion.current;
+    setRoutingStatus(null);
+    setRoutingError("");
+    try {
+      const response = await fetch("/api/routing-status");
+      if (!response.ok) throw Error("Ulaşım sağlayıcısının durumu alınamadı.");
+      const status: RoutingStatus = await response.json();
+      if (typeof status?.motis?.ready !== "boolean" || typeof status?.ego?.ready !== "boolean")
+        throw Error("Ulaşım durum yanıtı doğrulanamadı.");
+      if (version === statusVersion.current) setRoutingStatus(status);
+    } catch (e) {
+      if (version === statusVersion.current) setRoutingError(e instanceof Error ? e.message : "Ulaşım durumu alınamadı.");
+    }
+  }
+  useEffect(() => { void refreshRoutingStatus(); }, []);
+  useEffect(() => {
+    routeVersion.current++;
+    setRoute(null); setSelectedDemand(null); setRouteBusy(false); setRouteError("");
+  }, [scenario, viewMode]);
   async function solve(params: Scenario) {
+    const available = routingAvailability(routingStatus, params);
+    if (!available.ready) { setError(available.detail); return; }
     const version = ++solveVersion.current;
     setBusy(true);
     setError("");
@@ -244,11 +274,11 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(params),
       });
-      if (!response.ok)
-        throw Error(
-          "Çözüm hesaplanamadı. Sunucu bağlantısını kontrol edip tekrar deneyin.",
-        );
-      const next: Result = await response.json();
+      const payload = await response.json();
+      if (!response.ok) throw Error(typeof payload.detail === "string" ? payload.detail : "Çözüm hesaplanamadı. Sunucu bağlantısını kontrol edip tekrar deneyin.");
+      const next: Result = payload;
+      const hybridProblem = responseProblem(next, params);
+      if (hybridProblem) throw Error(hybridProblem);
       if (version === solveVersion.current) {
         setResult(next);
         setRoute(null);
@@ -281,7 +311,7 @@ export default function App() {
     setScenario((s) => ({
       ...s,
       mode,
-      threshold: mode === "car" ? 30 : 45,
+      threshold: mode === "transit" ? 45 : 30,
       trafficFactor: 1,
     }));
   }
@@ -293,7 +323,8 @@ export default function App() {
     setRouteError("");
     setRouteBusy(false);
     const version = ++routeVersion.current;
-    const assignment = result?.assignments?.find(
+    if (busy || dirty) { setRouteError("Güncel parametrelerle yerleşimi hesapladıktan sonra rota seçebilirsiniz."); return; }
+    const assignment = viewedResult?.assignments?.find(
       (a) => a.demandId === demand.id,
     );
     if (!assignment) return;
@@ -308,14 +339,12 @@ export default function App() {
       const response = await fetch("/api/route", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...result!.scenario,
-          demandId: demand.id,
-          candidateId: candidateId || assignment.candidateId,
-        }),
+        body: JSON.stringify(routeRequest(result!, viewMode, demand.id, candidateId || assignment.candidateId)),
       });
-      if (!response.ok) throw Error("Güzergâh getirilemedi. Tekrar deneyin.");
       const next = await response.json();
+      if (!response.ok) throw Error(typeof next.detail === "string" ? next.detail : "Güzergâh getirilemedi. Tekrar deneyin.");
+      const routeProblem = routeResponseProblem(next, result!, viewMode, demand.id, candidateId || assignment.candidateId);
+      if (routeProblem) throw Error(routeProblem);
       if (version === routeVersion.current) setRoute(next);
     } catch (e) {
       if (version === routeVersion.current)
@@ -344,15 +373,52 @@ export default function App() {
     const url = URL.createObjectURL(blob),
       a = document.createElement("a");
     a.href = url;
-    a.download = `ankara-${result.scenario.mode}${result.scenario.mode === "transit" ? `-${result.scenario.transitProfile}` : ""}-${result.scenario.threshold}dk.json`;
+    a.download = `ankara-${result.scenario.mode}${result.scenario.mode !== "car" ? `-${engineFor(result.scenario)}-${result.scenario.transitProfile}` : ""}-${result.scenario.threshold}dk.json`;
     a.click();
     URL.revokeObjectURL(url);
   }
-  const stats = result?.metrics;
+  const stats = viewedResult?.metrics;
   const capacity = result?.capacity;
-  const selectedAssignment = result?.assignments?.find(
+  const selectedAssignment = viewedResult?.assignments?.find(
     (a) => a.demandId === selectedDemand?.id,
   );
+  const capacityPanel = capacity ? (
+            <section
+              className="capacity-strip"
+              aria-label="Kapasite ve maliyet sonuçları"
+            >
+              <div>
+                <span>PLANLANAN YATAK</span>
+                <strong>{number(capacity.totalBeds)}</strong>
+                <small>
+                  {result?.scenario.mode === "hybrid" ? "İki ulaşım senaryosu için ortak kapasite" : `Tanımlı kapasitenin %${decimal(capacity.bedUtilizationPercent)}’i kullanılıyor`}
+                </small>
+              </div>
+              <div>
+                <span>PLANLANAN HEKİM</span>
+                <strong>{number(capacity.totalDoctors)}</strong>
+                <small>
+                  {result?.scenario.mode === "hybrid" ? "Her modun talebine ayrı sınanan kadro" : `Temas kapasitesinin %${decimal(capacity.doctorUtilizationPercent)}’i`}
+                </small>
+              </div>
+              <div>
+                <span>YILLIK MALİYET GÖSTERGESİ</span>
+                <strong>
+                  {decimal(capacity.annualEquivalentCostTRY / 1e9)}{" "}
+                  <em>mr ₺</em>
+                </strong>
+                <small>Yıllıklaştırılmış bina + işletme · 2024 TL</small>
+              </div>
+              <button onClick={() => setModal("method")}>
+                <Info size={18} />
+                <span>
+                  <b>Bu sayıların arkasında ne var?</b>
+                  <small>Resmî veri, formüller ve varsayımlar</small>
+                </span>
+                <ArrowUpRight size={17} />
+              </button>
+            </section>
+  ) : null;
   return (
     <div className="app">
       <header className="header">
@@ -402,7 +468,7 @@ export default function App() {
               <label>Ulaşım modeli</label>
               <span>01</span>
             </div>
-            <div className="mode-tabs">
+            <div className="mode-tabs hybrid-modes">
               <button
                 className={scenario.mode === "car" ? "selected" : ""}
                 onClick={() => changeMode("car")}
@@ -417,15 +483,25 @@ export default function App() {
               >
                 <TrainFront size={18} /> EGO
               </button>
+              <button className={scenario.mode === "hybrid" ? "selected hybrid-mode-button" : "hybrid-mode-button"} onClick={() => changeMode("hybrid")} disabled={busy}>
+                <CarFront size={18} /><TrainFront size={18} /> EGO + Araba
+              </button>
             </div>
             <p
-              className={`mode-note ${scenario.mode === "transit" ? "amber" : ""}`}
+              className={`mode-note ${scenario.mode !== "car" ? "amber" : ""}`}
             >
               {scenario.mode === "car"
                 ? "Gerçek yol ağı · tahmini sürüş süreleri"
-                : "Resmî kalkış saatleri · ara durak süreleri tahmini"}
+                : scenario.mode === "hybrid" ? "Ortak hastaneler · iki ayrı erişim hedefi" : `${providerLabel(engineFor(scenario))} · tarifeli ulaşım`}
             </p>
-            {scenario.mode === "transit" && (
+            {scenario.mode !== "car" && <label className="transit-profile">
+              Toplu ulaşım sağlayıcısı
+              <select aria-label="Toplu ulaşım sağlayıcısı" value={engineFor(scenario)} disabled={busy} onChange={e => setScenario(s => ({ ...s, transitEngine: e.target.value as TransitEngine }))}>
+                <option value="motis">MOTIS · tarihsel topluluk GTFS</option>
+                <option value="ego">Özgün EGO · önceki model</option>
+              </select>
+            </label>}
+            {scenario.mode !== "car" && (
               <label className="transit-profile">
                 Yolculuğa başlama zamanı
                 <select
@@ -446,10 +522,18 @@ export default function App() {
                   ))}
                 </select>
                 <small>
-                  Normal hizmet günü · tatil ve canlı gecikme verisi yok
+                  {engineFor(scenario) === "motis" ? "Tarife tarihini sonuçta kontrol edin; güncel resmî hizmet değildir." : "Normal hizmet günü · tatil ve canlı gecikme verisi yok"}
                 </small>
               </label>
             )}
+            {scenario.mode !== "car" && <ProviderStatus status={routingStatus} scenario={scenario} error={routingError} refresh={() => void refreshRoutingStatus()} />}
+            {scenario.mode === "hybrid" && <div className="hybrid-weight-control slider-field">
+              <label htmlFor="car-weight">Yolculuk önceliği <strong>%{scenario.carWeight ?? 70} araba</strong></label>
+              <input id="car-weight" type="range" min="51" max="95" step="1" value={scenario.carWeight ?? 70} disabled={busy} onChange={e => setScenario(s => ({ ...s, carWeight: +e.target.value }))} />
+              <div className="range-ends"><span>Araba %{scenario.carWeight ?? 70}</span><span>Toplu ulaşım %{100 - (scenario.carWeight ?? 70)}</span></div>
+              <p>Bu oranlar süre amacının ağırlıklarıdır. Her iki modda talep ve kapasite ayrıca sınanır; maliyet bir kez sayılır.</p>
+              <HybridPlanningNote />
+            </div>}
           </div>
           <div className="control-section settings">
             <div className="label-row">
@@ -462,7 +546,7 @@ export default function App() {
             </p>
             <div className="slider-field">
               <label htmlFor="threshold">
-                En fazla yolculuk süresi{" "}
+                {scenario.mode === "hybrid" ? "Araba için en fazla süre" : "En fazla yolculuk süresi"}{" "}
                 <strong>
                   {scenario.threshold}
                   <small> dk</small>
@@ -485,6 +569,11 @@ export default function App() {
                 <span>120 dk</span>
               </div>
             </div>
+            {scenario.mode === "hybrid" && <div className="slider-field">
+              <label htmlFor="transit-threshold">Toplu ulaşım için en fazla süre <strong>{scenario.transitThreshold ?? 45}<small> dk</small></strong></label>
+              <input id="transit-threshold" type="range" min="10" max="120" step="5" value={scenario.transitThreshold ?? 45} disabled={busy} onChange={e => setScenario(s => ({ ...s, transitThreshold: +e.target.value }))} />
+              <div className="range-ends"><span>10 dk</span><span>120 dk</span></div>
+            </div>}
             <div className="slider-field">
               <label htmlFor="coverage">
                 Karşılanacak talep payı{" "}
@@ -531,7 +620,7 @@ export default function App() {
                 Kırsal ilçeler de çözümün bir parçası olsun.
               </p>
             </div>
-            {scenario.mode === "car" && (
+            {scenario.mode !== "transit" && (
               <label className="select-field">
                 Yol süresi senaryosu
                 <select
@@ -686,7 +775,7 @@ export default function App() {
             <button
               className="primary-btn"
               onClick={() => solve(scenario)}
-              disabled={busy || !data}
+              disabled={busy || !data || !availability.ready}
             >
               {busy ? (
                 <>
@@ -703,6 +792,8 @@ export default function App() {
             <p className={dirty ? "dirty-note" : "small-note"}>
               {busy
                 ? "Bağımsız yatak ve hekim kapasitesi, işletme ve ulaşım çözülüyor. Birkaç dakika sürebilir."
+                : !availability.ready
+                  ? "Seçilen ulaşım profili hazır olmadan hesaplama başlatılmaz. Yukarıdaki sağlayıcı durumunu kontrol edin."
                 : dirty
                   ? "Parametreler değişti. Harita son hesaplanan senaryoyu gösteriyor."
                   : "50–4.050 yatak · hekim kadrosu ayrıca seçilir"}
@@ -778,6 +869,7 @@ export default function App() {
               <span>Senaryoyu indir</span>
             </button>
           </div>
+          {result?.scenario.mode === "hybrid" && <HybridOverview result={result} view={viewMode} onViewChange={setViewMode} />}
           <div className="stats-grid">
             <div className="stat-card primary-stat">
               <div className="stat-label">
@@ -794,7 +886,7 @@ export default function App() {
               <div className="stat-caption">
                 {result?.status === "optimal" ||
                 result?.status === "feasible" ? (
-                  <CostGapCaption result={result} />
+                  result.scenario.mode === "hybrid" ? <HybridCostCaption result={result} /> : <CostGapCaption result={result} />
                 ) : (
                   "Kapasiteye göre seçilen tesis sayısı"
                 )}
@@ -802,7 +894,7 @@ export default function App() {
             </div>
             <div className="stat-card">
               <div className="stat-label">
-                Sürede karşılanan talep <Users size={17} />
+                {displayedScenario.mode === "hybrid" ? `${displayedMode === "car" ? "Araba" : "Toplu ulaşım"} · talep` : "Sürede karşılanan talep"} <Users size={17} />
               </div>
               <div className="stat-number">
                 {stats ? `%${decimal(stats.coveragePercent)}` : "—"}
@@ -841,57 +933,17 @@ export default function App() {
           {result && (
             <p className={dirty ? "dirty-note" : "small-note"} role="status">
               Gösterilen hesap:{" "}
-              {result.scenario.mode === "transit"
-                ? `EGO · ${displayedProfile}`
-                : "Araba"}
-              {` · ${result.scenario.threshold} dk · il %${result.scenario.coverageTarget} · ilçe %${result.scenario.districtFloor}.`}
+              {scenarioLabel(result.scenario)}
+              {` · il %${result.scenario.coverageTarget} · ilçe %${result.scenario.districtFloor}.`}
               {capacity && " Bu tesis sayısı, kanıtlanmış asgari ihtiyaç değildir."}
               {dirty && " Girdi değişiklikleri henüz bu sonuçlara uygulanmadı."}
               {capacity?.optimalityScope === "all_candidate_allocation_edges"
                 ? " Maliyet açığı, örneklenen adayların bütün talep bağlantılarının bulunduğu probleme aittir; Ankara'nın her olası konumu için kanıt değildir."
-                : result.searchScope &&
+                : result.searchScope?.nearestCandidatesPerFootprintClass != null &&
                   ` Maliyet açığı, her yapı izi sınıfından en yakın ${result.searchScope.nearestCandidatesPerFootprintClass} adayla sınırlı aramaya aittir; bütün aday bağlantıları için küresel optimalite kanıtı değildir.`}
             </p>
           )}
-          {capacity && (
-            <section
-              className="capacity-strip"
-              aria-label="Kapasite ve maliyet sonuçları"
-            >
-              <div>
-                <span>PLANLANAN YATAK</span>
-                <strong>{number(capacity.totalBeds)}</strong>
-                <small>
-                  Tanımlı kapasitenin %{decimal(capacity.bedUtilizationPercent)}
-                  ’i kullanılıyor
-                </small>
-              </div>
-              <div>
-                <span>PLANLANAN HEKİM</span>
-                <strong>{number(capacity.totalDoctors)}</strong>
-                <small>
-                  Temas kapasitesinin %
-                  {decimal(capacity.doctorUtilizationPercent)}’i
-                </small>
-              </div>
-              <div>
-                <span>YILLIK MALİYET GÖSTERGESİ</span>
-                <strong>
-                  {decimal(capacity.annualEquivalentCostTRY / 1e9)}{" "}
-                  <em>mr ₺</em>
-                </strong>
-                <small>Yıllıklaştırılmış bina + işletme · 2024 TL</small>
-              </div>
-              <button onClick={() => setModal("method")}>
-                <Info size={18} />
-                <span>
-                  <b>Bu sayıların arkasında ne var?</b>
-                  <small>Resmî veri, formüller ve varsayımlar</small>
-                </span>
-                <ArrowUpRight size={17} />
-              </button>
-            </section>
-          )}
+          {result?.scenario.mode !== "hybrid" && capacityPanel}
           <div className="map-toolbar">
             <div className="search-wrap">
               <Search size={16} />
@@ -938,9 +990,7 @@ export default function App() {
             </label>
             <span className="map-data-tag">
               <span />
-              {displayedScenario.mode === "transit"
-                ? "EGO · kalkış tarifesi + tahmini geçiş"
-                : "OSM · yol ağı"}
+              {displayedMode === "transit" ? `${providerLabel(displayedEngine)} · tarifeli ulaşım` : "OSM · tahmini sürüş"}
             </span>
           </div>
           {error && (
@@ -971,7 +1021,7 @@ export default function App() {
                 )}
                 {result.maximumCoveragePercent !== undefined && (
                   <p>
-                    Tüm adaylar açılsa bile ulaşılabilen üst sınır: %
+                    {displayedMode === "transit" && displayedEngine === "motis" ? "Sorgulanan bağlantılarla model erişim üst sınırı: %" : "Bu veri ve süre senaryosunda tüm adaylarla model erişim üst sınırı: %"}
                     {decimal(result.maximumCoveragePercent)}.
                     {result.limitingDistricts?.length
                       ? ` İlçe hedefini sınırlayanlar: ${result.limitingDistricts
@@ -984,62 +1034,21 @@ export default function App() {
                       : ""}
                   </p>
                 )}
+                <p>Bu sonuç, gerçek hayatta hizmet bulunmadığını veya hedefin başka bir veri/ağ senaryosunda olanaksız olduğunu göstermez.</p>
                 {result.transitEvidence && (
                   <p>{result.transitEvidence.scope}</p>
                 )}
               </div>
             </div>
           )}
-          {(scenario.mode === "transit" ||
-            displayedScenario.mode === "transit") && (
-            <div className="transit-banner">
-              <Info size={16} />
-              <span>
-                <b>
-                  {result ? "Son hesaplanan: " : "Seçili profil: "}
-                  {displayedScenario.mode === "transit"
-                    ? `EGO · ${displayedProfile}`
-                    : "Araba"}
-                  .
-                </b>{" "}
-                {result &&
-                  (result.scenario.mode !== scenario.mode ||
-                    (scenario.mode === "transit" &&
-                      result.scenario.transitProfile !==
-                        scenario.transitProfile)) && (
-                    <strong>
-                      Bekleyen seçim:{" "}
-                      {scenario.mode === "transit"
-                        ? `EGO · ${transitProfileLabels[scenario.transitProfile]}`
-                        : "Araba"}
-                      ; yeniden hesaplama gerekli.{" "}
-                    </strong>
-                  )}
-                Tek başlangıç saati sınanır; günün tamamında hizmet garantisi
-                vermez. Resmî kalkışlar kullanılır; ara durak zamanları tahmin
-                edilir. Eksik sefer/konum verisi, hizmet yokluğu sayılmaz.
-                {data?.metadata.transitDataQuality && (
-                  <small className="transit-coverage">
-                    Katalogdaki{" "}
-                    {data.metadata.transitDataQuality.officialRouteCount}{" "}
-                    yön/varyantın{" "}
-                    {data.metadata.transitDataQuality.routedRouteCount} adedi
-                    kullanılabiliyor.
-                    {!!data.metadata.transitDataQuality.reviewedServiceEvents?.appliedCount && (
-                      <> {data.metadata.transitDataQuality.reviewedServiceEvents.appliedCount} özel sefer kaydı,
-                        kaynakla eşleştirilmiş yön ve açık süre varsayımlarıyla eklendi.</>
-                    )}
-                  </small>
-                )}
-              </span>
-              <button onClick={() => setModal("method")}>Ayrıntılar</button>
-            </div>
-          )}
+          <TransitEvidenceNote scenario={scenario} result={result} pending={dirty} />
           <div className="map-area">
             {data ? (
               <AnkaraMap
                 data={data}
-                result={result}
+                result={viewedResult}
+                transitEngine={displayedEngine}
+                viewMode={displayedMode}
                 route={route}
                 onDemand={selectDemand}
                 focus={focus}
@@ -1131,10 +1140,10 @@ export default function App() {
                         {route.boardings.map((b, i) => (
                           <span
                             key={i}
-                            title={`${b.stop} · bekleme ${decimal(b.waitMinutes)} dk`}
+                            title={b.waitMinutes == null ? b.stop : `${b.stop} · bekleme ${decimal(b.waitMinutes)} dk`}
                           >
                             {b.route}
-                            {b.departureTime ? ` · ${b.departureTime}` : ""}
+                            {b.departureTime ? ` · ${departureLabel(b.departureTime)}` : ""}
                           </span>
                         ))}
                         <small>
@@ -1143,11 +1152,11 @@ export default function App() {
                       </div>
                     )}
                     <small className="route-footnote">
-                      {result?.scenario.mode === "transit" &&
-                        `Bu rota: ${transitProfileLabels[result.scenario.transitProfile]}. `}
+                      {displayedMode === "transit" &&
+                        `Bu rota: ${providerLabel(displayedEngine)} · ${transitProfileLabels[displayedScenario.transitProfile]}. `}
                       {route.note}{" "}
-                      {result?.scenario.mode === "transit"
-                        ? "Bekleme seçilen saate göre hesaplanır; ara durak geçişleri tahminidir."
+                      {displayedMode === "transit"
+                        ? displayedEngine === "motis" ? "Tarife tarihindeki senaryoya aittir; canlı işletim verisi değildir." : "Bekleme seçilen saate göre hesaplanır; ara durak geçişleri tahminidir."
                         : "Canlı trafik kullanılmaz."}
                     </small>
                     {[...new Set(route.boardings.map((b) => b.timingWarning).filter(Boolean))].map((warning) => (
@@ -1189,7 +1198,8 @@ export default function App() {
               />
             </button>
           </div>
-          {capacity && (
+          {result?.scenario.mode === "hybrid" && capacityPanel}
+          {capacity && result?.scenario.mode !== "hybrid" && (
             <section className="capacity-explanation">
               <div>
                 <span className="eyebrow">ERİŞİM + HİZMET KAPASİTESİ</span>
@@ -1245,7 +1255,8 @@ export default function App() {
               </div>
             </section>
           )}
-          <StageComparison result={result} />
+          {result?.scenario.mode !== "hybrid" && <StageComparison result={result} />}
+          {data && <details className="legacy-experiments"><summary>Tarihsel özgün EGO deneyleri</summary><p>Bu kayıtlar önceki EGO ağında hesaplandı. MOTIS veya EGO + Araba için sonuç, doğrulama ya da mevcut hastanelerin yeterlilik testi değildir.</p>
           {data && <Suspense fallback={<p>Yakın saatler planı yükleniyor…</p>}><WindowPlan data={data} /></Suspense>}
           {data && (
             <>
@@ -1254,8 +1265,9 @@ export default function App() {
                 packageId={data.metadata.transitPackageId}
                 planningVersion={data.healthPlanning.version}
                 run={(s) => {
-                  setScenario(s);
-                  void solve(s);
+                  const legacy = { ...initial, ...s, transitEngine: "ego" as const };
+                  setScenario(legacy);
+                  void solve(legacy);
                 }}
               />
               <Robustness packageId={data.metadata.transitPackageId} />
@@ -1263,7 +1275,8 @@ export default function App() {
           )}
           {data && <details className="joint-details"><summary>Önceki dört başlangıç deneyi ve karşılaştırmalar</summary>
             <Suspense fallback={<p>Ortak plan yükleniyor…</p>}><JointPlan data={data} /></Suspense></details>}
-          {districtPanel && result?.districts && (
+          </details>}
+          {districtPanel && viewedResult?.districts && (
             <section className="district-results">
               <div className="results-intro">
                 <h3>Her ilçe görünür.</h3>
@@ -1273,7 +1286,7 @@ export default function App() {
                 </p>
               </div>
               <div className="district-grid">
-                {result.districts.map((d) => (
+                {viewedResult.districts.map((d) => (
                   <button key={d.id} onClick={() => setDistrict(d.id)}>
                     <span>{title(d.name)}</span>
                     <strong>%{decimal(d.coveragePercent)}</strong>
@@ -1281,12 +1294,12 @@ export default function App() {
                   </button>
                 ))}
               </div>
-              {result.existingComparison && (
+              {viewedResult.existingComparison && (
                 <div className="comparison-note">
                   <b>Mevcut envanterle erişim karşılaştırması:</b> OSM’deki{" "}
-                  {result.existingComparison.hospitalCount} hastane için aynı
+                  {viewedResult.existingComparison.hospitalCount} hastane için aynı
                   sürede kapsama %
-                  {decimal(result.existingComparison.coveragePercent)}. Hastane
+                  {decimal(viewedResult.existingComparison.coveragePercent)}. Hastane
                   türleri ve kapasiteleri eşdeğer olmadığı için bu sayı yeni
                   yerleşimin maliyet üstünlüğünü kanıtlamaz.
                 </div>

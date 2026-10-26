@@ -19,6 +19,8 @@ jobs:
       - run: npm ci
       - run: python -m pytest -q tests
       - run: npm run build
+      - run: python scripts/verify_motis.py
+      - run: python scripts/verify_hybrid.py
       - run: python scripts/verify_release.py
       - run: python scripts/verify_transit.py
       - run: python scripts/audit_robustness.py
@@ -30,3 +32,4 @@ jobs:
       - run: python scripts/audit_window_plan.py --certificate data/processed/departure-window-plan/window-plan.json --manifest data/processed/departure-window/manifest.json --summary data/processed/window-plan-summary.json --quiet
       - run: python scripts/manifest.py --check
       - run: node tests/window_plan_ui.mjs
+      - run: node tests/hybrid_ui.mjs

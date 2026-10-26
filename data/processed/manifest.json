@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-23T11:16:10.131588+00:00",
+  "createdAt": "2026-10-26T20:38:01.912752+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -446,6 +446,11 @@
       "sha256": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
     },
     {
+      "file": "data/processed/hybrid-result.json",
+      "bytes": 2364377,
+      "sha256": "e2646a6d0e335b2190914538a1b04b3d38fdf1233c6a01c60be84e62fe772b3c"
+    },
+    {
       "file": "data/processed/joint-plan-summary.json",
       "bytes": 101718,
       "sha256": "068abab31966c4f911e8b01d5063356b347db80425186fbdeaf1c5c8849fbf5c"
@@ -454,6 +459,51 @@
       "file": "data/processed/joint-plan.json",
       "bytes": 582459,
       "sha256": "ac9c4e1031aa15d3ad1bc1b2d6b78b6094fa16ddb1ca035ee09bb31ae7bf9a93"
+    },
+    {
+      "file": "data/processed/motis/assigned-route-check.json",
+      "bytes": 21618,
+      "sha256": "915fee2bef6794356414d20d582823dfc25158084c720b98c9f3d9b99f33bb92"
+    },
+    {
+      "file": "data/processed/motis/manifest.json",
+      "bytes": 91072,
+      "sha256": "45a43858180274579cd1584f49d6e19425640d03b591266af3d8099348e60222"
+    },
+    {
+      "file": "data/processed/motis/route-checks.json",
+      "bytes": 292252,
+      "sha256": "c648ed26fba8d5b5ea925c33b8fdb7bb2afc4c6a114e341c7455b68ebfbf9054"
+    },
+    {
+      "file": "data/processed/motis/saturday-1000-matrix.npz",
+      "bytes": 381130,
+      "sha256": "9e6e826a99d320924ac5b345eda970eff71623e3c0f3f85a489747758de5aec2"
+    },
+    {
+      "file": "data/processed/motis/sunday-1000-matrix.npz",
+      "bytes": 381804,
+      "sha256": "b563a9363bfdda1a69d951fdcdb19e26b402560e7fc19d79302eb983524ec777"
+    },
+    {
+      "file": "data/processed/motis/weekday-0800-matrix.npz",
+      "bytes": 390529,
+      "sha256": "269ef6de9652150b2d8c3ca1431bc81dbfa103775378e5b7ab44183a638b9840"
+    },
+    {
+      "file": "data/processed/motis/weekday-1000-matrix.npz",
+      "bytes": 373034,
+      "sha256": "5f69522104c93ae50710077f2eac50dd76c09de5895886240f5b667b8872f85b"
+    },
+    {
+      "file": "data/processed/motis-91-results.json",
+      "bytes": 127801,
+      "sha256": "75d626b5fb434abd972d0857bdf58f793185f22fae17fb93cb603daab3d63f71"
+    },
+    {
+      "file": "data/processed/motis-transit-result.json",
+      "bytes": 765461,
+      "sha256": "3fc8e2d8f575ad114b7db9cb481c2768a2db3c123954b391cf0da916e3750137"
     },
     {
       "file": "data/processed/neighborhood-population-2025.csv",
@@ -493,7 +543,7 @@
     {
       "file": "data/processed/shared-capacity-results.json",
       "bytes": 7155,
-      "sha256": "e52ea184ca7aac6edef982b6a0be85d5d7a9b38f8c4dc5f884510163a3ee6b4d"
+      "sha256": "144e52aee04cebbad401730a0446b9f2ff68a8e3663707509fb3a1a80607ba1d"
     },
     {
       "file": "data/processed/transit-lines.geojson",

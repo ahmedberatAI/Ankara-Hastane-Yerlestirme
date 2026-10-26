@@ -15,7 +15,7 @@ import {
 import L from "leaflet";
 import type { GeoJsonObject, FeatureCollection } from "geojson";
 import { LocateFixed, Layers3, Plus } from "lucide-react";
-import type { Dataset, Demand, Result, Route, Candidate } from "./types";
+import type { Dataset, Demand, Result, Route, Candidate, TransitEngine, TravelMode } from "./types";
 
 const number = (n: number) => n.toLocaleString("tr-TR");
 const title = (s: string) =>
@@ -38,14 +38,9 @@ function MapEffects({
   const map = useMap();
   const first = useRef(true);
   useEffect(() => {
-    const mobile = window.matchMedia("(max-width:600px)");
-    const update = () => {
-      if (mobile.matches) map.scrollWheelZoom.disable();
-      else map.scrollWheelZoom.enable();
-    };
-    update();
-    mobile.addEventListener("change", update);
-    return () => mobile.removeEventListener("change", update);
+    // Page scrolling must not zoom the map when it passes under the pointer.
+    // Explicit +/- controls, dragging and double-click remain available.
+    map.scrollWheelZoom.disable();
   }, [map]);
   useEffect(() => {
     const observer = new ResizeObserver(() => {
@@ -85,17 +80,24 @@ function MapEffects({
     const coords = route?.legs.flatMap((l) =>
       l.coordinates.map(([x, y]) => [y, x] as L.LatLngTuple),
     );
-    if (coords?.length)
+    if (coords?.length) {
+      const container = map.getContainer();
+      const panel = container.closest('.map-area')?.querySelector<HTMLElement>('.route-card');
+      const panelRight = panel ? panel.getBoundingClientRect().right - container.getBoundingClientRect().left + 20 : 25;
+      // Reserve the panel's real horizontal footprint. The previous narrow
+      // layout reserved only 270px vertically, hiding routes under tall cards.
+      const left = Math.min(panelRight, Math.max(25, map.getSize().x - 80));
       map.fitBounds(L.latLngBounds(coords), {
-        paddingTopLeft: map.getSize().x >= 500 ? [310, 50] : [25, 270],
-        paddingBottomRight: map.getSize().x >= 500 ? [35, 80] : [25, 60],
+        paddingTopLeft: [left, 45],
+        paddingBottomRight: [20, 75],
         maxZoom: 14,
       });
+    }
   }, [route, map]);
   return null;
 }
 
-function SiteMarkers({ sites }: { sites: Candidate[] }) {
+function SiteMarkers({ sites, sharedResources }: { sites: Candidate[]; sharedResources: boolean }) {
   const map = useMap();
   const [zoom, setZoom] = useState(map.getZoom());
   useMapEvents({ zoomend: () => setZoom(map.getZoom()) });
@@ -172,7 +174,7 @@ function SiteMarkers({ sites }: { sites: Candidate[] }) {
                     <b>
                       {number(c.beds)} yatak · {number(c.doctors || 0)} hekim
                     </b>
-                    <p>
+                    {sharedResources ? <p>Araba ve toplu ulaşım için ortak yatak ve hekim kapasitesi. Harita seçilen modun talep atamasını gösterir.</p> : <><p>
                       {number(Math.round(c.assignedPopulation || 0))} kişi
                       eşdeğerinin yıllık talebi
                     </p>
@@ -187,7 +189,7 @@ function SiteMarkers({ sites }: { sites: Candidate[] }) {
                     <p>
                       Hekim yükü %{c.doctorUtilizationPercent?.toFixed(1)} ·
                       yatak kapasite yükü %{c.bedUtilizationPercent?.toFixed(1)}
-                    </p>
+                    </p></>}
                     <p>
                       Yapım göstergesi{" "}
                       {((c.constructionCostTRY || 0) / 1e6).toLocaleString(
@@ -213,6 +215,8 @@ export default function AnkaraMap({
   onDemand,
   focus,
   district,
+  transitEngine = "ego",
+  viewMode = "car",
 }: {
   data: Dataset;
   result: Result | null;
@@ -220,6 +224,8 @@ export default function AnkaraMap({
   onDemand: (d: Demand) => void;
   focus: Candidate | Demand | null;
   district: string;
+  transitEngine?: TransitEngine;
+  viewMode?: TravelMode;
 }) {
   const [districts, setDistricts] = useState<FeatureCollection | null>(null);
   const [roads, setRoads] = useState<GeoJsonObject | null>(null);
@@ -326,7 +332,7 @@ export default function AnkaraMap({
             style={{ color: "#c4cbbf", weight: 1, opacity: 0.8 }}
           />
         )}
-        {network && transit && (
+        {network && transitEngine === "ego" && transit && (
           <GeoJSON
             data={transit}
             style={{ color: "#6e7eac", weight: 2, opacity: 0.65 }}
@@ -391,7 +397,7 @@ export default function AnkaraMap({
               </Popup>
             </Marker>
           ))}
-        {result?.selected && <SiteMarkers sites={result.selected} />}
+        {result?.selected && <SiteMarkers sites={result.selected} sharedResources={result.scenario.mode === "hybrid"} />}
         {route?.legs
           .filter((l) => l.coordinates.length > 1)
           .map((leg, i) => (
@@ -427,7 +433,7 @@ export default function AnkaraMap({
         <span className="live-dot" />
         <div>
           <b>ANKARA</b>
-          <span>25 ilçe · ortak bir sağlık ağı</span>
+          <span>25 ilçe · {viewMode === "car" ? "araba" : "toplu ulaşım"} görünümü</span>
         </div>
       </div>
       <div className="map-tools">
@@ -472,12 +478,12 @@ export default function AnkaraMap({
                 checked={network}
                 onChange={(e) => setNetwork(e.target.checked)}
               />{" "}
-              Yol ve ulaşım ağı
+              {transitEngine === "motis" ? "OSM yol katmanı" : "Yol ve özgün EGO ağı"}
             </label>
             <small>
-              Çizgiler, resmî duraklar arasında OSM yol/ray ağında modellenen
-              güzergâhlardır. Bir çizginin görünmesi, seçili saatte o hatta
-              sefer bulunduğunu doğrulamaz.
+              {transitEngine === "motis"
+                ? "Bu katman OSM yollarını gösterir. MOTIS yolculuğu yalnız seçilen rotada gösterilir; önceki EGO çizgileri bu sağlayıcının ağı olarak sunulmaz."
+                : "Çizgiler, resmî duraklar arasında OSM yol/ray ağında modellenen özgün EGO güzergâhlarıdır. Bir çizginin görünmesi, seçili saatte o hatta sefer bulunduğunu doğrulamaz."}
             </small>
           </div>
         )}

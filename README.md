@@ -4,13 +4,13 @@ Ankara’nın **25 ilçesinde**, **yatak, hekim, yıllık hasta talebi, bina yat
 
 Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanılır. Mevcut binalar aday konumları engellemez; örnek yapı alanları karayolu ve yüzey demiryolu koridorlarının dışında seçilir. Mevcut hastaneler yeni yerleşimi kısıtlamaz; yalnızca ayrı bir erişim karşılaştırması sağlar.
 
-> **Veri düzeyi:** Araba modu yönlü yol ağında tahmini süre hesaplar. EGO modu **resmî kalkış listelerini ve durak sırasını** kullanır; ara durak süreleri OSM ağıyla tahmin edilir. Canlı hesapta hafta içi 08.00/10.00, cumartesi/pazar 10.00 ayrı değerlendirilir. Yakın saatler araştırması ayrıca birer dakika arayla 44 başlangıcı birlikte ele alır. Özel sefer notları, takvim ve yol bağlantısı eksikleri nedeniyle kapsam kısmidir; gerçek kent için kesin ihtiyaç sayısı vermez. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
+> **Veri düzeyi:** Araba modu yönlü OSM yol ağında tahmini süre hesaplar. Yeni EGO ve EGO+Araba hesapları yerel **MOTIS 2.10.2 ve tarihsel topluluk Ankara GTFS** senaryosunu kullanır; güncel resmî tarife iddiası yoktur. Hibrit başlangıç önceliği %70 araba / %30 EGO'dur; iki modun erişim ve kapasite hedefleri ayrı korunur. Bu ağırlık gerçek ambulans kullanım payı değildir. Önceki resmî kalkış listeleri ve tahmini ara durak süreleriyle kurulmuş EGO deneyleri ayrıca korunur; 44 yakın saat sonucu o özgün modele aittir. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
 
 ![ERİŞİM uygulamasının ilk sürüm harita görünümü](docs/screenshots/overview.png)
 
 ## Kullanım
 
-1. **Araba / EGO** modunu seçin. EGO için normal gün türünü ve yolculuğa başlama saatini seçin.
+1. **Araba / EGO / EGO+Araba** modunu seçin. EGO için gün/saat profilini; hibritte ayrıca araç önceliğini ve iki ayrı süre sınırını seçin. Hibrit haritada araba/EGO görünümünü değiştirerek aynı ortak tesis planının iki atamasını ayrı inceleyin.
 2. En fazla yolculuk süresini, Ankara genelinde karşılanacak talep payını ve her ilçenin talep tabanını ayarlayın.
 3. **Hastane sayısı sınırı** ile en fazla 91 tesis deneyini seçin. **Kapasite ve bütçe varsayımları** bölümünde talep çarpanı, doluluk, hekim iş yükü ve daha kısa yol için ek bütçeyi seçin. **Yerleşimi hesapla** düğmesine basın. İlk açılışta araba senaryosu otomatik hesaplanır.
 4. Bir mahalleyi arayıp seçerek talebin hangi tesislere ne kadar payla atandığını ve her payın ağ güzergâhını görün.
@@ -36,7 +36,7 @@ npm run build
 
 macOS/Linux için `python3.12 -m venv .venv` ve `.venv/bin/python` kullanın. Geliştirme sırasında Python sunucusuna ek olarak ikinci terminalde `npm run dev` çalıştırın; Vite `/api` isteklerini 8000 portuna yönlendirir. `npm run preview` tek başına Python servisini başlatmaz.
 
-Tek komutla hazırlanmış yerel sürümü başlatmak için: `npm start` (önceden kurulmuş `.venv` ve `dist` gerekir).
+Tek komutla hazırlanmış yerel sürümü başlatmak için: `npm start` (önceden kurulmuş `.venv` ve `dist` gerekir). Bu bilgisayarda mevcut MOTIS kurulumu da otomatik yeniden başlatılır; yeni bilgisayar için [motor ve hibrit yöntem](docs/motis-hybrid.md) belgesine bakın. Hazır matrislerle hesap yapılabilir; MOTIS rota çizimi yerel motor gerektirir. Ücretli API kullanılmaz.
 
 ## Hangi veri gerçekten kullanılıyor?
 
@@ -45,7 +45,8 @@ Tek komutla hazırlanmış yerel sürümü başlatmak için: `npm start` (önced
 | Nüfus              | [TÜİK ADNKS 2025](https://www.tuik.gov.tr/media/announcements/2025ADNKS_FavoriTablolar.xlsx), 31.12.2025 | 5.910.320 kişi; yayımlanan 1.427 mahalle                               |
 | Mahalle konumu     | OSM adları + ilçe poligonları                                                                            | 1.413 mahalle, 5.889.804 kişi konumlandırıldı                          |
 | Karayolu / yürüyüş | [Geofabrik Türkiye OSM kesiti](https://download.geofabrik.de/europe/turkey.html), 20.10.2026             | 1.303.779 düğüm, 1.864.240 yönlü sürüş kenarı                          |
-| Toplu taşıma | EGO resmî kalkış/durak listeleri + Başkentkart koordinatları + OSM yolları/rayları | 665 yön/varyant araştırıldı; 430 ağa bağlandı; 10.743 resmî otobüs koordinatı; ara durak süreleri tahmini |
+| Yeni EGO / hibrit | Yerel MOTIS 2.10.2 + tarihsel topluluk GTFS + OSM | 611 hat kaydı, 10.018 durak, 33.506 sefer; güncel resmî hizmet garantisi yok; sorgulanmış aday bağlantıları |
+| Özgün EGO deneyleri | EGO resmî kalkış/durak listeleri + Başkentkart koordinatları + OSM yolları/rayları | 665 yön/varyant araştırıldı; 430 ağa bağlandı; 10.743 resmî otobüs koordinatı; ara durak süreleri tahmini |
 | Mevcut hastaneler  | OSM `hospital` kayıtları                                                                                 | 124 kayıt; resmî ve eksiksiz hastane listesi değildir                  |
 | Talep / kapasite   | Sağlık Bakanlığı 2024 yıllığı                                                                            | Ankara başvuru/yatış/yatak/hekim tabloları; mahalleye orantılı dağıtım |
 | Kalibrasyon / gider | Ankara Üniversitesi ve MLP 2024 faaliyet raporları, Etlik resmî tanıtımı, 2024 yapı tebliği | Gerçek ölçek ve hizmet örnekleri; bağımsız kadro, açık işletme proxy tutarları |
@@ -62,9 +63,9 @@ Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı *
 
 2.140 değeri MLP 2024 portföyünün 7,0 milyon ziyareti / 3.272 yıl sonu hekiminden türetilen proxy orandır. **Klinik kapasite standardı, FTE ölçümü veya Ankara’ya tam kalibrasyon değildir.** Ankara Üniversitesi örneklerinin 835 oranı ve işletme maliyeti çarpanı duyarlılık seçenekleridir. [Kaynak, hesap ve sınırlar](docs/capacity-research.md).
 
-4.701 adayın 45/80/120/210 m yapı izleri yol/ray koridorları dışında doğrulanır. Hızlı kaynak modeli her mahallede her iz sınıfından en yakın 12 adayı kullanır. **91 testi için gerekli coğrafi alt sınır tüm adaylar ve tüm bağlantılarla** ayrıca hesaplanır; daraltılmış aramanın başarısızlığı imkânsızlık sayılmaz.
+4.701 adayın 45/80/120/210 m yapı izleri yol/ray koridorları dışında doğrulanır. Hızlı kaynak modeli her mahallede her iz sınıfından en yakın 12 adayı kullanır. Özgün EGO/karayolu **91 testi için gerekli coğrafi alt sınır tüm adaylar ve tüm bağlantılarla** ayrıca hesaplanır. Yeni MOTIS senaryosunda tekil rota ile doğrulanmış kısa liste kullanılır; sorgulanmamış çiftler bilinmiyor olarak tutulur. Daraltılmış aramanın başarısızlığı imkânsızlık sayılmaz. [Hibrit ağırlıklar, maliyetin bir kez sayılması ve rota kaynağı](docs/motis-hybrid.md).
 
-### 91 hastane deneyi
+### 91 hastane deneyi · özgün EGO modeli
 
 | Senaryo | Aynı %95 il / %80 ilçe hedefi | Sonuç |
 |---|---|---|
@@ -92,6 +93,8 @@ Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin orta
 
 ## Araştırma ve teknik belgeler
 
+- [EGO + Araba hibrit modeli ve uygulamaya bağlı yerel MOTIS](docs/motis-hybrid.md)
+- [Yeni MOTIS/hibrit sonuçları, 91 sınırı ve hakemlerin kabul kapsamı](docs/motis-hybrid-validation.md)
 - [Ücretsiz tarihsel Ankara verisi: hazır X→Y API ve yerel MOTIS motoru](docs/free-transit-channels.md)
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)

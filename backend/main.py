@@ -19,7 +19,7 @@ from backend.timetable import DEFAULT_PROFILE, PROFILES, journey, load_network
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.7.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.8.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -39,8 +39,17 @@ def site_conflicts():
 def dataset():
     return json.loads((DATA / 'dataset.json').read_text(encoding='utf-8'))
 
+def matrix(mode,profile=DEFAULT_PROFILE,engine='ego'):
+    if mode == 'transit' and engine == 'motis':
+        from backend.motis import load_matrix
+        try:
+            return load_matrix(profile)
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise HTTPException(409, f'MOTIS matrisi kullanılamıyor: {exc}') from exc
+    return legacy_matrix(mode, profile)
+
 @lru_cache(maxsize=5)
-def matrix(mode,profile=DEFAULT_PROFILE):
+def legacy_matrix(mode, profile=DEFAULT_PROFILE):
     path = DATA / (f'transit-{profile}-matrix.npz' if mode=='transit' else 'car-matrix.npz')
     if not path.exists():
         raise HTTPException(409, 'Bu ulaşım modu için ağ matrisi henüz hazırlanmadı.')
@@ -56,7 +65,7 @@ def coordinates():
 
 class Scenario(BaseModel):
     model_config = {'extra': 'forbid'}
-    mode: Literal['car', 'transit'] = 'car'
+    mode: Literal['car', 'transit', 'hybrid'] = 'car'
     threshold: int = Field(default=30, ge=10, le=120)
     coverageTarget: float = Field(default=95, ge=50, le=100)
     districtFloor: float = Field(default=80, ge=0, le=100)
@@ -68,10 +77,18 @@ class Scenario(BaseModel):
     hospitalLimit: int | None = Field(default=None, ge=1, le=1000)
     operatingCostMultiplier: float = Field(default=1, ge=.5, le=2)
     transitProfile: Literal['weekday-0800','weekday-1000','saturday-1000','sunday-1000'] = DEFAULT_PROFILE
+    # Old saved experiments/API clients retain their original EGO model.
+    # The current UI explicitly selects MOTIS for new transit/hybrid requests.
+    transitEngine: Literal['ego', 'motis'] = 'ego'
+    carWeight: float = Field(default=70, ge=51, le=95)
+    transitThreshold: int = Field(default=45, ge=10, le=120)
 
-def travel_times(s):
-    times = matrix(s.mode,s.transitProfile).astype(float)
-    if s.mode == 'car' and s.trafficFactor != 1:
+def travel_times(s, mode=None):
+    mode = mode or s.mode
+    if mode == 'hybrid':
+        raise ValueError('Hibrit erişim iki ayrı matrisle değerlendirilmelidir.')
+    times = matrix(mode,s.transitProfile,s.transitEngine).astype(float)
+    if mode == 'car' and s.trafficFactor != 1:
         data = dataset()
         origins = np.array([x['snapMeters'] / 75 for x in data['demands']])
         targets = np.array([x['accessMeters'] / 75 for x in data['candidates']+data['hospitals']])
@@ -82,6 +99,21 @@ def travel_times(s):
 @app.get('/api/health')
 def health():
     return {'status': 'ok', 'datasetReady': (DATA / 'dataset.json').exists()}
+
+@app.get('/api/routing-status')
+def routing_status():
+    from backend.motis import routing_status as motis_status
+    status = motis_status()
+    if status.get('serviceAvailable'):
+        from backend.motis_runtime import runtime_identity
+        try:
+            status['runtimeIdentity'] = runtime_identity()
+        except RuntimeError as exc:
+            status['serviceAvailable'] = False
+            status['detail'] += ' Canlı rota motor kimliği doğrulanamadı: ' + str(exc)
+    return {'motis': status,
+            'ego': {'ready': all((DATA / f'transit-{p}-matrix.npz').exists() for p in PROFILES),
+                    'detail': 'Özgün EGO kaynak deneyi; resmî terminal kalkışları ve tahmini ara durak süreleri.'}}
 
 @app.get('/api/data')
 def get_data():
@@ -108,9 +140,9 @@ def shared_capacity_report():
     return FileResponse(path, media_type='application/json')
 
 @lru_cache(maxsize=24)
-def count_bound(mode,threshold,coverage,district_floor,traffic,profile=DEFAULT_PROFILE):
+def count_bound(mode,threshold,coverage,district_floor,traffic,profile=DEFAULT_PROFILE,engine='ego'):
     data=dataset()
-    return geographic_bound(travel_times(Scenario(mode=mode,threshold=threshold,trafficFactor=traffic,transitProfile=profile))[:,:len(data['candidates'])],
+    return geographic_bound(travel_times(Scenario(mode=mode,threshold=threshold,trafficFactor=traffic,transitProfile=profile,transitEngine=engine))[:,:len(data['candidates'])],
         np.array([d['population'] for d in data['demands']]),np.array([d['districtId'] for d in data['demands']]),
         data['districts'],data['metadata']['provincePopulation'],threshold,coverage/100,district_floor/100)
 
@@ -123,20 +155,33 @@ def unmatched():
     return FileResponse(DATA / 'unmatched-neighborhoods.json', media_type='application/json')
 
 @lru_cache(maxsize=24)
-def cached_solve(serialized):
+def _cached_solve(serialized, motis_package=None):
     s = Scenario.model_validate_json(serialized)
     data = dataset()
-    times = travel_times(s)
+    times = travel_times(s, 'car' if s.mode == 'hybrid' else s.mode)
+    transit_times = travel_times(s, 'transit') if s.mode == 'hybrid' else None
     n_candidates = len(data['candidates'])
     populations = np.array([d['population'] for d in data['demands']])
     district_ids = np.array([d['districtId'] for d in data['demands']])
     certificate = None
-    if s.hospitalLimit is not None:
-        certificate = count_bound(s.mode,s.threshold,s.coverageTarget,s.districtFloor,s.trafficFactor,s.transitProfile)
+    uses_motis = s.mode in ('transit', 'hybrid') and s.transitEngine == 'motis'
+    if s.hospitalLimit is not None and s.mode != 'hybrid' and not uses_motis:
+        certificate = count_bound(s.mode,s.threshold,s.coverageTarget,s.districtFloor,s.trafficFactor,s.transitProfile,s.transitEngine)
     if certificate and (certificate['status']=='infeasible' or
                        certificate['minimumCountLowerBound'] is not None and certificate['minimumCountLowerBound']>s.hospitalLimit+1e-6):
         result={'status':'infeasible','reason':f'Bu veri paketi, örnek aday konumlar ve seçilen saat/hedeflerle {s.hospitalLimit} tesis sınırı, kapasite sınırsız kabul edilse bile erişim hedefini sağlayamıyor. Bu sonuç gerçek Ankara için kesin hastane ihtiyacı değildir.',
                 'geographicCertificate':certificate,'infeasibilityScope':'all_candidates_geography'}
+    elif s.mode == 'hybrid':
+        from backend.hybrid import solve_hybrid
+        result = solve_hybrid(times[:, :n_candidates], transit_times[:, :n_candidates],
+            populations, district_ids, data['districts'], data['metadata']['provincePopulation'],
+            health_planning(), s.model_dump(),
+            [{**c, 'candidateIndex': i} for i, c in enumerate(data['candidates'])],
+            conflicts=site_conflicts(), time_limit=90)
+        if result['status'] == 'inconclusive':
+            result['solverReason'] = result.get('reason')
+            result['reason'] = ('Süre sınırlı ortak konum ve kapasite aramasında doğrulanmış bir plan bulunamadı. '
+                                'İl, ilçe ve iki modun süre hedefleri korundu; bu sonuç olanaksızlık kanıtı değildir.')
     else:
         result = solve_capacity(times[:, :n_candidates], populations, district_ids, data['districts'],
                          data['metadata']['provincePopulation'], health_planning(), s.threshold,
@@ -145,27 +190,76 @@ def cached_solve(serialized):
                          plot_radii=[c['footprintRadiusMeters'] for c in data['candidates']],
                          hospital_limit=s.hospitalLimit,operating_cost_multiplier=s.operatingCostMultiplier)
         if certificate: result['geographicCertificate']=certificate
+    if uses_motis:
+        # MOTIS /plan checks a disclosed shortlist, not every possible edge.
+        # Failure in that restricted graph must not become a global proof.
+        result['routingSearchScope'] = 'queried_motis_plan_edges'
+        if 'searchScope' in result:
+            result['searchScope'] = {**result['searchScope'],
+                'solverEdgeRestriction': result['searchScope'].get('restricted'),
+                'upstreamRoutingRestriction': True, 'restricted': True,
+                'boundScope': 'queried_motis_plan_edges_and_retained_solver_edges'}
+        if result['status'] == 'infeasible':
+            result['restrictedModelStatus'] = 'infeasible'
+            result['restrictedModelReason'] = result.get('reason')
+            result['status'] = 'inconclusive'
+            result['infeasibilityScope'] = 'queried_motis_plan_edges_only'
+            result['reason'] = ('Doğrulanmış MOTIS aday bağlantılarıyla hedefleri sağlayan plan bulunamadı. '
+                                'Hedefler değiştirilmedi. Sorgulanmamış bağlantılar ve veri eksikleri nedeniyle '
+                                'bu sonuç tüm adaylar veya gerçek Ankara için olanaksızlık kanıtı değildir.')
     result['scenario'] = s.model_dump()
     result['metadata'] = data['metadata']
-    result['modelLabel'] = ('EGO resmi kalkışlar · '+PROFILES[s.transitProfile]['label']+' · ara durak süreleri tahmini') if s.mode == 'transit' else 'OSM yol ağı · tahmini sürüş süresi'
-    if s.mode=='transit':
-        result['transitEvidence']={'version':data['metadata']['transitVersion'],
+    result['modelLabel'] = 'OSM yol ağı · tahmini sürüş süresi'
+    if s.mode in ('transit', 'hybrid') and s.transitEngine == 'motis':
+        from backend.motis import evidence
+        result['transitEvidence'] = evidence(s.transitProfile)
+        if result['transitEvidence']['packageId'] != motis_package:
+            raise HTTPException(409, 'Hesap sırasında MOTIS veri paketi değişti. Sonucu yayımlamadan aynı paketle yeniden hesaplayın.')
+        result['metadata'] = {**data['metadata'], 'activeTransitEngine': 'motis',
+                              'activeTransitPackageId': result['transitEvidence'].get('packageId')}
+        result['modelLabel'] = ('EGO + Araba · ortak kaynak planı · ' if s.mode == 'hybrid' else '') + 'MOTIS · tarihsel Ankara GTFS'
+    elif s.mode in ('transit', 'hybrid'):
+        result['modelLabel'] = ('EGO + Araba · ortak kaynak planı · ' if s.mode == 'hybrid' else '') + 'EGO resmi kalkışlar · '+PROFILES[s.transitProfile]['label']+' · ara durak süreleri tahmini'
+        result['transitEvidence']={'engine':'ego','version':data['metadata']['transitVersion'],
             'packageId':data['metadata'].get('transitPackageId'),'profile':PROFILES[s.transitProfile],
             'quality':data['metadata']['transitDataQuality'],
             'scope':'Sonuç yalnız kullanılabilen sefer/konum verisi ve tahmini ara durak süreleri için geçerlidir. Eksik hizmet, gerçek hayatta hizmet yokluğu değildir.'}
-    if 'selectedIndices' in result:
+    if result['status'] == 'feasible' and 'capacitySites' in result and 'assignments' in result:
         capacities = {c['candidateIndex']: c for c in result.pop('capacitySites')}
         result['selected'] = [{**data['candidates'][i], **capacities[i]} for i in result['selectedIndices']]
-        for assignment, demand in zip(result['assignments'], data['demands']):
-            assignment['demandId'] = demand['id']
-            assignment['candidateId'] = data['candidates'][assignment['candidateIndex']]['id'] if assignment['candidateIndex'] is not None else None
-            for part in assignment['allocations']:
-                part['candidateId'] = data['candidates'][part['candidateIndex']]['id']
+        def enrich_assignments(assignments):
+            for assignment, demand in zip(assignments, data['demands']):
+                assignment['demandId'] = demand['id']
+                assignment['candidateId'] = data['candidates'][assignment['candidateIndex']]['id'] if assignment['candidateIndex'] is not None else None
+                for part in assignment['allocations']:
+                    part['candidateId'] = data['candidates'][part['candidateIndex']]['id']
+        enrich_assignments(result['assignments'])
+        for modal in result.get('modalResults', {}).values():
+            enrich_assignments(modal['assignments'])
         existing = times[:, n_candidates:]
-        if existing.shape[1]:
+        if existing.shape[1] and (s.mode != 'transit' or not uses_motis or result['transitEvidence'].get('existingComparisonAvailable', False)):
             result['existingComparison'] = {'hospitalCount': existing.shape[1], 'inventory': 'OSM; tür ve kapasite eşdeğerliği doğrulanmadı',
                 **metrics(existing.min(axis=1), populations, data['metadata']['provincePopulation'], s.threshold)}
+        if s.mode == 'hybrid':
+            result['modalResults']['car']['existingComparison'] = result.get('existingComparison')
+            existing_transit = transit_times[:, n_candidates:]
+            if existing_transit.shape[1] and (not uses_motis or result['transitEvidence'].get('existingComparisonAvailable', False)):
+                result['modalResults']['transit']['existingComparison'] = {
+                    'hospitalCount': existing_transit.shape[1],
+                    'inventory': 'OSM; tür ve kapasite eşdeğerliği doğrulanmadı',
+                    **metrics(existing_transit.min(axis=1), populations, data['metadata']['provincePopulation'], s.transitThreshold)}
     return result
+
+def cached_solve(serialized):
+    s = Scenario.model_validate_json(serialized)
+    package = None
+    if s.mode in ('transit', 'hybrid') and s.transitEngine == 'motis':
+        from backend.motis import evidence
+        try:
+            package = evidence(s.transitProfile)['packageId']
+        except (OSError, ValueError, RuntimeError, KeyError) as exc:
+            raise HTTPException(409, f'MOTIS veri kimliği doğrulanamadı: {exc}') from exc
+    return _cached_solve(serialized, package)
 
 @app.post('/api/solve')
 def solve(scenario: Scenario):
@@ -175,6 +269,8 @@ def solve(scenario: Scenario):
 class RouteRequest(Scenario):
     demandId: str
     candidateId: str
+    routeMode: Literal['car', 'transit'] | None = None
+    routingPackageId: str | None = Field(default=None, min_length=1, max_length=128)
 
 def reconstruct(predecessors, start, end):
     path = [int(end)]
@@ -202,12 +298,57 @@ def route(request: RouteRequest):
     if di is None or ci is None:
         raise HTTPException(404, 'Mahalle veya aday bulunamadı.')
     demand, candidate = data['demands'][di], data['candidates'][ci]
-    minutes = travel_times(request)[di, ci]
+    route_mode = request.routeMode if request.mode == 'hybrid' else request.mode
+    if route_mode is None:
+        raise HTTPException(422, 'Hibrit rotada gösterilecek ulaşım türünü seçin.')
+    route_package = None
+    runtime_before = None
+    if route_mode == 'transit' and request.transitEngine == 'motis':
+        from backend.motis import evidence
+        from backend.motis_runtime import runtime_identity
+        try:
+            route_package = evidence(request.transitProfile)['packageId']
+            runtime_before = runtime_identity()
+        except (OSError, RuntimeError, ValueError, KeyError) as exc:
+            raise HTTPException(503, f'Yerel MOTIS kaynak kimliği doğrulanamadı: {exc}') from exc
+        if request.routingPackageId is not None and request.routingPackageId != route_package:
+            raise HTTPException(409, 'Seçilen yerleşim eski MOTIS veri paketine ait. Güncel paketle yeniden hesaplayın.')
+    minutes = travel_times(request, route_mode)[di, ci]
     if not np.isfinite(minutes):
-        raise HTTPException(404, 'Bu modda erişilebilir güzergâh bulunamadı.')
+        raise HTTPException(404, 'Bu veri ve arama ayarlarıyla hesaplanmış güzergâh yok; bu gerçek hizmet yokluğu anlamına gelmez.')
     legs = []
     boardings = []
-    if request.mode == 'car':
+    if route_mode == 'transit' and request.transitEngine == 'motis':
+        from backend.motis import plan
+        origin_entry = coordinates()[demand['node']]
+        target_entry = coordinates()[candidate['node']]
+        try:
+            planned = plan((float(origin_entry[1]), float(origin_entry[0])),
+                (candidate.get('entryLat', float(target_entry[1])), candidate.get('entryLon', float(target_entry[0]))),
+                request.transitProfile, origin_access_meters=demand['snapMeters'],
+                destination_access_meters=candidate['accessMeters'])
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise HTTPException(503, f'Yerel MOTIS rotası alınamadı: {exc}') from exc
+        try:
+            package_after = evidence(request.transitProfile)['packageId']
+            runtime_after = runtime_identity()
+        except (OSError, ValueError, RuntimeError, KeyError) as exc:
+            raise HTTPException(503, f'MOTIS rota kimliği yeniden doğrulanamadı: {exc}') from exc
+        if (package_after != route_package or planned.get('evidence', {}).get('packageId') != route_package
+                or runtime_after != runtime_before):
+            raise HTTPException(409, 'Rota sırasında MOTIS veri paketi veya çalışan motor değişti. Aynı paketle yeniden hesaplayın.')
+        if abs(planned['minutes'] - minutes) > .001:
+            raise HTTPException(409, 'MOTIS rotası kayıtlı matrisle eşleşmiyor. Kaynak ve arama ayarlarını doğrulayarak matrisi yeniden oluşturun.')
+        planned['legs'] = [
+            {'kind': 'connector', 'label': 'Varsayımsal mahalle temsil noktası bağlantısı',
+             'coordinates': [[demand['lon'], demand['lat']], origin_entry.tolist()]},
+            *planned['legs'],
+            {'kind': 'connector', 'label': 'Varsayımsal hastane giriş bağlantısı',
+             'coordinates': [[candidate.get('entryLon', float(target_entry[0])), candidate.get('entryLat', float(target_entry[1]))], [candidate['lon'], candidate['lat']]]}]
+        return {**planned, 'runtimeIdentity': runtime_after, 'minutes': float(minutes), 'demand': demand['name'], 'candidate': candidate['name'],
+                'scenario': request.model_dump(), 'routeMode': route_mode,
+                'note': 'MOTIS tarihsel GTFS ve OSM rotası. Kesikli giriş bağlantıları varsayımdır; başlangıç bağlantısı, ilk bekleme ve son bağlantı süreye dahildir.'}
+    if route_mode == 'car':
         path = street_path('drive', demand['node'], candidate['node'])
         legs.append({'kind': 'drive', 'label': 'Yol ağı üzerinden sürüş', 'coordinates': path})
         legs.append({'kind': 'connector', 'label': 'Temsil noktası / varsayılan giriş bağlantısı',
@@ -254,7 +395,7 @@ def route(request: RouteRequest):
                         'coordinates':[[node['lon'],node['lat']],coordinates()[k].tolist()]})
                 clock+=part['seconds']
     return {'minutes': float(minutes), 'legs': legs, 'boardings': boardings,
-            'demand': demand['name'], 'candidate': candidate['name'], 'scenario': request.model_dump(),
+            'demand': demand['name'], 'candidate': candidate['name'], 'scenario': request.model_dump(), 'routeMode': route_mode,
             'note': 'Kesikli çizgiler varsayılan giriş bağlantılarıdır; arazide doğrulanmış yollar değildir. Kesintisiz çizgiler OSM yol/yürüyüş/ray ağını izler.'}
 
 app.mount('/assets', StaticFiles(directory=ROOT / 'dist/assets', check_dir=False), name='assets')

@@ -193,6 +193,23 @@ def audit(result):
         'constructionCostTRY':capex,'costStageGap':cap['costStageGap'],'travelStageGap':cap['travelStageGap']}
 
 
+def verify_saved_scenario(record, expected):
+    """Accept only the three explicitly compatible additions to legacy records.
+
+    Preserve historical files and every old parameter. Missing old fields,
+    altered providers or new hybrid records without their contract still fail.
+    """
+    additions = {'transitEngine': 'ego', 'carWeight': 70, 'transitThreshold': 45}
+    assert isinstance(record, dict) and isinstance(expected, dict)
+    missing = set(expected) - set(record)
+    assert missing <= set(additions), 'Missing original scenario parameter'
+    if missing:
+        assert record.get('mode') in ('car', 'transit'), 'Hybrid scenario requires its explicit contract'
+    normalized = {**{key: additions[key] for key in missing}, **record}
+    same_values(normalized, expected, 'saved.scenario')
+    assert normalized == expected, 'Saved scenario differs from the expected source/model parameters'
+
+
 def run(write_examples=False,write_report=False):
     package_id=check_package()
     data=dataset();client=TestClient(app);report=[];benchmark=[];audited_results=[]
@@ -209,7 +226,7 @@ def run(write_examples=False,write_report=False):
             if mode=='transit' and limit==91 and profile==DEFAULT_PROFILE:
                 (OUT/'example-transit-91-result.json').write_bytes(path.read_bytes())
         result=json.loads(path.read_text(encoding='utf-8'))
-        assert result['scenario']==s.model_dump()
+        verify_saved_scenario(result['scenario'], s.model_dump())
         verify_result_package(result, package_id)
         if result['status']=='infeasible':
             certificate=count_bound(mode,threshold,95,80,1,profile)

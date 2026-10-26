@@ -24,7 +24,7 @@ from scripts.audit_service_evidence import validate_reviewed_services, validate_
 from scripts.audit_bus_projection import validate_bus_projections
 from scripts.audit_bus_stop_matching import validate_bus_stop_matching
 from scripts.verify_release import (verify_certificate, verify_result_package,
-                                    verify_report_records, same_values, summarize, TRANSIT_REPORT_KEYS)
+                                    verify_report_records, verify_saved_scenario, same_values, summarize, TRANSIT_REPORT_KEYS)
 
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'data/processed'
 LEGACY_COMMIT='d2c5e226484e4aa9af9fe1eec801b18e024c96db'
@@ -65,7 +65,7 @@ def validate_experiment(report, package_id):
     for profile in PROFILES:
         result=json.loads((OUT/f'example-transit-{profile}-91-result.json').read_text(encoding='utf-8'))
         expected=Scenario(mode='transit',threshold=45,hospitalLimit=91,transitProfile=profile)
-        same_values(result['scenario'],expected.model_dump(),'experiment.scenario')
+        verify_saved_scenario(result['scenario'], expected.model_dump())
         verify_result_package(result,package_id)
         verify_certificate(result['geographicCertificate'],count_bound('transit',45,95,80,1,profile))
         results.append(result)

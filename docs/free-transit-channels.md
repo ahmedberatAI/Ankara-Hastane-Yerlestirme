@@ -46,6 +46,8 @@ Bu koordinatlar Kızılay ve Etlik Şehir Hastanesi örneğidir. Başlangıç 27
 
 ## Yerel motor kuruldu ve sorgulandı
 
+Bu belge ilk kaynak/tekil sorgu araştırmasının kaydıdır. Sonraki uygulama bağlantısı ve iki modun ortak optimizasyonu [MOTIS ve hibrit yönteminde](motis-hybrid.md) açıklanır; aşağıdaki tekil probe komutu kendi başına matris yayımlamaz.
+
 [MOTIS 2.10.2 Windows sürümü](https://github.com/motis-project/motis/releases/tag/v2.10.2) resmî kaynaktan indirildi. ZIP SHA256 değeri `e5002346a2acfa40dacbf3ee7873e3193b76111222fae4858780dc8b3835d1e9`, GitHub sürüm kaydındaki digest ile eşleşti. Motor; indirilen özgün Ankara GTFS arşivi ve projede bulunan 20 Ekim 2026 Ankara OSM yol kesitiyle yerel olarak içe aktarıldı. Tarihsel toplu taşıma + 2026 yol kesiti bir araştırma senaryosudur.
 
 Yerel API: `http://127.0.0.1:8088/api/v6/plan`. Yalnız bilgisayarın kendisine açıktır. 26 Ekim–8 Kasım 2026 hizmet günleri içe aktarıldı. Başlangıç/çıkış/doğrudan yürüyüş ve hazırlanmış aktarma yürüyüşü üst sınırları 45 dakikadır. Bu hazırlık sınırları yeni bir kapsama kanıtı veya hastane optimizasyonu değildir.

@@ -162,6 +162,9 @@ def test_time_limit_controls(seconds):
 @pytest.mark.parametrize('seconds',[301,1800])
 def test_explicit_long_cost_limit_is_forwarded_without_running_native(monkeypatch,seconds):
     p,source,args=window();limits=[]
+    # This is a forwarding test, not a real-clock accuracy test. A fixed clock
+    # avoids sub-picosecond subtraction roundoff at the 1800-second boundary.
+    monkeypatch.setattr(solver,'monotonic',lambda:10.)
     def no_native(problem,start,allocated,metadata,deadline,presolve):
         limits.append(allocated)
         return SimpleNamespace(x=None,status=1,nativeModelStatus='kTimeLimit',isTimeLimit=True)

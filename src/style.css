@@ -2596,3 +2596,57 @@ nav > button:hover {
   margin-top: 4px;
   font-size: 11px;
 }
+
+/* Provider identity and the common-resource / displayed-mode distinction. */
+.mode-tabs.hybrid-modes { display: grid; grid-template-columns: 1fr 1fr; }
+.hybrid-mode-button { grid-column: 1 / -1; }
+.provider-status { margin-top: 12px; padding: 12px; border: 1px solid #d3e5df; border-radius: 11px; background: #f1f7f4; font-size: 11px; line-height: 1.6; }
+.provider-status > div { display: flex; gap: 7px; align-items: center; }
+.provider-status p { margin: 7px 0; overflow-wrap: anywhere; }
+.provider-status small { display: block; }
+.provider-status button { margin-top: 6px; padding: 0; color: #275e50; text-decoration: underline; background: none; border: 0; cursor: pointer; font: inherit; }
+.provider-dot { width: 7px; height: 7px; border-radius: 50%; background: #47896f; flex: 0 0 7px; }
+.provider-status.is-unavailable { background: #fff7eb; border-color: #edd7b8; color: #74502a; }
+.is-unavailable .provider-dot { background: #b1813f; }
+.hybrid-weight-control { margin-top: 22px; padding-top: 18px; border-top: 1px solid #dce7df; }
+.hybrid-weight-control p, .hybrid-planning-note { font-size: 11px; line-height: 1.65; color: #65766e; }
+.hybrid-overview { margin: 12px 0; padding: 15px 17px; border: 1px solid #c8ddd3; border-radius: 13px; background: linear-gradient(120deg, #f3f8f2, #e9f3ef); }
+.hybrid-overview-title { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.hybrid-overview h3 { margin: 3px 0 0; font-size: 19px; letter-spacing: -.3px; color: #244f40; }
+.hybrid-overview > p { max-width: 800px; margin: 8px 0; font-size: 12px; line-height: 1.55; color: #54685d; }
+.hybrid-weighted { flex-shrink: 0; text-align: right; }
+.hybrid-weighted b { display: block; color: #285c48; font-size: 25px; line-height: 1.1; }
+.hybrid-weighted b small { font-weight: 400; font-size: 15px; }
+.hybrid-weighted > span { display: block; margin-top: 2px; font-size: 10px; color: #526b5d; }
+.hybrid-view-tabs { display: flex; gap: 8px; margin-top: 9px; }
+.hybrid-view-tabs button { flex: 1; display: flex; align-items: center; gap: 9px; text-align: left; padding: 9px 12px; border: 1px solid #c9d9d0; border-radius: 9px; background: #fff9; color: #547063; cursor: pointer; }
+.hybrid-view-tabs button.selected { color: #fff; background: #285d49; border-color: #285d49; }
+.hybrid-view-tabs b, .hybrid-view-tabs small { display: block; }
+.hybrid-view-tabs b { font-size: 12px; }
+.hybrid-view-tabs small { margin-top: 2px; font-size: 11px; opacity: .8; }
+.hybrid-cost-details { margin-top: 9px; padding-top: 8px; border-top: 1px solid #cddfd4; color: #52695b; font-size: 12px; line-height: 1.7; }
+.hybrid-cost-details summary { font-weight: 600; cursor: pointer; }
+.provider-evidence { display: block; padding: 9px 13px; }
+.provider-evidence > summary { font-size: 11px; font-weight: 600; cursor: pointer; }
+.provider-evidence > summary > svg { vertical-align: -3px; margin: 0 7px 0 2px; }
+.provider-evidence[open] > summary { margin-bottom: 9px; }
+.provider-evidence > summary:focus-visible { outline: 2px solid #927443; outline-offset: 4px; border-radius: 2px; }
+.provider-evidence > div { min-width: 0; }
+.provider-evidence p { margin: 7px 0; line-height: 1.65; }
+.provider-evidence small { display: block; margin-top: 6px; }
+.provider-evidence details { margin-top: 9px; font-size: 10px; }
+.provider-evidence summary { cursor: pointer; }
+.provider-evidence code { overflow-wrap: anywhere; }
+.pending-provider { font-weight: 600; }
+.legacy-experiments { margin: 24px 0; padding: 18px 20px; border: 1px dashed #cfd7cf; border-radius: 12px; color: #657367; }
+.legacy-experiments > summary { font-size: 13px; font-weight: 600; cursor: pointer; }
+.legacy-experiments > p { font-size: 12px; line-height: 1.7; margin: 10px 0 20px; }
+.method-provider-note { margin: 18px 28px; padding: 18px; border: 1px solid #e2d9bf; border-radius: 10px; background: #faf6e9; color: #625943; font-size: 12px; line-height: 1.7; }
+@media (max-width: 650px) {
+  .hybrid-overview { padding: 12px; }
+  .hybrid-overview h3 { font-size: 17px; }
+  .hybrid-weighted > span { max-width: 145px; }
+  .hybrid-view-tabs button { gap: 6px; padding: 9px 7px; }
+  .hybrid-view-tabs button > svg { flex-shrink: 0; width: 16px; }
+  .legacy-experiments { padding: 14px 10px; }
+}

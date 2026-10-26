@@ -1,4 +1,6 @@
-export type Mode = "car" | "transit";
+export type Mode = "car" | "transit" | "hybrid";
+export type TravelMode = "car" | "transit";
+export type TransitEngine = "motis" | "ego";
 export type TransitProfile =
   | "weekday-0800"
   | "weekday-1000"
@@ -23,6 +25,10 @@ export interface Scenario {
   hospitalLimit: number | null;
   operatingCostMultiplier: number;
   transitProfile: TransitProfile;
+  // Optional only for historical certificates; new UI requests send these explicitly.
+  transitEngine?: TransitEngine;
+  carWeight?: number;
+  transitThreshold?: number;
 }
 export interface Place {
   id: string;
@@ -146,6 +152,7 @@ export interface CapacitySummary {
   } | null;
   optimalityScope?:
     | "all_candidate_allocation_edges"
+    | "all_supplied_allocation_edges"
     | "restricted_allocation_edges";
   resourceCleanup?: {
     applied?: boolean;
@@ -277,7 +284,30 @@ export interface Result {
   scenario: Scenario;
   metadata: Dataset["metadata"];
   modelLabel: string;
-  transitEvidence?: { scope: string; packageId: string };
+  transitEvidence?: {
+    scope: string;
+    packageId?: string;
+    engine?: string;
+    datasetScenario?: string;
+    profileDate?: string;
+    actualProfileDate?: string;
+    departure?: string;
+    sourceSHA256?: Record<string, string>;
+    gtfsSHA256?: string;
+  };
+  modalResults?: Record<TravelMode, {
+    metrics: Metrics;
+    districts: District[];
+    assignments: Assignment[];
+    existingComparison?: Metrics & { hospitalCount: number };
+  }>;
+  hybridSummary?: {
+    carWeight: number;
+    transitWeight: number;
+    weightedMeanMinutes: number;
+    thresholds: { car: number; transit: number };
+    semantics: string;
+  };
   existingComparison?: Metrics & { hospitalCount: number };
   maximumCoveragePercent?: number;
   limitingDistricts?: { name: string; maximumPercent: number }[];
@@ -289,12 +319,34 @@ export interface Result {
     scope: string;
   };
   searchScope?: {
-    nearestCandidatesPerFootprintClass: number;
-    candidateCount: number;
-    allocationEdges: number;
+    nearestCandidatesPerFootprintClass?: number;
+    candidateCount?: number;
+    allocationEdges?: number;
+    kind?: string;
+    restricted?: boolean;
+    neighborsPerOriginModeFootprintClass?: number | null;
+    retainedCandidateCount?: number;
+    allCandidateCount?: number;
+    boundScope?: string;
+    description?: string;
   };
 }
+export interface RoutingProvider {
+  ready: boolean;
+  matrixProfiles?: string[];
+  detail: string;
+  engineVersion?: string;
+  datasetScenario?: string;
+  profileDates?: Record<string, string>;
+}
+export interface RoutingStatus {
+  motis: RoutingProvider;
+  ego: RoutingProvider;
+}
 export interface Route {
+  scenario?: Scenario & { demandId: string; candidateId: string; routingPackageId?: string | null };
+  routeMode?: TravelMode;
+  evidence?: { packageId?: string };
   minutes: number;
   demand: string;
   candidate: string;
