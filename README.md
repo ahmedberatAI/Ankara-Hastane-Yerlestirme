@@ -92,6 +92,7 @@ Bu kaynaklar sabit tutularak yapılan ayrı süre aşaması, dört profilin orta
 
 ## Araştırma ve teknik belgeler
 
+- [Ücretsiz tarihsel Ankara verisi: hazır X→Y API ve yerel MOTIS motoru](docs/free-transit-channels.md)
 - [EGO kaynak araştırması ve tarifeli model](docs/transit-research.md)
 - [EGO 291/91 karşılaştırması](docs/transit-validation.md)
 - [Yakın 44 başlangıç için ortak yerleşim: yöntem ve denetim](docs/departure-window-plan.md)
