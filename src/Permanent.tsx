@@ -218,13 +218,13 @@ export function PermanentTargets({ policy }: { policy: PlanningPolicy }) {
     <span className="eyebrow">PLANIN SABİT KOŞULLARI</span>
     <dl><div><dt>Araba</dt><dd>{policy.threshold} <small>dk</small></dd></div><div><dt>Toplu taşıma</dt><dd>{policy.transitThreshold} <small>dk</small></dd></div>
       <div><dt>İl genelinde talep</dt><dd>%{policy.coverageTarget}</dd></div><div><dt>Her ilçede en az</dt><dd>%{policy.districtFloor}</dd></div></dl>
-    <p>Literatürden yararlanan planlama tercihleri. Resmî veya klinik standart değildir; ilçe tabanı kırsal erişimi koruyan proje koşuludur.</p>
+    <p>Literatüre dayalı proje hedefleri. Resmî veya klinik standart değildir; ilçe tabanı kırsal erişimi gözetir.</p>
   </section>;
 }
 export function PermanentViews({ plan, view, onView }: { plan: PermanentPlan; view: TravelMode; onView: (v: TravelMode) => void }) {
   return <section className="permanent-views" aria-label="Aynı hastanelerin erişim görünümü">
     <div className="hybrid-view-tabs" role="group" aria-label="Harita görünümü">{(["car", "transit"] as const).map(mode => <button key={mode} type="button" aria-pressed={view === mode} className={view === mode ? "selected" : ""} onClick={() => onView(mode)}>
-      {mode === "car" ? <CarFront size={19} /> : <TrainFront size={19} />}<span><b>{mode === "car" ? "Araba" : "Toplu taşıma"}</b><small>Ortak hastaneler · {mode === "car" ? plan.policy.threshold : plan.policy.transitThreshold} dk</small></span></button>)}</div>
+      {mode === "car" ? <CarFront size={19} /> : <TrainFront size={19} />}<span><b>{mode === "car" ? "Araba" : "Toplu taşıma"}</b><small><span className="view-shared-label">Ortak hastaneler · </span>{mode === "car" ? plan.policy.threshold : plan.policy.transitThreshold} dk</small></span></button>)}</div>
     <p>{view === "car" ? "Hastaneler, yataklar ve hekimler iki görünümde de aynıdır." : `Gösterilen kesit: ${profileLabel(plan, plan.criticalTransitProfile)}. Dört toplu taşıma kesitinin ortalaması en yüksek olanı; bütün günün en kötü durumu değil.`}</p>
   </section>;
 }

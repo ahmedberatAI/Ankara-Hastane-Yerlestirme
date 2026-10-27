@@ -19,6 +19,8 @@ Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanı
 
 Arayüz Türkçedir. Sayfa açılışı veya görünüm değişikliği optimizasyon başlatmaz. Kaynak ya da model kimliği değişmiş bir kayıt yayımlanmaz; daha önceki sonuç güncel diye sunulmaz.
 
+Harita, sade bir şehir atlası düzeninde sunulur. Telefonda plan özeti ve harita öne gelir; sabit hedefler sayfanın devamındadır. Rota kartı küçük ekranda haritanın altına açılır. [Telefon görünümü](docs/screenshots/permanent-plan-mobile.png).
+
 ## Yerel kurulum
 
 Python **3.12** ve Node.js **22 veya 24** gerekir. Hazırlanmış veri dosyaları repoya dahildir; uygulamayı çalıştırmak için Türkiye harita verisini yeniden indirmek gerekmez. Harita altlığı ve web yazı tipleri internet kullanır; ağ matrisi ve optimizasyon yerel çalışır.

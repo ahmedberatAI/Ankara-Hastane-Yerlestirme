@@ -22,6 +22,20 @@ const title = (s: string) =>
   s
     .toLocaleLowerCase("tr-TR")
     .replace(/(^|\s)\S/g, (c) => c.toLocaleUpperCase("tr-TR"));
+function fitJourney(map: L.Map, route: Route | null) {
+  const coords = route?.legs.flatMap(l => l.coordinates.map(([x, y]) => [y, x] as L.LatLngTuple));
+  if (!coords?.length) return;
+  const container = map.getContainer();
+  const panel = container.closest('.map-area')?.querySelector<HTMLElement>('.route-card');
+  const mapRect = container.getBoundingClientRect(), panelRect = panel?.getBoundingClientRect();
+  // On phones the journey card sits below the map, leaving its full width free.
+  const overlaysMap = panelRect && panelRect.top < mapRect.bottom && panelRect.bottom > mapRect.top;
+  const panelRight = overlaysMap ? panelRect.right - mapRect.left + 20 : 25;
+  const left = Math.min(panelRight, Math.max(25, map.getSize().x - 80));
+  map.fitBounds(L.latLngBounds(coords), {
+    paddingTopLeft: [left, 45], paddingBottomRight: [20, 75], maxZoom: 14,
+  });
+}
 function MapEffects({
   focus,
   district,
@@ -45,7 +59,8 @@ function MapEffects({
   useEffect(() => {
     const observer = new ResizeObserver(() => {
       map.invalidateSize({ pan: false });
-      if (districts && !focus && !route && !district)
+      if (route) fitJourney(map, route);
+      else if (districts && !focus && !district)
         map.fitBounds(L.geoJSON(districts).getBounds(), {
           padding: [25, 40],
           animate: false,
@@ -77,22 +92,7 @@ function MapEffects({
     if (focus) map.flyTo([focus.lat, focus.lon], 13, { duration: 0.8 });
   }, [focus, map]);
   useEffect(() => {
-    const coords = route?.legs.flatMap((l) =>
-      l.coordinates.map(([x, y]) => [y, x] as L.LatLngTuple),
-    );
-    if (coords?.length) {
-      const container = map.getContainer();
-      const panel = container.closest('.map-area')?.querySelector<HTMLElement>('.route-card');
-      const panelRight = panel ? panel.getBoundingClientRect().right - container.getBoundingClientRect().left + 20 : 25;
-      // Reserve the panel's real horizontal footprint. The previous narrow
-      // layout reserved only 270px vertically, hiding routes under tall cards.
-      const left = Math.min(panelRight, Math.max(25, map.getSize().x - 80));
-      map.fitBounds(L.latLngBounds(coords), {
-        paddingTopLeft: [left, 45],
-        paddingBottomRight: [20, 75],
-        maxZoom: 14,
-      });
-    }
+    fitJourney(map, route);
   }, [route, map]);
   return null;
 }
@@ -106,14 +106,35 @@ function SiteMarkers({ sites, sharedResources }: { sites: Candidate[]; sharedRes
     sites.forEach((site, index) => {
       const p = map.project([site.lat, site.lon], zoom);
       const key =
-        sites.length > 70 && zoom < 14
-          ? `${Math.floor(p.x / 48)}:${Math.floor(p.y / 48)}`
+        sites.length > 70 && zoom < 16
+          ? `${Math.floor(p.x / 56)}:${Math.floor(p.y / 56)}`
           : site.id;
       const bucket = buckets.get(key) || [];
       bucket.push({ site, index });
       buckets.set(key, bucket);
     });
-    return [...buckets.values()];
+    const groups = [...buckets.values()];
+    if (sites.length > 70 && zoom < 16) {
+      // Adjacent grid cells can place their badges on top of each other.
+      // Merge only visual groups; their members and zoom bounds stay intact.
+      let joined = true;
+      while (joined) {
+        joined = false;
+        const centers = groups.map(group => {
+          const center = map.project(L.latLngBounds(group.map(g => [g.site.lat, g.site.lon] as L.LatLngTuple)).getCenter(), zoom);
+          return { x: center.x, y: center.y - (group.length === 1 ? 18 : 0) };
+        });
+        findOverlap: for (let a = 0; a < groups.length; a++) {
+          for (let b = a + 1; b < groups.length; b++) {
+            if ((centers[a].x - centers[b].x) ** 2 + (centers[a].y - centers[b].y) ** 2 < 48 ** 2) {
+              groups[a].push(...groups[b]); groups.splice(b, 1); joined = true;
+              break findOverlap;
+            }
+          }
+        }
+      }
+    }
+    return groups;
   }, [sites, zoom, map]);
   return (
     <>
@@ -130,8 +151,8 @@ function SiteMarkers({ sites, sharedResources }: { sites: Candidate[]; sharedRes
               icon={L.divIcon({
                 className: "site-cluster",
                 html: `<b>${group.length}</b>`,
-                iconSize: [34, 34],
-                iconAnchor: [17, 17],
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
               })}
               eventHandlers={{
                 click: () =>
@@ -148,12 +169,13 @@ function SiteMarkers({ sites, sharedResources }: { sites: Candidate[]; sharedRes
         return (
           <Marker
             key={c.id}
+            title={title(c.name)}
             position={[c.lat, c.lon]}
             icon={L.divIcon({
               className: "hospital-marker",
-              html: `<span><b>${String(i + 1).padStart(2, "0")}</b></span>`,
-              iconSize: [34, 40],
-              iconAnchor: [17, 40],
+              html: '<span><b>+</b></span>',
+              iconSize: [30, 36],
+              iconAnchor: [15, 36],
             })}
           >
             <Popup>
@@ -354,13 +376,13 @@ export default function AnkaraMap({
                 center={[d.lat, d.lon]}
                 radius={Math.max(
                   2.8,
-                  Math.min(10, Math.sqrt(d.population) / 34),
+                  Math.min(8.5, Math.sqrt(d.population) / 40),
                 )}
                 pathOptions={{
                   color,
                   weight: 1,
                   fillColor: color,
-                  fillOpacity: a?.covered ? 0.4 : 0.55,
+                  fillOpacity: a?.covered ? 0.33 : 0.42,
                 }}
                 eventHandlers={{ click: () => onDemand(d) }}
               >
