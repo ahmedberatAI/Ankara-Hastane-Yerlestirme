@@ -33,6 +33,25 @@ def test_actual_current_plan_without_hardcoded_resource_totals(source):
     assert 'actual EGO' in r['scope']
 
 
+def test_packaged_report_replays_on_current_platform():
+    directory = ROOT / 'data/processed'
+    saved = json.loads((directory / 'transport-relaxation-results.json').read_bytes())
+    assert w.compare_report(saved, directory)
+
+
+def test_submicrometre_projection_noise_does_not_change_report(source, monkeypatch):
+    baseline = w.audit(*source)
+    original = w.Transformer.from_crs(4326, 32636, always_xy=True)
+
+    class NoisyProjection:
+        def transform(self, lon, lat):
+            x, y = original.transform(lon, lat)
+            return x + (1e-8 if lon < 33 else -1e-8), y
+
+    monkeypatch.setattr(w.Transformer, 'from_crs', lambda *args, **kwargs: NoisyProjection())
+    assert w.digest(w.audit(*source)) == w.digest(baseline)
+
+
 def test_witness_not_found_is_not_infeasibility(source):
     r = w.audit(*source, hospital_limit=source[2]['hospitalCount'] - 1)
     assert not r['witnessFound'] and r['status'] == 'no_witness_from_saved_plan'

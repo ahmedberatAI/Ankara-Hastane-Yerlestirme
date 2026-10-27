@@ -218,7 +218,11 @@ def audit(data, health, car, transit, hospital_limit=91):
                       'coveredPopulation': float(served.sum()), 'coveragePercent': float(served.sum()) / total * 100,
                       'minimumDistrictCoveragePercent': min(coverage.values())} for p in PROFILES],
         'resourcesSharedAcrossProfiles': True, 'annualDemandCountedOnce': True,
-        'minimumAreaSlackM2': minimum_area_slack, 'minimumPlotClearanceMeters': clearance,
+        # PROJ/libm implementations can differ below a nanometre. Preserve the
+        # unrounded overlap check above; serialize this diagnostic to micrometres
+        # so exact report hashes replay on Windows and Linux.
+        'minimumAreaSlackM2': minimum_area_slack,
+        'minimumPlotClearanceMeters': None if clearance is None else round(clearance, 6),
         'annualEquivalentCostTRY': float(annual), 'decimalAnnualEquivalentCostTRY': str(annual),
         'decimalAnnualMaterialCostTRY': str(material), 'originalTransitBudgetTRY': budget,
         'budgetSlackTRY': budget - float(annual), 'numericalTolerances': TOLERANCE,

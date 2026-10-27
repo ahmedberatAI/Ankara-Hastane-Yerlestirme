@@ -56,7 +56,7 @@
   "resourcesSharedAcrossProfiles": true,
   "annualDemandCountedOnce": true,
   "minimumAreaSlackM2": 14615.526111673978,
-  "minimumPlotClearanceMeters": 1178.9195915316493,
+  "minimumPlotClearanceMeters": 1178.919592,
   "annualEquivalentCostTRY": 143877970994.9809,
   "decimalAnnualEquivalentCostTRY": "143877970994.9808966356092009489311414835",
   "decimalAnnualMaterialCostTRY": "33668611722.74399424584332071866361573600",
@@ -77,6 +77,6 @@
     "example-car-result.json": "60a394ae5810b2ca8c0917782e21f3a79059165205a46a6ba561610bb1552556",
     "example-transit-result.json": "86d213de7fa307cb5fe24b9e9f60e9ccff18a91f7737a13a9e488a7b8cdc2213"
   },
-  "auditCodeSHA256": "a4be5bdce93dea8bb16d0c5efb75ddfc13883ef68478cc509cf9646cab61c247",
+  "auditCodeSHA256": "a25e225479bb95a4eeb659c8358d96e1db71000fc3f1f82e9264dd721bce7127",
   "auditCodeHashNormalization": "CRLF converted to LF; all four input hashes use exact file bytes"
 }
