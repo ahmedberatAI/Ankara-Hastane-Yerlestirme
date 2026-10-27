@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-26T20:38:01.912752+00:00",
+  "createdAt": "2026-10-27T08:48:44.106469+00:00",
   "populationReferenceDate": "2025-12-31",
   "osmSnapshotDate": "2026-10-20T20:23:47Z",
   "sources": [
@@ -447,8 +447,8 @@
     },
     {
       "file": "data/processed/hybrid-result.json",
-      "bytes": 2364377,
-      "sha256": "e2646a6d0e335b2190914538a1b04b3d38fdf1233c6a01c60be84e62fe772b3c"
+      "bytes": 2364375,
+      "sha256": "60dba54c6ac01efd63b02720da2a24578f5172ef881fb340980ee0aea862ac82"
     },
     {
       "file": "data/processed/joint-plan-summary.json",
@@ -462,8 +462,8 @@
     },
     {
       "file": "data/processed/motis/assigned-route-check.json",
-      "bytes": 21618,
-      "sha256": "915fee2bef6794356414d20d582823dfc25158084c720b98c9f3d9b99f33bb92"
+      "bytes": 21671,
+      "sha256": "43811c6173499df453d92fa3949c8654c9f7e99a9b4b5e6180f081a27e74dec0"
     },
     {
       "file": "data/processed/motis/manifest.json",
@@ -498,17 +498,27 @@
     {
       "file": "data/processed/motis-91-results.json",
       "bytes": 127801,
-      "sha256": "75d626b5fb434abd972d0857bdf58f793185f22fae17fb93cb603daab3d63f71"
+      "sha256": "c0c8911df7411beda9043c1a9401471988f6326430088bd14aab9552d7d4e2c8"
     },
     {
       "file": "data/processed/motis-transit-result.json",
-      "bytes": 765461,
-      "sha256": "3fc8e2d8f575ad114b7db9cb481c2768a2db3c123954b391cf0da916e3750137"
+      "bytes": 765460,
+      "sha256": "bf55a4c22b53353ea2a89b2eb6524773cb3aa7ed31c4172a41aa352bd655b9a7"
     },
     {
       "file": "data/processed/neighborhood-population-2025.csv",
       "bytes": 57952,
       "sha256": "2d8a4b91f19f7e4d47a69767902665ade936a16b543505e36d3ac16e45a22d71"
+    },
+    {
+      "file": "data/processed/permanent-plan.json",
+      "bytes": 6194252,
+      "sha256": "b382c37630e80b36316636ff676ddb632d5b40ed0619719ef60ec0bd4a82f1de"
+    },
+    {
+      "file": "data/processed/permanent-route-checks.json",
+      "bytes": 39144,
+      "sha256": "2d627581e6c579bdb1e65e606874635195c73c93ecc41872342b466da3fcdd9f"
     },
     {
       "file": "data/processed/population.json",
@@ -543,7 +553,7 @@
     {
       "file": "data/processed/shared-capacity-results.json",
       "bytes": 7155,
-      "sha256": "144e52aee04cebbad401730a0446b9f2ff68a8e3663707509fb3a1a80607ba1d"
+      "sha256": "eec02fb3fba667ad3a61805e9a79e0e02776ca3312d2508d640b6c119c6b628a"
     },
     {
       "file": "data/processed/transit-lines.geojson",

@@ -217,8 +217,8 @@
     1943
   ],
   "hospitalCount": 214,
-  "gap": 0.024010213666703438,
-  "lowerBound": 169936298423.6789,
+  "gap": 0.02366394888132641,
+  "lowerBound": 169996588968.44217,
   "secondaryOptimal": false,
   "metrics": {
     "coveredPopulation": 5614804.0,
@@ -19306,8 +19306,8 @@
       "coveragePercent": 95.0,
       "annualEquivalentCostTRY": 174116881962.58057,
       "meanMinutes": 31.264335930525093,
-      "gap": 0.024010213666703438,
-      "lowerBoundTRY": 169936298423.6789,
+      "gap": 0.02366394888132641,
+      "lowerBoundTRY": 169996588968.44217,
       "boundScope": "restricted_allocation_edges",
       "scope": "Original cost-stage incumbent before travel refinement; this gap is not the final plan cost gap or a minimum hospital-count guarantee."
     },
@@ -19327,7 +19327,7 @@
     },
     "solutionSource": "travel_milp",
     "numericalFallback": null,
-    "finalPlanCostGap": 0.023831213680075493,
+    "finalPlanCostGap": 0.023484885388509427,
     "costBoundNumericalToleranceTRY": 100.0,
     "optimalityScope": "restricted_allocation_edges",
     "referenceMeanMinutes": 31.264335930525093,
@@ -19341,7 +19341,7 @@
     "annualBedDaysServed": 5179226.580361795,
     "doctorUtilizationPercent": 93.33576610385037,
     "bedUtilizationPercent": 70.10702501978714,
-    "costStageGap": 0.024010213666703438,
+    "costStageGap": 0.02366394888132641,
     "costStageProvenOptimal": false,
     "travelStageGap": 0.7526606801730857,
     "travelStageSolverGap": 0.7526606801730858,
@@ -28261,9 +28261,9 @@
       "areaUtilizationPercent": 8.267215099495674
     }
   ],
-  "builtAt": "2026-10-26T20:27:17.397814+00:00",
+  "builtAt": "2026-10-27T08:45:18.326253+00:00",
   "modelCodeLF_SHA256": {
-    "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+    "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
     "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
     "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
     "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",

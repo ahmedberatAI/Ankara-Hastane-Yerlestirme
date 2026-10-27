@@ -19,7 +19,7 @@ from backend.timetable import DEFAULT_PROFILE, PROFILES, journey, load_network
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/processed'
-app = FastAPI(title='Ankara Sağlık Erişimi', version='0.8.0')
+app = FastAPI(title='Ankara Sağlık Erişimi', version='0.9.0')
 solve_lock = Lock()
 
 @lru_cache(maxsize=1)
@@ -120,6 +120,60 @@ def get_data():
     data = dataset()
     return {**data, 'healthPlanning': health_planning(),
             'sources': json.loads((ROOT / 'docs/sources.json').read_text(encoding='utf-8'))}
+
+@app.get('/api/planning-policy')
+def planning_policy():
+    from backend.permanent_evidence import load_policy
+    try:
+        return load_policy()
+    except (OSError, ValueError, KeyError) as exc:
+        raise HTTPException(409, f'Sabit planlama politikası doğrulanamadı: {exc}') from exc
+
+def saved_permanent_plan():
+    from backend.permanent_service import read_plan
+    try:
+        return read_plan()
+    except (OSError, ValueError, RuntimeError, KeyError) as exc:
+        raise HTTPException(409, f'Kalıcı plan yayımlanmaya hazır değil: {exc}') from exc
+
+@app.get('/api/permanent-plan')
+def permanent_plan():
+    # A map view reads the same independently audited artifact; it never solves.
+    return saved_permanent_plan()
+
+class PermanentRouteRequest(BaseModel):
+    model_config = {'extra': 'forbid'}
+    planId: str = Field(pattern=r'^permanent-[0-9a-f]{64}$')
+    view: Literal['car', 'transit']
+    demandId: str = Field(min_length=1, max_length=128)
+    candidateId: str = Field(min_length=1, max_length=128)
+
+@app.post('/api/permanent-route')
+def permanent_route(request: PermanentRouteRequest):
+    saved = saved_permanent_plan()
+    if saved['planId'] != request.planId:
+        raise HTTPException(409, 'Haritadaki plan güncel kayıtla eşleşmiyor; sayfayı yenileyin.')
+    profile = 'car' if request.view == 'car' else saved['criticalTransitProfile']
+    assignment = next((a for a in saved['profiles'][profile]['assignments']
+                       if a['demandId'] == request.demandId), None)
+    allocation = next((a for a in assignment['allocations']
+                       if a['candidateId'] == request.candidateId and a['population'] > 0), None) if assignment else None
+    if allocation is None or not any(c['id'] == request.candidateId for c in saved['selected']):
+        raise HTTPException(422, 'Bu ulaşım görünümünde mahalle, seçilen hastaneye atanmış değil.')
+    policy = saved['policy']
+    fixed = {key: policy[key] for key in Scenario.model_fields if key not in ('mode', 'transitProfile')}
+    fixed.update(mode='hybrid', transitProfile=saved['criticalTransitProfile'],
+                 demandId=request.demandId, candidateId=request.candidateId,
+                 routeMode=request.view, routingPackageId=saved['identity']['transitPackageId'])
+    response = route(RouteRequest(**fixed))
+    limit = policy['threshold'] if request.view == 'car' else policy['transitThreshold']
+    if (not np.isfinite(response['minutes']) or abs(response['minutes'] - allocation['minutes']) > .001
+            or response['minutes'] > limit
+            or request.view == 'transit' and response.get('evidence', {}).get('packageId') != saved['identity']['transitPackageId']):
+        raise HTTPException(409, 'Güzergâh, kalıcı planın süre veya kaynak kaydıyla eşleşmiyor.')
+    if saved_permanent_plan()['planId'] != request.planId:
+        raise HTTPException(409, 'Güzergâh alınırken kalıcı plan değişti; sayfayı yenileyin.')
+    return {**response, 'planId': request.planId, 'profileId': profile}
 
 @app.get('/api/benchmark-91')
 def benchmark_91():

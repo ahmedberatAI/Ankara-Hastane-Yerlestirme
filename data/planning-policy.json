@@ -1,0 +1,54 @@
+{
+  "id": "ankara-permanent-v1",
+  "version": 1,
+  "title": "Ankara için ortak ve kalıcı hastane yerleşimi",
+  "reviewedOn": "2026-10-27",
+  "classification": "literature_informed_planning_policy",
+  "clinicalStandard": false,
+  "threshold": 30,
+  "transitThreshold": 60,
+  "coverageTarget": 95,
+  "districtFloor": 80,
+  "trafficFactor": 1,
+  "demandMultiplier": 1,
+  "bedOccupancy": 80,
+  "contactsPerDoctor": 2140,
+  "costTolerance": 10,
+  "hospitalLimit": null,
+  "operatingCostMultiplier": 1,
+  "transitEngine": "motis",
+  "carWeight": 70,
+  "profileIds": ["car", "weekday-0800", "weekday-1000", "saturday-1000", "sunday-1000"],
+  "profileDetails": {
+    "car": {"id": "car", "label": "Araba · sabit OSM yol ağı", "mode": "car", "departure": null},
+    "weekday-0800": {"id": "weekday-0800", "label": "Hafta içi sabah", "mode": "transit", "departure": "2026-10-27T08:00:00+03:00"},
+    "weekday-1000": {"id": "weekday-1000", "label": "Hafta içi gün içi", "mode": "transit", "departure": "2026-10-27T10:00:00+03:00"},
+    "saturday-1000": {"id": "saturday-1000", "label": "Cumartesi", "mode": "transit", "departure": "2026-10-31T10:00:00+03:00"},
+    "sunday-1000": {"id": "sunday-1000", "label": "Pazar", "mode": "transit", "departure": "2026-11-01T10:00:00+03:00"}
+  },
+  "profileWeights": {"car": 0.7, "weekday-0800": 0.075, "weekday-1000": 0.075, "saturday-1000": 0.075, "sunday-1000": 0.075},
+  "targets": [
+    {"key": "threshold", "label": "Araba ile en fazla süre", "value": 30, "unit": "dakika", "sourceIds": ["itu-2014", "oecd-2018", "iges-2019"], "rationale": "Türkiye'deki erişim araştırması ve hastane yerleşimi çalışmalarındaki 30 dakikalık eşik temel alındı.", "applicability": "Genel hastane erişimi için proje tercihi; ambulans müdahale/klinik tedavi süresi standardı değildir. Model toplam erişim bağlantılarını da içerir."},
+    {"key": "transitThreshold", "label": "Toplu taşıma ile en fazla süre", "value": 60, "unit": "dakika", "sourceIds": ["dft-2019"], "rationale": "DfT'nin hastaneye toplu taşıma/yürüyüş erişimi için kullandığı 60 dakika göstergesi benimsenir; yürüyüş ve bekleme dahil hesaplanır.", "applicability": "Karşılaştırmalı planlama eşiği; evrensel klinik kabul sınırı değildir."},
+    {"key": "coverageTarget", "label": "İl genelinde karşılanacak talep", "value": 95, "unit": "%", "sourceIds": ["iges-2019"], "rationale": "IGES hastane yerleşimi çalışmasındaki yüzde 95 kapsama yaklaşımı, bu proje için sabit hedef olarak benimsenir.", "applicability": "Yayımlanmış bir yerleşim yaklaşımından alınan tercih; Ankara için yasal veya evrensel standart değildir. Konumu bilinmeyen nüfus paydada kalır."},
+    {"key": "districtFloor", "label": "Her ilçede en az talep payı", "value": 80, "unit": "%", "sourceIds": [], "rationale": "project_equity_guard", "applicability": "Az nüfuslu ilçelerin il ortalaması içinde gözden çıkarılmasını önleyen korunmuş proje eşitlik koşulu; WHO'nun iki saatlik cerrahi hedefinden türetilmez."}
+  ],
+  "permanence": {
+    "sharedLocations": true,
+    "sharedBeds": true,
+    "sharedDoctors": true,
+    "annualCostsCountedOnce": true,
+    "allProfilesMustMeetTargets": true,
+    "sameIndividualsAcrossProfilesConstrained": false,
+    "criticalTransitSelection": "maximum_population_weighted_mean_then_profile_id",
+    "timeCoverageLimit": "Bir araba ağı ve dört tarihli toplu taşıma örneği birlikte sınanır. Bu örneklerin arasındaki saatler, gece hizmeti ve bütün gün için garanti değildir."
+  },
+  "priorityNote": "Yüzde 70 araba ve yüzde 30 toplu taşıma yalnız süre amaç fonksiyonunun sabit önceliğidir; ölçülmüş hasta veya ambulans kullanım payı değildir. Dört toplu taşıma örneği eşit ağırlıklıdır.",
+  "capacityNote": "Yatak/hekim talebi ve maliyetleri mevcut sağlık kalibrasyonundaki açık proxy varsayımları kullanır; klinik FTE standardı veya kamu hastanesi bütçe ölçümü değildir.",
+  "sources": [
+    {"id": "itu-2014", "title": "Paköz ve Yüzer (2014), Access to healthcare: A field survey in Istanbul", "url": "https://www.az.itu.edu.tr/jfa/article/view/466", "locator": "s. 281–282, Tablo 4", "role": "Türkiye bağlamında hastaneye 30 dakika erişim eşiği ve kullanıcı tercihleri"},
+    {"id": "oecd-2018", "title": "OECD Regions and Cities at a Glance 2018: Access to services in cities", "url": "https://www.oecd.org/en/publications/oecd-regions-and-cities-at-a-glance-2018_reg_cit_glance-2018-en/full-report/component-43.html", "locator": "Şekil 4.18", "role": "Hastaneye 30 dakikalık araba erişimini karşılaştıran gösterge; bağlayıcı norm değildir"},
+    {"id": "dft-2019", "title": "Department for Transport, Journey time statistics, England: 2019", "url": "https://www.gov.uk/government/statistics/journey-time-statistics-england-2019/journey-time-statistics-england-2019", "locator": "Tablo 4 ve Tablo 6", "role": "Hastane erişimini araba ve toplu taşıma/yürüyüş için 30/45/60 dakika aralıklarıyla ölçer; gerçekleşen kapsam bir hedef değildir"},
+    {"id": "iges-2019", "title": "IGES / Bertelsmann Stiftung (2019), Zukunftsfähige Krankenhausversorgung", "url": "https://www.bertelsmann-stiftung.de/fileadmin/files/BSt/Publikationen/GrauePublikationen/VV_Bericht_KH-Landschaft_final.pdf", "locator": "s. 26 ve 51–52, Tablo 15", "role": "30 dakika araba ve yüzde 95 nüfus kapsaması kullanan yerleşim yaklaşımı; mevcut tesisler ve 2030 Köln talep varsayımları Ankara ile aynı değildir"}
+  ]
+}

@@ -64642,9 +64642,9 @@
     "bedUtilizationPercent": 48.86247198348801,
     "costStageGap": 0.23158476748561443,
     "costStageProvenOptimal": false,
-    "travelStageGap": 0.7264904107171176,
-    "travelStageSolverGap": 0.7264904107171176,
-    "travelStageLowerBoundMeanMinutes": 5.5514563162683945,
+    "travelStageGap": 0.7236641884035234,
+    "travelStageSolverGap": 0.7236641884035234,
+    "travelStageLowerBoundMeanMinutes": 5.608820483115773,
     "travelStageImproved": false,
     "planningVersion": "independent-capacity-2026-10-v2"
   },
@@ -69379,7 +69379,7 @@
     "travelTimeLimit": true,
     "costWarmStartAccepted": true,
     "travelWarmStartAccepted": true,
-    "elapsedSeconds": 91.125,
+    "elapsedSeconds": 95.75,
     "dimensions": {
       "binaryTemplates": 23776,
       "integerPhysicians": 4701,
@@ -85516,9 +85516,9 @@
     "p90Minutes": 11.488852500915527,
     "meanPopulationDenominator": 5889804
   },
-  "builtAt": "2026-10-26T20:25:46.397453+00:00",
+  "builtAt": "2026-10-27T08:43:53.886905+00:00",
   "modelCodeLF_SHA256": {
-    "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+    "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
     "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
     "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
     "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",

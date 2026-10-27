@@ -1,5 +1,7 @@
 # MOTIS ve hibrit sürümün kayıtlı doğrulaması
 
+**Tarihsel iki modlu deney kaydı.** Güncel ana uygulama [beş kesitli tek kalıcı planı](permanent-plan.md) kullanır; aşağıdaki 30/45 dakika ve 91 tesis deneyleri kendi hedefleriyle korunur. 27 Ekim arayüz/HTTP değişikliğinden sonra bu deneyler aynı matematik ve kaynaklarla gerçekten yeniden çalıştırılmıştır; eski sonuçların kod kimliği yalnız yeniden etiketlenmemiştir.
+
 26 Ekim 2026 geliştirme çalışması. Deney tarihi hafta içi 27 Ekim 2026 10.00 TSİ; diğer hazır profiller 27 Ekim 08.00, 31 Ekim 10.00 ve 1 Kasım 10.00'dır. Bu, kullanıcının kabul ettiği **tarihsel topluluk GTFS senaryosudur**. Güncel resmî EGO hizmeti veya ambulans seyahat süresi doğrulaması değildir.
 
 ## Yeni kayıtlı sonuçlar

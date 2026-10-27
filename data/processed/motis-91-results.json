@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-26T20:29:00.272390+00:00",
+  "builtAt": "2026-10-27T08:46:58.421705+00:00",
   "packageId": "motis-8bbee1c73c4bee6a43a73b253e46febbf5cc0619f7a6e57a55fbfd2cd5cb6719",
   "scope": "Independent dated scenarios on queried MOTIS /plan edges; not a full-candidate or real-city impossibility certificate. Goals are unchanged.",
   "cases": [
@@ -152,7 +152,7 @@
         "boundScope": "queried_motis_plan_edges_and_retained_solver_edges"
       },
       "modelCodeLF_SHA256": {
-        "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+        "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
         "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
         "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
         "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",
@@ -165,7 +165,7 @@
         "dataset": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
         "planning": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
       },
-      "builtAt": "2026-10-26T20:27:28.621051+00:00",
+      "builtAt": "2026-10-27T08:45:27.956625+00:00",
       "capacity": null
     },
     {
@@ -317,7 +317,7 @@
         "boundScope": "queried_motis_plan_edges_and_retained_solver_edges"
       },
       "modelCodeLF_SHA256": {
-        "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+        "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
         "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
         "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
         "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",
@@ -330,7 +330,7 @@
         "dataset": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
         "planning": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
       },
-      "builtAt": "2026-10-26T20:27:39.070657+00:00",
+      "builtAt": "2026-10-27T08:45:38.263718+00:00",
       "capacity": null
     },
     {
@@ -482,7 +482,7 @@
         "boundScope": "queried_motis_plan_edges_and_retained_solver_edges"
       },
       "modelCodeLF_SHA256": {
-        "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+        "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
         "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
         "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
         "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",
@@ -495,7 +495,7 @@
         "dataset": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
         "planning": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
       },
-      "builtAt": "2026-10-26T20:27:50.090772+00:00",
+      "builtAt": "2026-10-27T08:45:47.989285+00:00",
       "capacity": null
     },
     {
@@ -647,7 +647,7 @@
         "boundScope": "queried_motis_plan_edges_and_retained_solver_edges"
       },
       "modelCodeLF_SHA256": {
-        "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+        "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
         "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
         "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
         "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",
@@ -660,7 +660,7 @@
         "dataset": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
         "planning": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
       },
-      "builtAt": "2026-10-26T20:28:01.006741+00:00",
+      "builtAt": "2026-10-27T08:45:59.031100+00:00",
       "capacity": null
     },
     {
@@ -5519,7 +5519,7 @@
       },
       "solverReason": "No independently validated common-resource incumbent within the bounded search",
       "modelCodeLF_SHA256": {
-        "backend/main.py": "164a4969d985fe2b770336b9bfbf2220c3637ed440a7d55faeb719fa73a42e6f",
+        "backend/main.py": "e61233556b694c055f54f6b5845a989c91c7df5322140ea560e12aee23f4fb78",
         "backend/hybrid.py": "a94f1fcf72948698a1f5da2e24341b19a2e3b7d406226ea8a1386d1f1e731b29",
         "backend/joint_model.py": "63b92bba92333c6fe47e0474983dbca6f857f5dd4d3cee8bd74bf538ccfa03db",
         "backend/motis.py": "81b1a33ba2dd58d8f6aeae9809ccc7d88e1b1c27b69a0822347782d3a481e28a",
@@ -5532,7 +5532,7 @@
         "dataset": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
         "planning": "a382c921c57f5a9a204fa9949a5173031838e7a86d1bb304fa5fc5025e9e7a48"
       },
-      "builtAt": "2026-10-26T20:29:00.256462+00:00",
+      "builtAt": "2026-10-27T08:46:58.399255+00:00",
       "capacity": null
     }
   ]

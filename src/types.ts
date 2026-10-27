@@ -363,3 +363,66 @@ export interface Route {
     timingSourceUrls?: string[];
   }[];
 }
+
+export type PermanentProfile = "car" | TransitProfile;
+export interface PlanningPolicy {
+  id: string;
+  version: number;
+  classification: string;
+  clinicalStandard: boolean;
+  transitEngine: "motis";
+  profileIds: PermanentProfile[];
+  profileDetails: Record<PermanentProfile, { id: PermanentProfile; label: string; mode: TravelMode; departure: string | null }>;
+  profileWeights: Record<PermanentProfile, number>;
+  threshold: number;
+  transitThreshold: number;
+  coverageTarget: number;
+  districtFloor: number;
+  trafficFactor: number;
+  demandMultiplier: number;
+  bedOccupancy: number;
+  contactsPerDoctor: number;
+  costTolerance: number;
+  hospitalLimit: null;
+  operatingCostMultiplier: number;
+  carWeight: number;
+  sources: { id: string; title: string; url: string; note?: string; locator?: string; role?: string; [key: string]: unknown }[];
+  [key: string]: unknown;
+}
+export type PermanentProfileResult = NonNullable<Result["modalResults"]>["car"] & {
+  profile: PlanningPolicy["profileDetails"][PermanentProfile];
+  transitEvidence?: Result["transitEvidence"] & { profile?: string };
+};
+export interface PermanentPlan extends Result {
+  artifactType: "permanent-hospital-plan";
+  planId: string;
+  planningVersion: string;
+  capacity?: CapacitySummary & { horizonYears?: number; realDiscountRate?: number; annualMaterialCostTRY?: number };
+  solver?: { costTimeLimit?: boolean; travelTimeLimit?: boolean; costStagePerformed?: boolean; travelStagePerformed?: boolean;
+    costNativeStatus?: string | null; travelNativeStatus?: string | null; boundInterpretation?: string };
+  policy: PlanningPolicy;
+  profiles: Record<PermanentProfile, PermanentProfileResult>;
+  criticalTransitProfile: TransitProfile;
+  permanentSummary: {
+    profileCount: number;
+    transitProfileCount: number;
+    profileWeights: Record<PermanentProfile, number>;
+    weightedMeanMinutes: number;
+    meanTransitMinutes: number;
+    worstTransitMeanMinutes: number;
+    minimumProvinceCoveragePercent: number;
+    minimumDistrictCoveragePercent: number;
+    annualDemandCountedOnce: boolean;
+    sameIndividualsAcrossProfilesConstrained?: boolean;
+    criticalTransitProfile?: TransitProfile;
+    thresholds?: Record<PermanentProfile, number>;
+  };
+  transitEvidence: NonNullable<Result["transitEvidence"]> & {
+    profileDates: Record<TransitProfile, string>;
+    departures?: Record<TransitProfile, string>;
+  };
+}
+export interface PermanentRoute extends Route {
+  planId: string;
+  profileId: PermanentProfile;
+}

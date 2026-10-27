@@ -4,19 +4,20 @@ Ankara’nın **25 ilçesinde**, **yatak, hekim, yıllık hasta talebi, bina yat
 
 Gerçek TÜİK mahalle nüfusları ve OpenStreetMap yol bağlantıları kullanılır. Mevcut binalar aday konumları engellemez; örnek yapı alanları karayolu ve yüzey demiryolu koridorlarının dışında seçilir. Mevcut hastaneler yeni yerleşimi kısıtlamaz; yalnızca ayrı bir erişim karşılaştırması sağlar.
 
-> **Veri düzeyi:** Araba modu yönlü OSM yol ağında tahmini süre hesaplar. Yeni EGO ve EGO+Araba hesapları yerel **MOTIS 2.10.2 ve tarihsel topluluk Ankara GTFS** senaryosunu kullanır; güncel resmî tarife iddiası yoktur. Hibrit başlangıç önceliği %70 araba / %30 EGO'dur; iki modun erişim ve kapasite hedefleri ayrı korunur. Bu ağırlık gerçek ambulans kullanım payı değildir. Önceki resmî kalkış listeleri ve tahmini ara durak süreleriyle kurulmuş EGO deneyleri ayrıca korunur; 44 yakın saat sonucu o özgün modele aittir. Kapasite hesabı resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımları kullanır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. MLP giderlerinden aktarılan işletme proxy tutarları kamu hastanesi maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
+**Güncel uygulama tek bir kalıcı yerleşim gösterir.** Konum, yatak ve hekimler; araba ve dört tarihli MOTIS toplu taşıma kesiti için birlikte seçilir. Araba/toplu taşıma sekmesi yalnız erişim görünümünü değiştirir. Süre, kapsam, trafik, başlangıç saati ve tesis sayısı ayarı yoktur. [Sabit hedeflerin literatür dayanağı](docs/planning-standards.md), [plan, hesap ve sınırlar](docs/permanent-plan.md).
 
-![ERİŞİM uygulamasının ilk sürüm harita görünümü](docs/screenshots/overview.png)
+> **Veri düzeyi:** Araba yönlü OSM ağında tahmini süredir. Toplu taşıma yerel **MOTIS 2.10.2 ve tarihsel topluluk Ankara GTFS** verisini kullanır; güncel resmî hizmet veya gün boyu erişim garantisi değildir. Sorgulanmamış çiftler bilinmiyor olarak kalır. Kapasite, resmî il toplamlarından türetilen talep ve açık tesis/iş yükü varsayımlarıdır. TL tutarları yaklaşık Aralık 2024 sabit fiyatlarıdır. Özel hastane grubundan aktarılan giderler kamu maliyeti ölçümü değildir; cihaz, arsa ve dış altyapı yatırımı hariçtir.
+
+![ERİŞİM tek kalıcı yerleşim ve sabit erişim hedefleri](docs/screenshots/permanent-plan.png)
 
 ## Kullanım
 
-1. **Araba / EGO / EGO+Araba** modunu seçin. EGO için gün/saat profilini; hibritte ayrıca araç önceliğini ve iki ayrı süre sınırını seçin. Hibrit haritada araba/EGO görünümünü değiştirerek aynı ortak tesis planının iki atamasını ayrı inceleyin.
-2. En fazla yolculuk süresini, Ankara genelinde karşılanacak talep payını ve her ilçenin talep tabanını ayarlayın.
-3. **Hastane sayısı sınırı** ile en fazla 91 tesis deneyini seçin. **Kapasite ve bütçe varsayımları** bölümünde talep çarpanı, doluluk, hekim iş yükü ve daha kısa yol için ek bütçeyi seçin. **Yerleşimi hesapla** düğmesine basın. İlk açılışta araba senaryosu otomatik hesaplanır.
-4. Bir mahalleyi arayıp seçerek talebin hangi tesislere ne kadar payla atandığını ve her payın ağ güzergâhını görün.
-5. İlçe sonuçlarını açın, mevcut hastaneleri katman menüsünden gösterin veya senaryoyu kaynaklarıyla birlikte JSON olarak indirin.
+1. Hazırlanmış ve bağımsız denetlenmiş ortak plan otomatik açılır.
+2. **Araba / Toplu taşıma** sekmelerinde aynı hastanelerin erişimini inceleyin. Toplu taşıma görünümü, dört kesitten ortalama yolculuğu en uzun olan tek kesiti gösterir; farklı saatlerin rotaları karıştırılmaz.
+3. Mahalle arayın; talebin hangi hastanelere hangi payla atandığını ve güzergâhını görün. İlçeye yakınlaşma ve harita katmanları görünüm araçlarıdır.
+4. Hedeflerin kaynaklarını, bütün beş kesitin sonuçlarını, kapasite ve maliyet varsayımlarını açıklama bölümünde okuyun; ortak planı JSON olarak indirin.
 
-Arayüz Türkçedir; kaynaklar, model açıklaması, veri açıkları ve çözümün optimalite durumu uygulamanın içindedir. Parametre değiştirildiğinde eski sonuç açıkça işaretlenir ve yeniden hesaplanana kadar dışa aktarma kapatılır.
+Arayüz Türkçedir. Sayfa açılışı veya görünüm değişikliği optimizasyon başlatmaz. Kaynak ya da model kimliği değişmiş bir kayıt yayımlanmaz; daha önceki sonuç güncel diye sunulmaz.
 
 ## Yerel kurulum
 
@@ -57,13 +58,17 @@ Konumu bilinmeyen **20.516 kişi paydadan çıkarılmaz**. Bu kişilere erişim 
 
 Her adayda bir **50 / 150 / 300 / 600 / 1.000 / 2.000 / 4.050 yataklı** tesis seçilebilir. **Hekim sayısı ayrıca seçilen bir tam sayıdır; sabit hekim/yatak oranı yoktur.** Temas (başvuru + yatış) hekim kapasitesine, yatış günü yatak kapasitesine sığar. Hekim çalışma alanı da inşa edilir ve adayın yol dışı yapı izine sığmalıdır.
 
-Önce **yıllıklaştırılmış bina yatırımı + yıllık işletme gideri** azaltılır. Sonra aynı toplam talep, seçilen **%0–30 ek yıllık maliyet** içinde daha kısa yolculuğa atanır. 25 yıl ve %3 reel iskonto birer planlama varsayımıdır. Hastane sayısı bu maliyet hesabının sonucudur; minimum sayı iddiası değildir.
+Önce **yıllıklaştırılmış bina yatırımı + yıllık işletme gideri** azaltılır. Sonra bulunan referans maliyetin en fazla **%10 üzerinde**, her kesitte aynı toplam talep daha kısa yolculuğa atanır. Referansın küresel en düşük maliyet olduğu kanıtlanmamıştır. Konum, yatak, hekim ve sabit gider beş kesitte ortaktır; yıllık talep ve malzeme beş kez toplanmaz. 25 yıl ve %3 reel iskonto birer varsayımdır. Hastane sayısı maliyet hesabının sonucudur; minimum sayı iddiası değildir.
 
-Başlangıç: araba **30 dk**, EGO **45 dk**, il hedefi **%95**, ilçe tabanı **%80**, doluluk tavanı **%80**, hekim başına **2.140 yıllık temas**. Süre ve kapsam hedefleri değiştirilebilir planlama tercihleridir; resmî veya klinik standart değildir. [WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care), süre ve kapasiteye bağlı kapsam ölçümüne yöntem dayanağı sağlar; bu hedef sayılarını belirlemez.
+Sabit politika: araba **30 dk**, toplu taşıma **60 dk**, her kesitte Ankara talebinin **%95'i** ve her ilçede en az **%80**. 30/60 dakika ve %95; ITÜ, OECD, DfT ve IGES çalışmalarından yararlanılarak seçilmiş proje hedefleridir; evrensel, yasal veya klinik standart değildir. %80 ilçe tabanı ayrıca korunan proje eşitlik tercihidir. [Birincil kaynaklar ve uygulanabilirlik](docs/planning-standards.md). Doluluk tavanı %80, hekim iş yükü 2.140 yıllık temastır.
 
-2.140 değeri MLP 2024 portföyünün 7,0 milyon ziyareti / 3.272 yıl sonu hekiminden türetilen proxy orandır. **Klinik kapasite standardı, FTE ölçümü veya Ankara’ya tam kalibrasyon değildir.** Ankara Üniversitesi örneklerinin 835 oranı ve işletme maliyeti çarpanı duyarlılık seçenekleridir. [Kaynak, hesap ve sınırlar](docs/capacity-research.md).
+2.140 değeri MLP 2024 portföyünün 7,0 milyon ziyareti / 3.272 yıl sonu hekiminden türetilen proxy orandır. **Klinik kapasite standardı, FTE ölçümü veya Ankara’ya tam kalibrasyon değildir.** Ankara Üniversitesi örneklerinin 835 oranı önceki araştırmalarda duyarlılık olarak sınanmıştır. [Kaynak, hesap ve sınırlar](docs/capacity-research.md).
 
-4.701 adayın 45/80/120/210 m yapı izleri yol/ray koridorları dışında doğrulanır. Hızlı kaynak modeli her mahallede her iz sınıfından en yakın 12 adayı kullanır. Özgün EGO/karayolu **91 testi için gerekli coğrafi alt sınır tüm adaylar ve tüm bağlantılarla** ayrıca hesaplanır. Yeni MOTIS senaryosunda tekil rota ile doğrulanmış kısa liste kullanılır; sorgulanmamış çiftler bilinmiyor olarak tutulur. Daraltılmış aramanın başarısızlığı imkânsızlık sayılmaz. [Hibrit ağırlıklar, maliyetin bir kez sayılması ve rota kaynağı](docs/motis-hybrid.md).
+4.701 adayın 45/80/120/210 m yapı izleri yol/ray koridorları dışında doğrulanır. Ortak plan araba için mahalle/iz sınıfı başına en yakın 12 bağlantıyı; toplu taşımada hazırlanmış matrislerdeki bütün süre içi bağlantıları tutar. MOTIS matrislerinin kendisi sorgulanmış kısa listedir; sorgulanmamış çiftler bilinmiyor olarak tutulur. Arama başarısızlığı imkânsızlık sayılmaz. Süre amacı %70 araba + %30 toplu taşımadır; dört toplu taşıma kesiti eşit pay alır. Bu, acil erişime ağırlık veren proje tercihidir; ölçülmüş ambulans payı değildir.
+
+### Önceki araştırma deneyleri
+
+Aşağıdaki 91 tesis, özgün EGO ve yakın saat deneyleri kendi kayıtlı hedef ve veri paketlerine aittir. Güncel ana arayüzde senaryo seçimi veya tesis sayısı sınırı bulunmaz. Eski deney arayüzü kaynakta `src/ScenarioLab.tsx` olarak korunmuştur; ana uygulamaya bağlanmaz.
 
 ### 91 hastane deneyi · özgün EGO modeli
 

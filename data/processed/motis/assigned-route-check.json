@@ -702,8 +702,8 @@
       "queryTimeRoundedUpToMinute": true
     },
     "runtimeIdentity": {
-      "pid": 36996,
-      "processCreatedEpoch": 1793044549.720099,
+      "pid": 32724,
+      "processCreatedEpoch": 1793090181.5643928,
       "executable": "work/free-routing-research-2026-10-26/motis-2.10.2/motis.exe",
       "importDirectory": "work/free-routing-research-2026-10-26/local-motis/data",
       "listener": "127.0.0.1:8088",
@@ -736,6 +736,7 @@
     "note": "MOTIS tarihsel GTFS ve OSM rotası. Kesikli giriş bağlantıları varsayımdır; başlangıç bağlantısı, ilk bekleme ve son bağlantı süreye dahildir."
   },
   "allocatedPopulation": 46632.0,
-  "sourcePlanSHA256": "e2646a6d0e335b2190914538a1b04b3d38fdf1233c6a01c60be84e62fe772b3c",
-  "scope": "One allocated 34.4-minute historical MOTIS bus journey, matching the recorded hybrid matrix and local API source/runtime guards; not a full network validation."
+  "sourcePlanSHA256": "60dba54c6ac01efd63b02720da2a24578f5172ef881fb340980ee0aea862ac82",
+  "scope": "One allocated 34.4-minute historical MOTIS bus journey, matching the recorded hybrid matrix and local API source/runtime guards; not a full network validation.",
+  "capturedAt": "2026-10-27T08:47:58.786044+00:00"
 }

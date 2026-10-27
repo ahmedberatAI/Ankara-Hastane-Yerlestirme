@@ -1,5 +1,7 @@
 # Bağımsız yatak/hekim seçimi ve ulaşım modeli · v0.6
 
+**Güncel ana uygulama:** tek kalıcı yerleşim için araba 30 / toplu taşıma 60 dakika ve her beş kesitte %95 il / %80 ilçe hedefleri sabittir. Konum, yatak ve hekim aynı anda birlikte seçilir. [Güncel plan yöntemi](permanent-plan.md), [literatür ve politika](planning-standards.md). Aşağıdaki v0.6 senaryo ve 91 deneyleri tarihsel yöntem kaydıdır; ana arayüzde ayar olarak sunulmaz.
+
 ## Veri ve hedef
 
 2024 Ankara hizmet kullanımı / aynı yılın nüfusu, 2025 mahallelerine uygulanır. Temas = ikinci/üçüncü basamak başvurusu + yatış; yatak yükü ayrı olarak yatış günüdür. Mahallede ölçülmüş klinik ihtiyaç değildir; il dışı sevkler ve özel tıp merkezi başvuruları ayrıştırılamamıştır. [Kalibrasyon kaynakları](capacity-research.md).
@@ -84,7 +86,7 @@ Ayrı iyimser tanıda her yapı izindeki bütün uygun yatak tipleri taranır. H
 - **Güzergâh:** ilk olarak en çok payın atandığı tesis; bölünen payların diğer rotaları da seçilebilir. En yakın tesis ile kapasiteye uygun tesis aynı olmak zorunda değildir.
 - **Mevcut envanter karşılaştırması:** OSM tesislerinin kapasitesi doğrulanmadığı için yalnız coğrafi erişimdir; kapasiteye göre talep karşılama ile eşdeğer gösterge değildir.
 
-30/45 dakika, %95 il ve %80 ilçe hedefi evrensel standart değildir. Farklı modları karşılaştırırken aynı eşik ve hedefler kullanılmalıdır. Mahalle içi eşitlik ve bireysel ihtiyaç garantisi yoktur.
+30/45 dakika, %95 il ve %80 ilçe hedefi bu eski deneylerin politikasıdır; evrensel standart değildir. Modlar için farklı eşikler seçildiğinde bunların gerekçesi ve hesap kapsamı açıkça belirtilmelidir. Güncel kalıcı planın 30/60 dakika tercihinin dayanağı [ayrı belgelenmiştir](planning-standards.md). Mahalle içi eşitlik ve bireysel ihtiyaç garantisi yoktur.
 
 ## Talep noktaları ve konum belirsizliği
 

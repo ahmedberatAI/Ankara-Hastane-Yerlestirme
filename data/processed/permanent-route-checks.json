@@ -1,0 +1,1379 @@
+{
+  "format": 1,
+  "planId": "permanent-0f8f5be520f18d7963cfbf37c4e6e4c857a9dea0290bcdd2853b41b0adbf7369",
+  "sourcePlanSHA256": "b382c37630e80b36316636ff676ddb632d5b40ed0619719ef60ec0bd4a82f1de",
+  "capturedAt": "2026-10-27T08:47:59.280871+00:00",
+  "cases": [
+    {
+      "request": {
+        "planId": "permanent-0f8f5be520f18d7963cfbf37c4e6e4c857a9dea0290bcdd2853b41b0adbf7369",
+        "view": "car",
+        "demandId": "177863",
+        "candidateId": "H-177865-R120"
+      },
+      "response": {
+        "minutes": 13.130473136901855,
+        "legs": [
+          {
+            "kind": "drive",
+            "label": "Yol ağı üzerinden sürüş",
+            "coordinates": [
+              [
+                33.236821,
+                40.106657
+              ],
+              [
+                33.236324,
+                40.106761
+              ],
+              [
+                33.236138,
+                40.106904
+              ],
+              [
+                33.236008,
+                40.10708
+              ],
+              [
+                33.235884,
+                40.10736
+              ],
+              [
+                33.23584,
+                40.107716
+              ],
+              [
+                33.235865,
+                40.108143
+              ],
+              [
+                33.235964,
+                40.108504
+              ],
+              [
+                33.236374,
+                40.109098
+              ],
+              [
+                33.236566,
+                40.109577
+              ],
+              [
+                33.236839,
+                40.110099
+              ],
+              [
+                33.237417,
+                40.110964
+              ],
+              [
+                33.237727,
+                40.11123
+              ],
+              [
+                33.237988,
+                40.111343
+              ],
+              [
+                33.238267,
+                40.111391
+              ],
+              [
+                33.238702,
+                40.111476
+              ],
+              [
+                33.238894,
+                40.111633
+              ],
+              [
+                33.23905,
+                40.111866
+              ],
+              [
+                33.239059,
+                40.111948
+              ],
+              [
+                33.239081,
+                40.112141
+              ],
+              [
+                33.23923,
+                40.11348
+              ],
+              [
+                33.239391,
+                40.114074
+              ],
+              [
+                33.239553,
+                40.114472
+              ],
+              [
+                33.239875,
+                40.115137
+              ],
+              [
+                33.240037,
+                40.115579
+              ],
+              [
+                33.240316,
+                40.116478
+              ],
+              [
+                33.240623,
+                40.117532
+              ],
+              [
+                33.240781,
+                40.118009
+              ],
+              [
+                33.241273,
+                40.118828
+              ],
+              [
+                33.241352,
+                40.119184
+              ],
+              [
+                33.241273,
+                40.119553
+              ],
+              [
+                33.241317,
+                40.119929
+              ],
+              [
+                33.241466,
+                40.120271
+              ],
+              [
+                33.242125,
+                40.121191
+              ],
+              [
+                33.242625,
+                40.121755
+              ],
+              [
+                33.242871,
+                40.121923
+              ],
+              [
+                33.243266,
+                40.122198
+              ],
+              [
+                33.243503,
+                40.12252
+              ],
+              [
+                33.243898,
+                40.123266
+              ],
+              [
+                33.244311,
+                40.123924
+              ],
+              [
+                33.244724,
+                40.124783
+              ],
+              [
+                33.245189,
+                40.125562
+              ],
+              [
+                33.24547,
+                40.125904
+              ],
+              [
+                33.245953,
+                40.126246
+              ],
+              [
+                33.246137,
+                40.126414
+              ],
+              [
+                33.24633,
+                40.126737
+              ],
+              [
+                33.246989,
+                40.127233
+              ],
+              [
+                33.247612,
+                40.127488
+              ],
+              [
+                33.248113,
+                40.127616
+              ],
+              [
+                33.248912,
+                40.127717
+              ],
+              [
+                33.249421,
+                40.127831
+              ],
+              [
+                33.250044,
+                40.128046
+              ],
+              [
+                33.250501,
+                40.128099
+              ],
+              [
+                33.251089,
+                40.128113
+              ],
+              [
+                33.251519,
+                40.128072
+              ],
+              [
+                33.252116,
+                40.128126
+              ],
+              [
+                33.252292,
+                40.128248
+              ],
+              [
+                33.25267,
+                40.128603
+              ],
+              [
+                33.253196,
+                40.129281
+              ],
+              [
+                33.253319,
+                40.129657
+              ],
+              [
+                33.253468,
+                40.129979
+              ],
+              [
+                33.253978,
+                40.130838
+              ],
+              [
+                33.254285,
+                40.131268
+              ],
+              [
+                33.25461,
+                40.131456
+              ],
+              [
+                33.255233,
+                40.131765
+              ],
+              [
+                33.255584,
+                40.131818
+              ],
+              [
+                33.25598,
+                40.131832
+              ],
+              [
+                33.256638,
+                40.131845
+              ],
+              [
+                33.256884,
+                40.131879
+              ],
+              [
+                33.257121,
+                40.132067
+              ],
+              [
+                33.257569,
+                40.132564
+              ],
+              [
+                33.257847,
+                40.132896
+              ],
+              [
+                33.258497,
+                40.133672
+              ],
+              [
+                33.25857,
+                40.133758
+              ],
+              [
+                33.259105,
+                40.13445
+              ],
+              [
+                33.258352,
+                40.134739
+              ]
+            ]
+          },
+          {
+            "kind": "connector",
+            "label": "Temsil noktası / varsayılan giriş bağlantısı",
+            "coordinates": [
+              [
+                33.2368546,
+                40.1068361
+              ],
+              [
+                33.2368208,
+                40.1066569
+              ]
+            ]
+          },
+          {
+            "kind": "connector",
+            "label": "Varsayılan hastane giriş bağlantısı",
+            "coordinates": [
+              [
+                33.2583525,
+                40.1347386
+              ],
+              [
+                33.2564941293453,
+                40.135839667424264
+              ]
+            ]
+          }
+        ],
+        "boardings": [],
+        "demand": "AHMETADİL",
+        "candidate": "KOZAYAĞI",
+        "scenario": {
+          "mode": "hybrid",
+          "threshold": 30,
+          "coverageTarget": 95.0,
+          "districtFloor": 80.0,
+          "trafficFactor": 1.0,
+          "demandMultiplier": 1.0,
+          "bedOccupancy": 80.0,
+          "contactsPerDoctor": 2140,
+          "costTolerance": 10.0,
+          "hospitalLimit": null,
+          "operatingCostMultiplier": 1.0,
+          "transitProfile": "weekday-1000",
+          "transitEngine": "motis",
+          "carWeight": 70.0,
+          "transitThreshold": 60,
+          "demandId": "177863",
+          "candidateId": "H-177865-R120",
+          "routeMode": "car",
+          "routingPackageId": "motis-8bbee1c73c4bee6a43a73b253e46febbf5cc0619f7a6e57a55fbfd2cd5cb6719"
+        },
+        "routeMode": "car",
+        "note": "Kesikli çizgiler varsayılan giriş bağlantılarıdır; arazide doğrulanmış yollar değildir. Kesintisiz çizgiler OSM yol/yürüyüş/ray ağını izler.",
+        "planId": "permanent-0f8f5be520f18d7963cfbf37c4e6e4c857a9dea0290bcdd2853b41b0adbf7369",
+        "profileId": "car"
+      },
+      "allocatedPopulation": 274.0
+    },
+    {
+      "request": {
+        "planId": "permanent-0f8f5be520f18d7963cfbf37c4e6e4c857a9dea0290bcdd2853b41b0adbf7369",
+        "view": "transit",
+        "demandId": "1914",
+        "candidateId": "H-1510"
+      },
+      "response": {
+        "status": "computed",
+        "minutes": 49.0,
+        "legs": [
+          {
+            "kind": "connector",
+            "label": "Varsayımsal mahalle temsil noktası bağlantısı",
+            "coordinates": [
+              [
+                33.0944316,
+                40.1299151
+              ],
+              [
+                33.0944284,
+                40.1299263
+              ]
+            ]
+          },
+          {
+            "kind": "walk",
+            "label": "MOTIS · yürüyüş",
+            "coordinates": [
+              [
+                33.094428,
+                40.129926
+              ],
+              [
+                33.094428,
+                40.129926
+              ],
+              [
+                33.094428,
+                40.129926
+              ],
+              [
+                33.093382,
+                40.129839
+              ],
+              [
+                33.093293,
+                40.129837
+              ],
+              [
+                33.093261,
+                40.129843
+              ],
+              [
+                33.093241,
+                40.12986
+              ],
+              [
+                33.093231,
+                40.129886
+              ],
+              [
+                33.093234,
+                40.129956
+              ],
+              [
+                33.093234,
+                40.129956
+              ],
+              [
+                33.093202,
+                40.129927
+              ],
+              [
+                33.093023,
+                40.129837
+              ],
+              [
+                33.093023,
+                40.129837
+              ],
+              [
+                33.092851,
+                40.12975
+              ],
+              [
+                33.092395,
+                40.129516
+              ],
+              [
+                33.092395,
+                40.129516
+              ],
+              [
+                33.092348,
+                40.129492
+              ],
+              [
+                33.092315,
+                40.129469
+              ],
+              [
+                33.092294,
+                40.129442
+              ],
+              [
+                33.092286,
+                40.129412
+              ],
+              [
+                33.092286,
+                40.129412
+              ],
+              [
+                33.091984,
+                40.129558
+              ],
+              [
+                33.091984,
+                40.129558
+              ],
+              [
+                33.09169,
+                40.129212
+              ],
+              [
+                33.091545,
+                40.129052
+              ],
+              [
+                33.091545,
+                40.129052
+              ],
+              [
+                33.091186,
+                40.128655
+              ],
+              [
+                33.091186,
+                40.128655
+              ],
+              [
+                33.091024,
+                40.128731
+              ],
+              [
+                33.090658,
+                40.128906
+              ],
+              [
+                33.090658,
+                40.128906
+              ],
+              [
+                33.090197,
+                40.129126
+              ],
+              [
+                33.090197,
+                40.129126
+              ],
+              [
+                33.090046,
+                40.129198
+              ],
+              [
+                33.089791,
+                40.129323
+              ],
+              [
+                33.089418,
+                40.129505
+              ],
+              [
+                33.089418,
+                40.129505
+              ],
+              [
+                33.089017,
+                40.129706
+              ],
+              [
+                33.088904,
+                40.129777
+              ],
+              [
+                33.088904,
+                40.129777
+              ],
+              [
+                33.088788,
+                40.12987
+              ],
+              [
+                33.088689,
+                40.129983
+              ],
+              [
+                33.088603,
+                40.130074
+              ],
+              [
+                33.088603,
+                40.130074
+              ],
+              [
+                33.088516,
+                40.130166
+              ],
+              [
+                33.088516,
+                40.130166
+              ],
+              [
+                33.088451,
+                40.130226
+              ],
+              [
+                33.088365,
+                40.130286
+              ],
+              [
+                33.08824,
+                40.130355
+              ],
+              [
+                33.087818,
+                40.130546
+              ],
+              [
+                33.087818,
+                40.130546
+              ],
+              [
+                33.087291,
+                40.130622
+              ],
+              [
+                33.087291,
+                40.130622
+              ],
+              [
+                33.087037,
+                40.130659
+              ],
+              [
+                33.087037,
+                40.130659
+              ],
+              [
+                33.086998,
+                40.130663
+              ],
+              [
+                33.086998,
+                40.130663
+              ],
+              [
+                33.086798,
+                40.130675
+              ],
+              [
+                33.086798,
+                40.130675
+              ],
+              [
+                33.086618,
+                40.130702
+              ],
+              [
+                33.08653,
+                40.130714
+              ],
+              [
+                33.08645,
+                40.130737
+              ],
+              [
+                33.08645,
+                40.130737
+              ],
+              [
+                33.086216,
+                40.130793
+              ],
+              [
+                33.086002,
+                40.130846
+              ],
+              [
+                33.086002,
+                40.130846
+              ],
+              [
+                33.086118,
+                40.130927
+              ],
+              [
+                33.086175,
+                40.130971
+              ],
+              [
+                33.086203,
+                40.130993
+              ],
+              [
+                33.086203,
+                40.130993
+              ],
+              [
+                33.086197,
+                40.130947
+              ],
+              [
+                33.086173,
+                40.130912
+              ],
+              [
+                33.086167,
+                40.130889
+              ],
+              [
+                33.086183,
+                40.130873
+              ],
+              [
+                33.086278,
+                40.130847
+              ],
+              [
+                33.086432,
+                40.130813
+              ]
+            ],
+            "mode": "WALK",
+            "startTime": "2026-10-27T07:06:00Z",
+            "endTime": "2026-10-27T07:21:00Z",
+            "rawGeometry": {
+              "points": "kwipkAwp|b~@????lDj`ABpDK~@a@f@s@RkCE??x@~@rDdJ??lDvIrMn[??n@|Al@`At@h@z@N??cHzQ??rTjQ~H`H??xWlU??wCbI}IzU??wLx[??oClHyF|NkJhV??qK`XmC`F??yDfFaFdEuDjD??wDlD??wB`CwBjDiCxF}JjY??wC|_@??iAzN??GlA??WnK??u@fJWnDm@~C??oBrMiBjL??aDgFwAqBk@w@??zAJdAn@l@J^_@r@}DbAsH",
+              "precision": 6,
+              "length": 76
+            },
+            "tripId": null,
+            "routeId": null
+          },
+          {
+            "kind": "ride",
+            "label": "488-3",
+            "coordinates": [
+              [
+                33.086434,
+                40.130818
+              ],
+              [
+                33.086388,
+                40.130759
+              ],
+              [
+                33.086124,
+                40.130819
+              ],
+              [
+                33.085987,
+                40.130841
+              ],
+              [
+                33.085985,
+                40.130841
+              ],
+              [
+                33.085882,
+                40.130854
+              ],
+              [
+                33.08588,
+                40.130854
+              ],
+              [
+                33.085706,
+                40.130863
+              ],
+              [
+                33.085606,
+                40.130866
+              ],
+              [
+                33.085604,
+                40.130866
+              ],
+              [
+                33.085509,
+                40.130858
+              ],
+              [
+                33.085507,
+                40.130858
+              ],
+              [
+                33.085219,
+                40.130815
+              ],
+              [
+                33.084833,
+                40.130769
+              ],
+              [
+                33.084583,
+                40.130745
+              ],
+              [
+                33.084402,
+                40.130766
+              ],
+              [
+                33.084115,
+                40.130881
+              ],
+              [
+                33.083997,
+                40.130947
+              ],
+              [
+                33.083574,
+                40.13112
+              ],
+              [
+                33.083085,
+                40.131356
+              ],
+              [
+                33.082921,
+                40.131458
+              ],
+              [
+                33.082773,
+                40.131325
+              ],
+              [
+                33.082337,
+                40.130985
+              ],
+              [
+                33.081433,
+                40.130362
+              ],
+              [
+                33.080298,
+                40.129612
+              ],
+              [
+                33.079269,
+                40.129084
+              ],
+              [
+                33.0785,
+                40.128706
+              ],
+              [
+                33.077897,
+                40.128415
+              ],
+              [
+                33.076729,
+                40.127828
+              ],
+              [
+                33.076015,
+                40.127489
+              ],
+              [
+                33.075236,
+                40.127118
+              ],
+              [
+                33.074558,
+                40.126795
+              ],
+              [
+                33.074369,
+                40.126706
+              ],
+              [
+                33.073708,
+                40.126389
+              ],
+              [
+                33.072675,
+                40.125894
+              ],
+              [
+                33.071541,
+                40.125348
+              ],
+              [
+                33.069456,
+                40.124417
+              ],
+              [
+                33.069248,
+                40.124388
+              ],
+              [
+                33.069116,
+                40.124422
+              ],
+              [
+                33.068882,
+                40.124536
+              ],
+              [
+                33.068538,
+                40.124775
+              ],
+              [
+                33.068162,
+                40.124466
+              ],
+              [
+                33.066916,
+                40.12313
+              ],
+              [
+                33.059225,
+                40.116136
+              ],
+              [
+                33.056513,
+                40.113717
+              ],
+              [
+                33.055336,
+                40.112835
+              ],
+              [
+                33.055099,
+                40.112629
+              ],
+              [
+                33.054028,
+                40.111544
+              ],
+              [
+                33.053331,
+                40.110875
+              ],
+              [
+                33.052553,
+                40.110171
+              ],
+              [
+                33.050838,
+                40.108667
+              ],
+              [
+                33.049601,
+                40.107549
+              ],
+              [
+                33.046591,
+                40.104856
+              ],
+              [
+                33.04173,
+                40.100418
+              ],
+              [
+                33.041309,
+                40.10005
+              ],
+              [
+                33.038933,
+                40.097903
+              ],
+              [
+                33.038356,
+                40.097217
+              ],
+              [
+                33.034846,
+                40.092829
+              ],
+              [
+                33.033266,
+                40.090934
+              ],
+              [
+                33.032489,
+                40.090258
+              ],
+              [
+                33.03161,
+                40.089592
+              ],
+              [
+                33.029815,
+                40.08855
+              ],
+              [
+                33.026577,
+                40.086804
+              ],
+              [
+                33.024947,
+                40.086006
+              ],
+              [
+                33.024678,
+                40.085847
+              ],
+              [
+                33.022971,
+                40.084808
+              ],
+              [
+                33.021612,
+                40.084056
+              ],
+              [
+                33.020476,
+                40.083461
+              ],
+              [
+                33.01926,
+                40.082956
+              ],
+              [
+                33.018219,
+                40.082611
+              ],
+              [
+                33.01675,
+                40.082132
+              ],
+              [
+                33.015785,
+                40.08177
+              ],
+              [
+                33.014668,
+                40.081227
+              ],
+              [
+                33.013678,
+                40.080714
+              ],
+              [
+                33.012176,
+                40.079968
+              ],
+              [
+                33.01186,
+                40.07979
+              ],
+              [
+                33.010313,
+                40.078906
+              ],
+              [
+                33.006216,
+                40.076706
+              ],
+              [
+                33.005295,
+                40.076256
+              ],
+              [
+                33.003637,
+                40.075475
+              ],
+              [
+                33.001869,
+                40.07473
+              ],
+              [
+                33.000169,
+                40.074087
+              ],
+              [
+                32.999835,
+                40.073932
+              ],
+              [
+                32.998857,
+                40.073444
+              ],
+              [
+                32.99801,
+                40.073006
+              ],
+              [
+                32.99461,
+                40.07148
+              ],
+              [
+                32.993441,
+                40.070964
+              ],
+              [
+                32.98843,
+                40.068731
+              ],
+              [
+                32.985588,
+                40.067461
+              ],
+              [
+                32.985153,
+                40.067284
+              ],
+              [
+                32.984687,
+                40.067103
+              ],
+              [
+                32.984233,
+                40.066956
+              ],
+              [
+                32.983872,
+                40.066865
+              ],
+              [
+                32.983369,
+                40.06677
+              ],
+              [
+                32.983064,
+                40.066728
+              ],
+              [
+                32.982567,
+                40.06667
+              ],
+              [
+                32.982271,
+                40.066651
+              ],
+              [
+                32.98197,
+                40.066647
+              ],
+              [
+                32.981301,
+                40.066672
+              ],
+              [
+                32.980816,
+                40.066811
+              ]
+            ],
+            "mode": "BUS",
+            "startTime": "2026-10-27T07:21:00Z",
+            "endTime": "2026-10-27T07:44:00Z",
+            "rawGeometry": {
+              "points": "cokpkAc}lb~@tBzAwBnOk@pG?BYlE?BQzIEfE?BN|D?BtA~PzAbWn@rNi@hJeF|PcCjFyIlYwMp]kEfIhGfHfTfZ|e@nw@zm@|eA~_@h_ArV`o@dQtd@tc@~gAdTrk@dVto@dSji@pDxJxRhh@|]p_Aba@zeAdy@haCx@~KcAfGcFrM}MnThRnVnrAzlAbtLt_NdvCnhDbv@phAzKxMxbA|aAxh@pj@~j@ro@~|AdjBzdAhlAhgDb{DjtGxnH~UhYdeCnsCzi@`c@fqGjzEluBvaBfi@po@rh@|u@b`AdoBblBjiEzp@zdB|HxO|_AtiB~m@|sAdd@~eAp^~jApT``A|\\xzArUh{@|`@xdA`_@z|@rm@z|AbJvRfv@t_BnhC`_Gb[px@xo@rfBpm@nmBdg@fiBtHzSn]b|@jZ|s@j~AnsEf_@`hApjCdxHjnArpD`JdZhJb\\dHj[tDpU|Dl^rA`RrB`^d@nQFxQq@xh@uGh]",
+              "precision": 6,
+              "length": 100
+            },
+            "tripId": "20261027_10:10_ankara_488-3_H_10:10:00_(ÖTA)-ALTINOVA-ULUS-SIHHİYE",
+            "routeId": "ankara_488-3"
+          },
+          {
+            "kind": "walk",
+            "label": "MOTIS · yürüyüş",
+            "coordinates": [
+              [
+                32.981305,
+                40.066565
+              ],
+              [
+                32.981256,
+                40.066328
+              ],
+              [
+                32.981256,
+                40.066328
+              ],
+              [
+                32.981457,
+                40.066278
+              ],
+              [
+                32.981644,
+                40.066223
+              ],
+              [
+                32.981843,
+                40.066157
+              ],
+              [
+                32.982306,
+                40.065937
+              ]
+            ],
+            "mode": "WALK",
+            "startTime": "2026-10-27T07:44:00Z",
+            "endTime": "2026-10-27T07:47:00Z",
+            "rawGeometry": {
+              "points": "i_nlkAqr_|}@xM`B??bBqKlBuJbCmKvL}[",
+              "precision": 6,
+              "length": 7
+            },
+            "tripId": null,
+            "routeId": null
+          },
+          {
+            "kind": "connector",
+            "label": "Varsayımsal hastane giriş bağlantısı",
+            "coordinates": [
+              [
+                32.9823062,
+                40.0659369
+              ],
+              [
+                32.9825354485154,
+                40.067276827749886
+              ]
+            ]
+          }
+        ],
+        "boardings": [
+          {
+            "route": "488-3",
+            "stop": "AKYURT AİLE YAŞAM",
+            "mode": "BUS",
+            "departure": "10:21",
+            "departureTime": "2026-10-27T07:21:00Z",
+            "tripId": "20261027_10:10_ankara_488-3_H_10:10:00_(ÖTA)-ALTINOVA-ULUS-SIHHİYE"
+          }
+        ],
+        "requestedTime": "2026-10-27T10:00:00+03:00",
+        "motorQueryTime": "2026-10-27T07:01:00+00:00",
+        "arrivalTime": "2026-10-27T07:49:00+00:00",
+        "originConnectorMinutes": 0.017333333333333333,
+        "destinationConnectorMinutes": 2.0,
+        "queryCeilingWaitMinutes": 0.9826666666666667,
+        "initialWaitAfterQueryMinutes": 5.0,
+        "providerArrivalTime": "2026-10-27T07:47:00+00:00",
+        "provider": "motis",
+        "datasetScenario": "historical_Ankara_community_GTFS_user_accepted_20261026",
+        "profile": "weekday-1000",
+        "invalidItineraryCount": 0,
+        "evidence": {
+          "engine": "motis",
+          "engineVersion": "2.10.2",
+          "datasetScenario": "historical_Ankara_community_GTFS_user_accepted_20261026",
+          "packageId": "motis-8bbee1c73c4bee6a43a73b253e46febbf5cc0619f7a6e57a55fbfd2cd5cb6719",
+          "profile": "weekday-1000",
+          "departure": "2026-10-27T10:00:00+03:00",
+          "profileDate": "2026-10-27",
+          "actualProfileDate": "2026-10-27",
+          "gtfsSHA256": "c070ea3486a6390d1e67c1ed78cca935e287187dbd6edd89f0608605bbf59419",
+          "existingComparisonAvailable": false,
+          "timeZone": "Europe/Istanbul",
+          "sourceSHA256": {
+            "GTFS": "c070ea3486a6390d1e67c1ed78cca935e287187dbd6edd89f0608605bbf59419",
+            "OSM": "39bc0890a3e47acf2baa3185d2fb866e6de3459a4d5eaebd2ace5ca15d837536",
+            "carMatrix": "5de0792359ab23cf3276b9afe5a3c7df65342eb88b25b82b82184730c38bd2b7",
+            "config": "70a76d42eecadc66a33cb8a7dcf72e21bb81a2eb18fcde2cf7711484839b7a8a",
+            "dataset": "6a111769a9503bf85275b63c371f2d8cd43a6a75e3bb6906d058cd79ba2587e3",
+            "engine": "3136f94941918afe38ecbf2ac6ebfbbcf429286ee6f68b806a7dc88da854508d",
+            "graphCoordinates": "b86629c977a931479edc08dc42a7d0c770f7b94b03b685077ac65cd162d0593b",
+            "imported/elevator_footpath_map.bin": "e277355d117aecc49d1beccf73b296ec2e8267d9867523ce8c623a292b3ce53a",
+            "imported/matches.bin": "d6b2e9a0d5dd5cb574620eebaaca231f16154e7eed59757ac088ff55dd0ed2aa",
+            "imported/meta/matches.json": "023aa64e9b17d413052a507ca7dc506c1e9db32656a1ce409ae0623fac787b6a",
+            "imported/meta/osr.json": "7af8aae93494ec8be4407313254baf83e7c737713e00922fd7f37437b9b553fc",
+            "imported/meta/osr_footpath.json": "9c97f61053838256e9ec3c249673a14b6c4fd16f8b0e5f048a39738f2c6f9be1",
+            "imported/meta/tt.json": "05d55e72ca552864002714ba1d32372976ab84da47bbfc944cf8d2b70575f243",
+            "imported/osr/node_is_platform.bin": "cd748dff1866c47d8ec10a92c6901b9f7902c2f54a05a81b7e1b8f2388449a6a",
+            "imported/osr/node_pos.bin": "99b2f7c5f135d2331d23031a8e138e97a3220ceb51c54924ebfd365902a02817",
+            "imported/osr/node_to_osm.bin": "c9cc70b8b9eabc9df0be010ccda08d27e99a4b54f32f2ec05d31bfc21ce163be",
+            "imported/osr/platform_names_data.bin": "6177155cdfb0743d516612d17d7518a11ea67b6b5a25a91c021ee75e3a990547",
+            "imported/osr/platform_names_idx_0.bin": "02edfed550915bd6bf1aa756145d288576234a1c9c0778c35266d811439cafa6",
+            "imported/osr/platform_names_idx_1.bin": "a86789152340550e9e0d924dd19a2438ad116003948808c96a8446d35159d77a",
+            "imported/osr/platform_ref_data.bin": "bdc51b318b726ec7c277e4cf86743ec252750bcab377ea55333b6ee4188c19a8",
+            "imported/osr/platform_ref_index.bin": "f22726dc8aa4715d9f246d36c37a2d2decd11e3c8d5597934fa3fc0ad9b4fb93",
+            "imported/osr/routing.bin": "380a00691d691a3fc6f2b384cbe5adb560ae60e04e9b3cb9fc52db13ba6c2297",
+            "imported/osr/rtree_data.bin": "a08fd73ea08688f9144c82f57a9c03153c4973ca6adfd5ced00024201b90c7f0",
+            "imported/osr/rtree_meta.bin": "6092162dc216b4563b718ea8972bb3218e9e474dc9b483687f25cb04987c8957",
+            "imported/osr/strings_data.bin": "2a630e5750bb01e8dc7d0d8f86155ce597eaa339b9bd57ef306c41d6f6c03e8a",
+            "imported/osr/strings_idx.bin": "d67b4c6bc20620347555a0e0947e6dd116a76e54466fc33fe567f4e4227ec55d",
+            "imported/osr/way_conditional_access_no": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "imported/osr/way_has_conditional_access_no": "3387f44111bd7b3f0000800e0717e9421270686d3b784d6af23723101eeb7565",
+            "imported/osr/way_is_platform.bin": "bbbb1c516f762867bd2f1292a0343220fe50488f9a38a7601be5a6529f0c34fa",
+            "imported/osr/way_names.bin": "b5e1990761fad0ef1a39b982b6bed03b871cbf771d7325977b0b1fd77e0893d8",
+            "imported/osr/way_osm_idx.bin": "1715d9d929b369c6578f0df957bb80bdb18fe25151447cb232918438e1795707",
+            "imported/osr/way_osm_nodes_data.bin": "d4a72da36432b4dde037bee129b03af47c107eb6b666a5e5f3f95da5e3a4864b",
+            "imported/osr/way_osm_nodes_index.bin": "4b0d25b73f5cc92da98f2a31315ba12a4fe36c739b8ad3c99f8fbc79a023408a",
+            "imported/osr/way_polylines_data.bin": "b61177a0f7a7cd9dbfb755e0490857a7755043f2d6a4c8910f1d5bc67a605a88",
+            "imported/osr/way_polylines_index.bin": "4b0d25b73f5cc92da98f2a31315ba12a4fe36c739b8ad3c99f8fbc79a023408a",
+            "imported/routed_shapes_data.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "imported/routed_shapes_idx.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "imported/shape_offsets_data.bin": "9b996d507e779273fba75dd8093e56e8a2d241c298229b6545d4e0265e5bd48b",
+            "imported/shape_offsets_idx.bin": "ea6cbfd5827fb616490703e506cc1f8dd3cf924283de30fd27d098cd3e41e1f2",
+            "imported/shape_route_bboxes.bin": "34823b2948a5f2829216a08a54da4612a5e0486d9dcf32b6ee8c0f7368792bf5",
+            "imported/shape_route_segment_bboxes_data.bin": "87e953af7e6d59a184f22b6d27ad39bdd55c8a3bdffb6fe685bbcd63dc131312",
+            "imported/shape_route_segment_bboxes_idx.bin": "663acf90828da9190b022136bdfa500cfa9f2505735143b3c460ecf4e5136ce0",
+            "imported/shape_trip_offsets.bin": "f0477d8b881844197fa2b15a93e1626561debf91941b8941f55ead6180630639",
+            "imported/shapes_data.bin": "6b392c2eb3f5cfe73451c6d738f4cee75e7d101a05042ae732aa576a9de824d6",
+            "imported/shapes_idx.bin": "c9720890b4a67907e6fa1c8cc2f3f613e9c8cb855de93154bc1381f197058aa1",
+            "imported/tags.bin": "7bbbbbd1ea80a3483f64876a85172c3aac7f70d73ef3e97733e51e47fef03e38",
+            "imported/timetable_metrics.json": "e1aad4e25c304e494bb9ad21125e1b5ac62c4c5f75d66b8e016477535e93b5f8",
+            "imported/tt.bin": "75a9f5f7b122cdb03c903801761432e13aa215a0786e071ef85dc461da79d1e3",
+            "imported/tt_ext.bin": "c6ee8e9c2356f6649e3228cf4b04abd37a4d750ed78facbdeccd11d564fef171",
+            "imported/way_matches.bin": "03dd9c2756d7b52c9e7530ce4402f689a56f9889414a96f847275b48b905c551",
+            "imported/way_matches_idx.bin": "6e4a7b87721d518c6f667c06c61675fe17004299e0480bbf38790d0376c263ec",
+            "runtimeConfig": "d9abd026c5feca45586487b070704e5f9b7d783d9b551a0eae63cd0237ae991d",
+            "sourceManifest": "7e89bbc4dc2058052accff445a5e309607e1e8194051211d8443462a43daffc0"
+          },
+          "searchScope": {
+            "allCandidateInfeasibilityProofAllowed": false,
+            "bulkAndPlanEquivalent": false,
+            "bulkIsOnlyShortlistHint": true,
+            "connectorSpeedMetersPerSecond": 1.25,
+            "currentOfficialEGO": false,
+            "emptyPlanMeans": "unknown within dated data and search limits",
+            "finalEndpoint": "/api/v6/plan",
+            "kind": "restricted_edges",
+            "maximumTotalMinutes": 120.0,
+            "originConnectorBeforeQuery": true,
+            "perFootprintClass": 12,
+            "queryTimeCeilingMinutes": true,
+            "selection": "union of bulk-duration and car-duration nearest candidates per footprint; physical-entry aliases included",
+            "unqueriedMeans": "unknown, not no service"
+          },
+          "matrix": {
+            "auditSHA256": "eca9b58797702cfbc7474e86f1b3d309585e38b3e4c1d21c5ebb818db6bfe2ca",
+            "builtAt": "2026-10-26T20:05:55.902643+00:00",
+            "bulkFailureCount": 0,
+            "computedCount": 61626,
+            "departure": "2026-10-27T10:00:00+03:00",
+            "elapsedSeconds": 298.87967750000007,
+            "file": "weekday-1000-matrix.npz",
+            "providerFailureCount": 0,
+            "queriedCount": 110826,
+            "queryCount": 33650,
+            "sha256": "5f69522104c93ae50710077f2eac50dd76c09de5895886240f5b667b8872f85b",
+            "shape": [
+              1413,
+              4825
+            ],
+            "unknownQueriedCount": 49200,
+            "unqueriedCount": 6706899
+          },
+          "historicalCommunityGTFS": true,
+          "currentOfficialEGO": false,
+          "unknownMeansNoService": false,
+          "allCandidateInfeasibilityProofAllowed": false,
+          "assumedConnectorSpeedMetersPerSecond": 1.25,
+          "originConnectorBeforeQuery": true,
+          "queryTimeRoundedUpToMinute": true
+        },
+        "runtimeIdentity": {
+          "pid": 32724,
+          "processCreatedEpoch": 1793090181.5643928,
+          "executable": "work/free-routing-research-2026-10-26/motis-2.10.2/motis.exe",
+          "importDirectory": "work/free-routing-research-2026-10-26/local-motis/data",
+          "listener": "127.0.0.1:8088",
+          "processImportVerified": true
+        },
+        "demand": "ATATÜRK",
+        "candidate": "PEÇENEK",
+        "scenario": {
+          "mode": "hybrid",
+          "threshold": 30,
+          "coverageTarget": 95.0,
+          "districtFloor": 80.0,
+          "trafficFactor": 1.0,
+          "demandMultiplier": 1.0,
+          "bedOccupancy": 80.0,
+          "contactsPerDoctor": 2140,
+          "costTolerance": 10.0,
+          "hospitalLimit": null,
+          "operatingCostMultiplier": 1.0,
+          "transitProfile": "weekday-1000",
+          "transitEngine": "motis",
+          "carWeight": 70.0,
+          "transitThreshold": 60,
+          "demandId": "1914",
+          "candidateId": "H-1510",
+          "routeMode": "transit",
+          "routingPackageId": "motis-8bbee1c73c4bee6a43a73b253e46febbf5cc0619f7a6e57a55fbfd2cd5cb6719"
+        },
+        "routeMode": "transit",
+        "note": "MOTIS tarihsel GTFS ve OSM rotası. Kesikli giriş bağlantıları varsayımdır; başlangıç bağlantısı, ilk bekleme ve son bağlantı süreye dahildir.",
+        "planId": "permanent-0f8f5be520f18d7963cfbf37c4e6e4c857a9dea0290bcdd2853b41b0adbf7369",
+        "profileId": "weekday-1000"
+      },
+      "allocatedPopulation": 1709.0
+    }
+  ],
+  "scope": "Two assigned local API route responses; not complete-network or current-EGO validation."
+}

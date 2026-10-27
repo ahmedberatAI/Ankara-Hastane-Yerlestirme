@@ -201,8 +201,8 @@ test("MOTIS ISO departure uses Turkey time and is not mistaken for UTC", () => {
   assert.match(render(ui.TransitEvidenceNote, { result: r, scenario: scenario(), pending: false }), /27 Ekim 2026 10:00/);
   assert.equal(ui.profileDateLabel("2026-10-27T05:12:00Z"), "27 Ekim 2026 08:12");
 });
-test("live App wires the view and invalidates asynchronous routes", () => {
-  const app = readFileSync("src/App.tsx", "utf8");
+test("archived scenario lab preserves view and asynchronous route guards", () => {
+  const app = readFileSync("src/ScenarioLab.tsx", "utf8");
   assert.match(app, /result=\{viewedResult\}/); assert.match(app, /const stats = viewedResult\?\.metrics/);
   assert.match(app, /\}, \[scenario, viewMode\]\)/); assert.match(app, /version === routeVersion\.current/);
   assert.match(app, /if \(busy \|\| dirty\)/); assert.match(app, /!availability\.ready/);

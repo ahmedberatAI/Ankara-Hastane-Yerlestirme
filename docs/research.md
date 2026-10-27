@@ -39,7 +39,7 @@ Gerekli iyileştirme: ABB’den sürüm tarihi, UAVT/ADNKS kodu, koordinat siste
 
 Karayolu çizgileri ortak OSM düğüm kimlikleriyle bağlandı. Böylece farklı seviyedeki köprü/tünel çizgileri yalnız çizgileri kesişiyor diye birleştirilmez. Tek yön, dönel kavşak varsayımı, temel araç/yaya erişim etiketleri ve yol sınıfları işlenir. Sayısal `maxspeed` değerleri varsayılan hızı sınırlar.
 
-İlk sürümün süreleri ölçülmüş trafik süreleri değildir. Dönüş yasakları, koşullu erişim, trafik ışıkları, yokuş, hava ve saatlik yoğunluk yoktur. Arayüzdeki trafik çarpanı yalnız duyarlılık senaryosudur. Sonraki aşamada OSM dönüş ilişkilerini işleyen özel [OSRM](https://project-osrm.org/docs/v26.6.1/http) veya Valhalla hizmeti ve doğrulanmış hız profilleri kullanılmalıdır. Büyük matrisler ücretsiz demo sunucularına gönderilmez.
+Araba süreleri ölçülmüş trafik süreleri değildir. Dönüş yasakları, koşullu erişim, trafik ışıkları, yokuş, hava ve saatlik yoğunluk yoktur. Eski trafik çarpanı duyarlılık deneylerine aittir; güncel ana arayüzde bulunmaz. Sonraki aşamada OSM dönüş ilişkilerini işleyen özel [OSRM](https://project-osrm.org/docs/v26.6.1/http) veya Valhalla hizmeti ve doğrulanmış hız profilleri kullanılmalıdır. Büyük matrisler ücretsiz demo sunucularına gönderilmez.
 
 ## 4. EGO ve raylı sistem: resmî kalkışlar ve koordinatlar, kısmi hizmet kapsamı
 
@@ -57,7 +57,7 @@ OSM'deki 124 hastane kaydı resmî envanter değildir. Sağlık Bakanlığı yı
 
 ## 6. Model seçimi
 
-Kapasiteli yer seçimi kullanılır: il/ilçe talep hedefleri altında düşük yıllık eşdeğer maliyet (yıllıklaştırılmış bina yatırımı + işletme); ardından belirlenmiş ek bütçeyle sabit toplam talep için daha kısa yol. [Matematiksel yöntem](methodology.md), nüfus eşdeğeri akışlarını, iki kapasite kısıtını ve optimum iddiasının kapsamını açıklar. Eşikler ve kaynak varsayımları kullanıcı tarafından değiştirilebilir. Süre ve kapsam eşikleri resmî veya klinik standart değildir; [WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care) yönteminin desteklediği kapsam hesabı, bu projenin hedef sayılarını doğrulamaz.
+Kapasiteli yer seçimi kullanılır: il/ilçe talep hedefleri altında düşük yıllık eşdeğer maliyet (yıllıklaştırılmış bina yatırımı + işletme); ardından belirlenmiş ek bütçeyle sabit toplam talep için daha kısa yol. [Matematiksel yöntem](methodology.md), nüfus eşdeğeri akışlarını ve iki kapasite kısıtını açıklar. Güncel ana uygulama, [literatürden yararlanan sabit politika](planning-standards.md) ile [tek kalıcı yerleşimi](permanent-plan.md) gösterir; kullanıcı süre, saat veya talep payı seçmez. Süre ve kapsam eşikleri resmî veya klinik standart değildir; [WHO AccessMod](https://www.who.int/tools/accessmod-geographic-access-to-health-care) kapsam yönteminin desteklenmesi bu projenin sayısal hedeflerini doğrulamaz.
 
 ## 8. Öncelikli sonraki veri işleri
 
