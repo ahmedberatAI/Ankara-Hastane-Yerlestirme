@@ -1,24 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, Cross, Download, Info, X, Search, LoaderCircle, MapPin, AlertTriangle, Hospital, UsersRound, Clock3, ShieldCheck, BedDouble, Stethoscope, Wallet, Compass, ArrowDownRight } from "lucide-react";
 import AnkaraMap from "./Map";
+import OptimizationMethod from "./OptimizationMethod";
+import { readJson, resetPublicationCache, precomputedPublication, siteBase } from "./dataClient";
 import { departureLabel } from "./Hybrid";
 import { PermanentTargets, PermanentViews, PermanentEvidence, PolicySources, policyProblem, permanentPlanProblem,
   permanentResultForView, permanentRouteRequest, permanentRouteProblem, profileLabel, formatNumber as number, formatDecimal as decimal } from "./Permanent";
 import type { Dataset, PlanningPolicy, PermanentPlan, PermanentRoute, TravelMode, Demand, Candidate } from "./types";
 
 const title = (value: string) => value.toLocaleLowerCase("tr-TR").replace(/(^|\s)\S/g, s => s.toLocaleUpperCase("tr-TR"));
-async function jsonResponse(response: Response) {
-  const payload = await response.json();
-  if (!response.ok) throw Error(typeof payload.detail === "string" ? payload.detail : "Kayıtlı plan verisi şu anda alınamadı.");
-  return payload;
-}
 function MethodDialog({ policy, plan, close }: { policy: PlanningPolicy; plan: PermanentPlan | null; close: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => { ref.current?.showModal(); }, []);
   return <dialog ref={ref} className="modal permanent-modal" aria-labelledby="method-title" onCancel={close} onClick={e => { if (e.target === ref.current) close(); }}>
     <div className="modal-top"><div><span className="eyebrow">KAYNAKLI HEDEFLER · ORTAK KAPASİTE</span><h2 id="method-title">Kalıcı planın dayanağı</h2></div><button className="icon-btn" onClick={close} aria-label="Pencereyi kapat"><X /></button></div>
-    <div className="permanent-method"><p>Tek yerleşim, bir araba ağı ve dört tarihli toplu taşıma kesitinde birlikte değerlendirilir. Her kesit aynı hastane, yatak ve hekim kapasitesini kullanır. Kaydedilmiş plan görüntülenir; sayfa açılışı yeni optimizasyon başlatmaz.</p>
-      <PermanentTargets policy={policy} /><PolicySources policy={policy} />{plan && <PermanentEvidence plan={plan} />}</div>
+    <div className="permanent-method"><p>{precomputedPublication ? "Bu yayında hastane planı ve güzergâhlar önceden hesaplanıp doğrulanmıştır. Haritadaki seçimler bu kayıtları gösterir; ziyaret sırasında yeni optimizasyon veya canlı sefer sorgusu çalışmaz." : "Kaydedilmiş ortak plan görüntülenir; sayfa açılışı yeni optimizasyon başlatmaz. Mahalle seçimi, bu plana atanmış güzergâhı getirir."}</p>
+      <OptimizationMethod policy={policy} plan={plan} /><PermanentTargets policy={policy} /><PolicySources policy={policy} documentationUrl={precomputedPublication ? siteBase + "method.html" : undefined} />{plan && <PermanentEvidence plan={plan} />}</div>
   </dialog>;
 }
 export default function App() {
@@ -37,14 +34,15 @@ export default function App() {
   }
   useEffect(() => {
     const controller = new AbortController(); let current = true;
+    resetPublicationCache();
     setLoading(true); setError(""); setPlan(null); setData(null); setPolicy(null); clearRoute();
-    Promise.all([fetch("/api/data", { signal: controller.signal }).then(jsonResponse),
-      fetch("/api/planning-policy", { signal: controller.signal }).then(jsonResponse)])
+    Promise.all([readJson("/api/data", { signal: controller.signal }),
+      readJson("/api/planning-policy", { signal: controller.signal })])
       .then(async ([dataset, fixedPolicy]) => {
         if (!current) return;
         const policyError = policyProblem(fixedPolicy); if (policyError) throw Error(policyError);
         setPolicy(fixedPolicy);
-        const saved = await fetch("/api/permanent-plan", { signal: controller.signal }).then(jsonResponse);
+        const saved = await readJson("/api/permanent-plan", { signal: controller.signal });
         if (!current) return;
         const problem = permanentPlanProblem(saved, dataset, fixedPolicy); if (problem) throw Error(problem);
         setData(dataset); setPlan(saved);
@@ -69,8 +67,7 @@ export default function App() {
     setRouteBusy(true);
     try {
       const request = permanentRouteRequest(routePlan, routeView, demand.id, candidateId);
-      const response = await fetch("/api/permanent-route", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(request), signal: controller.signal });
-      const result = await jsonResponse(response);
+      const result = await readJson("/api/permanent-route", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(request), signal: controller.signal });
       if (version !== routeVersion.current) return;
       const problem = permanentRouteProblem(result, routePlan, routeView, demand.id, candidateId); if (problem) throw Error(problem);
       setRoute(result);
@@ -84,8 +81,8 @@ export default function App() {
   }
   return <div className="app permanent-app">
     <a className="skip-link" href="#plan-haritasi">Haritaya geç</a>
-    <header className="header"><a className="brand" href="/" aria-label="ERİŞİM ana sayfa"><span className="brand-icon"><Cross size={21} strokeWidth={2.1} /></span><b>ERİŞİM<span>.</span></b><div className="brand-caption">ANKARA<span>Kalıcı hastane planı</span></div></a>
-      <nav aria-label="Ana menü"><span className="nav-active"><span /> Ortak plan</span><button onClick={() => setModal(true)} disabled={!policy}>Yöntem ve kaynaklar <ArrowUpRight size={14} /></button></nav><div className="prototype"><span /> Araştırma modeli</div></header>
+    <header className="header"><a className="brand" href={siteBase} aria-label="ERİŞİM ana sayfa"><span className="brand-icon"><Cross size={21} strokeWidth={2.1} /></span><b>ERİŞİM<span>.</span></b><div className="brand-caption">ANKARA<span>Kalıcı hastane planı</span></div></a>
+      <nav aria-label="Ana menü"><span className="nav-active"><span /> Ortak plan</span><button onClick={() => setModal(true)} disabled={!policy}>Yöntem ve kaynaklar <ArrowUpRight size={14} /></button></nav><div className="prototype"><span /> {precomputedPublication ? "Önceden hesaplanmış yayın" : "Araştırma modeli"}</div></header>
     <div className="workspace"><aside className="sidebar">
       <div className="sidebar-intro"><span className="eyebrow"><span className="tiny-line" /> BİR ŞEHİR, ORTAK BİR PLAN</span><h1>Sağlığa<br />{" "}daha <em>yakın.</em></h1><p>Bir şehrin hastanelerini, herkesin erişimini gözeterek birlikte düşünmek.</p><span className="intro-location"><MapPin size={13} /> Ankara, Türkiye <span>25 ilçe</span></span></div>
       {policy && <PermanentTargets policy={policy} />}

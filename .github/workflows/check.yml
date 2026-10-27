@@ -35,3 +35,4 @@ jobs:
       - run: node tests/window_plan_ui.mjs
       - run: node tests/hybrid_ui.mjs
       - run: node tests/permanent_ui.mjs
+      - run: node tests/publication_client.mjs

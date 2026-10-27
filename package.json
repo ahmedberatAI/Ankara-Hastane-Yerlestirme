@@ -7,6 +7,8 @@
     "start": "node scripts/start.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
+    "build:pages": "node scripts/build_pages.mjs",
+    "preview:pages": "node scripts/preview_pages.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

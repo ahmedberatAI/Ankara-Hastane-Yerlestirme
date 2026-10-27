@@ -21,6 +21,8 @@ Arayüz Türkçedir. Sayfa açılışı veya görünüm değişikliği optimizas
 
 Harita, sade bir şehir atlası düzeninde sunulur. Telefonda plan özeti ve harita öne gelir; sabit hedefler sayfanın devamındadır. Rota kartı küçük ekranda haritanın altına açılır. [Telefon görünümü](docs/screenshots/permanent-plan-mobile.png).
 
+**Sunucusuz paylaşım:** `npm run build:pages`, aynı planı ve iki görünümün 2.061 güzergâhını hazır dosyalar olarak paketler. Arkadaşların tarayıcıdan inceleyebilir; bilgisayarın veya MOTIS'in açık kalması gerekmez. Yöntem penceresi, kullanılan MILP modelini ve HiGHS aramasını dört adımda açıklar. [GitHub Pages kurulum ve doğrulama](docs/github-pages.md).
+
 ## Yerel kurulum
 
 Python **3.12** ve Node.js **22 veya 24** gerekir. Hazırlanmış veri dosyaları repoya dahildir; uygulamayı çalıştırmak için Türkiye harita verisini yeniden indirmek gerekmez. Harita altlığı ve web yazı tipleri internet kullanır; ağ matrisi ve optimizasyon yerel çalışır.

@@ -256,9 +256,9 @@ export function PermanentCalculation({ plan }: { plan: PermanentPlan }) {
     <p>Açıklar, çözücünün bildirdiği alt sınırlara ve kullanılan aday/bağlantı kümesine aittir; bağımsız küresel optimum sertifikası değildir. {plan.searchScope?.restricted === true ? "Optimizasyonda bağlantı kümesi daraltılmıştır. " : ""}{finite(plan.searchScope?.retainedCandidateCount) && finite(plan.searchScope?.allCandidateCount) ? `${formatNumber(plan.searchScope.retainedCandidateCount)} / ${formatNumber(plan.searchScope.allCandidateCount)} aday aramada tutulmuştur. ` : ""}MOTIS'in sorgulanmamış bağlantıları ve tarihsel tarife sınırları da geçerlidir. Maliyet ve süre açıkları farklı amaçları ölçer; hiçbiri en az hastane sayısının veya gerçek dünyada bütün hizmetin kanıtı değildir.</p>
   </details>;
 }
-export function PolicySources({ policy }: { policy: PlanningPolicy }) {
+export function PolicySources({ policy, documentationUrl = "https://github.com/ahmedberatAI/Ankara-Hastane-Yerlestirme/blob/main/docs/planning-standards.md" }: { policy: PlanningPolicy; documentationUrl?: string }) {
   return <div className="permanent-sources"><p>30 / 60 dakika ile %95 / %80 hedefleri, bu sürüm için seçilmiş sabit planlama politikasıdır. Tek bir evrensel hastane standardı olarak sunulmaz.</p>
     {policy.sources.map(source => <article key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title} <ArrowUpRight size={14} /></a><p>{source.locator}{source.role ? ` · ${source.role}` : source.note}</p></article>)}
-    <a href="https://github.com/ahmedberatAI/Ankara-Hastane-Yerlestirme/blob/main/docs/planning-standards.md" target="_blank" rel="noreferrer">Hedeflerin gerekçesini ve kapsamını oku <ArrowUpRight size={14} /></a>
+    <a href={documentationUrl} target="_blank" rel="noreferrer">Hedeflerin gerekçesini ve kapsamını oku <ArrowUpRight size={14} /></a>
   </div>;
 }

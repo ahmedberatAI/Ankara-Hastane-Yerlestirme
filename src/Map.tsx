@@ -13,6 +13,7 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import L from "leaflet";
+import { readJson } from "./dataClient";
 import type { GeoJsonObject, FeatureCollection } from "geojson";
 import { LocateFixed, Layers3, Plus } from "lucide-react";
 import type { Dataset, Demand, Result, Route, Candidate, TransitEngine, TravelMode } from "./types";
@@ -270,16 +271,12 @@ export default function AnkaraMap({
       ["roads", setRoads],
       ["transit-lines", setTransit],
     ] as const) {
-      fetch(`/api/layers/${name}`, { signal: controller.signal })
-        .then((r) => {
-          if (!r.ok) throw Error("Harita katmanı yüklenemedi");
-          return r.json();
-        })
+      if (name === "transit-lines" && transitEngine === "motis") continue;
+      readJson(`/api/layers/${name}`, { signal: controller.signal })
         .then(setter)
         .catch(() => {});
     }
-    fetch("/api/layers/province", { signal: controller.signal })
-      .then((r) => r.json())
+    readJson("/api/layers/province", { signal: controller.signal })
       .then((f) => {
         const rings =
           f.geometry.type === "MultiPolygon"
@@ -305,7 +302,7 @@ export default function AnkaraMap({
       })
       .catch(() => {});
     return () => controller.abort();
-  }, []);
+  }, [transitEngine]);
   return (
     <div className="map-wrap">
       <MapContainer

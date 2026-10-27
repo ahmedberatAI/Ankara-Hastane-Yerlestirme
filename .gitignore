@@ -4,6 +4,7 @@ node_modules/
 __pycache__/
 .pytest_cache/
 dist/
+dist-pages/
 data/raw/
 *.log
 !data/processed/departure-window-plan/solver.log
